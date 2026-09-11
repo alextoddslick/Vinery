@@ -5,7 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextColor;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
@@ -120,7 +120,7 @@ public class CompletionistBannerBlock extends BaseEntityBlock implements BlockTo
         return super.updateShape(blockState, levelReader, scheduledTickAccess, blockPos, direction, blockPos2, blockState2, randomSource);
     }
 
-    public ResourceLocation getRenderTexture() {
+    public Identifier getRenderTexture() {
         return Vinery.identifier("textures/banner/vinery_banner.png");
     }
 

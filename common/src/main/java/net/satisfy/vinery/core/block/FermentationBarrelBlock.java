@@ -47,7 +47,7 @@ public class FermentationBarrelBlock extends HorizontalDirectionalBlock implemen
         return shape;
     };
 
-    public static final Map<Direction, VoxelShape> SHAPE = net.minecraft.Util.make(new HashMap<>(), map -> {
+    public static final Map<Direction, VoxelShape> SHAPE = net.minecraft.util.Util.make(new HashMap<>(), map -> {
         for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
             map.put(direction, GeneralUtil.rotateShape(Direction.SOUTH, direction, voxelShapeSupplier.get()));
         }

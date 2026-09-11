@@ -4,7 +4,7 @@ import dev.architectury.platform.Platform;
 import dev.architectury.utils.Env;
 import net.satisfy.vinery.client.util.ClientUtil;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -19,14 +19,14 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class WinemakerChestItem extends Item {
-    private final ResourceLocation chestplateTexture;
+    private final Identifier chestplateTexture;
 
-    public WinemakerChestItem(ArmorMaterial armorMaterial, ArmorType type, Properties properties, ResourceLocation chestplateTexture) {
+    public WinemakerChestItem(ArmorMaterial armorMaterial, ArmorType type, Properties properties, Identifier chestplateTexture) {
         super(properties.humanoidArmor(armorMaterial, type));
         this.chestplateTexture = chestplateTexture;
     }
 
-    public ResourceLocation getChestplateTexture() {
+    public Identifier getChestplateTexture() {
         return chestplateTexture;
     }
 

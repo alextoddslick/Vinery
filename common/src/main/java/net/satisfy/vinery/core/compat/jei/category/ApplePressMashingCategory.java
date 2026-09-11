@@ -9,7 +9,7 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.recipe.types.IRecipeType;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.recipe.ApplePressMashingRecipe;
@@ -30,7 +30,7 @@ public class ApplePressMashingCategory implements IRecipeCategory<ApplePressMash
     private final Component title;
 
     public ApplePressMashingCategory(IGuiHelper helper) {
-        ResourceLocation texture = ResourceLocation.fromNamespaceAndPath("vinery", "textures/gui/apple_press_gui.png");
+        Identifier texture = Identifier.fromNamespaceAndPath("vinery", "textures/gui/apple_press_gui.png");
         this.background = helper.createDrawable(texture, X_OFFSET, Y_OFFSET, BACKGROUND_WIDTH, BACKGROUND_HEIGHT);
         ItemStack pressStack = new ItemStack(ObjectRegistry.APPLE_PRESS.get());
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, pressStack);

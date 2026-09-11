@@ -10,7 +10,7 @@ import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.satisfy.vinery.core.Vinery;
@@ -31,7 +31,7 @@ public class FermentationBarrelDisplay extends BasicDisplay {
             RecordCodecBuilder.mapCodec(instance -> instance.group(
                     EntryIngredient.codec().listOf().fieldOf("inputs").forGetter(FermentationBarrelDisplay::getInputEntries),
                     EntryIngredient.codec().listOf().fieldOf("outputs").forGetter(FermentationBarrelDisplay::getOutputEntries),
-                    ResourceLocation.CODEC.optionalFieldOf("location").forGetter(FermentationBarrelDisplay::getDisplayLocation),
+                    Identifier.CODEC.optionalFieldOf("location").forGetter(FermentationBarrelDisplay::getDisplayLocation),
                     Codec.INT.fieldOf("juiceAmount").forGetter(FermentationBarrelDisplay::getJuiceAmount),
                     Codec.STRING.fieldOf("juiceType").forGetter(FermentationBarrelDisplay::getJuiceType)
             ).apply(instance, FermentationBarrelDisplay::new)),
@@ -40,7 +40,7 @@ public class FermentationBarrelDisplay extends BasicDisplay {
                     FermentationBarrelDisplay::getInputEntries,
                     EntryIngredient.streamCodec().apply(ByteBufCodecs.list()),
                     FermentationBarrelDisplay::getOutputEntries,
-                    ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC),
+                    ByteBufCodecs.optional(Identifier.STREAM_CODEC),
                     FermentationBarrelDisplay::getDisplayLocation,
                     ByteBufCodecs.VAR_INT,
                     FermentationBarrelDisplay::getJuiceAmount,
@@ -61,7 +61,7 @@ public class FermentationBarrelDisplay extends BasicDisplay {
         this(inputs, outputs, Optional.empty(), juiceAmount, juiceType);
     }
 
-    public FermentationBarrelDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, Optional<ResourceLocation> location, int juiceAmount, String juiceType) {
+    public FermentationBarrelDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, Optional<Identifier> location, int juiceAmount, String juiceType) {
         super(inputs, outputs, location);
         this.juiceAmount = juiceAmount;
         this.juiceType = juiceType;

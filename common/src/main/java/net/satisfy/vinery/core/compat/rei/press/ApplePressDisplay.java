@@ -10,7 +10,7 @@ import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.recipe.ApplePressMashingRecipe;
@@ -28,14 +28,14 @@ public class ApplePressDisplay extends BasicDisplay {
             RecordCodecBuilder.mapCodec(instance -> instance.group(
                     EntryIngredient.codec().listOf().fieldOf("inputs").forGetter(ApplePressDisplay::getInputEntries),
                     EntryIngredient.codec().listOf().fieldOf("outputs").forGetter(ApplePressDisplay::getOutputEntries),
-                    ResourceLocation.CODEC.optionalFieldOf("location").forGetter(ApplePressDisplay::getDisplayLocation)
+                    Identifier.CODEC.optionalFieldOf("location").forGetter(ApplePressDisplay::getDisplayLocation)
             ).apply(instance, ApplePressDisplay::new)),
             StreamCodec.composite(
                     EntryIngredient.streamCodec().apply(ByteBufCodecs.list()),
                     ApplePressDisplay::getInputEntries,
                     EntryIngredient.streamCodec().apply(ByteBufCodecs.list()),
                     ApplePressDisplay::getOutputEntries,
-                    ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC),
+                    ByteBufCodecs.optional(Identifier.STREAM_CODEC),
                     ApplePressDisplay::getDisplayLocation,
                     ApplePressDisplay::new
             ));
@@ -50,7 +50,7 @@ public class ApplePressDisplay extends BasicDisplay {
         this(inputs, outputs, Optional.empty());
     }
 
-    public ApplePressDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, Optional<ResourceLocation> location) {
+    public ApplePressDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, Optional<Identifier> location) {
         super(inputs, outputs, location);
     }
 

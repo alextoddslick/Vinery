@@ -7,9 +7,9 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.item.ItemModelResolver;
-import net.minecraft.client.renderer.state.CameraRenderState;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.core.NonNullList;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -20,15 +20,15 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 
 public class StorageBlockEntityRenderer implements BlockEntityRenderer<StorageBlockEntity, StorageRenderState> {
-    private static final HashMap<ResourceLocation, StorageTypeRenderer> STORAGE_TYPES = new HashMap<>();
+    private static final HashMap<Identifier, StorageTypeRenderer> STORAGE_TYPES = new HashMap<>();
 
     private final ItemModelResolver itemModelResolver;
 
-    public static void registerStorageType(ResourceLocation name, StorageTypeRenderer renderer) {
+    public static void registerStorageType(Identifier name, StorageTypeRenderer renderer) {
         STORAGE_TYPES.put(name, renderer);
     }
 
-    public static StorageTypeRenderer getRendererForId(ResourceLocation name) {
+    public static StorageTypeRenderer getRendererForId(Identifier name) {
         return STORAGE_TYPES.get(name);
     }
 

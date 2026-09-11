@@ -1,8 +1,8 @@
 package net.satisfy.vinery.neoforge.core.event;
 
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.entity.npc.villager.VillagerTrades;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -49,7 +49,7 @@ public class VineryForgeEventhandler {
             int maxUses = Integer.parseInt(parts[3]);
             boolean isSelling = Boolean.parseBoolean(parts[4]);
 
-            Item item = BuiltInRegistries.ITEM.getValue(ResourceLocation.parse(itemName));
+            Item item = BuiltInRegistries.ITEM.getValue(Identifier.parse(itemName));
             if (item != null) {
                 VillagerTrades.ItemListing listing;
                 if (isSelling) {

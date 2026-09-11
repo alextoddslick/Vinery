@@ -1,5 +1,5 @@
 plugins {
-    id "com.github.johnrengelman.shadow"
+    id "com.gradleup.shadow"
     id "com.modrinth.minotaur" version "2.+"
     id "com.matthewprenger.cursegradle" version "1.4.0"
 }
@@ -11,12 +11,13 @@ architectury {
 
 loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath
+    injectAccessWidener(tasks.named('jar'))
 }
 
 
 def jarFileName = 'letsdo-vinery-fabric'
 def changelogText = rootProject.file("CHANGELOG.md").text
-archivesBaseName = jarFileName
+base { archivesName = jarFileName }
 
 
 configurations {
@@ -43,20 +44,20 @@ repositories {
 
 
 dependencies {
-    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
-    modImplementation("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
-    modImplementation "com.terraformersmc:modmenu:${rootProject.mod_menu_version}"
+    implementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
+    implementation("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
+    implementation "com.terraformersmc:modmenu:${rootProject.mod_menu_version}"
 
-    modApi( "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
-    modApi( "dev.architectury:architectury-fabric:${rootProject.architectury_version}") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
-    modApi include("me.shedaniel.cloth:cloth-config-fabric:${rootProject.cloth_fabric_version}")
+    api( "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
+    api( "dev.architectury:architectury-fabric:${rootProject.architectury_version}") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
+    api include("me.shedaniel.cloth:cloth-config-fabric:${rootProject.cloth_fabric_version}")
 
-//    modCompileOnlyApi("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
-//    modCompileOnlyApi("mezz.jei:jei-${minecraft_version}-fabric-api:${jei_version}")
+//    compileOnlyApi("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
+//    compileOnlyApi("mezz.jei:jei-${minecraft_version}-fabric-api:${jei_version}")
 //
-//    modRuntimeOnly("mezz.jei:jei-${minecraft_version}-fabric:${jei_version}")
+//    runtimeOnly("mezz.jei:jei-${minecraft_version}-fabric:${jei_version}")
 
-    common(project(path: ":common", configuration: "namedElements")) { transitive false }
+    common(project(path: ":common")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
 }
 
@@ -68,34 +69,27 @@ processResources {
     }
 }
 
+jar {
+    archiveClassifier = "raw"
+}
+
 shadowJar {
     exclude "architectury.common.json"
-
+    dependsOn jar
+    mainSpec.sourcePaths.clear()
+    from(zipTree(jar.archiveFile))
     configurations = [project.configurations.shadowCommon]
-    archiveClassifier.set("dev-shadow")
+    archiveClassifier = null
+    zip64 = true
 }
 
-remapJar {
-    injectAccessWidener = true
-    input.set shadowJar.archiveFile
-    dependsOn shadowJar
-    archiveClassifier.set(null)
-}
-
-jar {
-    archiveClassifier.set("dev")
-}
+assemble.dependsOn shadowJar
+shadow.addShadowVariantIntoJavaComponent = false
 
 sourcesJar {
     def commonSources = project(":common").sourcesJar
     dependsOn commonSources
     from commonSources.archiveFile.map { zipTree(it) }
-}
-
-components.java {
-    withVariantsFromConfiguration(project.configurations.shadowRuntimeElements) {
-        skip()
-    }
 }
 
 publishing {
@@ -120,7 +114,7 @@ modrinth {
     changelog = rootProject.file("CHANGELOG.md").exists() ? rootProject.file("CHANGELOG.md").text : " "
     gameVersions = [rootProject.minecraft_version]
     loaders = ["fabric"]
-    uploadFile = remapJar
+    uploadFile = shadowJar
     additionalFiles = [tasks.sourcesJar.archiveFile]
 
     dependencies {
@@ -135,7 +129,7 @@ curseforge {
         releaseType = "beta"
         addGameVersion rootProject.minecraft_version
         addGameVersion "Fabric"
-        mainArtifact(remapJar) {
+        mainArtifact(shadowJar) {
             displayName = "Vinery - ${rootProject.mod_version} - FABRIC - ${rootProject.minecraft_version}"
             changelog = changelogText
             changelogType = "markdown"

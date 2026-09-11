@@ -6,7 +6,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Inventory;
 import net.satisfy.vinery.client.gui.handler.FermentationBarrelGuiHandler;
 import net.satisfy.vinery.core.Vinery;
@@ -14,7 +14,7 @@ import net.satisfy.vinery.platform.PlatformHelper;
 
 @Environment(EnvType.CLIENT)
 public class FermentationBarrelGui extends AbstractContainerScreen<FermentationBarrelGuiHandler> {
-    public static final ResourceLocation BACKGROUND = Vinery.identifier("textures/gui/fermentation_barrel_gui.png");
+    public static final Identifier BACKGROUND = Vinery.identifier("textures/gui/fermentation_barrel_gui.png");
 
     private static final int FLUID_WIDTH = 20;
     private static final int FLUID_X = 82;

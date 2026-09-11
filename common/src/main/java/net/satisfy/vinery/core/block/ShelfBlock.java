@@ -3,7 +3,7 @@ package net.satisfy.vinery.core.block;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.BlockItem;
@@ -38,7 +38,7 @@ public class ShelfBlock extends StorageBlock {
         return shape;
     };
 
-    public static final Map<Direction, VoxelShape> SHAPE = net.minecraft.Util.make(new HashMap<>(), map -> {
+    public static final Map<Direction, VoxelShape> SHAPE = net.minecraft.util.Util.make(new HashMap<>(), map -> {
         for (Direction direction : Direction.Plane.HORIZONTAL) {
             map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, voxelShapeSupplier.get()));
         }
@@ -93,7 +93,7 @@ public class ShelfBlock extends StorageBlock {
     }
 
     @Override
-    public ResourceLocation type() {
+    public Identifier type() {
         return StorageTypeRegistry.SHELF;
     }
 

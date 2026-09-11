@@ -1,6 +1,6 @@
 package net.satisfy.vinery.core.effect;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -8,7 +8,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.satisfy.vinery.core.Vinery;
 
 public class LuckEffect extends MobEffect {
-    private static final ResourceLocation LUCK_ID = ResourceLocation.fromNamespaceAndPath(Vinery.MOD_ID, "luck");
+    private static final Identifier LUCK_ID = Identifier.fromNamespaceAndPath(Vinery.MOD_ID, "luck");
 
     public LuckEffect() {
         super(MobEffectCategory.BENEFICIAL, 0x56CBFD);

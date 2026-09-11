@@ -6,7 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -78,7 +78,7 @@ public class BigBottleStorageBlock extends StorageBlock implements BlockTooltip 
     }
 
     @Override
-    public ResourceLocation type() {
+    public Identifier type() {
         return StorageTypeRegistry.BIG_BOTTLE;
     }
 

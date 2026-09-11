@@ -4,7 +4,7 @@ import net.minecraft.client.model.Model;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.resources.model.EquipmentClientInfo;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
@@ -48,7 +48,7 @@ public class VineryClientNeoForge {
     @SubscribeEvent
     public static void onAddPackFinders(AddPackFindersEvent event) {
         event.addPackFinders(
-                ResourceLocation.fromNamespaceAndPath(Vinery.MOD_ID, "resourcepacks/bushy_leaves"),
+                Identifier.fromNamespaceAndPath(Vinery.MOD_ID, "resourcepacks/bushy_leaves"),
                 PackType.CLIENT_RESOURCES,
                 Component.literal("Bushy Leaves for Vinery"),
                 PackSource.BUILT_IN,

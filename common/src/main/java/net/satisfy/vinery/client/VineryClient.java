@@ -8,14 +8,14 @@ import dev.architectury.registry.client.rendering.ColorHandlerRegistry;
 import dev.architectury.registry.client.rendering.RenderTypeRegistry;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.model.BoatModel;
+import net.minecraft.client.model.object.boat.BoatModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.client.renderer.entity.BoatRenderer;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.satisfy.vinery.client.gui.ApplePressGui;
@@ -88,7 +88,7 @@ public class VineryClient {
         registerEntityRenderers();
     }
 
-    public static void registerStorageTypes(ResourceLocation location, StorageTypeRenderer renderer) {
+    public static void registerStorageTypes(Identifier location, StorageTypeRenderer renderer) {
         StorageBlockEntityRenderer.registerStorageType(location, renderer);
     }
 

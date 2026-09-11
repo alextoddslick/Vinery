@@ -5,7 +5,7 @@ import net.satisfy.vinery.core.effect.*;
 import dev.architectury.registry.registries.DeferredRegister;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 
@@ -13,21 +13,21 @@ public class MobEffectRegistry {
 
     private static final DeferredRegister<MobEffect> EFFECTS = DeferredRegister.create(Vinery.MOD_ID,Registries.MOB_EFFECT);
 
-    public static final ResourceLocation ARMOR_EFFECT = Vinery.identifier("armor_effect");
-    public static final ResourceLocation HEALTH_EFFECT = Vinery.identifier("health_effect");
-    public static final ResourceLocation LUCK_EFFECT = Vinery.identifier("luck_effect");
-    public static final ResourceLocation RESISTANCE_EFFECT = Vinery.identifier("resistance_effect");
-    public static final ResourceLocation EXPERIENCE_EFFECT = Vinery.identifier("experience_effect");
-    public static final ResourceLocation IMPROVED_JUMP_BOOST = Vinery.identifier("double_jump");
-    public static final ResourceLocation PARTY_EFFECT = Vinery.identifier("party_effect");
-    public static final ResourceLocation TELEPORT = Vinery.identifier("teleport");
-    public static final ResourceLocation CREEPER_EFFECT = Vinery.identifier("creeper_effect");
-    public static final ResourceLocation CLIMBING_EFFECT = Vinery.identifier("climbing_effect");
-    public static final ResourceLocation FROSTY_ARMOR_EFFECT = Vinery.identifier("frosty_armor");
-    public static final ResourceLocation JELLIE = Vinery.identifier("jellie");
-    public static final ResourceLocation LAVA_WALKER = Vinery.identifier("lava_walker");
-    public static final ResourceLocation MAGNET = Vinery.identifier("magnet");
-    public static final ResourceLocation WATER_WALKER = Vinery.identifier("water_walker");
+    public static final Identifier ARMOR_EFFECT = Vinery.identifier("armor_effect");
+    public static final Identifier HEALTH_EFFECT = Vinery.identifier("health_effect");
+    public static final Identifier LUCK_EFFECT = Vinery.identifier("luck_effect");
+    public static final Identifier RESISTANCE_EFFECT = Vinery.identifier("resistance_effect");
+    public static final Identifier EXPERIENCE_EFFECT = Vinery.identifier("experience_effect");
+    public static final Identifier IMPROVED_JUMP_BOOST = Vinery.identifier("double_jump");
+    public static final Identifier PARTY_EFFECT = Vinery.identifier("party_effect");
+    public static final Identifier TELEPORT = Vinery.identifier("teleport");
+    public static final Identifier CREEPER_EFFECT = Vinery.identifier("creeper_effect");
+    public static final Identifier CLIMBING_EFFECT = Vinery.identifier("climbing_effect");
+    public static final Identifier FROSTY_ARMOR_EFFECT = Vinery.identifier("frosty_armor");
+    public static final Identifier JELLIE = Vinery.identifier("jellie");
+    public static final Identifier LAVA_WALKER = Vinery.identifier("lava_walker");
+    public static final Identifier MAGNET = Vinery.identifier("magnet");
+    public static final Identifier WATER_WALKER = Vinery.identifier("water_walker");
 
     public static void register() {
         EFFECTS.register();
@@ -48,7 +48,7 @@ public class MobEffectRegistry {
         EFFECTS.register(WATER_WALKER, () -> new WaterWalkerEffect());
     }
 
-    public static Holder<MobEffect> getHolder(ResourceLocation id) {
+    public static Holder<MobEffect> getHolder(Identifier id) {
         Holder<MobEffect> holder = EFFECTS.getRegistrar().getHolder(id);
         if (holder == null) {
             throw new IllegalArgumentException("MobEffect with id " + id + " does not exist");

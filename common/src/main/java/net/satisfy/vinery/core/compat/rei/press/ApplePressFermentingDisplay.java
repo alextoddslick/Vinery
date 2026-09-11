@@ -9,7 +9,7 @@ import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.recipe.ApplePressFermentingRecipe;
@@ -27,14 +27,14 @@ public class ApplePressFermentingDisplay extends BasicDisplay {
             RecordCodecBuilder.mapCodec(instance -> instance.group(
                     EntryIngredient.codec().listOf().fieldOf("inputs").forGetter(ApplePressFermentingDisplay::getInputEntries),
                     EntryIngredient.codec().listOf().fieldOf("outputs").forGetter(ApplePressFermentingDisplay::getOutputEntries),
-                    ResourceLocation.CODEC.optionalFieldOf("location").forGetter(ApplePressFermentingDisplay::getDisplayLocation)
+                    Identifier.CODEC.optionalFieldOf("location").forGetter(ApplePressFermentingDisplay::getDisplayLocation)
             ).apply(instance, ApplePressFermentingDisplay::new)),
             StreamCodec.composite(
                     EntryIngredient.streamCodec().apply(ByteBufCodecs.list()),
                     ApplePressFermentingDisplay::getInputEntries,
                     EntryIngredient.streamCodec().apply(ByteBufCodecs.list()),
                     ApplePressFermentingDisplay::getOutputEntries,
-                    ByteBufCodecs.optional(ResourceLocation.STREAM_CODEC),
+                    ByteBufCodecs.optional(Identifier.STREAM_CODEC),
                     ApplePressFermentingDisplay::getDisplayLocation,
                     ApplePressFermentingDisplay::new
             ));
@@ -49,7 +49,7 @@ public class ApplePressFermentingDisplay extends BasicDisplay {
         this(inputs, outputs, Optional.empty());
     }
 
-    public ApplePressFermentingDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, Optional<ResourceLocation> location) {
+    public ApplePressFermentingDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, Optional<Identifier> location) {
         super(inputs, outputs, location);
     }
 

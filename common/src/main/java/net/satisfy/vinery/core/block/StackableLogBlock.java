@@ -196,7 +196,7 @@ public class StackableLogBlock extends SlabBlock {
     protected static final VoxelShape TOP_AABB = TOP_AABB_SUPPLIER.get();
     protected static final VoxelShape DOUBLE = DOUBLE_SUPPLIER.get();
 
-    public static final Map<Direction, Map<SlabType, VoxelShape>> SHAPE = net.minecraft.Util.make(new HashMap<>(), map -> {
+    public static final Map<Direction, Map<SlabType, VoxelShape>> SHAPE = net.minecraft.util.Util.make(new HashMap<>(), map -> {
         for (Direction direction : Direction.Plane.HORIZONTAL.stream().toList()) {
             map.put(direction, new HashMap<>());
             map.get(direction).put(SlabType.DOUBLE, GeneralUtil.rotateShape(Direction.NORTH, direction, DOUBLE_SUPPLIER.get()));

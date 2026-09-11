@@ -12,7 +12,7 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.api.recipe.types.IRecipeType;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.recipe.ApplePressFermentingRecipe;
@@ -41,7 +41,7 @@ public class ApplePressFermentingCategory implements IRecipeCategory<ApplePressF
     private final Component title;
 
     public ApplePressFermentingCategory(IGuiHelper helper) {
-        ResourceLocation texture = ResourceLocation.fromNamespaceAndPath("vinery", "textures/gui/apple_press_gui.png");
+        Identifier texture = Identifier.fromNamespaceAndPath("vinery", "textures/gui/apple_press_gui.png");
         this.background = helper.createDrawable(texture, X_OFFSET, Y_OFFSET, BACKGROUND_WIDTH, BACKGROUND_HEIGHT);
         this.arrow = helper.drawableBuilder(texture, ARROW_U, ARROW_V, ARROW_WIDTH, ARROW_HEIGHT)
                 .buildAnimated(MAX_TIME, IDrawableAnimated.StartDirection.BOTTOM, false);

@@ -7,7 +7,7 @@ import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -146,7 +146,7 @@ public class WineBottleBlock extends StorageBlock {
         return maxCount;
     }
     @Override
-    public ResourceLocation type() {
+    public Identifier type() {
         return StorageTypeRegistry.WINE_BOTTLE;
     }
 

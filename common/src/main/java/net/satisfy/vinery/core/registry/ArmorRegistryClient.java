@@ -5,10 +5,10 @@ import net.fabricmc.api.Environment;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.EntityModelSet;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -31,8 +31,8 @@ public class ArmorRegistryClient {
      * Texture of the {@code vinery:winemaker} equipment asset. All four pieces share it, exactly as they did in
      * 1.21.1 where they all pointed at {@code vinery:textures/models/armor/winemaker.png}.
      */
-    public static final ResourceLocation ARMOR_TEXTURE = Vinery.identifier("textures/entity/equipment/humanoid/winemaker.png");
-    public static final ResourceLocation LEGGINGS_TEXTURE = Vinery.identifier("textures/entity/equipment/humanoid_leggings/winemaker.png");
+    public static final Identifier ARMOR_TEXTURE = Vinery.identifier("textures/entity/equipment/humanoid/winemaker.png");
+    public static final Identifier LEGGINGS_TEXTURE = Vinery.identifier("textures/entity/equipment/humanoid_leggings/winemaker.png");
 
     private static EntityModelSet cachedModelSet;
     private static StrawHatModel hatModel;

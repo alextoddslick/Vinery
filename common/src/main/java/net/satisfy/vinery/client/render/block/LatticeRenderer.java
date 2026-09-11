@@ -6,15 +6,15 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
-import net.minecraft.client.renderer.state.CameraRenderState;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
@@ -34,9 +34,9 @@ import java.util.Map;
 import static net.satisfy.vinery.core.registry.ObjectRegistry.*;
 
 public class LatticeRenderer implements BlockEntityRenderer<LatticeBlockEntity, LatticeRenderState> {
-    private static Map<Block, ResourceLocation> textureMap;
+    private static Map<Block, Identifier> textureMap;
 
-    private static Map<Block, ResourceLocation> getTextureMap() {
+    private static Map<Block, Identifier> getTextureMap() {
         if (textureMap == null) {
             textureMap = new HashMap<>();
             textureMap.put(OAK_LATTICE.get(), Vinery.identifier("textures/block/lattice/oak_lattice.png"));
@@ -187,7 +187,7 @@ public class LatticeRenderer implements BlockEntityRenderer<LatticeBlockEntity, 
         poseStack.scale(1.0f, -1.0f, -1.0f);
 
         Block block = blockState.getBlock();
-        ResourceLocation texture = getTextureMap().getOrDefault(block, Vinery.identifier("textures/entity/lattice/default_lattice.png"));
+        Identifier texture = getTextureMap().getOrDefault(block, Vinery.identifier("textures/entity/lattice/default_lattice.png"));
         RenderType renderType = RenderType.entityCutoutNoCull(texture);
         int light = state.lightCoords;
         int overlay = OverlayTexture.NO_OVERLAY;
