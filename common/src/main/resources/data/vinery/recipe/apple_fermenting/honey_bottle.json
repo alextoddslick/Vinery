@@ -1,8 +1,6 @@
 {
   "type": "vinery:apple_fermenting",
-  "input": {
-    "item": "minecraft:honeycomb"
-  },
+  "input": "minecraft:honeycomb",
   "wine_bottle": {
     "required": true
   },

@@ -1,20 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "group": "oak_rack",
-    "pattern": [
-        "# #",
-        " _ ",
-        "# #"
-    ],
-    "key": {
-        "#": {
-            "item": "minecraft:oak_planks"
-        },
-        "_": {
-            "item": "minecraft:oak_slab"
-        }
-    },
-    "result": {
-        "id": "vinery:oak_wine_rack_small"
-    }
+  "type": "minecraft:crafting_shaped",
+  "group": "oak_rack",
+  "pattern": [
+    "# #",
+    " _ ",
+    "# #"
+  ],
+  "key": {
+    "#": "minecraft:oak_planks",
+    "_": "minecraft:oak_slab"
+  },
+  "result": {
+    "id": "vinery:oak_wine_rack_small"
+  }
 }

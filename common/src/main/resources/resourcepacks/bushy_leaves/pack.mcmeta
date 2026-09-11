@@ -1,6 +1,8 @@
 {
   "pack": {
-    "pack_format": 34,
-    "description": "Bushier leaves for Vinery"
+    "description": "Bushier leaves for Vinery",
+    "pack_format": 69,
+    "min_format": 69,
+    "max_format": 69
   }
 }

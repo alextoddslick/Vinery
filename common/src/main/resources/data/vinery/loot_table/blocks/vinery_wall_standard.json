@@ -15,5 +15,6 @@
         }
       ]
     }
-  ]
+  ],
+  "random_sequence": "vinery:blocks/vinery_wall_standard"
 }

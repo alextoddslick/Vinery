@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "vinery:winemaker"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "vinery:winemaker"
+      }
+    ]
+  }
+}
