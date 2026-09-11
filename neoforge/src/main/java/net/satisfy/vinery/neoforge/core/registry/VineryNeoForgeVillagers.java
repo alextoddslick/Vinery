@@ -23,7 +23,7 @@ public class VineryNeoForgeVillagers {
 
     public static final DeferredHolder<VillagerProfession, VillagerProfession> WINEMAKER = VILLAGER_PROFESSIONS.register("winemaker", () ->
             new VillagerProfession(
-                    Component.translatable("entity." + Vinery.MOD_ID + ".villager.winemaker"),
+                    Component.translatable("entity.minecraft.villager.vinery.winemaker"),
                     holder -> holder.is(WINEMAKER_POI.getKey()),
                     holder -> holder.is(WINEMAKER_POI.getKey()),
                     ImmutableSet.of(),

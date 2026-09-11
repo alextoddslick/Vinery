@@ -42,7 +42,7 @@ public class VineryFabricVillagers {
                 BuiltInRegistries.VILLAGER_PROFESSION,
                 WINEMAKER_KEY,
                 new VillagerProfession(
-                        Component.translatable("entity." + WINEMAKER_IDENTIFIER.getNamespace() + ".villager." + WINEMAKER_IDENTIFIER.getPath()),
+                        Component.translatable("entity.minecraft.villager.vinery.winemaker"),
                         holder -> holder.is(WINEMAKER_POI_KEY),
                         holder -> holder.is(WINEMAKER_POI_KEY),
                         ImmutableSet.of(),
