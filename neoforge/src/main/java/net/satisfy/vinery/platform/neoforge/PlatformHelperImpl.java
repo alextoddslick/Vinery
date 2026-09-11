@@ -1,20 +1,10 @@
 package net.satisfy.vinery.platform.neoforge;
 
-import dev.architectury.registry.registries.DeferredRegister;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobCategory;
-import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.neoforge.core.config.VineryForgeConfig;
 import net.satisfy.vinery.platform.PlatformHelper;
 
-import java.util.function.Supplier;
-
 @SuppressWarnings("unused")
 public class PlatformHelperImpl extends PlatformHelper {
-
-    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(Vinery.MOD_ID, Registries.ENTITY_TYPE);
 
     public static int getTotalFermentationTime() {
         return VineryForgeConfig.totalFermentationTimeCache;
@@ -94,9 +84,5 @@ public class PlatformHelperImpl extends PlatformHelper {
 
     public static int getTraderSpawnDelay() {
         return VineryForgeConfig.traderSpawnDelayCache;
-    }
-
-    public static <T extends Entity> Supplier<EntityType<T>> registerBoatType(String name, EntityType.EntityFactory<T> factory, MobCategory category, float width, float height, int clientTrackingRange) {
-        return ENTITY_TYPES.register(name, () -> EntityType.Builder.of(factory, category).sized(width, height).build(name));
     }
 }
