@@ -1,5 +1,6 @@
 package net.satisfy.vinery.core.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -27,6 +28,9 @@ import net.satisfy.vinery.core.util.GrapeType;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class StemBlock extends Block implements BonemealableBlock {
+
+    @Override
+    protected abstract @NotNull MapCodec<? extends Block> codec();
     public static final GrapeProperty GRAPE;
     public static final IntegerProperty AGE;
 

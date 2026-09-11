@@ -3,13 +3,15 @@ package net.satisfy.vinery.core.block;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
@@ -64,11 +66,12 @@ public class BigTableBlock extends HorizontalDirectionalBlock {
 		return simpleCodec(BigTableBlock::new);
 	}
 
-	public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+	@Override
+	protected @NotNull BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess scheduledTickAccess, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
 		if (direction == getDirectionTowardsOtherPart(state.getValue(PART), state.getValue(FACING))) {
 			return neighborState.is(this) && neighborState.getValue(PART) != state.getValue(PART) ? state : Blocks.AIR.defaultBlockState();
 		} else {
-			return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
+			return super.updateShape(state, world, scheduledTickAccess, pos, direction, neighborPos, neighborState, random);
 		}
 	}
 	
@@ -76,8 +79,9 @@ public class BigTableBlock extends HorizontalDirectionalBlock {
 		return part == BedPart.FOOT ? direction : direction.getOpposite();
 	}
 
-	public BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
-		if (!world.isClientSide && player.isCreative()) {
+	@Override
+	public @NotNull BlockState playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
+		if (!world.isClientSide() && player.isCreative()) {
 			removeOtherPart(world, pos, state, player);
 		}
 
@@ -93,7 +97,8 @@ public class BigTableBlock extends HorizontalDirectionalBlock {
 		return world.getBlockState(blockPos2).canBeReplaced(ctx) && world.getWorldBorder().isWithinBounds(blockPos2) ? this.defaultBlockState().setValue(FACING, direction) : null;
 	}
 
-	public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+	@Override
+	protected @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		Direction direction = getOppositePartDirection(state).getOpposite();
 		return SHAPE.get(direction);
 	}
@@ -103,9 +108,10 @@ public class BigTableBlock extends HorizontalDirectionalBlock {
 		return state.getValue(PART) == BedPart.HEAD ? direction.getOpposite() : direction;
 	}
 
+	@Override
 	public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		super.setPlacedBy(world, pos, state, placer, itemStack);
-		if (!world.isClientSide) {
+		if (!world.isClientSide()) {
 			placeOtherPart(world, pos, state);
 		}
 	}
@@ -118,7 +124,7 @@ public class BigTableBlock extends HorizontalDirectionalBlock {
 	private void placeOtherPart(Level world, BlockPos pos, BlockState state) {
 		BlockPos blockPos = pos.relative(state.getValue(FACING));
 		world.setBlock(blockPos, state.setValue(PART, BedPart.HEAD), Block.UPDATE_ALL);
-		world.blockUpdated(pos, Blocks.AIR);
+		world.updateNeighborsAt(pos, Blocks.AIR);
 		state.updateNeighbourShapes(world, pos, Block.UPDATE_ALL);
 	}
 	

@@ -26,7 +26,6 @@ public class Vinery {
         TabRegistry.init();
         WineDebugCommands.init();
         DataComponentRegistry.COMPONENTS.register();
-        ArmorMaterialRegistry.ARMOR_MATERIALS.register();
     }
 
     public static ResourceLocation identifier(String path) {

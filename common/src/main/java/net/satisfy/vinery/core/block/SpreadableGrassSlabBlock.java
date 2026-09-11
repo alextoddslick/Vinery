@@ -1,5 +1,6 @@
 package net.satisfy.vinery.core.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -15,7 +16,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
@@ -42,9 +43,16 @@ public class SpreadableGrassSlabBlock extends SlabBlock implements BonemealableB
         return ObjectRegistry.GRASS_SLAB.get();
     }
 
+    public static final MapCodec<SpreadableGrassSlabBlock> CODEC = simpleCodec(SpreadableGrassSlabBlock::new);
+
     public SpreadableGrassSlabBlock(Properties settings) {
         super(settings);
         this.registerDefaultState(this.defaultBlockState().setValue(TYPE, SlabType.BOTTOM).setValue(WATERLOGGED, false).setValue(SNOWY, false));
+    }
+
+    @Override
+    public @NotNull MapCodec<? extends SlabBlock> codec() {
+        return CODEC;
     }
 
     public static boolean canSurviveNew(BlockState state, LevelReader world, BlockPos pos) {
@@ -75,8 +83,8 @@ public class SpreadableGrassSlabBlock extends SlabBlock implements BonemealableB
             return true;
         }
 
-        int i = LightEngine.getLightBlockInto(world, GRASS_BLOCK.defaultBlockState(), pos, blockState, blockPos, Direction.UP, blockState.getLightBlock(world, blockPos));
-        return i < world.getMaxLightLevel();
+        int i = LightEngine.getLightBlockInto(GRASS_BLOCK.defaultBlockState(), blockState, Direction.UP, blockState.getLightBlock());
+        return i < 15;
     }
 
     @Override
@@ -137,7 +145,7 @@ public class SpreadableGrassSlabBlock extends SlabBlock implements BonemealableB
     public @NotNull InteractionResult useItemOn(ItemStack heldItem, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
 
         if (heldItem.is(ItemTags.SHOVELS)) {
-            if (!world.isClientSide) {
+            if (!world.isClientSide()) {
                 BlockState pathState = ObjectRegistry.DIRT_PATH_SLAB.get().defaultBlockState()
                         .setValue(TYPE, state.getValue(TYPE))
                         .setValue(WATERLOGGED, state.getValue(WATERLOGGED));
@@ -161,13 +169,14 @@ public class SpreadableGrassSlabBlock extends SlabBlock implements BonemealableB
         builder.add(SNOWY);
     }
 
-    public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+    @Override
+    protected @NotNull BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess scheduledTickAccess, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
         if (state.getValue(WATERLOGGED)) {
-            world.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
+            scheduledTickAccess.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
 
         state = state.setValue(SNOWY, world.getBlockState(pos.above()).is(BlockTags.SNOW));
 
-        return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
+        return super.updateShape(state, world, scheduledTickAccess, pos, direction, neighborPos, neighborState, random);
     }
 }

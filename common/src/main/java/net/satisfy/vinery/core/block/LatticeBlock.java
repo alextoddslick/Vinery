@@ -1,5 +1,6 @@
 package net.satisfy.vinery.core.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -17,7 +18,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -54,6 +55,13 @@ public class LatticeBlock extends StemBlock implements EntityBlock {
     private static final SoundEvent BREAK_SOUND_EVENT = SoundEvents.SWEET_BERRY_BUSH_BREAK;
     private static final SoundEvent PLACE_SOUND_EVENT = SoundEvents.SWEET_BERRY_BUSH_PLACE;
 
+    public static final MapCodec<LatticeBlock> CODEC = simpleCodec(LatticeBlock::new);
+
+    @Override
+    protected @NotNull MapCodec<? extends Block> codec() {
+        return CODEC;
+    }
+
     public LatticeBlock(Properties properties) {
         super(properties);
         registerDefaultState(this.defaultBlockState()
@@ -83,7 +91,7 @@ public class LatticeBlock extends StemBlock implements EntityBlock {
     }
 
     @Override
-    public @NotNull VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    protected @NotNull VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         if (Boolean.TRUE.equals(state.getValue(BOTTOM))) return FLOOR;
         return switch (state.getValue(FACING)) {
             case WEST -> WEST;
@@ -175,7 +183,7 @@ public class LatticeBlock extends StemBlock implements EntityBlock {
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+    protected void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         if (!state.canSurvive(world, pos)) {
             if (state.getValue(AGE) > 0) dropGrapeSeeds(world, state, pos, null);
             if (state.getValue(AGE) > 2) dropGrapes(world, state, pos, null);
@@ -190,8 +198,8 @@ public class LatticeBlock extends StemBlock implements EntityBlock {
     }
 
     @Override
-    public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
-        if (!state.canSurvive(world, pos)) world.scheduleTick(pos, this, 1);
+    protected @NotNull BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess scheduledTickAccess, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
+        if (!state.canSurvive(world, pos)) scheduledTickAccess.scheduleTick(pos, this, 1);
         return getConnection(state, world, pos);
     }
 
@@ -200,7 +208,7 @@ public class LatticeBlock extends StemBlock implements EntityBlock {
         return !isMature(state) && state.getValue(AGE) > 0;
     }
 
-    public BlockState getConnection(BlockState state, LevelAccessor level, BlockPos currentPos) {
+    public BlockState getConnection(BlockState state, LevelReader level, BlockPos currentPos) {
         Direction facing = state.getValue(FACING);
         boolean bottom = state.getValue(BOTTOM);
 
@@ -230,12 +238,12 @@ public class LatticeBlock extends StemBlock implements EntityBlock {
     }
 
     @Override
-    public @NotNull BlockState rotate(BlockState state, Rotation rotation) {
+    protected @NotNull BlockState rotate(BlockState state, Rotation rotation) {
         return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
     @Override
-    public @NotNull BlockState mirror(BlockState state, Mirror mirror) {
+    protected @NotNull BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 
@@ -245,7 +253,7 @@ public class LatticeBlock extends StemBlock implements EntityBlock {
     }
 
     @Override
-    public @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
+    protected @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
         return RenderShape.INVISIBLE;
     }
 }

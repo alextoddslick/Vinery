@@ -8,6 +8,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.Containers;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -37,7 +39,7 @@ public class CabinetBlock extends BaseEntityBlock {
     private final SoundEvent openSound;
     private final SoundEvent closeSound;
     public static final MapCodec<CabinetBlock> CODEC = RecordCodecBuilder.mapCodec(inst->inst.group(
-            Properties.CODEC.fieldOf("settings").forGetter(CabinetBlock::properties),
+            Properties.CODEC.fieldOf("settings").forGetter(BlockBehaviour::properties),
             SoundEvent.DIRECT_CODEC.fieldOf("openSound").forGetter(CabinetBlock::getOpenSound),
             SoundEvent.DIRECT_CODEC.fieldOf("closeSound").forGetter(CabinetBlock::getCloseSound)
     ).apply(inst,CabinetBlock::new));
@@ -56,7 +58,7 @@ public class CabinetBlock extends BaseEntityBlock {
 
     @Override
     public @NotNull InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
-        if (world.isClientSide) {
+        if (world.isClientSide()) {
             return InteractionResult.SUCCESS;
         } else {
             BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -91,20 +93,13 @@ public class CabinetBlock extends BaseEntityBlock {
     }
 
     @Override
-    public @NotNull RenderShape getRenderShape(BlockState state) {
+    protected @NotNull RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
     }
 
     @Override
-    public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
-        if (!state.is(newState.getBlock())) {
-            BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof net.minecraft.world.Container container) {
-                net.minecraft.world.Containers.dropContents(world, pos, container);
-                world.updateNeighbourForOutputSignal(pos, this);
-            }
-            super.onRemove(state, world, pos, newState, moved);
-        }
+    protected void affectNeighborsAfterRemoval(BlockState state, ServerLevel world, BlockPos pos, boolean moved) {
+        Containers.updateNeighboursAfterDestroy(state, world, pos);
     }
 
     @Override
@@ -118,22 +113,22 @@ public class CabinetBlock extends BaseEntityBlock {
     }
 
     @Override
-    public boolean hasAnalogOutputSignal(BlockState state) {
+    protected boolean hasAnalogOutputSignal(BlockState state) {
         return true;
     }
 
     @Override
-    public int getAnalogOutputSignal(BlockState state, Level world, BlockPos pos) {
+    protected int getAnalogOutputSignal(BlockState state, Level world, BlockPos pos, Direction direction) {
         return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(world.getBlockEntity(pos));
     }
 
     @Override
-    public @NotNull BlockState rotate(BlockState state, Rotation rotation) {
+    protected @NotNull BlockState rotate(BlockState state, Rotation rotation) {
         return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
     @Override
-    public @NotNull BlockState mirror(BlockState state, Mirror mirror) {
+    protected @NotNull BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 

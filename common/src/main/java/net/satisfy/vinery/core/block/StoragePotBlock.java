@@ -1,10 +1,14 @@
 package net.satisfy.vinery.core.block;
 
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -20,8 +24,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StoragePotBlock extends CabinetBlock {
+    public static final MapCodec<StoragePotBlock> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
+            Properties.CODEC.fieldOf("settings").forGetter(BlockBehaviour::properties),
+            SoundEvent.DIRECT_CODEC.fieldOf("openSound").forGetter(CabinetBlock::getOpenSound),
+            SoundEvent.DIRECT_CODEC.fieldOf("closeSound").forGetter(CabinetBlock::getCloseSound)
+    ).apply(inst, StoragePotBlock::new));
+
     public StoragePotBlock(Properties settings, SoundEvent openSound, SoundEvent closeSound) {
         super(settings, openSound, closeSound);
+    }
+
+    @Override
+    protected @NotNull MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
     }
 
     private static final VoxelShape VOXEL_SHAPE = createVoxelShape();
@@ -56,7 +71,7 @@ public class StoragePotBlock extends CabinetBlock {
     }
 
     @Override
-    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    protected @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE.get(state.getValue(FACING));
     }
 }

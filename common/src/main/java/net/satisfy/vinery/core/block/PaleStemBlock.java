@@ -1,5 +1,6 @@
 package net.satisfy.vinery.core.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -15,7 +16,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LeavesBlock;
@@ -42,6 +43,13 @@ public class PaleStemBlock extends StemBlock {
     public static final BooleanProperty LEAVES_PENDING = BooleanProperty.create("leaves_pending");
     public static final BooleanProperty LEAVES_DONE = BooleanProperty.create("leaves_done");
 
+    public static final MapCodec<PaleStemBlock> CODEC = simpleCodec(PaleStemBlock::new);
+
+    @Override
+    protected @NotNull MapCodec<? extends Block> codec() {
+        return CODEC;
+    }
+
     public PaleStemBlock(Properties settings) {
         super(settings);
         this.registerDefaultState(this.defaultBlockState()
@@ -52,7 +60,7 @@ public class PaleStemBlock extends StemBlock {
     }
 
     @Override
-    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    protected @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return PALE_SHAPE;
     }
 
@@ -114,9 +122,9 @@ public class PaleStemBlock extends StemBlock {
     }
 
     @Override
-    public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean moved) {
+    protected void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean moved) {
         super.onPlace(state, world, pos, oldState, moved);
-        if (!world.isClientSide && (state.getValue(GRAPE) == GrapeTypeRegistry.WHITE || state.getValue(GRAPE) == GrapeTypeRegistry.RED) && !state.getValue(LEAVES_PENDING) && !state.getValue(LEAVES_DONE)) {
+        if (!world.isClientSide() && (state.getValue(GRAPE) == GrapeTypeRegistry.WHITE || state.getValue(GRAPE) == GrapeTypeRegistry.RED) && !state.getValue(LEAVES_PENDING) && !state.getValue(LEAVES_DONE)) {
             world.setBlock(pos, state.setValue(LEAVES_PENDING, true), 3);
             int delay = 4800 + world.random.nextInt(4801);
             world.scheduleTick(pos, this, delay);
@@ -124,7 +132,7 @@ public class PaleStemBlock extends StemBlock {
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+    protected void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         if (!state.canSurvive(world, pos)) {
             if (state.getValue(AGE) > 0) {
                 dropGrapeSeeds(world, state, pos, null);
@@ -187,16 +195,16 @@ public class PaleStemBlock extends StemBlock {
     }
 
     @Override
-    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+    protected boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
         return world.getBlockState(pos.below()).isRedstoneConductor(world, pos) || world.getBlockState(pos.below()).getBlock() == this;
     }
 
     @Override
-    public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+    protected @NotNull BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess scheduledTickAccess, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
         if (!state.canSurvive(world, pos)) {
-            world.scheduleTick(pos, this, 1);
+            scheduledTickAccess.scheduleTick(pos, this, 1);
         }
-        return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
+        return super.updateShape(state, world, scheduledTickAccess, pos, direction, neighborPos, neighborState, random);
     }
 
     @Override

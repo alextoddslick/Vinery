@@ -96,6 +96,7 @@ public class GrapeVineBlock extends VineBlock implements BonemealableBlock {
         int i = Math.min(3, state.getValue(AGE) + 1);
         world.setBlock(pos, state.setValue(AGE, i), 2);
     }
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(AGE, STERILIZED);

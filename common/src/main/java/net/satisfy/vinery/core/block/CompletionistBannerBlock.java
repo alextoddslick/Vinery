@@ -7,13 +7,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextColor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -33,10 +34,10 @@ import net.satisfy.vinery.platform.PlatformHelper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
+import java.util.function.Consumer;
 
 @SuppressWarnings("deprecation")
-public class CompletionistBannerBlock extends BaseEntityBlock {
+public class CompletionistBannerBlock extends BaseEntityBlock implements BlockTooltip {
     public static final IntegerProperty ROTATION = BlockStateProperties.ROTATION_16;
     private static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 16.0D, 12.0D);
 
@@ -61,7 +62,7 @@ public class CompletionistBannerBlock extends BaseEntityBlock {
     }
 
     @Override
-    public boolean canSurvive(@NotNull BlockState blockState, LevelReader levelReader, BlockPos blockPos) {
+    protected boolean canSurvive(@NotNull BlockState blockState, LevelReader levelReader, BlockPos blockPos) {
         BlockState belowBlockState = levelReader.getBlockState(blockPos.below());
         return belowBlockState.isSolid();
     }
@@ -72,7 +73,7 @@ public class CompletionistBannerBlock extends BaseEntityBlock {
     }
 
     @Override
-    public @NotNull VoxelShape getShape(@NotNull BlockState blockState, @NotNull BlockGetter blockGetter, @NotNull BlockPos blockPos, @NotNull CollisionContext collisionContext) {
+    protected @NotNull VoxelShape getShape(@NotNull BlockState blockState, @NotNull BlockGetter blockGetter, @NotNull BlockPos blockPos, @NotNull CollisionContext collisionContext) {
         return SHAPE;
     }
 
@@ -91,12 +92,12 @@ public class CompletionistBannerBlock extends BaseEntityBlock {
 
 
     @Override
-    public @NotNull BlockState rotate(BlockState blockState, Rotation rotation) {
+    protected @NotNull BlockState rotate(BlockState blockState, Rotation rotation) {
         return blockState.setValue(ROTATION, rotation.rotate(blockState.getValue(ROTATION), 16));
     }
 
     @Override
-    public @NotNull BlockState mirror(BlockState blockState, Mirror mirror) {
+    protected @NotNull BlockState mirror(BlockState blockState, Mirror mirror) {
         return blockState.setValue(ROTATION, mirror.mirror(blockState.getValue(ROTATION), 16));
     }
 
@@ -108,15 +109,15 @@ public class CompletionistBannerBlock extends BaseEntityBlock {
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return level.isClientSide ? null : createTickerHelper(type, EntityTypeRegistry.VINERY_STANDARD.get(), (level1, pos, state1, entity) -> CompletionistBannerEntity.tick(level1, pos));
+        return level.isClientSide() ? null : createTickerHelper(type, EntityTypeRegistry.VINERY_STANDARD.get(), (level1, pos, state1, entity) -> CompletionistBannerEntity.tick(level1, pos));
     }
 
     @Override
-    public @NotNull BlockState updateShape(@NotNull BlockState blockState, @NotNull Direction direction, @NotNull BlockState blockState2, @NotNull LevelAccessor levelAccessor, @NotNull BlockPos blockPos, @NotNull BlockPos blockPos2) {
-        if (direction == Direction.DOWN && !blockState.canSurvive(levelAccessor, blockPos)) {
+    protected @NotNull BlockState updateShape(@NotNull BlockState blockState, @NotNull LevelReader levelReader, @NotNull ScheduledTickAccess scheduledTickAccess, @NotNull BlockPos blockPos, @NotNull Direction direction, @NotNull BlockPos blockPos2, @NotNull BlockState blockState2, @NotNull RandomSource randomSource) {
+        if (direction == Direction.DOWN && !blockState.canSurvive(levelReader, blockPos)) {
             return Blocks.AIR.defaultBlockState();
         }
-        return super.updateShape(blockState, direction, blockState2, levelAccessor, blockPos, blockPos2);
+        return super.updateShape(blockState, levelReader, scheduledTickAccess, blockPos, direction, blockPos2, blockState2, randomSource);
     }
 
     public ResourceLocation getRenderTexture() {
@@ -124,14 +125,14 @@ public class CompletionistBannerBlock extends BaseEntityBlock {
     }
 
     @Override
-    public void appendHoverText(ItemStack itemStack, Item.TooltipContext tooltipContext, List<Component> tooltip, TooltipFlag tooltipFlag) {
+    public void appendBlockHoverText(ItemStack itemStack, Item.TooltipContext tooltipContext, Consumer<Component> tooltip, TooltipFlag tooltipFlag) {
         if (PlatformHelper.shouldShowTooltip()) {
-            tooltip.add(Component.translatable("tooltip.vinery.banner.thankyou_1").withStyle(style -> style.withColor(TextColor.fromRgb(0x513A8B))));
-            tooltip.add(Component.empty());
-            tooltip.add(Component.translatable("tooltip.vinery.banner.thankyou_2").withStyle(style -> style.withColor(TextColor.fromRgb(0x513A8B))));
-            tooltip.add(Component.translatable("tooltip.vinery.banner.thankyou_4").withStyle(style -> style.withColor(TextColor.fromRgb(0x513A8B))));
-            tooltip.add(Component.empty());
-            tooltip.add(Component.translatable("tooltip.vinery.banner.thankyou_3").withStyle(style -> style.withColor(TextColor.fromRgb(0x513A8B))));
+            tooltip.accept(Component.translatable("tooltip.vinery.banner.thankyou_1").withStyle(style -> style.withColor(TextColor.fromRgb(0x513A8B))));
+            tooltip.accept(Component.empty());
+            tooltip.accept(Component.translatable("tooltip.vinery.banner.thankyou_2").withStyle(style -> style.withColor(TextColor.fromRgb(0x513A8B))));
+            tooltip.accept(Component.translatable("tooltip.vinery.banner.thankyou_4").withStyle(style -> style.withColor(TextColor.fromRgb(0x513A8B))));
+            tooltip.accept(Component.empty());
+            tooltip.accept(Component.translatable("tooltip.vinery.banner.thankyou_3").withStyle(style -> style.withColor(TextColor.fromRgb(0x513A8B))));
         }
     }
 }

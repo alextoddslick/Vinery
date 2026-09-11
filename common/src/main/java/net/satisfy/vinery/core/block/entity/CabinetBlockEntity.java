@@ -1,12 +1,11 @@
 package net.satisfy.vinery.core.block.entity;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.entity.ContainerUser;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -20,8 +19,12 @@ import net.minecraft.world.level.block.entity.ContainerOpenersCounter;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.satisfy.vinery.core.registry.EntityTypeRegistry;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class CabinetBlockEntity extends RandomizableContainerBlockEntity {
     private NonNullList<ItemStack> inventory;
@@ -46,7 +49,7 @@ public class CabinetBlockEntity extends RandomizableContainerBlockEntity {
             }
 
             @Override
-            protected boolean isOwnContainer(Player player) {
+            public boolean isOwnContainer(Player player) {
                 if (player.containerMenu instanceof ChestMenu) {
                     Container inventory = ((ChestMenu) player.containerMenu).getContainer();
                     return inventory == CabinetBlockEntity.this;
@@ -78,7 +81,7 @@ public class CabinetBlockEntity extends RandomizableContainerBlockEntity {
             }
 
             @Override
-            protected boolean isOwnContainer(Player player) {
+            public boolean isOwnContainer(Player player) {
                 if (player.containerMenu instanceof ChestMenu) {
                     Container inventory = ((ChestMenu) player.containerMenu).getContainer();
                     return inventory == CabinetBlockEntity.this;
@@ -90,19 +93,19 @@ public class CabinetBlockEntity extends RandomizableContainerBlockEntity {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
-        super.saveAdditional(nbt,provider);
-        if (!this.trySaveLootTable(nbt)) {
-            ContainerHelper.saveAllItems(nbt, this.inventory,provider);
+    protected void saveAdditional(ValueOutput valueOutput) {
+        super.saveAdditional(valueOutput);
+        if (!this.trySaveLootTable(valueOutput)) {
+            ContainerHelper.saveAllItems(valueOutput, this.inventory);
         }
     }
 
     @Override
-    public void loadAdditional(CompoundTag nbt,HolderLookup.Provider provider) {
-        super.loadAdditional(nbt,provider);
+    protected void loadAdditional(ValueInput valueInput) {
+        super.loadAdditional(valueInput);
         this.inventory = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        if (!this.tryLoadLootTable(nbt)) {
-            ContainerHelper.loadAllItems(nbt, this.inventory,provider);
+        if (!this.tryLoadLootTable(valueInput)) {
+            ContainerHelper.loadAllItems(valueInput, this.inventory);
         }
     }
 
@@ -132,17 +135,22 @@ public class CabinetBlockEntity extends RandomizableContainerBlockEntity {
     }
 
     @Override
-    public void startOpen(Player player) {
-        if (!this.remove && !player.isSpectator()) {
-            this.stateManager.incrementOpeners(player, this.getLevel(), this.getBlockPos(), this.getBlockState());
+    public void startOpen(ContainerUser containerUser) {
+        if (!this.remove && !containerUser.getLivingEntity().isSpectator()) {
+            this.stateManager.incrementOpeners(containerUser.getLivingEntity(), this.getLevel(), this.getBlockPos(), this.getBlockState(), containerUser.getContainerInteractionRange());
         }
     }
 
     @Override
-    public void stopOpen(Player player) {
-        if (!this.remove && !player.isSpectator()) {
-            this.stateManager.decrementOpeners(player, this.getLevel(), this.getBlockPos(), this.getBlockState());
+    public void stopOpen(ContainerUser containerUser) {
+        if (!this.remove && !containerUser.getLivingEntity().isSpectator()) {
+            this.stateManager.decrementOpeners(containerUser.getLivingEntity(), this.getLevel(), this.getBlockPos(), this.getBlockState());
         }
+    }
+
+    @Override
+    public @NotNull List<ContainerUser> getEntitiesWithContainerOpen() {
+        return this.stateManager.getEntitiesWithContainerOpen(this.getLevel(), this.getBlockPos());
     }
 
     public void tick() {

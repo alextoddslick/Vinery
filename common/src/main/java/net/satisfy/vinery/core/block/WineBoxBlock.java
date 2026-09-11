@@ -1,5 +1,6 @@
 package net.satisfy.vinery.core.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -11,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -71,6 +73,13 @@ public class WineBoxBlock extends StorageBlock {
         }
     });
 
+    public static final MapCodec<WineBoxBlock> CODEC = simpleCodec(WineBoxBlock::new);
+
+    @Override
+    protected @NotNull MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return CODEC;
+    }
+
     public WineBoxBlock(Properties settings) {
         super(settings);
         this.registerDefaultState(this.stateDefinition.any()
@@ -86,7 +95,7 @@ public class WineBoxBlock extends StorageBlock {
 
 
     @Override
-    public boolean propagatesSkylightDown(BlockState state, BlockGetter world, BlockPos pos) {
+    protected boolean propagatesSkylightDown(BlockState state) {
         return true;
     }
 
@@ -96,7 +105,7 @@ public class WineBoxBlock extends StorageBlock {
             if (!world.isClientSide()) {
                 world.setBlock(pos, state.setValue(OPEN, !state.getValue(OPEN)), Block.UPDATE_ALL);
             }
-            return InteractionResult.SUCCESS);
+            return InteractionResult.SUCCESS;
         } else if (state.getValue(OPEN)) {
             return super.useItemOn(stack,state, world, pos, player, hand, hit);
         }
@@ -104,7 +113,7 @@ public class WineBoxBlock extends StorageBlock {
     }
 
     @Override
-    public @NotNull BlockState rotate(BlockState state, Rotation rotation) {
+    protected @NotNull BlockState rotate(BlockState state, Rotation rotation) {
         return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
@@ -134,7 +143,7 @@ public class WineBoxBlock extends StorageBlock {
     }
 
     @Override
-    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    protected @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         Direction facing = state.getValue(FACING);
         boolean isOpen = state.getValue(OPEN);
         return isOpen ? SHAPE_OPEN.get(facing) : SHAPE_CLOSED.get(facing);

@@ -11,7 +11,9 @@ import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -43,6 +45,8 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.entity.EntitySpawnReason;
+import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.entity.ChairEntity;
 import net.satisfy.vinery.core.registry.EntityTypeRegistry;
 import org.jetbrains.annotations.NotNull;
@@ -54,13 +58,33 @@ public class GeneralUtil {
     public static final EnumProperty<LineConnectingType> LINE_CONNECTING_TYPE = EnumProperty.create("type", LineConnectingType.class);
     private static final Map<ResourceLocation, Map<BlockPos, Pair<ChairEntity, BlockPos>>> CHAIRS = new HashMap<>();
 
-    public static RotatedPillarBlock logBlock() {
-        return new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG));
+    public static ResourceKey<Block> blockKey(String name) {
+        return ResourceKey.create(Registries.BLOCK, Vinery.identifier(name));
+    }
+
+    public static ResourceKey<Item> itemKey(String name) {
+        return ResourceKey.create(Registries.ITEM, Vinery.identifier(name));
+    }
+
+    public static BlockBehaviour.Properties blockProps(String name) {
+        return BlockBehaviour.Properties.of().setId(blockKey(name));
+    }
+
+    public static BlockBehaviour.Properties blockProps(String name, Block copyFrom) {
+        return BlockBehaviour.Properties.ofFullCopy(copyFrom).setId(blockKey(name));
+    }
+
+    public static Item.Properties itemProps(String name) {
+        return new Item.Properties().setId(itemKey(name));
+    }
+
+    public static RotatedPillarBlock logBlock(String name) {
+        return new RotatedPillarBlock(blockProps(name, Blocks.OAK_LOG));
     }
 
     public static <T extends Block> RegistrySupplier<T> registerWithItem(DeferredRegister<Block> registerB, Registrar<Block> registrarB, DeferredRegister<Item> registerI, Registrar<Item> registrarI, ResourceLocation name, Supplier<T> block) {
         RegistrySupplier<T> toReturn = registerWithoutItem(registerB, registrarB, name, block);
-        registerItem(registerI, registrarI, name, () -> new BlockItem(toReturn.get(), new Item.Properties()));
+        registerItem(registerI, registrarI, name, () -> new BlockItem(toReturn.get(), itemProps(name.getPath()).useBlockDescriptionPrefix()));
         return toReturn;
     }
 
@@ -101,14 +125,14 @@ public class GeneralUtil {
     }
 
     public static InteractionResult onUse(Level world, Player player, InteractionHand hand, BlockHitResult hit, double extraHeight) {
-        if (world.isClientSide) return InteractionResult.TRY_WITH_EMPTY_HAND;
+        if (world.isClientSide()) return InteractionResult.TRY_WITH_EMPTY_HAND;
         if (player.isShiftKeyDown()) return InteractionResult.TRY_WITH_EMPTY_HAND;
         if (GeneralUtil.isPlayerSitting(player)) return InteractionResult.TRY_WITH_EMPTY_HAND;
         if (hit.getDirection() == Direction.DOWN) return InteractionResult.TRY_WITH_EMPTY_HAND;
 
         BlockPos hitPos = hit.getBlockPos();
         if (!GeneralUtil.isOccupied(world, hitPos) && player.getItemInHand(hand).isEmpty()) {
-            ChairEntity chair = EntityTypeRegistry.CHAIR.get().create(world);
+            ChairEntity chair = EntityTypeRegistry.CHAIR.get().create(world, EntitySpawnReason.TRIGGERED);
             if (chair == null) return InteractionResult.TRY_WITH_EMPTY_HAND;
 
             BlockState s = world.getBlockState(hitPos);
@@ -130,7 +154,7 @@ public class GeneralUtil {
             }
 
             chair.setSeatPos(hitPos);
-            chair.moveTo(hitPos.getX() + 0.5D, hitPos.getY() + 0.25D + extraHeight, hitPos.getZ() + 0.5D, 0, 0);
+            chair.snapTo(hitPos.getX() + 0.5D, hitPos.getY() + 0.25D + extraHeight, hitPos.getZ() + 0.5D, 0.0F, 0.0F);
             chair.setYRot(yaw);
             chair.yRotO = yaw;
 
@@ -163,7 +187,7 @@ public class GeneralUtil {
     }
 
     public static void onStateReplaced(Level world, BlockPos pos) {
-        if (!world.isClientSide) {
+        if (!world.isClientSide()) {
             ChairEntity entity = GeneralUtil.getChairEntity(world, pos);
             if (entity != null) {
                 GeneralUtil.removeChairEntity(world, pos);
@@ -173,7 +197,7 @@ public class GeneralUtil {
     }
 
     public static boolean addChairEntity(Level world, BlockPos blockPos, ChairEntity entity, BlockPos playerPos) {
-        if (!world.isClientSide) {
+        if (!world.isClientSide()) {
             ResourceLocation id = getDimensionTypeId(world);
             if (!CHAIRS.containsKey(id)) CHAIRS.put(id, new HashMap<>());
             CHAIRS.get(id).put(blockPos, Pair.of(entity, playerPos));
@@ -183,7 +207,7 @@ public class GeneralUtil {
     }
 
     public static void removeChairEntity(Level world, BlockPos pos) {
-        if (!world.isClientSide) {
+        if (!world.isClientSide()) {
             ResourceLocation id = getDimensionTypeId(world);
             if (CHAIRS.containsKey(id)) {
                 CHAIRS.get(id).remove(pos);
@@ -251,7 +275,7 @@ public class GeneralUtil {
     }
 
     private static void popResource(Level level, ItemEntity itemEntity, ItemStack itemStack) {
-        if (!level.isClientSide && !itemStack.isEmpty() && level.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS)) {
+        if (level instanceof ServerLevel serverLevel && !itemStack.isEmpty() && serverLevel.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS)) {
             itemEntity.setDefaultPickUpDelay();
             level.addFreshEntity(itemEntity);
         }
