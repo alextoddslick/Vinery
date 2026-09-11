@@ -1,21 +1,19 @@
 package net.satisfy.vinery.client.model;
 
-import com.google.common.collect.ImmutableList;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.model.AgeableListModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.client.renderer.entity.state.EquineRenderState;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.satisfy.vinery.core.Vinery;
-import org.jetbrains.annotations.NotNull;
 
 @Environment(EnvType.CLIENT)
 @SuppressWarnings("unused")
-public class MuleModel<T extends AbstractHorse> extends AgeableListModel<T> {
+public class MuleModel extends EntityModel<EquineRenderState> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(Vinery.identifier("trader_mule"), "main");
 
 	private static final float DEG_125 = 2.1816616F;
@@ -51,7 +49,7 @@ public class MuleModel<T extends AbstractHorse> extends AgeableListModel<T> {
 
 
 	public MuleModel(ModelPart modelPart) {
-		super(true, 16.2F, 1.36F, 2.7272F, 2.0F, 20.0F);
+		super(modelPart);
 		this.body = modelPart.getChild("body");
 		this.headParts = modelPart.getChild("head_parts");
 		this.rightHindLeg = modelPart.getChild("right_hind_leg");
@@ -74,6 +72,7 @@ public class MuleModel<T extends AbstractHorse> extends AgeableListModel<T> {
 		this.ridingParts = new ModelPart[]{modelPart5, modelPart6};
 
 	}
+
 
 	public static LayerDefinition getTexturedModelData() {
 		CubeDeformation cubeDeformation = new CubeDeformation(0.0F);
@@ -110,71 +109,32 @@ public class MuleModel<T extends AbstractHorse> extends AgeableListModel<T> {
 		return LayerDefinition.create(meshDefinition, 128, 128);
 	}
 
-	public void setupAnim(T abstractHorse, float f, float g, float h, float i, float j) {
-		boolean bl = abstractHorse.isSaddled();
-		boolean bl2 = abstractHorse.isVehicle();
-		ModelPart[] var9 = this.saddleParts;
-		int var10 = var9.length;
-
-		int var11;
-		ModelPart modelPart;
-		for (var11 = 0; var11 < var10; ++var11) {
-			modelPart = var9[var11];
-			modelPart.visible = bl;
-		}
-
-		var9 = this.ridingParts;
-		var10 = var9.length;
-
-		for (var11 = 0; var11 < var10; ++var11) {
-			modelPart = var9[var11];
-			modelPart.visible = bl2 && bl;
-		}
-
-		this.body.y = 11.0F;
-	}
-
-	public @NotNull Iterable<ModelPart> headParts() {
-		return ImmutableList.of(this.headParts);
-	}
 
 	@Override
-	protected @NotNull Iterable<ModelPart> bodyParts() {
-		return ImmutableList.of(this.body, this.rightHindLeg, this.leftHindLeg, this.rightFrontLeg, this.leftFrontLeg, this.rightHindBabyLeg, this.leftHindBabyLeg, this.rightFrontBabyLeg, this.leftFrontBabyLeg);
-	}
+	public void setupAnim(EquineRenderState state) {
+		super.setupAnim(state);
 
-
-	public void prepareMobModel(T abstractHorse, float f, float g, float h) {
-		super.prepareMobModel(abstractHorse, f, g, h);
-		float i = Mth.rotLerp(h, abstractHorse.yBodyRotO, abstractHorse.yBodyRot);
-		float j = Mth.rotLerp(h, abstractHorse.yHeadRotO, abstractHorse.yHeadRot);
-		float k = Mth.lerp(h, abstractHorse.xRotO, abstractHorse.getXRot());
-		float l = j - i;
-		float m = k * 0.017453292F;
-		if (l > 20.0F) {
-			l = 20.0F;
-		}
-
-		if (l < -20.0F) {
-			l = -20.0F;
-		}
-
+		// --- former prepareMobModel(..) ---
+		float l = Mth.clamp(state.yRot, -20.0F, 20.0F);
+		float f = state.walkAnimationPos;
+		float g = state.walkAnimationSpeed;
+		float m = state.xRot * 0.017453292F;
 		if (g > 0.2F) {
 			m += Mth.cos(f * 0.8F) * 0.15F * g;
 		}
 
-		float n = abstractHorse.getEatAnim(h);
-		float o = abstractHorse.getStandAnim(h);
+		float n = state.eatAnimation;
+		float o = state.standAnimation;
 		float p = 1.0F - o;
-		float q = abstractHorse.getMouthAnim(h);
-		boolean bl = abstractHorse.tailCounter != 0;
-		float r = (float) abstractHorse.tickCount + h;
+		float q = state.feedingAnimation;
+		boolean bl = state.animateTail;
+		float r = state.ageInTicks;
 		this.headParts.y = 4.0F;
 		this.headParts.z = -12.0F;
 		this.body.xRot = 0.0F;
 		this.headParts.xRot = 0.5235988F + m;
 		this.headParts.yRot = l * 0.017453292F;
-		float s = abstractHorse.isInWater() ? 0.2F : 1.0F;
+		float s = state.isInWater ? 0.2F : 1.0F;
 		float t = Mth.cos(s * f * 0.6662F + 3.1415927F);
 		float u = t * 0.8F * g;
 		float v = (1.0F - Math.max(o, n)) * (0.5235988F + m + q * Mth.sin(r) * 0.05F);
@@ -216,15 +176,26 @@ public class MuleModel<T extends AbstractHorse> extends AgeableListModel<T> {
 		this.leftFrontBabyLeg.y = this.leftFrontLeg.y;
 		this.leftFrontBabyLeg.z = this.leftFrontLeg.z;
 		this.leftFrontBabyLeg.xRot = this.leftFrontLeg.xRot;
-		boolean bl2 = abstractHorse.isBaby();
-		this.rightHindLeg.visible = !bl2;
-		this.leftHindLeg.visible = !bl2;
-		this.rightFrontLeg.visible = !bl2;
-		this.leftFrontLeg.visible = !bl2;
-		this.rightHindBabyLeg.visible = bl2;
-		this.leftHindBabyLeg.visible = bl2;
-		this.rightFrontBabyLeg.visible = bl2;
-		this.leftFrontBabyLeg.visible = bl2;
-		this.body.y = bl2 ? 10.8F : 0.0F;
+		boolean baby = state.isBaby;
+		this.rightHindLeg.visible = !baby;
+		this.leftHindLeg.visible = !baby;
+		this.rightFrontLeg.visible = !baby;
+		this.leftFrontLeg.visible = !baby;
+		this.rightHindBabyLeg.visible = baby;
+		this.leftHindBabyLeg.visible = baby;
+		this.rightFrontBabyLeg.visible = baby;
+		this.leftFrontBabyLeg.visible = baby;
+
+		// --- former setupAnim(..) ---
+		boolean saddled = !state.saddle.isEmpty();
+		boolean ridden = state.isRidden;
+		for (ModelPart modelPart : this.saddleParts) {
+			modelPart.visible = saddled;
+		}
+		for (ModelPart modelPart : this.ridingParts) {
+			modelPart.visible = ridden && saddled;
+		}
+
+		this.body.y = 11.0F;
 	}
 }

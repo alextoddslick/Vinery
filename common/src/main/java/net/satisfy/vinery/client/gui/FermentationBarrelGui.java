@@ -1,11 +1,10 @@
 package net.satisfy.vinery.client.gui;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -54,12 +53,12 @@ public class FermentationBarrelGui extends AbstractContainerScreen<FermentationB
 
         if (isMouseOverFluidArea(mouseX, mouseY)) {
             Component tooltip = getFluidTooltip();
-            guiGraphics.renderTooltip(this.font, tooltip, mouseX, mouseY);
+            guiGraphics.setTooltipForNextFrame(this.font, java.util.List.of(tooltip), java.util.Optional.empty(), mouseX, mouseY);
         }
 
         if (isMouseOverCraftingTimeArea(mouseX, mouseY)) {
             Component tooltip = getCraftingTimeTooltip();
-            guiGraphics.renderTooltip(this.font, tooltip, mouseX, mouseY);
+            guiGraphics.setTooltipForNextFrame(this.font, java.util.List.of(tooltip), java.util.Optional.empty(), mouseX, mouseY);
         }
     }
 
@@ -159,16 +158,14 @@ public class FermentationBarrelGui extends AbstractContainerScreen<FermentationB
             TEXTURE__START = 0;
         }
 
-        guiGraphics.blit(BACKGROUND, originX, originY , TEXTURE_X_START, TEXTURE__START, scaledWidth, 4);
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, BACKGROUND, originX, originY, TEXTURE_X_START, TEXTURE__START, scaledWidth, 4, 256, 256);
     }
 
     @Override
     protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int mouseX, int mouseY) {
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderTexture(0, BACKGROUND);
         int x = this.leftPos;
         int y = this.topPos;
-        guiGraphics.blit(BACKGROUND, x, y, 0, 0, this.imageWidth, this.imageHeight);
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, BACKGROUND, x, y, 0.0F, 0.0F, this.imageWidth, this.imageHeight, 256, 256);
 
         FermentationBarrelGui.drawJuiceBar(guiGraphics, this.menu.getJuiceType(), this.menu.getFluidLevel(), x + FLUID_X, y + FLUID_Y);
 
@@ -186,8 +183,6 @@ public class FermentationBarrelGui extends AbstractContainerScreen<FermentationB
 
         int drawY = guiTop + CRAFT_PROGRESS_GUI_Y + (CRAFT_PROGRESS_GUI_HEIGHT - filledHeight);
 
-        RenderSystem.setShaderTexture(0, BACKGROUND);
-
-        guiGraphics.blit(BACKGROUND, guiLeft + CRAFT_PROGRESS_GUI_X, drawY, CRAFT_PROGRESS_TEXTURE_X, CRAFT_PROGRESS_TEXTURE_Y + (CRAFT_PROGRESS_HEIGHT - filledHeight), CRAFT_PROGRESS_WIDTH, filledHeight);
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, BACKGROUND, guiLeft + CRAFT_PROGRESS_GUI_X, drawY, CRAFT_PROGRESS_TEXTURE_X, CRAFT_PROGRESS_TEXTURE_Y + (CRAFT_PROGRESS_HEIGHT - filledHeight), CRAFT_PROGRESS_WIDTH, filledHeight, 256, 256);
     }
 }

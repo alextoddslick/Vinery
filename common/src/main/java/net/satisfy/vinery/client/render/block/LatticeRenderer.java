@@ -1,35 +1,39 @@
 package net.satisfy.vinery.client.render.block;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
+import net.minecraft.client.renderer.state.CameraRenderState;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.block.LatticeBlock;
 import net.satisfy.vinery.core.block.entity.LatticeBlockEntity;
 import net.satisfy.vinery.core.registry.GrapeTypeRegistry;
 import net.satisfy.vinery.core.util.GeneralUtil;
 import net.satisfy.vinery.core.util.GrapeType;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static net.satisfy.vinery.core.registry.ObjectRegistry.*;
 
-public class LatticeRenderer implements BlockEntityRenderer<LatticeBlockEntity> {
+public class LatticeRenderer implements BlockEntityRenderer<LatticeBlockEntity, LatticeRenderState> {
     private static Map<Block, ResourceLocation> textureMap;
 
     private static Map<Block, ResourceLocation> getTextureMap() {
@@ -89,9 +93,6 @@ public class LatticeRenderer implements BlockEntityRenderer<LatticeBlockEntity> 
         this.hanging_1_r1 = grape_cluster_floor.getChild("hanging_1_r1");
         this.hanging_2_r1 = grape_cluster_floor.getChild("hanging_2_r1");
     }
-
-
-
 
     @SuppressWarnings("unused")
     public static LayerDefinition getTexturedModelData() {
@@ -156,54 +157,69 @@ public class LatticeRenderer implements BlockEntityRenderer<LatticeBlockEntity> 
         return LayerDefinition.create(meshdefinition, 80, 80);
     }
 
-    @Override
-    public void render(LatticeBlockEntity blockEntity, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight, int packedOverlay) {
-        poseStack.pushPose();
-        BlockState state = blockEntity.getBlockState();
-        Direction direction = state.getValue(LatticeBlock.FACING);
-        boolean support = state.getValue(LatticeBlock.SUPPORT);
-        boolean bottom = state.getValue(LatticeBlock.BOTTOM);
-        GeneralUtil.LineConnectingType type = state.getValue(LatticeBlock.TYPE);
 
-        int age = state.getValue(LatticeBlock.AGE);
-        GrapeType grapeType = state.getValue(LatticeBlock.GRAPE);
+    @Override
+    public LatticeRenderState createRenderState() {
+        return new LatticeRenderState();
+    }
+
+    @Override
+    public void extractRenderState(LatticeBlockEntity blockEntity, LatticeRenderState state, float partialTick, Vec3 cameraPos,
+                                   @Nullable ModelFeatureRenderer.CrumblingOverlay crumblingOverlay) {
+        BlockEntityRenderer.super.extractRenderState(blockEntity, state, partialTick, cameraPos, crumblingOverlay);
+        state.showHanging = blockEntity.shouldShowHanging();
+    }
+
+    @Override
+    public void submit(LatticeRenderState state, PoseStack poseStack, SubmitNodeCollector collector, CameraRenderState cameraRenderState) {
+        poseStack.pushPose();
+        BlockState blockState = state.blockState;
+        Direction direction = blockState.getValue(LatticeBlock.FACING);
+        boolean support = blockState.getValue(LatticeBlock.SUPPORT);
+        boolean bottom = blockState.getValue(LatticeBlock.BOTTOM);
+        GeneralUtil.LineConnectingType type = blockState.getValue(LatticeBlock.TYPE);
+
+        int age = blockState.getValue(LatticeBlock.AGE);
+        GrapeType grapeType = blockState.getValue(LatticeBlock.GRAPE);
 
         poseStack.translate(0.5, 0, 0.5);
         poseStack.mulPose(Axis.YP.rotationDegrees(-direction.toYRot()));
         poseStack.scale(1.0f, -1.0f, -1.0f);
 
-        Block block = state.getBlock();
+        Block block = blockState.getBlock();
         ResourceLocation texture = getTextureMap().getOrDefault(block, Vinery.identifier("textures/entity/lattice/default_lattice.png"));
-        VertexConsumer consumer = buffer.getBuffer(RenderType.entityCutoutNoCull(texture));
+        RenderType renderType = RenderType.entityCutoutNoCull(texture);
+        int light = state.lightCoords;
+        int overlay = OverlayTexture.NO_OVERLAY;
 
         if (bottom) {
             poseStack.mulPose(Axis.ZP.rotationDegrees(180f));
             poseStack.scale(1.0f, -1.0f, -1.0f);
-            lattice_parts.render(poseStack, consumer, packedLight, packedOverlay);
+            collector.submitModelPart(lattice_parts, poseStack, renderType, light, overlay, null);
 
             if (!grapeType.equals(GrapeTypeRegistry.NONE)) {
                 if (age < 4) {
-                    sprout_floor.render(poseStack, consumer, packedLight, packedOverlay);
+                    collector.submitModelPart(sprout_floor, poseStack, renderType, light, overlay, null);
                 } else if (grapeType.isRed()) {
-                    growing_red_floor.render(poseStack, consumer, packedLight, packedOverlay);
+                    collector.submitModelPart(growing_red_floor, poseStack, renderType, light, overlay, null);
                 } else {
-                    growing_white_floor.render(poseStack, consumer, packedLight, packedOverlay);
+                    collector.submitModelPart(growing_white_floor, poseStack, renderType, light, overlay, null);
                 }
             }
         } else {
-            mesh.render(poseStack, consumer, packedLight, packedOverlay);
+            collector.submitModelPart(mesh, poseStack, renderType, light, overlay, null);
 
             if (type != GeneralUtil.LineConnectingType.MIDDLE && type != GeneralUtil.LineConnectingType.LEFT) {
-                support_right.render(poseStack, consumer, packedLight, packedOverlay);
+                collector.submitModelPart(support_right, poseStack, renderType, light, overlay, null);
                 if (support) {
-                    corner_braces_right.render(poseStack, consumer, packedLight, packedOverlay);
+                    collector.submitModelPart(corner_braces_right, poseStack, renderType, light, overlay, null);
                 }
             }
 
             if (type != GeneralUtil.LineConnectingType.MIDDLE && type != GeneralUtil.LineConnectingType.RIGHT) {
-                support_left.render(poseStack, consumer, packedLight, packedOverlay);
+                collector.submitModelPart(support_left, poseStack, renderType, light, overlay, null);
                 if (support) {
-                    corner_braces_left.render(poseStack, consumer, packedLight, packedOverlay);
+                    collector.submitModelPart(corner_braces_left, poseStack, renderType, light, overlay, null);
                 }
             }
         }
@@ -213,41 +229,41 @@ public class LatticeRenderer implements BlockEntityRenderer<LatticeBlockEntity> 
 
             if (bottom) {
                 if (age < 4) {
-                    sprout_floor.render(poseStack, consumer, packedLight, packedOverlay);
+                    collector.submitModelPart(sprout_floor, poseStack, renderType, light, overlay, null);
                 } else {
                     if (isRed) {
-                        growing_red_floor.render(poseStack, consumer, packedLight, packedOverlay);
+                        collector.submitModelPart(growing_red_floor, poseStack, renderType, light, overlay, null);
                     } else {
-                        growing_white_floor.render(poseStack, consumer, packedLight, packedOverlay);
+                        collector.submitModelPart(growing_white_floor, poseStack, renderType, light, overlay, null);
                     }
                 }
             } else {
                 if (age < 4) {
-                    sprout.render(poseStack, consumer, packedLight, packedOverlay);
+                    collector.submitModelPart(sprout, poseStack, renderType, light, overlay, null);
                 } else {
                     if (isRed) {
-                        growing_red.render(poseStack, consumer, packedLight, packedOverlay);
+                        collector.submitModelPart(growing_red, poseStack, renderType, light, overlay, null);
                     } else {
-                        growing_white.render(poseStack, consumer, packedLight, packedOverlay);
+                        collector.submitModelPart(growing_white, poseStack, renderType, light, overlay, null);
                     }
                 }
             }
         }
-        if (bottom && blockEntity.shouldShowHanging()) {
+        if (bottom && state.showHanging) {
             poseStack.pushPose();
             poseStack.translate(0.0, 0, 0.0);
             poseStack.mulPose(Axis.YP.rotationDegrees(-direction.toYRot()));
             poseStack.scale(1.0f, -1.0f, -1.0f);
             poseStack.mulPose(Axis.ZP.rotationDegrees(180f));
 
-            RandomSource random = RandomSource.create(blockEntity.getBlockPos().asLong());
+            RandomSource random = RandomSource.create(state.blockPos.asLong());
             float offsetX = Mth.lerp(random.nextFloat(), -0.02f, 0.0f);
             float offsetZ = Mth.lerp(random.nextFloat(), -0.02f, 0.0f);
 
             poseStack.translate(offsetX, -0.2f, offsetZ);
 
-            hanging_1_r1.render(poseStack, consumer, packedLight, packedOverlay);
-            hanging_2_r1.render(poseStack, consumer, packedLight, packedOverlay);
+            collector.submitModelPart(hanging_1_r1, poseStack, renderType, light, overlay, null);
+            collector.submitModelPart(hanging_2_r1, poseStack, renderType, light, overlay, null);
 
             poseStack.popPose();
         }
