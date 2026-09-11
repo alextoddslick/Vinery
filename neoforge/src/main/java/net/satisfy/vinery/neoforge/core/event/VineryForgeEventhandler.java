@@ -1,31 +1,21 @@
 package net.satisfy.vinery.neoforge.core.event;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.npc.VillagerTrades;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.phys.Vec3;
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.InputEvent;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import net.satisfy.vinery.core.Vinery;
-import net.satisfy.vinery.core.registry.MobEffectRegistry;
 import net.satisfy.vinery.core.util.VillagerUtil;
 import net.satisfy.vinery.neoforge.core.config.VineryForgeConfig;
 import net.satisfy.vinery.neoforge.core.registry.VineryNeoForgeVillagers;
-import org.lwjgl.glfw.GLFW;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @EventBusSubscriber(modid = Vinery.MOD_ID)
 public class VineryForgeEventhandler {
@@ -33,7 +23,7 @@ public class VineryForgeEventhandler {
 
     @SubscribeEvent
     public static void addCustomTrades(VillagerTradesEvent event) {
-        if (event.getType().equals(VineryNeoForgeVillagers.WINEMAKER.get())) {
+        if (event.getType().equals(VineryNeoForgeVillagers.winemakerKey())) {
             Map<Integer, List<VillagerTrades.ItemListing>> trades = new HashMap<>();
 
             loadTradesFromConfig(trades, VineryForgeConfig.level1TradesCache, 1);
@@ -59,7 +49,7 @@ public class VineryForgeEventhandler {
             int maxUses = Integer.parseInt(parts[3]);
             boolean isSelling = Boolean.parseBoolean(parts[4]);
 
-            Item item = BuiltInRegistries.ITEM.get(ResourceLocation.parse(itemName));
+            Item item = BuiltInRegistries.ITEM.getValue(ResourceLocation.parse(itemName));
             if (item != null) {
                 VillagerTrades.ItemListing listing;
                 if (isSelling) {

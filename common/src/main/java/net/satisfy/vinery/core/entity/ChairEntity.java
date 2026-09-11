@@ -1,11 +1,12 @@
 package net.satisfy.vinery.core.entity;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.server.level.ServerEntity;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -15,6 +16,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import net.satisfy.vinery.core.util.GeneralUtil;
 import org.jetbrains.annotations.NotNull;
@@ -55,32 +58,24 @@ public class ChairEntity extends Entity {
     }
 
     @Override
-    protected void readAdditionalSaveData(CompoundTag tag) {
-        if (tag.contains("spx")) {
-            int x = tag.getInt("spx");
-            int y = tag.getInt("spy");
-            int z = tag.getInt("spz");
-            this.seatPos = new BlockPos(x, y, z);
+    protected void readAdditionalSaveData(ValueInput input) {
+        input.getInt("spx").ifPresent(x -> {
+            this.seatPos = new BlockPos(x, input.getIntOr("spy", 0), input.getIntOr("spz", 0));
             this.seatPosInit = true;
-        }
+        });
     }
 
     @Override
-    protected void addAdditionalSaveData(CompoundTag tag) {
+    protected void addAdditionalSaveData(ValueOutput output) {
         BlockPos p = this.seatPos != null ? this.seatPos : this.blockPosition();
-        tag.putInt("spx", p.getX());
-        tag.putInt("spy", p.getY());
-        tag.putInt("spz", p.getZ());
+        output.putInt("spx", p.getX());
+        output.putInt("spy", p.getY());
+        output.putInt("spz", p.getZ());
     }
 
     @Override
     protected void positionRider(Entity passenger, MoveFunction move) {
         move.accept(passenger, getX(), getY(), getZ());
-    }
-
-    @Override
-    public boolean isControlledByLocalInstance() {
-        return false;
     }
 
     private float computeYawFromBlock() {
@@ -139,13 +134,18 @@ public class ChairEntity extends Entity {
         if (!getPassengers().isEmpty()) {
             for (Entity e : getPassengers()) {
                 if (e instanceof Player p) {
-                    if (!level().isClientSide) p.setDeltaMovement(Vec3.ZERO);
+                    if (!level().isClientSide()) p.setDeltaMovement(Vec3.ZERO);
                     float yaw = getYRot();
                     p.setYBodyRot(yaw);
                     p.yBodyRotO = yaw;
                 }
             }
         }
+    }
+
+    @Override
+    public boolean hurtServer(ServerLevel serverLevel, DamageSource damageSource, float amount) {
+        return false;
     }
 
     @Override

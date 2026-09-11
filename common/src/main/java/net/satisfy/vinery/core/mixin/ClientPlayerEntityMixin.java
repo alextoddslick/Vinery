@@ -13,9 +13,8 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.ElytraItem;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.satisfy.vinery.core.registry.MobEffectRegistry;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -77,7 +76,7 @@ public abstract class ClientPlayerEntityMixin extends AbstractClientPlayer {
     @Unique
     private boolean wearingUsableElytra(LocalPlayer player) {
         ItemStack chestItemStack = player.getItemBySlot(EquipmentSlot.CHEST);
-        return chestItemStack.getItem() == Items.ELYTRA && ElytraItem.isFlyEnabled(chestItemStack);
+        return chestItemStack.has(DataComponents.GLIDER) && !chestItemStack.nextDamageWillBreak();
     }
 
     @Unique

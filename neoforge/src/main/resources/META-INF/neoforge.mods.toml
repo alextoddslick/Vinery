@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[4,)"
+loaderVersion = "[10,)"
 source = "https://github.com/satisfyu/Vinery"
 issueTrackerURL = "https://github.com/satisfyu/Let-s-Do-Hub"
 license = "Custom"
@@ -17,31 +17,37 @@ logoFile = "pack.png"
 
 [[dependencies.vinery]]
 modId = "neoforge"
-mandatory = true
-versionRange = "[21.0,)"
+type = "required"
+versionRange = "[21.10,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.vinery]]
 modId = "minecraft"
-mandatory = true
-versionRange = "[1.21,)"
+type = "required"
+versionRange = "[1.21.10,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.vinery]]
 modId = "architectury"
-mandatory = true
-versionRange = "[13.0.8,)"
+type = "required"
+versionRange = "[18.0.8,)"
 ordering = "AFTER"
 side = "BOTH"
 
-[[incompatibleMods]]
+[[dependencies.vinery]]
 modId = "copperative"
+type = "incompatible"
+ordering = "NONE"
+side = "BOTH"
 
-[[incompatibleMods]]
+[[dependencies.vinery]]
 modId = "nethervinery"
-versionRange = "<1.2.14"
+type = "incompatible"
+versionRange = "(,1.2.14)"
+ordering = "NONE"
+side = "BOTH"
 
 [[mixins]]
 config = "vinery.mixins.json"

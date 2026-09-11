@@ -1,16 +1,18 @@
 package net.satisfy.vinery.fabric.core.registry;
 
+import com.google.common.collect.ImmutableSet;
 import me.shedaniel.autoconfig.AutoConfig;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
-import net.fabricmc.fabric.api.object.builder.v1.villager.VillagerProfessionBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.world.poi.PointOfInterestHelper;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.item.Item;
@@ -23,6 +25,11 @@ import net.satisfy.vinery.fabric.config.VineryFabricConfig;
 public class VineryFabricVillagers {
 
     private static final ResourceLocation WINEMAKER_POI_IDENTIFIER = Vinery.identifier("winemaker_poi");
+    private static final ResourceLocation WINEMAKER_IDENTIFIER = Vinery.identifier("winemaker");
+
+    public static final ResourceKey<PoiType> WINEMAKER_POI_KEY = ResourceKey.create(Registries.POINT_OF_INTEREST_TYPE, WINEMAKER_POI_IDENTIFIER);
+    public static final ResourceKey<VillagerProfession> WINEMAKER_KEY = ResourceKey.create(Registries.VILLAGER_PROFESSION, WINEMAKER_IDENTIFIER);
+
     public static final PoiType WINEMAKER_POI;
     public static final VillagerProfession WINEMAKER;
 
@@ -32,7 +39,16 @@ public class VineryFabricVillagers {
         );
 
         WINEMAKER = Registry.register(
-                BuiltInRegistries.VILLAGER_PROFESSION, ResourceLocation.fromNamespaceAndPath("vinery", "winemaker"), VillagerProfessionBuilder.create().id(ResourceLocation.fromNamespaceAndPath("vinery", "winemaker")).workstation(ResourceKey.create(Registries.POINT_OF_INTEREST_TYPE, WINEMAKER_POI_IDENTIFIER)).build()
+                BuiltInRegistries.VILLAGER_PROFESSION,
+                WINEMAKER_KEY,
+                new VillagerProfession(
+                        Component.translatable("entity.minecraft.villager.vinery.winemaker"),
+                        holder -> holder.is(WINEMAKER_POI_KEY),
+                        holder -> holder.is(WINEMAKER_POI_KEY),
+                        ImmutableSet.of(),
+                        ImmutableSet.of(),
+                        SoundEvents.VILLAGER_WORK_FARMER
+                )
         );
     }
 
@@ -51,7 +67,7 @@ public class VineryFabricVillagers {
     }
 
     private static void registerTradesForLevel(VineryFabricConfig.VillagerSettings.TradeLevelSettings tradeLevelSettings, int level, RegistryAccess registryAccess) {
-        TradeOfferHelper.registerVillagerOffers(WINEMAKER, level, factories -> {
+        TradeOfferHelper.registerVillagerOffers(WINEMAKER_KEY, level, factories -> {
             for (VineryFabricConfig.VillagerSettings.TradeEntry entry : tradeLevelSettings.trades) {
                 // Validate price is within valid range (1-99)
                 if (entry.price < 1 || entry.price > 99) {
@@ -70,7 +86,7 @@ public class VineryFabricVillagers {
                     String modId = parts[0];
                     String itemId = parts[1];
                     ResourceLocation rl = ResourceLocation.fromNamespaceAndPath(modId, itemId);
-                    Item item = registryAccess.lookupOrThrow(Registries.ITEM).get(rl);
+                    Item item = registryAccess.lookupOrThrow(Registries.ITEM).getValue(rl);
 
                     // Validate item exists and is not air
                     if (item != null && item != Items.AIR) {
