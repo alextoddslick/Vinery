@@ -1,11 +1,10 @@
 package net.satisfy.vinery.client.gui;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -41,12 +40,9 @@ public class ApplePressGui extends AbstractContainerScreen<ApplePressGuiHandler>
 
     @Override
     protected void renderBg(GuiGraphics guiGraphics, float f, int i, int j) {
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
-        guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, x, y, 0.0F, 0.0F, imageWidth, imageHeight, 256, 256);
         renderProgressArrows(guiGraphics, x, y);
     }
 
@@ -57,13 +53,13 @@ public class ApplePressGui extends AbstractContainerScreen<ApplePressGuiHandler>
             int yPosition = y + MASHING_BAR_Y + height;
             int textureV = MASHING_BAR_V + height;
             int renderHeight = MASHING_BAR_HEIGHT - height;
-            guiGraphics.blit(TEXTURE, xPosition, yPosition, MASHING_BAR_U, textureV, MASHING_BAR_WIDTH, renderHeight);
+            guiGraphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, xPosition, yPosition, MASHING_BAR_U, textureV, MASHING_BAR_WIDTH, renderHeight, 256, 256);
         }
         if (menu.isCrafting(1)) {
             int height = menu.getScaledProgress(1);
             int xPosition = x + FERMENTING_BAR_X;
             int yPosition = y + FERMENTING_BAR_Y + FERMENTING_BAR_HEIGHT - height;
-            guiGraphics.blit(TEXTURE, xPosition, yPosition, FERMENTING_BAR_U, FERMENTING_BAR_V + FERMENTING_BAR_HEIGHT - height, FERMENTING_BAR_WIDTH, height);
+            guiGraphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, xPosition, yPosition, FERMENTING_BAR_U, FERMENTING_BAR_V + FERMENTING_BAR_HEIGHT - height, FERMENTING_BAR_WIDTH, height, 256, 256);
         }
     }
 

@@ -2,34 +2,34 @@ package net.satisfy.vinery.client.render.block.storage;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.core.NonNullList;
+import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
-import net.satisfy.vinery.client.util.ClientUtil;
 import net.satisfy.vinery.core.block.WineBottleBlock;
-import net.satisfy.vinery.core.block.entity.StorageBlockEntity;
 
 public class WineBoxRenderer implements StorageTypeRenderer {
     @Override
-    public void render(StorageBlockEntity entity, PoseStack matrices, MultiBufferSource vertexConsumers, NonNullList<ItemStack> itemStacks) {
-        matrices.translate(0.35, 0.6, -0.35);
-        matrices.scale(0.7f, 0.7f, 0.7f);
+    public void submit(StorageRenderState state, PoseStack poseStack, SubmitNodeCollector collector) {
+        if (state.items.isEmpty()) return;
 
-        ItemStack stack = itemStacks.get(0);
+        poseStack.translate(0.35, 0.6, -0.35);
+        poseStack.scale(0.7f, 0.7f, 0.7f);
+
+        ItemStack stack = state.items.get(0);
         if (stack.isEmpty() || !(stack.getItem() instanceof BlockItem blockItem)) {
             return;
         }
 
-        matrices.mulPose(Axis.ZP.rotationDegrees(90f));
-        matrices.mulPose(Axis.YN.rotationDegrees(90f));
+        poseStack.mulPose(Axis.ZP.rotationDegrees(90f));
+        poseStack.mulPose(Axis.YN.rotationDegrees(90f));
 
         BlockState renderState = blockItem.getBlock().defaultBlockState();
         if (renderState.hasProperty(WineBottleBlock.FAKE_MODEL)) {
             renderState = renderState.setValue(WineBottleBlock.FAKE_MODEL, false);
         }
 
-        ClientUtil.renderBlock(renderState, matrices, vertexConsumers, entity);
+        collector.submitBlock(poseStack, renderState, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
     }
 }

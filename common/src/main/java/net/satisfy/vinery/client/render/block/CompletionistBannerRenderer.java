@@ -1,97 +1,135 @@
 package net.satisfy.vinery.client.render.block;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
-import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
+import net.minecraft.client.renderer.state.CameraRenderState;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.resources.model.Material;
+import net.minecraft.client.resources.model.MaterialSet;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.state.BlockState;
+import net.satisfy.vinery.client.model.CompletionistBannerFlagModel;
 import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.block.CompletionistBannerBlock;
 import net.satisfy.vinery.core.block.CompletionistWallBannerBlock;
 import net.satisfy.vinery.core.block.entity.CompletionistBannerEntity;
+import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 
-public class CompletionistBannerRenderer implements BlockEntityRenderer<CompletionistBannerEntity> {
+public class CompletionistBannerRenderer implements BlockEntityRenderer<CompletionistBannerEntity, CompletionistBannerRenderState> {
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(Vinery.MOD_ID, "banner"), "main");
+    public static final ModelLayerLocation FLAG_LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(Vinery.MOD_ID, "banner"), "flag");
 
-    public static final String FLAG = "flag";
+    public static final String FLAG = CompletionistBannerFlagModel.FLAG;
     private static final String POLE = "pole";
     private static final String BAR = "bar";
-    private final ModelPart flag;
+
+    private final MaterialSet materials;
+    private final CompletionistBannerFlagModel flagModel;
     private final ModelPart pole;
     private final ModelPart bar;
 
     public CompletionistBannerRenderer(BlockEntityRendererProvider.Context context) {
+        this.materials = context.materials();
         ModelPart modelPart = context.bakeLayer(LAYER_LOCATION);
-        this.flag = modelPart.getChild(FLAG);
         this.pole = modelPart.getChild(POLE);
         this.bar = modelPart.getChild(BAR);
+        this.flagModel = new CompletionistBannerFlagModel(context.bakeLayer(FLAG_LAYER_LOCATION));
     }
 
+    /**
+     * Pole and bar. The flag lives in its own layer ({@link #createFlagLayer()}) so that its wave animation can be
+     * applied at render time.
+     */
     public static LayerDefinition createBodyLayer() {
         MeshDefinition meshDefinition = new MeshDefinition();
         PartDefinition partDefinition = meshDefinition.getRoot();
-        partDefinition.addOrReplaceChild(FLAG, CubeListBuilder.create().texOffs(0, 0).addBox(-10.0F, 0.0F, -1.0F, 20.0F, 40.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -44.0F, -1.0F, -0.0349F, 0.0F, 0.0F));
         partDefinition.addOrReplaceChild(POLE, CubeListBuilder.create().texOffs(44, 0).addBox(-1.0f, -30.0f, -1.0f, 2.0f, 42.0f, 2.0f), PartPose.ZERO);
         partDefinition.addOrReplaceChild(BAR, CubeListBuilder.create().texOffs(0, 42).addBox(-10.0f, -32.0f, -1.0f, 20.0f, 2.0f, 2.0f), PartPose.ZERO);
         return LayerDefinition.create(meshDefinition, 64, 64);
     }
 
-    public static void renderBanner(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int j, ModelPart modelPart, CompletionistBannerEntity banner) {
-        ResourceLocation location = ((CompletionistBannerBlock) banner.getBlockState().getBlock()).getRenderTexture();
-        VertexConsumer vc = multiBufferSource.getBuffer(RenderType.entitySolid(location));
-
-        modelPart.render(poseStack, vc, i, j);
+    public static LayerDefinition createFlagLayer() {
+        return CompletionistBannerFlagModel.createFlagLayer();
     }
 
     @Override
-    public void render(CompletionistBannerEntity banner, float f, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int j) {
-        long time;
-        float scale = 0.66f;
-        boolean inInventory = banner.getLevel() == null;
+    public CompletionistBannerRenderState createRenderState() {
+        return new CompletionistBannerRenderState();
+    }
 
-        poseStack.pushPose();
-        if (inInventory) {
+    @Override
+    public void extractRenderState(CompletionistBannerEntity banner, CompletionistBannerRenderState state, float partialTick, Vec3 cameraPos,
+                                   @Nullable ModelFeatureRenderer.CrumblingOverlay crumblingOverlay) {
+        BlockEntityRenderer.super.extractRenderState(banner, state, partialTick, cameraPos, crumblingOverlay);
+
+        BlockState blockState = banner.getBlockState();
+        state.texture = blockState.getBlock() instanceof CompletionistBannerBlock bannerBlock ? bannerBlock.getRenderTexture() : null;
+
+        long time;
+        if (banner.getLevel() == null) {
             time = 0L;
-            poseStack.translate(0.5, 0.5, 0.5);
-            this.pole.visible = true;
+            state.standing = true;
+            state.angle = 0.0F;
         } else {
             time = banner.getLevel().getGameTime();
-            BlockState blockState = banner.getBlockState();
-            float rotation;
             if (!(blockState.getBlock() instanceof CompletionistWallBannerBlock)) {
-                poseStack.translate(0.5, 0.5, 0.5);
-                rotation = (float) (-blockState.getValue(CompletionistBannerBlock.ROTATION) * 360) / 16.0f;
-                poseStack.mulPose(Axis.YP.rotationDegrees(rotation));
-                this.pole.visible = true;
+                state.standing = true;
+                state.angle = (float) (-blockState.getValue(CompletionistBannerBlock.ROTATION) * 360) / 16.0F;
             } else {
-                poseStack.translate(0.5, -0.1666666716337204, 0.5);
-                rotation = -blockState.getValue(CompletionistWallBannerBlock.FACING).toYRot() + 180.0f;
-                poseStack.mulPose(Axis.YP.rotationDegrees(rotation));
-                poseStack.translate(0.0, -0.3125, -0.4375);
-                this.pole.visible = false;
+                state.standing = false;
+                state.angle = -blockState.getValue(CompletionistWallBannerBlock.FACING).toYRot() + 180.0F;
             }
         }
+
+        BlockPos blockPos = banner.getBlockPos();
+        state.phase = ((float) Math.floorMod(blockPos.getX() * 7L + blockPos.getY() * 9L + blockPos.getZ() * 13L + time, 100L) + partialTick) / 100.0F;
+    }
+
+    @Override
+    public void submit(CompletionistBannerRenderState state, PoseStack poseStack, SubmitNodeCollector collector, CameraRenderState cameraRenderState) {
+        if (state.texture == null) {
+            return;
+        }
+
+        float scale = 0.66f;
+        poseStack.pushPose();
+        if (state.standing) {
+            poseStack.translate(0.5, 0.5, 0.5);
+            poseStack.mulPose(Axis.YP.rotationDegrees(state.angle));
+        } else {
+            poseStack.translate(0.5, -0.1666666716337204, 0.5);
+            poseStack.mulPose(Axis.YP.rotationDegrees(state.angle));
+            poseStack.translate(0.0, -0.3125, -0.4375);
+        }
+
         poseStack.pushPose();
         poseStack.scale(scale, -scale, -scale);
-        VertexConsumer vertexConsumer = ModelBakery.BANNER_BASE.buffer(multiBufferSource, RenderType::entitySolid);
-        this.pole.render(poseStack, vertexConsumer, i, j);
-        this.bar.render(poseStack, vertexConsumer, i, j);
-        BlockPos blockPos = banner.getBlockPos();
-        float k = ((float) Math.floorMod(blockPos.getX() * 7L + blockPos.getY() * 9L + blockPos.getZ() * 13L + time, 100L) + f) / 100.0f;
-        this.flag.xRot = (-0.0125f + 0.01f * Mth.cos((float) Math.PI * 2 * k)) * (float) Math.PI;
-        this.flag.y = -32.0f;
-        renderBanner(poseStack, multiBufferSource, i, j, this.flag, banner);
+
+        Material material = ModelBakery.BANNER_BASE;
+        RenderType baseType = material.renderType(RenderType::entitySolid);
+        if (state.standing) {
+            collector.submitModelPart(this.pole, poseStack, baseType, state.lightCoords, OverlayTexture.NO_OVERLAY, this.materials.get(material));
+        }
+        collector.submitModelPart(this.bar, poseStack, baseType, state.lightCoords, OverlayTexture.NO_OVERLAY, this.materials.get(material));
+
+        collector.submitModel(this.flagModel, state.phase, poseStack, RenderType.entitySolid(state.texture),
+                state.lightCoords, OverlayTexture.NO_OVERLAY, 0, state.breakProgress);
+
         poseStack.popPose();
         poseStack.popPose();
     }

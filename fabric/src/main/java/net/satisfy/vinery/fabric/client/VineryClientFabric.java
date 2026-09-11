@@ -2,56 +2,37 @@ package net.satisfy.vinery.fabric.client;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
-import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
-import net.fabricmc.fabric.mixin.object.builder.client.TexturedRenderLayersMixin;
-import net.minecraft.client.KeyMapping;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.BoatModel;
-import net.minecraft.client.model.ChestBoatModel;
-import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.renderer.Sheets;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
-import net.minecraft.client.renderer.blockentity.SignRenderer;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.phys.Vec3;
 import net.satisfy.vinery.client.VineryClient;
-import net.satisfy.vinery.core.Vinery;
-import net.satisfy.vinery.core.block.state.properties.VineryWoodType;
-import net.satisfy.vinery.core.entity.DarkCherryBoatEntity;
-import net.satisfy.vinery.core.registry.EntityTypeRegistry;
 import net.satisfy.vinery.core.registry.MobEffectRegistry;
 import net.satisfy.vinery.core.registry.ObjectRegistry;
 import net.satisfy.vinery.fabric.client.renderer.StrawHatRenderer;
 import net.satisfy.vinery.fabric.client.renderer.WinemakerBootsRenderer;
 import net.satisfy.vinery.fabric.client.renderer.WinemakerChestplateRenderer;
 import net.satisfy.vinery.fabric.client.renderer.WinemakerLeggingsRenderer;
-import org.lwjgl.glfw.GLFW;
 
 public class VineryClientFabric implements ClientModInitializer {
     private static boolean hasDoubleJumped = false;
     private static boolean wasOnGround = true;
     private static boolean spaceWasPressed = false;
+
     @Override
     public void onInitializeClient() {
         VineryClient.preInitClient();
         VineryClient.onInitializeClient();
-        registerBoatModels();
-        BlockEntityRenderers.register(EntityTypeRegistry.MOD_SIGN.get(), SignRenderer::new);
-        BlockEntityRenderers.register(EntityTypeRegistry.MOD_HANGING_SIGN.get(), HangingSignRenderer::new);
-        ArmorRenderer.register(new StrawHatRenderer(), ObjectRegistry.STRAW_HAT.get());
-        ArmorRenderer.register(new WinemakerChestplateRenderer(), ObjectRegistry.WINEMAKER_APRON.get());
-        ArmorRenderer.register(new WinemakerLeggingsRenderer(), ObjectRegistry.WINEMAKER_LEGGINGS.get());
-        ArmorRenderer.register(new WinemakerBootsRenderer(), ObjectRegistry.WINEMAKER_BOOTS.get());
+
+        ArmorRenderer.register(StrawHatRenderer::new, ObjectRegistry.STRAW_HAT.get());
+        ArmorRenderer.register(WinemakerChestplateRenderer::new, ObjectRegistry.WINEMAKER_APRON.get());
+        ArmorRenderer.register(WinemakerLeggingsRenderer::new, ObjectRegistry.WINEMAKER_LEGGINGS.get());
+        ArmorRenderer.register(WinemakerBootsRenderer::new, ObjectRegistry.WINEMAKER_BOOTS.get());
+
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             LocalPlayer player = client.player;
 
@@ -99,14 +80,6 @@ public class VineryClientFabric implements ClientModInitializer {
 
     private static boolean wearingUsableElytra(LocalPlayer player) {
         ItemStack chestItemStack = player.getItemBySlot(EquipmentSlot.CHEST);
-        return chestItemStack.getItem() == Items.ELYTRA && ElytraItem.isFlyEnabled(chestItemStack);
-    }
-
-    private void registerBoatModels() {
-        for (DarkCherryBoatEntity.Type type : DarkCherryBoatEntity.Type.values()) {
-            String modId = Vinery.MOD_ID;
-            EntityModelLayerRegistry.registerModelLayer(new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(modId, type.getModelLocation()), "main"), BoatModel::createBodyModel);
-            EntityModelLayerRegistry.registerModelLayer(new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(modId, type.getChestModelLocation()), "main"), ChestBoatModel::createBodyModel);
-        }
+        return LivingEntity.canGlideUsing(chestItemStack, EquipmentSlot.CHEST);
     }
 }
