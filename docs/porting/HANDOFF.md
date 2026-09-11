@@ -9,7 +9,7 @@ previous. **Fabric is the priority; NeoForge is best-effort** (Alex only cares a
 |-----------|-------|
 | `1.21.1`  | original upstream code (unchanged) |
 | `1.21.10` | **DONE.** `./gradlew build` produces `fabric/build/libs/letsdo-vinery-fabric-1.6.0.jar` and the NeoForge jar. Both dedicated servers boot to "Done" in the dev runtime (`:fabric:runServer`, `:neoforge:runServer`). Not tested in a client. |
-| `26.1`    | **IN PROGRESS.** Toolchain converted and committed (`chore: 26.1 toolchain ...`); ~170 real compile errors remained in `common` (see `compile-errors-26.1-after-renames.log`). Five parallel agents were working on disjoint slices and were told to commit WIP; their branches are named `worktree-agent-*` (merge them into `26.1` if not already merged; they may not compile). |
+| `26.1`    | **IN PROGRESS.** Toolchain converted and committed (`chore: 26.1 toolchain ...`); ~170 real compile errors remained in `common` (see `compile-errors-26.1-after-renames.log`). No code has been written for 26.1 beyond the toolchain commit; the agents that researched it were stopped before editing (their verified findings are in the last section of this file). |
 | `26.2`    | not started. Reference sources were downloaded (see below); class rename table `renames-26.1-to-26.2.txt` is in this folder. |
 
 ## How to build
