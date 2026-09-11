@@ -10,9 +10,12 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.Containers;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.satisfy.vinery.core.registry.EntityTypeRegistry;
 import net.satisfy.vinery.core.util.GeneralUtil;
 import org.jetbrains.annotations.NotNull;
@@ -57,18 +60,26 @@ public class StorageBlockEntity extends BlockEntity {
     }
 
     @Override
-    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
-        super.loadAdditional(nbt,provider);
-        this.size = nbt.getInt("size");
+    protected void loadAdditional(ValueInput valueInput) {
+        super.loadAdditional(valueInput);
+        this.size = valueInput.getIntOr("size", 0);
         this.inventory = NonNullList.withSize(this.size, ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(nbt, this.inventory,provider);
+        ContainerHelper.loadAllItems(valueInput, this.inventory);
     }
 
     @Override
-    protected void saveAdditional(CompoundTag nbt,HolderLookup.Provider provider) {
-        ContainerHelper.saveAllItems(nbt, this.inventory,provider);
-        nbt.putInt("size", this.size);
-        super.saveAdditional(nbt,provider);
+    protected void saveAdditional(ValueOutput valueOutput) {
+        ContainerHelper.saveAllItems(valueOutput, this.inventory);
+        valueOutput.putInt("size", this.size);
+        super.saveAdditional(valueOutput);
+    }
+
+    @Override
+    public void preRemoveSideEffects(BlockPos pos, BlockState state) {
+        super.preRemoveSideEffects(pos, state);
+        if (this.level != null) {
+            Containers.dropContents(this.level, pos, this.inventory);
+        }
     }
 
     @Override

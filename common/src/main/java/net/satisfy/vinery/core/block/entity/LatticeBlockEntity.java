@@ -6,6 +6,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.satisfy.vinery.core.registry.EntityTypeRegistry;
 import net.satisfy.vinery.core.registry.GrapeTypeRegistry;
 import net.satisfy.vinery.core.util.GrapeType;
@@ -46,26 +48,25 @@ public class LatticeBlockEntity extends BlockEntity {
     }
 
     @Override
-    public void loadAdditional(CompoundTag tag, HolderLookup.Provider provider) {
-        super.loadAdditional(tag,provider);
-        this.age = tag.getInt("Age");
-        this.grape = GrapeType.fromString(tag.getString("Grape"));
-        this.showHanging = tag.getBoolean("ShowHanging");
+    protected void loadAdditional(ValueInput valueInput) {
+        super.loadAdditional(valueInput);
+        this.age = valueInput.getIntOr("Age", 0);
+        this.grape = GrapeType.fromString(valueInput.getStringOr("Grape", ""));
+        this.showHanging = valueInput.getBooleanOr("ShowHanging", false);
         this.initialized = true;
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag,HolderLookup.Provider provider) {
-        tag.putInt("Age", age);
-        tag.putString("Grape", grape.getSerializedName());
-        tag.putBoolean("ShowHanging", showHanging);
+    protected void saveAdditional(ValueOutput valueOutput) {
+        super.saveAdditional(valueOutput);
+        valueOutput.putInt("Age", age);
+        valueOutput.putString("Grape", grape.getSerializedName());
+        valueOutput.putBoolean("ShowHanging", showHanging);
     }
 
     @Override
     public @NotNull CompoundTag getUpdateTag(HolderLookup.Provider provider) {
-        CompoundTag tag = new CompoundTag();
-        saveAdditional(tag,provider);
-        return tag;
+        return this.saveCustomOnly(provider);
     }
 
     @Override
@@ -74,7 +75,7 @@ public class LatticeBlockEntity extends BlockEntity {
     }
 
     private void sync() {
-        if (level != null && !level.isClientSide) {
+        if (level != null && !level.isClientSide()) {
             level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
         }
     }

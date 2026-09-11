@@ -1,5 +1,6 @@
 package net.satisfy.vinery.client.gui.handler;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -9,11 +10,13 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.satisfy.vinery.client.gui.handler.slot.ExtendedSlot;
 import net.satisfy.vinery.client.gui.handler.slot.FermentationBarrelOutputSlot;
+import net.satisfy.vinery.core.recipe.FermentationBarrelRecipe;
 import net.satisfy.vinery.core.registry.ObjectRegistry;
-import net.satisfy.vinery.core.registry.RecipeTypesRegistry;
 import net.satisfy.vinery.core.registry.ScreenhandlerTypeRegistry;
 import net.satisfy.vinery.core.util.JuiceUtil;
 import org.jetbrains.annotations.NotNull;
@@ -69,10 +72,20 @@ public class FermentationBarrelGuiHandler extends AbstractContainerMenu {
     }
 
     private boolean isIngredient(ItemStack stack) {
-        return this.level.getRecipeManager()
-                .getAllRecipesFor(RecipeTypesRegistry.FERMENTATION_BARREL_RECIPE_TYPE.get())
-                .stream()
-                .anyMatch(recipe -> recipe.value().getIngredients().stream().anyMatch(ingredient -> ingredient.test(stack)));
+        // Recipes only exist on the server since 1.21.2; be permissive on the client and let the server validate.
+        if (!(this.level instanceof ServerLevel serverLevel)) {
+            return true;
+        }
+        for (RecipeHolder<?> holder : serverLevel.recipeAccess().getRecipes()) {
+            if (holder.value() instanceof FermentationBarrelRecipe recipe) {
+                for (Ingredient ingredient : recipe.getInputs()) {
+                    if (ingredient.test(stack)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     @Override
