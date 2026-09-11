@@ -2,14 +2,14 @@ package net.satisfy.vinery.core.compat.jei.category;
 
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
+import mezz.jei.api.gui.builder.ITooltipBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
-import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
-import net.minecraft.client.Minecraft;
+import mezz.jei.api.recipe.types.IRecipeType;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.satisfy.vinery.client.gui.FermentationBarrelGui;
@@ -22,7 +22,8 @@ import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("unused")
 public class FermentationBarrelCategory implements IRecipeCategory<FermentationBarrelRecipe> {
-    public static final RecipeType<FermentationBarrelRecipe> FERMENTATION_BARREL = RecipeType.create(Vinery.MOD_ID, "wine_fermentation", FermentationBarrelRecipe.class);
+    public static final IRecipeType<FermentationBarrelRecipe> FERMENTATION_BARREL =
+            IRecipeType.create(Vinery.MOD_ID, "wine_fermentation", FermentationBarrelRecipe.class);
     public static final int WIDTH = 124;
     public static final int HEIGHT = 70;
     public static final int WIDTH_OF = 26;
@@ -45,7 +46,7 @@ public class FermentationBarrelCategory implements IRecipeCategory<FermentationB
     }
 
     @Override
-    public @NotNull RecipeType<FermentationBarrelRecipe> getRecipeType() {
+    public @NotNull IRecipeType<FermentationBarrelRecipe> getRecipeType() {
         return FERMENTATION_BARREL;
     }
 
@@ -105,11 +106,13 @@ public class FermentationBarrelCategory implements IRecipeCategory<FermentationB
 
         if (recipe.getJuiceData().amount() > 0) {
             FermentationBarrelGui.drawJuiceBar(guiGraphics, recipe.getJuiceData().type(), recipe.getJuiceData().amount(), 56, 31);
+        }
+    }
 
-            if (isMouseOverFluidArea((int) mouseX, (int) mouseY)) {
-                Component tooltip = getFluidTooltip(recipe.getJuiceData().type(), recipe.getJuiceData().amount());
-                guiGraphics.renderTooltip(Minecraft.getInstance().font, tooltip, (int) mouseX, (int) mouseY);
-            }
+    @Override
+    public void getTooltip(ITooltipBuilder tooltip, FermentationBarrelRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
+        if (recipe.getJuiceData().amount() > 0 && isMouseOverFluidArea((int) mouseX, (int) mouseY)) {
+            tooltip.add(getFluidTooltip(recipe.getJuiceData().type(), recipe.getJuiceData().amount()));
         }
     }
 }

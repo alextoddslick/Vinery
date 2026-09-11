@@ -1,6 +1,6 @@
 package net.satisfy.vinery.core.compat.jei.transfer;
 
-import mezz.jei.api.recipe.RecipeType;
+import mezz.jei.api.recipe.types.IRecipeType;
 import mezz.jei.api.recipe.transfer.IRecipeTransferInfo;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
@@ -26,7 +26,7 @@ public class FermentationTransferInfo implements IRecipeTransferInfo<Fermentatio
     }
 
     @Override
-    public @NotNull RecipeType<FermentationBarrelRecipe> getRecipeType() {
+    public @NotNull IRecipeType<FermentationBarrelRecipe> getRecipeType() {
         return FermentationBarrelCategory.FERMENTATION_BARREL;
     }
 

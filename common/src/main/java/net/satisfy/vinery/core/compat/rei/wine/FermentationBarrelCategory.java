@@ -85,7 +85,7 @@ public class FermentationBarrelCategory implements DisplayCategory<FermentationB
     private ItemStack getJuiceItemForType(String juiceType) {
         Optional<ItemStack> juiceItem = JuiceUtil.RED_JUICE_TAGS.entrySet().stream()
                 .filter(entry -> juiceType.equals("red_" + entry.getValue()))
-                .flatMap(entry -> BuiltInRegistries.ITEM.getTag(entry.getKey()).stream())
+                .flatMap(entry -> BuiltInRegistries.ITEM.get(entry.getKey()).stream())
                 .flatMap(HolderSet.ListBacked::stream)
                 .findFirst()
                 .map(ItemStack::new);
@@ -96,7 +96,7 @@ public class FermentationBarrelCategory implements DisplayCategory<FermentationB
 
         juiceItem = JuiceUtil.WHITE_JUICE_TAGS.entrySet().stream()
                 .filter(entry -> juiceType.equals("white_" + entry.getValue()))
-                .flatMap(entry -> BuiltInRegistries.ITEM.getTag(entry.getKey()).stream())
+                .flatMap(entry -> BuiltInRegistries.ITEM.get(entry.getKey()).stream())
                 .flatMap(HolderSet.ListBacked::stream)
                 .findFirst()
                 .map(ItemStack::new);
