@@ -1,0 +1,13 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "vinery:item/grass_slab",
+    "tints": [
+      {
+        "type": "minecraft:grass",
+        "temperature": 0.5,
+        "downfall": 1.0
+      }
+    ]
+  }
+}

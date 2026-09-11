@@ -82,5 +82,6 @@
     {
       "function": "minecraft:explosion_decay"
     }
-  ]
+  ],
+  "random_sequence": "vinery:blocks/taiga_grape_bush_white"
 }
