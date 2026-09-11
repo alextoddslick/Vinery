@@ -1,5 +1,7 @@
 package net.satisfy.vinery.core.effect;
 
+import net.minecraft.server.level.ServerLevel;
+
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -38,7 +40,7 @@ public class FrostyArmorEffect extends MobEffect {
     }
 
     @Override
-    public boolean applyEffectTick(LivingEntity living, int amplifier) {
+    public boolean applyEffectTick(ServerLevel serverLevel, LivingEntity living, int amplifier) {
         living.setIsInPowderSnow(true);
         if (amplifier > 0 && living.canFreeze()) {
             living.setTicksFrozen(Math.min(living.getTicksRequiredToFreeze(), living.getTicksFrozen() + amplifier));

@@ -1,5 +1,7 @@
 package net.satisfy.vinery.core.effect;
 
+import net.minecraft.server.level.ServerLevel;
+
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.InstantenousMobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -15,12 +17,12 @@ public class CreeperEffect extends InstantenousMobEffect {
     }
 
     @Override
-    public void applyInstantenousEffect(@Nullable Entity source, @Nullable Entity attacker, LivingEntity target, int amplifier, double proximity) {
+    public void applyInstantenousEffect(ServerLevel serverLevel, @Nullable Entity source, @Nullable Entity attacker, LivingEntity target, int amplifier, double proximity) {
         explode(source, amplifier);
     }
 
     @Override
-    public boolean applyEffectTick(LivingEntity source, int amplifier) {
+    public boolean applyEffectTick(ServerLevel serverLevel, LivingEntity source, int amplifier) {
         explode(source, amplifier);
         return true;
     }
@@ -33,7 +35,7 @@ public class CreeperEffect extends InstantenousMobEffect {
             double z = serverPlayer.getZ();
             world.explode(null, x, y, z, (float) (amplifier), Level.ExplosionInteraction.TNT);
 
-            serverPlayer.hurt(serverPlayer.level().damageSources().explosion(null), 50.0F);
+            serverPlayer.hurtServer(serverPlayer.level(), world.damageSources().explosion(null), 50.0F);
         }
     }
 }

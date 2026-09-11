@@ -1,26 +1,26 @@
 package net.satisfy.vinery.core.item;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.equipment.ArmorType;
-import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.item.component.TooltipDisplay;
+import net.minecraft.world.item.equipment.ArmorMaterial;
+import net.minecraft.world.item.equipment.ArmorType;
 import net.satisfy.vinery.core.registry.ArmorRegistryClient;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
-public class WinemakerLegsItem extends ArmorItem {
+public class WinemakerLegsItem extends Item {
     private final ResourceLocation leggingsTexture;
 
-    public WinemakerLegsItem(Holder<ArmorMaterial> armorMaterial, Type type, Properties properties, ResourceLocation leggingsTexture) {
-        super(armorMaterial, type, properties);
+    public WinemakerLegsItem(ArmorMaterial armorMaterial, ArmorType type, Properties properties, ResourceLocation leggingsTexture) {
+        super(properties.humanoidArmor(armorMaterial, type));
         this.leggingsTexture = leggingsTexture;
     }
 
@@ -29,14 +29,11 @@ public class WinemakerLegsItem extends ArmorItem {
     }
 
     @Override
-    public @NotNull EquipmentSlot getEquipmentSlot() {
-        return EquipmentSlot.LEGS;
-    }
-
-    @Override
-    public void appendHoverText(@NotNull ItemStack stack, TooltipContext ctx, @NotNull List<Component> tooltip, @NotNull TooltipFlag context) {
+    public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext ctx, @NotNull TooltipDisplay display, @NotNull Consumer<Component> consumer, @NotNull TooltipFlag flag) {
         if (Minecraft.getInstance().level != null && Minecraft.getInstance().level.isClientSide()) {
+            List<Component> tooltip = new ArrayList<>();
             ArmorRegistryClient.appendToolTip(tooltip);
+            tooltip.forEach(consumer);
         }
     }
 }

@@ -16,7 +16,7 @@ public class LavaWalkerEffect extends MobEffect {
     }
 
     @Override
-    public boolean applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
+    public boolean applyEffectTick(ServerLevel serverLevel, LivingEntity pLivingEntity, int pAmplifier) {
         if (!(pLivingEntity instanceof Player player && player.isSpectator())) {
             Vec3 pos = pLivingEntity.position();
             Vec3 movement = pLivingEntity.getDeltaMovement();
@@ -37,7 +37,7 @@ public class LavaWalkerEffect extends MobEffect {
                 }
                 pLivingEntity.setDeltaMovement(movement.x(), Math.max(movement.y(), movement.y() * 0.5), movement.z());
             }
-            return super.applyEffectTick(pLivingEntity, pAmplifier);
+            return super.applyEffectTick(serverLevel, pLivingEntity, pAmplifier);
         }
         return false;
     }

@@ -1,7 +1,6 @@
 package net.satisfy.vinery.core.registry;
 
 import dev.architectury.registry.registries.DeferredRegister;
-import dev.architectury.registry.registries.DeferredSupplier;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
