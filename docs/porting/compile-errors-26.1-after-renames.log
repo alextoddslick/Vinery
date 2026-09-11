@@ -1,0 +1,1847 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/Users/alextodd/.gradle/wrapper/dists/gradle-9.5.1-bin/iq79hdu3mqx29lgffhp8bfmx/gradle-9.5.1/lib/native-platform-0.22-milestone-29.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+> Configure project :
+Architect Plugin: 3.5.169
+Architectury Loom: 1.17.491
+> Configure project :fabric
+Failed to check Java Version
+org.gradle.internal.metaobject.AbstractDynamicObject$CustomMessageMissingMethodException: Could not find method getConvention() for arguments [] on project ':fabric' of type org.gradle.api.Project.
+	at org.gradle.internal.metaobject.AbstractDynamicObject$CustomMissingMethodExecutionFailed.<init>(AbstractDynamicObject.java:195)
+	at org.gradle.internal.metaobject.AbstractDynamicObject.methodMissingException(AbstractDynamicObject.java:189)
+	at org.gradle.internal.metaobject.AbstractDynamicObject.invokeMethod(AbstractDynamicObject.java:172)
+	at org.gradle.api.internal.project.DefaultDynamicLookupRoutine.invokeMethod(DefaultDynamicLookupRoutine.java:57)
+	at org.gradle.api.internal.project.DefaultProject.invokeMethod(DefaultProject.java:1153)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:130)
+	at com.matthewprenger.cursegradle.Integration.checkJavaVersion(Integration.groovy:35)
+	at com.matthewprenger.cursegradle.Integration$checkJavaVersion.call(Unknown Source)
+	at com.matthewprenger.cursegradle.CurseGradlePlugin$_apply_closure1$_closure2.doCall$original(CurseGradlePlugin.groovy:57)
+	at com.matthewprenger.cursegradle.CurseGradlePlugin$_apply_closure1$_closure2.doCall(CurseGradlePlugin.groovy)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:328)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:280)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
+	at groovy.lang.Closure.call(Closure.java:433)
+	at groovy.lang.Closure.call(Closure.java:422)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.each(DefaultGroovyMethods.java:2394)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.each(DefaultGroovyMethods.java:2379)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.each(DefaultGroovyMethods.java:2420)
+	at org.codehaus.groovy.runtime.dgm$207.invoke(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:253)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:57)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:139)
+	at com.matthewprenger.cursegradle.CurseGradlePlugin$_apply_closure1.doCall$original(CurseGradlePlugin.groovy:42)
+	at com.matthewprenger.cursegradle.CurseGradlePlugin$_apply_closure1.doCall(CurseGradlePlugin.groovy)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:328)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:280)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
+	at groovy.lang.Closure.call(Closure.java:433)
+	at org.gradle.configuration.internal.DefaultListenerBuildOperationDecorator$BuildOperationEmittingClosure$1.lambda$run$0(DefaultListenerBuildOperationDecorator.java:201)
+	at org.gradle.internal.code.DefaultUserCodeApplicationContext$CurrentApplication.reapply(DefaultUserCodeApplicationContext.java:99)
+	at org.gradle.configuration.internal.DefaultListenerBuildOperationDecorator$BuildOperationEmittingClosure$1.run(DefaultListenerBuildOperationDecorator.java:198)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:30)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:27)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:48)
+	at org.gradle.configuration.internal.DefaultListenerBuildOperationDecorator$BuildOperationEmittingClosure.doCall(DefaultListenerBuildOperationDecorator.java:195)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:328)
+	at groovy.lang.MetaClassImpl.doInvokeMethod(MetaClassImpl.java:1339)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1094)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
+	at groovy.lang.Closure.call(Closure.java:433)
+	at org.gradle.listener.ClosureBackedMethodInvocationDispatch.dispatch(ClosureBackedMethodInvocationDispatch.java:41)
+	at org.gradle.listener.ClosureBackedMethodInvocationDispatch.dispatch(ClosureBackedMethodInvocationDispatch.java:25)
+	at org.gradle.internal.event.AbstractBroadcastDispatch.dispatch(AbstractBroadcastDispatch.java:44)
+	at org.gradle.internal.event.BroadcastDispatch$SingletonDispatch.dispatch(BroadcastDispatch.java:270)
+	at org.gradle.internal.event.BroadcastDispatch$SingletonDispatch.dispatch(BroadcastDispatch.java:172)
+	at org.gradle.internal.event.AbstractBroadcastDispatch.dispatch(AbstractBroadcastDispatch.java:84)
+	at org.gradle.internal.event.AbstractBroadcastDispatch.dispatch(AbstractBroadcastDispatch.java:70)
+	at org.gradle.internal.event.BroadcastDispatch$CompositeDispatch.dispatch(BroadcastDispatch.java:382)
+	at org.gradle.internal.event.BroadcastDispatch$CompositeDispatch.dispatch(BroadcastDispatch.java:274)
+	at org.gradle.internal.event.ListenerBroadcast.dispatch(ListenerBroadcast.java:160)
+	at org.gradle.internal.event.ListenerBroadcast.dispatch(ListenerBroadcast.java:37)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:88)
+	at jdk.proxy1/jdk.proxy1.$Proxy58.afterEvaluate(Unknown Source)
+	at org.gradle.configuration.project.LifecycleProjectEvaluator$NotifyAfterEvaluate$1.execute(LifecycleProjectEvaluator.java:247)
+	at org.gradle.configuration.project.LifecycleProjectEvaluator$NotifyAfterEvaluate$1.execute(LifecycleProjectEvaluator.java:244)
+	at org.gradle.api.internal.project.DefaultProject.stepEvaluationListener(DefaultProject.java:1510)
+	at org.gradle.configuration.project.LifecycleProjectEvaluator$NotifyAfterEvaluate.run(LifecycleProjectEvaluator.java:253)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:30)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:27)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:48)
+	at org.gradle.configuration.project.LifecycleProjectEvaluator$EvaluateProject.lambda$run$0(LifecycleProjectEvaluator.java:114)
+	at org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.lambda$applyToMutableState$0(DefaultProjectStateRegistry.java:443)
+	at org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.lambda$fromMutableState$1(DefaultProjectStateRegistry.java:450)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$runAndReleaseLocks$0(DefaultWorkerLeaseService.java:300)
+	at org.gradle.internal.work.ResourceLockStatistics$1.measure(ResourceLockStatistics.java:43)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAndReleaseLocks(DefaultWorkerLeaseService.java:298)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocksAcquired(DefaultWorkerLeaseService.java:294)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$withReplacedLocks$4(DefaultWorkerLeaseService.java:450)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withoutLocks(DefaultWorkerLeaseService.java:372)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withReplacedLocks(DefaultWorkerLeaseService.java:449)
+	at org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.runWithModelLock(DefaultProjectStateRegistry.java:471)
+	at org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.fromMutableState(DefaultProjectStateRegistry.java:450)
+	at org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.applyToMutableState(DefaultProjectStateRegistry.java:442)
+	at org.gradle.configuration.project.LifecycleProjectEvaluator$EvaluateProject.run(LifecycleProjectEvaluator.java:100)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:30)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:27)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:48)
+	at org.gradle.configuration.project.LifecycleProjectEvaluator.evaluate(LifecycleProjectEvaluator.java:72)
+	at org.gradle.api.internal.project.DefaultProject.evaluateUnchecked(DefaultProject.java:796)
+	at org.gradle.api.internal.project.ProjectLifecycleController.lambda$ensureSelfConfigured$2(ProjectLifecycleController.java:93)
+	at org.gradle.internal.model.StateTransitionController.lambda$doTransition$15(StateTransitionController.java:293)
+	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:304)
+	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:292)
+	at org.gradle.internal.model.StateTransitionController.lambda$maybeTransitionIfNotCurrentlyTransitioning$11(StateTransitionController.java:237)
+	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:35)
+	at org.gradle.internal.model.StateTransitionController.maybeTransitionIfNotCurrentlyTransitioning(StateTransitionController.java:233)
+	at org.gradle.api.internal.project.ProjectLifecycleController.ensureSelfConfigured(ProjectLifecycleController.java:93)
+	at org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.ensureConfigured(DefaultProjectStateRegistry.java:408)
+	at org.gradle.execution.TaskPathProjectEvaluator.configure(TaskPathProjectEvaluator.java:71)
+	at org.gradle.execution.TaskPathProjectEvaluator.configureHierarchy(TaskPathProjectEvaluator.java:87)
+	at org.gradle.configuration.DefaultProjectsPreparer.prepareProjects(DefaultProjectsPreparer.java:50)
+	at org.gradle.configuration.BuildTreePreparingProjectsPreparer.prepareProjects(BuildTreePreparingProjectsPreparer.java:65)
+	at org.gradle.configuration.BuildOperationFiringProjectsPreparer$ConfigureBuild.run(BuildOperationFiringProjectsPreparer.java:52)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:30)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:27)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:48)
+	at org.gradle.configuration.BuildOperationFiringProjectsPreparer.prepareProjects(BuildOperationFiringProjectsPreparer.java:40)
+	at org.gradle.initialization.VintageBuildModelController.lambda$prepareProjects$2(VintageBuildModelController.java:83)
+	at org.gradle.internal.model.StateTransitionController.lambda$doTransition$15(StateTransitionController.java:293)
+	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:304)
+	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:292)
+	at org.gradle.internal.model.StateTransitionController.lambda$transitionIfNotPreviously$12(StateTransitionController.java:251)
+	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:35)
+	at org.gradle.internal.model.StateTransitionController.transitionIfNotPreviously(StateTransitionController.java:247)
+	at org.gradle.initialization.VintageBuildModelController.prepareProjects(VintageBuildModelController.java:83)
+	at org.gradle.initialization.VintageBuildModelController.prepareToScheduleTasks(VintageBuildModelController.java:70)
+	at org.gradle.internal.build.DefaultBuildLifecycleController.lambda$prepareToScheduleTasks$7(DefaultBuildLifecycleController.java:185)
+	at org.gradle.internal.model.StateTransitionController.lambda$doTransition$15(StateTransitionController.java:293)
+	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:304)
+	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:292)
+	at org.gradle.internal.model.StateTransitionController.lambda$maybeTransition$10(StateTransitionController.java:228)
+	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:35)
+	at org.gradle.internal.model.StateTransitionController.maybeTransition(StateTransitionController.java:224)
+	at org.gradle.internal.build.DefaultBuildLifecycleController.prepareToScheduleTasks(DefaultBuildLifecycleController.java:183)
+	at org.gradle.internal.buildtree.DefaultBuildTreeWorkPreparer.scheduleRequestedTasks(DefaultBuildTreeWorkPreparer.java:35)
+	at org.gradle.internal.cc.impl.barrier.BarrierAwareBuildTreeWorkPreparer.scheduleRequestedTasks$lambda$0(BarrierAwareBuildTreeWorkPreparer.kt:34)
+	at org.gradle.internal.cc.impl.barrier.VintageConfigurationTimeActionRunner.runConfigurationTimeAction(VintageConfigurationTimeActionRunner.kt:48)
+	at org.gradle.internal.cc.impl.barrier.BarrierAwareBuildTreeWorkPreparer.scheduleRequestedTasks(BarrierAwareBuildTreeWorkPreparer.kt:33)
+	at org.gradle.internal.cc.impl.VintageBuildTreeWorkController$scheduleAndRunRequestedTasks$1$finalizedGraph$1.call(VintageBuildTreeWorkController.kt:37)
+	at org.gradle.internal.cc.impl.VintageBuildTreeWorkController$scheduleAndRunRequestedTasks$1$finalizedGraph$1.call(VintageBuildTreeWorkController.kt:37)
+	at org.gradle.internal.Try.ofFailable(Try.java:46)
+	at org.gradle.internal.cc.impl.VintageBuildTreeWorkController$scheduleAndRunRequestedTasks$1.apply(VintageBuildTreeWorkController.kt:37)
+	at org.gradle.internal.cc.impl.VintageBuildTreeWorkController$scheduleAndRunRequestedTasks$1.apply(VintageBuildTreeWorkController.kt:36)
+	at org.gradle.composite.internal.DefaultIncludedBuildTaskGraph.withNewWorkGraph(DefaultIncludedBuildTaskGraph.java:115)
+	at org.gradle.internal.cc.impl.VintageBuildTreeWorkController.scheduleAndRunRequestedTasks(VintageBuildTreeWorkController.kt:36)
+	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.lambda$scheduleAndRunTasks$1(DefaultBuildTreeLifecycleController.java:76)
+	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.lambda$runBuild$5(DefaultBuildTreeLifecycleController.java:121)
+	at org.gradle.internal.model.StateTransitionController.lambda$transition$7(StateTransitionController.java:207)
+	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:304)
+	at org.gradle.internal.model.StateTransitionController.lambda$transition$8(StateTransitionController.java:207)
+	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:45)
+	at org.gradle.internal.model.StateTransitionController.transition(StateTransitionController.java:207)
+	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.runBuild(DefaultBuildTreeLifecycleController.java:118)
+	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.scheduleAndRunTasks(DefaultBuildTreeLifecycleController.java:76)
+	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.scheduleAndRunTasks(DefaultBuildTreeLifecycleController.java:71)
+	at org.gradle.tooling.internal.provider.ExecuteBuildActionRunner.run(ExecuteBuildActionRunner.java:31)
+	at org.gradle.launcher.exec.ChainingBuildActionRunner.run(ChainingBuildActionRunner.java:35)
+	at org.gradle.internal.buildtree.ProblemReportingBuildActionRunner.run(ProblemReportingBuildActionRunner.java:54)
+	at org.gradle.launcher.exec.BuildOutcomeReportingBuildActionRunner.run(BuildOutcomeReportingBuildActionRunner.java:83)
+	at org.gradle.tooling.internal.provider.FileSystemWatchingBuildActionRunner.run(FileSystemWatchingBuildActionRunner.java:135)
+	at org.gradle.launcher.exec.BuildCompletionNotifyingBuildActionRunner.run(BuildCompletionNotifyingBuildActionRunner.java:65)
+	at org.gradle.launcher.exec.RootBuildLifecycleBuildActionExecutor.lambda$execute$0(RootBuildLifecycleBuildActionExecutor.java:101)
+	at org.gradle.composite.internal.DefaultRootBuildState.run(DefaultRootBuildState.java:126)
+	at org.gradle.launcher.exec.RootBuildLifecycleBuildActionExecutor.execute(RootBuildLifecycleBuildActionExecutor.java:101)
+	at org.gradle.launcher.exec.BuildTreeLifecycleBuildActionExecutor.runRootBuildAction(BuildTreeLifecycleBuildActionExecutor.java:104)
+	at org.gradle.launcher.exec.BuildTreeLifecycleBuildActionExecutor.execute(BuildTreeLifecycleBuildActionExecutor.java:74)
+	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionExecutor$2.call(RunAsBuildOperationBuildActionExecutor.java:65)
+	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionExecutor$2.call(RunAsBuildOperationBuildActionExecutor.java:61)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
+	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionExecutor.execute(RunAsBuildOperationBuildActionExecutor.java:61)
+	at org.gradle.launcher.exec.RunAsWorkerThreadBuildActionExecutor.lambda$execute$0(RunAsWorkerThreadBuildActionExecutor.java:36)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$runAndReleaseLocks$0(DefaultWorkerLeaseService.java:300)
+	at org.gradle.internal.work.ResourceLockStatistics$1.measure(ResourceLockStatistics.java:43)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAndReleaseLocks(DefaultWorkerLeaseService.java:298)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocksAcquired(DefaultWorkerLeaseService.java:294)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:286)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:130)
+	at org.gradle.launcher.exec.RunAsWorkerThreadBuildActionExecutor.execute(RunAsWorkerThreadBuildActionExecutor.java:36)
+	at org.gradle.tooling.internal.provider.continuous.ContinuousBuildActionExecutor.execute(ContinuousBuildActionExecutor.java:110)
+	at org.gradle.tooling.internal.provider.SubscribableBuildActionExecutor.execute(SubscribableBuildActionExecutor.java:64)
+	at org.gradle.internal.session.DefaultBuildSessionContext.execute(DefaultBuildSessionContext.java:46)
+	at org.gradle.internal.buildprocess.execution.BuildSessionLifecycleBuildActionExecutor$ActionImpl.apply(BuildSessionLifecycleBuildActionExecutor.java:106)
+	at org.gradle.internal.buildprocess.execution.BuildSessionLifecycleBuildActionExecutor$ActionImpl.apply(BuildSessionLifecycleBuildActionExecutor.java:94)
+	at org.gradle.internal.session.BuildSessionState.run(BuildSessionState.java:73)
+	at org.gradle.internal.buildprocess.execution.BuildSessionLifecycleBuildActionExecutor.execute(BuildSessionLifecycleBuildActionExecutor.java:67)
+	at org.gradle.internal.buildprocess.execution.BuildSessionLifecycleBuildActionExecutor.execute(BuildSessionLifecycleBuildActionExecutor.java:45)
+	at org.gradle.internal.buildprocess.execution.StartParamsValidatingActionExecutor.execute(StartParamsValidatingActionExecutor.java:57)
+	at org.gradle.internal.buildprocess.execution.StartParamsValidatingActionExecutor.execute(StartParamsValidatingActionExecutor.java:32)
+	at org.gradle.internal.buildprocess.execution.SessionFailureReportingActionExecutor.execute(SessionFailureReportingActionExecutor.java:51)
+	at org.gradle.internal.buildprocess.execution.SessionFailureReportingActionExecutor.execute(SessionFailureReportingActionExecutor.java:39)
+	at org.gradle.internal.buildprocess.execution.SetupLoggingActionExecutor.execute(SetupLoggingActionExecutor.java:47)
+	at org.gradle.internal.buildprocess.execution.SetupLoggingActionExecutor.execute(SetupLoggingActionExecutor.java:31)
+	at org.gradle.launcher.daemon.server.exec.ExecuteBuild.doBuild(ExecuteBuild.java:70)
+	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.WatchForDisconnection.execute(WatchForDisconnection.java:39)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.ResetDeprecationLogger.execute(ResetDeprecationLogger.java:29)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.RequestStopIfSingleUsedDaemon.execute(RequestStopIfSingleUsedDaemon.java:35)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.ForwardClientInput.lambda$execute$0(ForwardClientInput.java:40)
+	at org.gradle.internal.daemon.clientinput.ClientInputForwarder.forwardInput(ClientInputForwarder.java:80)
+	at org.gradle.launcher.daemon.server.exec.ForwardClientInput.execute(ForwardClientInput.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.LogAndCheckHealth.execute(LogAndCheckHealth.java:64)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.LogToClient.doBuild(LogToClient.java:63)
+	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment.doBuild(EstablishBuildEnvironment.java:84)
+	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy$1.run(StartBuildOrRespondWithBusy.java:52)
+	at org.gradle.launcher.daemon.server.DaemonStateCoordinator.lambda$runCommand$0(DaemonStateCoordinator.java:321)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+> Configure project :neoforge
+Failed to check Java Version
+org.gradle.internal.metaobject.AbstractDynamicObject$CustomMessageMissingMethodException: Could not find method getConvention() for arguments [] on project ':neoforge' of type org.gradle.api.Project.
+	at org.gradle.internal.metaobject.AbstractDynamicObject$CustomMissingMethodExecutionFailed.<init>(AbstractDynamicObject.java:195)
+	at org.gradle.internal.metaobject.AbstractDynamicObject.methodMissingException(AbstractDynamicObject.java:189)
+	at org.gradle.internal.metaobject.AbstractDynamicObject.invokeMethod(AbstractDynamicObject.java:172)
+	at org.gradle.api.internal.project.DefaultDynamicLookupRoutine.invokeMethod(DefaultDynamicLookupRoutine.java:57)
+	at org.gradle.api.internal.project.DefaultProject.invokeMethod(DefaultProject.java:1153)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:130)
+	at com.matthewprenger.cursegradle.Integration.checkJavaVersion(Integration.groovy:35)
+	at com.matthewprenger.cursegradle.Integration$checkJavaVersion.call(Unknown Source)
+	at com.matthewprenger.cursegradle.CurseGradlePlugin$_apply_closure1$_closure2.doCall$original(CurseGradlePlugin.groovy:57)
+	at com.matthewprenger.cursegradle.CurseGradlePlugin$_apply_closure1$_closure2.doCall(CurseGradlePlugin.groovy)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:328)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:280)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
+	at groovy.lang.Closure.call(Closure.java:433)
+	at groovy.lang.Closure.call(Closure.java:422)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.each(DefaultGroovyMethods.java:2394)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.each(DefaultGroovyMethods.java:2379)
+	at org.codehaus.groovy.runtime.DefaultGroovyMethods.each(DefaultGroovyMethods.java:2420)
+	at org.codehaus.groovy.runtime.dgm$207.invoke(Unknown Source)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:253)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:57)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:139)
+	at com.matthewprenger.cursegradle.CurseGradlePlugin$_apply_closure1.doCall$original(CurseGradlePlugin.groovy:42)
+	at com.matthewprenger.cursegradle.CurseGradlePlugin$_apply_closure1.doCall(CurseGradlePlugin.groovy)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:328)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:280)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
+	at groovy.lang.Closure.call(Closure.java:433)
+	at org.gradle.configuration.internal.DefaultListenerBuildOperationDecorator$BuildOperationEmittingClosure$1.lambda$run$0(DefaultListenerBuildOperationDecorator.java:201)
+	at org.gradle.internal.code.DefaultUserCodeApplicationContext$CurrentApplication.reapply(DefaultUserCodeApplicationContext.java:99)
+	at org.gradle.configuration.internal.DefaultListenerBuildOperationDecorator$BuildOperationEmittingClosure$1.run(DefaultListenerBuildOperationDecorator.java:198)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:30)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:27)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:48)
+	at org.gradle.configuration.internal.DefaultListenerBuildOperationDecorator$BuildOperationEmittingClosure.doCall(DefaultListenerBuildOperationDecorator.java:195)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:328)
+	at groovy.lang.MetaClassImpl.doInvokeMethod(MetaClassImpl.java:1339)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1094)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
+	at groovy.lang.Closure.call(Closure.java:433)
+	at org.gradle.listener.ClosureBackedMethodInvocationDispatch.dispatch(ClosureBackedMethodInvocationDispatch.java:41)
+	at org.gradle.listener.ClosureBackedMethodInvocationDispatch.dispatch(ClosureBackedMethodInvocationDispatch.java:25)
+	at org.gradle.internal.event.AbstractBroadcastDispatch.dispatch(AbstractBroadcastDispatch.java:44)
+	at org.gradle.internal.event.BroadcastDispatch$SingletonDispatch.dispatch(BroadcastDispatch.java:270)
+	at org.gradle.internal.event.BroadcastDispatch$SingletonDispatch.dispatch(BroadcastDispatch.java:172)
+	at org.gradle.internal.event.AbstractBroadcastDispatch.dispatch(AbstractBroadcastDispatch.java:84)
+	at org.gradle.internal.event.AbstractBroadcastDispatch.dispatch(AbstractBroadcastDispatch.java:70)
+	at org.gradle.internal.event.BroadcastDispatch$CompositeDispatch.dispatch(BroadcastDispatch.java:382)
+	at org.gradle.internal.event.BroadcastDispatch$CompositeDispatch.dispatch(BroadcastDispatch.java:274)
+	at org.gradle.internal.event.ListenerBroadcast.dispatch(ListenerBroadcast.java:160)
+	at org.gradle.internal.event.ListenerBroadcast.dispatch(ListenerBroadcast.java:37)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:88)
+	at jdk.proxy1/jdk.proxy1.$Proxy58.afterEvaluate(Unknown Source)
+	at org.gradle.configuration.project.LifecycleProjectEvaluator$NotifyAfterEvaluate$1.execute(LifecycleProjectEvaluator.java:247)
+	at org.gradle.configuration.project.LifecycleProjectEvaluator$NotifyAfterEvaluate$1.execute(LifecycleProjectEvaluator.java:244)
+	at org.gradle.api.internal.project.DefaultProject.stepEvaluationListener(DefaultProject.java:1510)
+	at org.gradle.configuration.project.LifecycleProjectEvaluator$NotifyAfterEvaluate.run(LifecycleProjectEvaluator.java:253)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:30)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:27)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:48)
+	at org.gradle.configuration.project.LifecycleProjectEvaluator$EvaluateProject.lambda$run$0(LifecycleProjectEvaluator.java:114)
+	at org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.lambda$applyToMutableState$0(DefaultProjectStateRegistry.java:443)
+	at org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.lambda$fromMutableState$1(DefaultProjectStateRegistry.java:450)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$runAndReleaseLocks$0(DefaultWorkerLeaseService.java:300)
+	at org.gradle.internal.work.ResourceLockStatistics$1.measure(ResourceLockStatistics.java:43)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAndReleaseLocks(DefaultWorkerLeaseService.java:298)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocksAcquired(DefaultWorkerLeaseService.java:294)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$withReplacedLocks$4(DefaultWorkerLeaseService.java:450)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withoutLocks(DefaultWorkerLeaseService.java:372)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withReplacedLocks(DefaultWorkerLeaseService.java:449)
+	at org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.runWithModelLock(DefaultProjectStateRegistry.java:471)
+	at org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.fromMutableState(DefaultProjectStateRegistry.java:450)
+	at org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.applyToMutableState(DefaultProjectStateRegistry.java:442)
+	at org.gradle.configuration.project.LifecycleProjectEvaluator$EvaluateProject.run(LifecycleProjectEvaluator.java:100)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:30)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:27)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:48)
+	at org.gradle.configuration.project.LifecycleProjectEvaluator.evaluate(LifecycleProjectEvaluator.java:72)
+	at org.gradle.api.internal.project.DefaultProject.evaluateUnchecked(DefaultProject.java:796)
+	at org.gradle.api.internal.project.ProjectLifecycleController.lambda$ensureSelfConfigured$2(ProjectLifecycleController.java:93)
+	at org.gradle.internal.model.StateTransitionController.lambda$doTransition$15(StateTransitionController.java:293)
+	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:304)
+	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:292)
+	at org.gradle.internal.model.StateTransitionController.lambda$maybeTransitionIfNotCurrentlyTransitioning$11(StateTransitionController.java:237)
+	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:35)
+	at org.gradle.internal.model.StateTransitionController.maybeTransitionIfNotCurrentlyTransitioning(StateTransitionController.java:233)
+	at org.gradle.api.internal.project.ProjectLifecycleController.ensureSelfConfigured(ProjectLifecycleController.java:93)
+	at org.gradle.api.internal.project.DefaultProjectStateRegistry$ProjectStateImpl.ensureConfigured(DefaultProjectStateRegistry.java:408)
+	at org.gradle.execution.TaskPathProjectEvaluator.configure(TaskPathProjectEvaluator.java:71)
+	at org.gradle.execution.TaskPathProjectEvaluator.configureHierarchy(TaskPathProjectEvaluator.java:87)
+	at org.gradle.configuration.DefaultProjectsPreparer.prepareProjects(DefaultProjectsPreparer.java:50)
+	at org.gradle.configuration.BuildTreePreparingProjectsPreparer.prepareProjects(BuildTreePreparingProjectsPreparer.java:65)
+	at org.gradle.configuration.BuildOperationFiringProjectsPreparer$ConfigureBuild.run(BuildOperationFiringProjectsPreparer.java:52)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:30)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:27)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:48)
+	at org.gradle.configuration.BuildOperationFiringProjectsPreparer.prepareProjects(BuildOperationFiringProjectsPreparer.java:40)
+	at org.gradle.initialization.VintageBuildModelController.lambda$prepareProjects$2(VintageBuildModelController.java:83)
+	at org.gradle.internal.model.StateTransitionController.lambda$doTransition$15(StateTransitionController.java:293)
+	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:304)
+	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:292)
+	at org.gradle.internal.model.StateTransitionController.lambda$transitionIfNotPreviously$12(StateTransitionController.java:251)
+	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:35)
+	at org.gradle.internal.model.StateTransitionController.transitionIfNotPreviously(StateTransitionController.java:247)
+	at org.gradle.initialization.VintageBuildModelController.prepareProjects(VintageBuildModelController.java:83)
+	at org.gradle.initialization.VintageBuildModelController.prepareToScheduleTasks(VintageBuildModelController.java:70)
+	at org.gradle.internal.build.DefaultBuildLifecycleController.lambda$prepareToScheduleTasks$7(DefaultBuildLifecycleController.java:185)
+	at org.gradle.internal.model.StateTransitionController.lambda$doTransition$15(StateTransitionController.java:293)
+	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:304)
+	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:292)
+	at org.gradle.internal.model.StateTransitionController.lambda$maybeTransition$10(StateTransitionController.java:228)
+	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:35)
+	at org.gradle.internal.model.StateTransitionController.maybeTransition(StateTransitionController.java:224)
+	at org.gradle.internal.build.DefaultBuildLifecycleController.prepareToScheduleTasks(DefaultBuildLifecycleController.java:183)
+	at org.gradle.internal.buildtree.DefaultBuildTreeWorkPreparer.scheduleRequestedTasks(DefaultBuildTreeWorkPreparer.java:35)
+	at org.gradle.internal.cc.impl.barrier.BarrierAwareBuildTreeWorkPreparer.scheduleRequestedTasks$lambda$0(BarrierAwareBuildTreeWorkPreparer.kt:34)
+	at org.gradle.internal.cc.impl.barrier.VintageConfigurationTimeActionRunner.runConfigurationTimeAction(VintageConfigurationTimeActionRunner.kt:48)
+	at org.gradle.internal.cc.impl.barrier.BarrierAwareBuildTreeWorkPreparer.scheduleRequestedTasks(BarrierAwareBuildTreeWorkPreparer.kt:33)
+	at org.gradle.internal.cc.impl.VintageBuildTreeWorkController$scheduleAndRunRequestedTasks$1$finalizedGraph$1.call(VintageBuildTreeWorkController.kt:37)
+	at org.gradle.internal.cc.impl.VintageBuildTreeWorkController$scheduleAndRunRequestedTasks$1$finalizedGraph$1.call(VintageBuildTreeWorkController.kt:37)
+	at org.gradle.internal.Try.ofFailable(Try.java:46)
+	at org.gradle.internal.cc.impl.VintageBuildTreeWorkController$scheduleAndRunRequestedTasks$1.apply(VintageBuildTreeWorkController.kt:37)
+	at org.gradle.internal.cc.impl.VintageBuildTreeWorkController$scheduleAndRunRequestedTasks$1.apply(VintageBuildTreeWorkController.kt:36)
+	at org.gradle.composite.internal.DefaultIncludedBuildTaskGraph.withNewWorkGraph(DefaultIncludedBuildTaskGraph.java:115)
+	at org.gradle.internal.cc.impl.VintageBuildTreeWorkController.scheduleAndRunRequestedTasks(VintageBuildTreeWorkController.kt:36)
+	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.lambda$scheduleAndRunTasks$1(DefaultBuildTreeLifecycleController.java:76)
+	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.lambda$runBuild$5(DefaultBuildTreeLifecycleController.java:121)
+	at org.gradle.internal.model.StateTransitionController.lambda$transition$7(StateTransitionController.java:207)
+	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:304)
+	at org.gradle.internal.model.StateTransitionController.lambda$transition$8(StateTransitionController.java:207)
+	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:45)
+	at org.gradle.internal.model.StateTransitionController.transition(StateTransitionController.java:207)
+	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.runBuild(DefaultBuildTreeLifecycleController.java:118)
+	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.scheduleAndRunTasks(DefaultBuildTreeLifecycleController.java:76)
+	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.scheduleAndRunTasks(DefaultBuildTreeLifecycleController.java:71)
+	at org.gradle.tooling.internal.provider.ExecuteBuildActionRunner.run(ExecuteBuildActionRunner.java:31)
+	at org.gradle.launcher.exec.ChainingBuildActionRunner.run(ChainingBuildActionRunner.java:35)
+	at org.gradle.internal.buildtree.ProblemReportingBuildActionRunner.run(ProblemReportingBuildActionRunner.java:54)
+	at org.gradle.launcher.exec.BuildOutcomeReportingBuildActionRunner.run(BuildOutcomeReportingBuildActionRunner.java:83)
+	at org.gradle.tooling.internal.provider.FileSystemWatchingBuildActionRunner.run(FileSystemWatchingBuildActionRunner.java:135)
+	at org.gradle.launcher.exec.BuildCompletionNotifyingBuildActionRunner.run(BuildCompletionNotifyingBuildActionRunner.java:65)
+	at org.gradle.launcher.exec.RootBuildLifecycleBuildActionExecutor.lambda$execute$0(RootBuildLifecycleBuildActionExecutor.java:101)
+	at org.gradle.composite.internal.DefaultRootBuildState.run(DefaultRootBuildState.java:126)
+	at org.gradle.launcher.exec.RootBuildLifecycleBuildActionExecutor.execute(RootBuildLifecycleBuildActionExecutor.java:101)
+	at org.gradle.launcher.exec.BuildTreeLifecycleBuildActionExecutor.runRootBuildAction(BuildTreeLifecycleBuildActionExecutor.java:104)
+	at org.gradle.launcher.exec.BuildTreeLifecycleBuildActionExecutor.execute(BuildTreeLifecycleBuildActionExecutor.java:74)
+	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionExecutor$2.call(RunAsBuildOperationBuildActionExecutor.java:65)
+	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionExecutor$2.call(RunAsBuildOperationBuildActionExecutor.java:61)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
+	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionExecutor.execute(RunAsBuildOperationBuildActionExecutor.java:61)
+	at org.gradle.launcher.exec.RunAsWorkerThreadBuildActionExecutor.lambda$execute$0(RunAsWorkerThreadBuildActionExecutor.java:36)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.lambda$runAndReleaseLocks$0(DefaultWorkerLeaseService.java:300)
+	at org.gradle.internal.work.ResourceLockStatistics$1.measure(ResourceLockStatistics.java:43)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAndReleaseLocks(DefaultWorkerLeaseService.java:298)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocksAcquired(DefaultWorkerLeaseService.java:294)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:286)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:130)
+	at org.gradle.launcher.exec.RunAsWorkerThreadBuildActionExecutor.execute(RunAsWorkerThreadBuildActionExecutor.java:36)
+	at org.gradle.tooling.internal.provider.continuous.ContinuousBuildActionExecutor.execute(ContinuousBuildActionExecutor.java:110)
+	at org.gradle.tooling.internal.provider.SubscribableBuildActionExecutor.execute(SubscribableBuildActionExecutor.java:64)
+	at org.gradle.internal.session.DefaultBuildSessionContext.execute(DefaultBuildSessionContext.java:46)
+	at org.gradle.internal.buildprocess.execution.BuildSessionLifecycleBuildActionExecutor$ActionImpl.apply(BuildSessionLifecycleBuildActionExecutor.java:106)
+	at org.gradle.internal.buildprocess.execution.BuildSessionLifecycleBuildActionExecutor$ActionImpl.apply(BuildSessionLifecycleBuildActionExecutor.java:94)
+	at org.gradle.internal.session.BuildSessionState.run(BuildSessionState.java:73)
+	at org.gradle.internal.buildprocess.execution.BuildSessionLifecycleBuildActionExecutor.execute(BuildSessionLifecycleBuildActionExecutor.java:67)
+	at org.gradle.internal.buildprocess.execution.BuildSessionLifecycleBuildActionExecutor.execute(BuildSessionLifecycleBuildActionExecutor.java:45)
+	at org.gradle.internal.buildprocess.execution.StartParamsValidatingActionExecutor.execute(StartParamsValidatingActionExecutor.java:57)
+	at org.gradle.internal.buildprocess.execution.StartParamsValidatingActionExecutor.execute(StartParamsValidatingActionExecutor.java:32)
+	at org.gradle.internal.buildprocess.execution.SessionFailureReportingActionExecutor.execute(SessionFailureReportingActionExecutor.java:51)
+	at org.gradle.internal.buildprocess.execution.SessionFailureReportingActionExecutor.execute(SessionFailureReportingActionExecutor.java:39)
+	at org.gradle.internal.buildprocess.execution.SetupLoggingActionExecutor.execute(SetupLoggingActionExecutor.java:47)
+	at org.gradle.internal.buildprocess.execution.SetupLoggingActionExecutor.execute(SetupLoggingActionExecutor.java:31)
+	at org.gradle.launcher.daemon.server.exec.ExecuteBuild.doBuild(ExecuteBuild.java:70)
+	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.WatchForDisconnection.execute(WatchForDisconnection.java:39)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.ResetDeprecationLogger.execute(ResetDeprecationLogger.java:29)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.RequestStopIfSingleUsedDaemon.execute(RequestStopIfSingleUsedDaemon.java:35)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.ForwardClientInput.lambda$execute$0(ForwardClientInput.java:40)
+	at org.gradle.internal.daemon.clientinput.ClientInputForwarder.forwardInput(ClientInputForwarder.java:80)
+	at org.gradle.launcher.daemon.server.exec.ForwardClientInput.execute(ForwardClientInput.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.LogAndCheckHealth.execute(LogAndCheckHealth.java:64)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.LogToClient.doBuild(LogToClient.java:63)
+	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment.doBuild(EstablishBuildEnvironment.java:84)
+	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
+	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
+	at org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy$1.run(StartBuildOrRespondWithBusy.java:52)
+	at org.gradle.launcher.daemon.server.DaemonStateCoordinator.lambda$runCommand$0(DaemonStateCoordinator.java:321)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+> Task :common:compileJava FAILED
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/compat/jei/category/ApplePressFermentingCategory.java:13: error: cannot find symbol
+import net.minecraft.client.gui.GuiGraphics;
+                               ^
+  symbol:   class GuiGraphics
+  location: package net.minecraft.client.gui
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/compat/jei/category/ApplePressFermentingCategory.java:93: error: cannot find symbol
+    public void draw(ApplePressFermentingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+                                                                                          ^
+  symbol:   class GuiGraphics
+  location: class ApplePressFermentingCategory
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/compat/jei/category/FermentationBarrelCategory.java:13: error: cannot find symbol
+import net.minecraft.client.gui.GuiGraphics;
+                               ^
+  symbol:   class GuiGraphics
+  location: package net.minecraft.client.gui
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/compat/jei/category/FermentationBarrelCategory.java:103: error: cannot find symbol
+    public void draw(FermentationBarrelRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+                                                                                        ^
+  symbol:   class GuiGraphics
+  location: class FermentationBarrelCategory
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/util/VillagerUtil.java:5: error: cannot find symbol
+import net.minecraft.world.entity.npc.villager.VillagerTrades;
+                                              ^
+  symbol:   class VillagerTrades
+  location: package net.minecraft.world.entity.npc.villager
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/util/VillagerUtil.java:18: error: package VillagerTrades does not exist
+    public static class SellItemFactory implements VillagerTrades.ItemListing {
+                                                                 ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/util/VillagerUtil.java:60: error: package VillagerTrades does not exist
+    public static class BuyForOneEmeraldFactory implements VillagerTrades.ItemListing {
+                                                                         ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:4: error: cannot find symbol
+import net.minecraft.world.entity.npc.villager.VillagerTrades;
+                                              ^
+  symbol:   class VillagerTrades
+  location: package net.minecraft.world.entity.npc.villager
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:13: error: package VillagerTrades does not exist
+	public static final HashMap<Integer, VillagerTrades.ItemListing[]> TRADES = createTrades();
+	                                                   ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:15: error: package VillagerTrades does not exist
+	private static  HashMap<Integer, VillagerTrades.ItemListing[]> createTrades() {
+	                                               ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/FermentationBarrelRecipe.java:127: error: interface expected here
+    public static class Serializer implements RecipeSerializer<FermentationBarrelRecipe> {
+                                              ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/ApplePressMashingRecipe.java:88: error: interface expected here
+    public static class Serializer implements RecipeSerializer<ApplePressMashingRecipe> {
+                                              ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/ApplePressFermentingRecipe.java:99: error: interface expected here
+    public static class Serializer implements RecipeSerializer<ApplePressFermentingRecipe> {
+                                              ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/mixin/SpreadingSnowyDirtBlockMixin.java:6: error: cannot find symbol
+import net.minecraft.world.level.block.SpreadingSnowyDirtBlock;
+                                      ^
+  symbol:   class SpreadingSnowyDirtBlock
+  location: package net.minecraft.world.level.block
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/util/ClientUtil.java:5: error: cannot find symbol
+import net.minecraft.client.renderer.LightTexture;
+                                    ^
+  symbol:   class LightTexture
+  location: package net.minecraft.client.renderer
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/CompletionistBannerRenderer.java:20: error: cannot find symbol
+import net.minecraft.client.resources.model.sprite.MaterialSet;
+                                                  ^
+  symbol:   class MaterialSet
+  location: package net.minecraft.client.resources.model.sprite
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/CompletionistBannerRenderer.java:41: error: cannot find symbol
+    private final MaterialSet materials;
+                  ^
+  symbol:   class MaterialSet
+  location: class CompletionistBannerRenderer
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/ApplePressGui.java:5: error: cannot find symbol
+import net.minecraft.client.gui.GuiGraphics;
+                               ^
+  symbol:   class GuiGraphics
+  location: package net.minecraft.client.gui
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/ApplePressGui.java:42: error: cannot find symbol
+    protected void renderBg(GuiGraphics guiGraphics, float f, int i, int j) {
+                            ^
+  symbol:   class GuiGraphics
+  location: class ApplePressGui
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/ApplePressGui.java:49: error: cannot find symbol
+    private void renderProgressArrows(GuiGraphics guiGraphics, int x, int y) {
+                                      ^
+  symbol:   class GuiGraphics
+  location: class ApplePressGui
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/ApplePressGui.java:67: error: cannot find symbol
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
+                       ^
+  symbol:   class GuiGraphics
+  location: class ApplePressGui
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/FermentationBarrelGui.java:5: error: cannot find symbol
+import net.minecraft.client.gui.GuiGraphics;
+                               ^
+  symbol:   class GuiGraphics
+  location: package net.minecraft.client.gui
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/FermentationBarrelGui.java:49: error: cannot find symbol
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
+                       ^
+  symbol:   class GuiGraphics
+  location: class FermentationBarrelGui
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/FermentationBarrelGui.java:139: error: cannot find symbol
+    public static void drawJuiceBar(GuiGraphics guiGraphics, String juiceType, int juiceAmount, int originX, int originY) {
+                                    ^
+  symbol:   class GuiGraphics
+  location: class FermentationBarrelGui
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/FermentationBarrelGui.java:165: error: cannot find symbol
+    protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int mouseX, int mouseY) {
+                            ^
+  symbol:   class GuiGraphics
+  location: class FermentationBarrelGui
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/FermentationBarrelGui.java:176: error: cannot find symbol
+    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+                                ^
+  symbol:   class GuiGraphics
+  location: class FermentationBarrelGui
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/FermentationBarrelGui.java:181: error: cannot find symbol
+    protected void renderCraftingProgress(GuiGraphics guiGraphics, int guiLeft, int guiTop) {
+                                          ^
+  symbol:   class GuiGraphics
+  location: class FermentationBarrelGui
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/VineryClient.java:8: error: cannot find symbol
+import dev.architectury.registry.client.rendering.RenderTypeRegistry;
+                                                 ^
+  symbol:   class RenderTypeRegistry
+  location: package dev.architectury.registry.client.rendering
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/VineryClient.java:15: error: cannot find symbol
+import net.minecraft.client.renderer.blockentity.SignRenderer;
+                                                ^
+  symbol:   class SignRenderer
+  location: package net.minecraft.client.renderer.blockentity
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/mixin/SpreadingSnowyDirtBlockMixin.java:16: error: cannot find symbol
+@Mixin(SpreadingSnowyDirtBlock.class)
+       ^
+  symbol: class SpreadingSnowyDirtBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/compat/rei/press/ApplePressFermentingDisplay.java:45: error: cannot find symbol
+                Optional.of(recipe.id().location()));
+                                       ^
+  symbol:   method location()
+  location: class ResourceKey<Recipe<?>>
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/ApplePressFermentingRecipe.java:23: error: ApplePressFermentingRecipe is not abstract and does not override abstract method group() in Recipe
+public class ApplePressFermentingRecipe implements Recipe<ApplePressFermentingRecipeInput> {
+       ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/ApplePressFermentingRecipe.java:44: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/ApplePressFermentingRecipe.java:107: error: method does not override or implement a method from a supertype
+        @Override
+        ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/ApplePressFermentingRecipe.java:116: error: method does not override or implement a method from a supertype
+        @Override
+        ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/compat/rei/press/ApplePressDisplay.java:46: error: cannot find symbol
+                Optional.of(recipe.id().location()));
+                                       ^
+  symbol:   method location()
+  location: class ResourceKey<Recipe<?>>
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/ApplePressMashingRecipe.java:22: error: ApplePressMashingRecipe is not abstract and does not override abstract method group() in Recipe
+public class ApplePressMashingRecipe implements Recipe<ApplePressMashingRecipeInput> {
+       ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/ApplePressMashingRecipe.java:37: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/ApplePressMashingRecipe.java:90: error: method does not override or implement a method from a supertype
+        @Override
+        ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/ApplePressMashingRecipe.java:98: error: method does not override or implement a method from a supertype
+        @Override
+        ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/compat/rei/wine/FermentationBarrelDisplay.java:56: error: cannot find symbol
+        this(prepareInputs(recipe.value()), prepareOutputs(recipe.value()), Optional.of(recipe.id().location()),
+                                                                                                   ^
+  symbol:   method location()
+  location: class ResourceKey<Recipe<?>>
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/FermentationBarrelRecipe.java:27: error: FermentationBarrelRecipe is not abstract and does not override abstract method group() in Recipe
+public class FermentationBarrelRecipe implements Recipe<FermentationBarrelRecipeInput> {
+       ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/FermentationBarrelRecipe.java:82: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/FermentationBarrelRecipe.java:134: error: method does not override or implement a method from a supertype
+        @Override
+        ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/FermentationBarrelRecipe.java:146: error: method does not override or implement a method from a supertype
+        @Override
+        ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/compat/jei/category/ApplePressFermentingCategory.java:23: error: ApplePressFermentingCategory is not abstract and does not override abstract method getHeight() in IRecipeCategory
+public class ApplePressFermentingCategory implements IRecipeCategory<ApplePressFermentingRecipe> {
+       ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/compat/jei/category/ApplePressFermentingCategory.java:66: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/compat/jei/category/ApplePressMashingCategory.java:19: error: ApplePressMashingCategory is not abstract and does not override abstract method getHeight() in IRecipeCategory
+public class ApplePressMashingCategory implements IRecipeCategory<ApplePressMashingRecipe> {
+       ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/compat/jei/category/ApplePressMashingCategory.java:53: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/compat/jei/category/FermentationBarrelCategory.java:24: error: FermentationBarrelCategory is not abstract and does not override abstract method getHeight() in IRecipeCategory
+public class FermentationBarrelCategory implements IRecipeCategory<FermentationBarrelRecipe> {
+       ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/compat/jei/category/FermentationBarrelCategory.java:58: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/util/FoodComponent.java:51: error: cannot find symbol
+					ItemStack.SINGLE_ITEM_CODEC.optionalFieldOf("using_converts_to").forGetter(FoodComponent::usingConvertsTo),
+					         ^
+  symbol:   variable SINGLE_ITEM_CODEC
+  location: class ItemStack
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/util/GeneralUtil.java:107: error: constructor ChunkPos in record ChunkPos cannot be applied to given types;
+        return tracking(world, new ChunkPos(pos));
+                               ^
+  required: int,int
+  found:    BlockPos
+  reason: actual and formal argument lists differ in length
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/util/GeneralUtil.java:186: error: cannot find symbol
+        return world.dimension().location();
+                                ^
+  symbol:   method location()
+  location: class ResourceKey<Level>
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/util/GeneralUtil.java:271: error: random has protected access in Level
+        double deltaX = i == 0 ? Mth.nextDouble(level.random, -0.1, 0.1) : (double)i * 0.1;
+                                                     ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/util/GeneralUtil.java:272: error: random has protected access in Level
+        double deltaY = j == 0 ? Mth.nextDouble(level.random, 0.0, 0.1) : (double)j * 0.1 + 0.1;
+                                                     ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/util/GeneralUtil.java:273: error: random has protected access in Level
+        double deltaZ = k == 0 ? Mth.nextDouble(level.random, -0.1, 0.1) : (double)k * 0.1;
+                                                     ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/util/GeneralUtil.java:278: error: cannot find symbol
+        if (level instanceof ServerLevel serverLevel && !itemStack.isEmpty() && serverLevel.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS)) {
+                                                                                                                               ^
+  symbol:   variable RULE_DOBLOCKDROPS
+  location: class GameRules
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:16: error: package VillagerTrades does not exist
+		HashMap<Integer, VillagerTrades.ItemListing[]> trades = new HashMap<>();
+		                               ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:16: error: incompatible types: cannot infer type arguments for HashMap<>
+		HashMap<Integer, VillagerTrades.ItemListing[]> trades = new HashMap<>();
+		                                                                   ^
+    reason: inferred type does not conform to equality constraint(s)
+      inferred: Object
+      equality constraints(s): ItemListing[]
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:17: error: package VillagerTrades does not exist
+		trades.put(1, new VillagerTrades.ItemListing[]{
+		                                ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:18: error: package VillagerTrades does not exist
+				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.RED_GRAPE_SEEDS.get(), 1, 1, 8, 1),
+				                  ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:19: error: package VillagerTrades does not exist
+				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.WHITE_GRAPE_SEEDS.get(), 1, 1, 8, 1),
+				                  ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:20: error: package VillagerTrades does not exist
+				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.TAIGA_RED_GRAPE_SEEDS.get(), 1, 1, 8, 1),
+				                  ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:21: error: package VillagerTrades does not exist
+				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.TAIGA_WHITE_GRAPE_SEEDS.get(), 1, 1, 8, 1),
+				                  ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:22: error: package VillagerTrades does not exist
+				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.SAVANNA_RED_GRAPE_SEEDS.get(), 1, 1, 8, 1),
+				                  ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:23: error: package VillagerTrades does not exist
+				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.SAVANNA_WHITE_GRAPE_SEEDS.get(), 1, 1, 8, 1),
+				                  ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:24: error: package VillagerTrades does not exist
+				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.JUNGLE_RED_GRAPE_SEEDS.get(), 1, 1, 8, 1),
+				                  ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:25: error: package VillagerTrades does not exist
+				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.JUNGLE_WHITE_GRAPE.get(), 1, 1, 8, 1),
+				                  ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:26: error: package VillagerTrades does not exist
+				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.DARK_CHERRY_SAPLING.get(), 3, 1, 8, 1),
+				                  ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:27: error: package VillagerTrades does not exist
+				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.APPLE_TREE_SAPLING.get(), 5, 1, 8, 1),
+				                  ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:28: error: package VillagerTrades does not exist
+				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.RED_GRAPE.get(), 2, 1, 8, 1),
+				                  ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:29: error: package VillagerTrades does not exist
+				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.RED_GRAPEJUICE.get(), 4, 1, 8, 1),
+				                  ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:30: error: package VillagerTrades does not exist
+				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.WHITE_GRAPEJUICE.get(), 4, 1, 8, 1),
+				                  ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:31: error: package VillagerTrades does not exist
+				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.RED_SAVANNA_GRAPEJUICE.get(), 4, 1, 8, 1),
+				                  ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:32: error: package VillagerTrades does not exist
+				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.WHITE_TAIGA_GRAPEJUICE.get(), 4, 1, 8, 1),
+				                  ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:33: error: package VillagerTrades does not exist
+				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.RED_JUNGLE_GRAPEJUICE.get(), 4, 1, 8, 1),
+				                  ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:34: error: package VillagerTrades does not exist
+				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.COARSE_DIRT_SLAB.get(), 1, 3, 8, 1),
+				                  ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:35: error: package VillagerTrades does not exist
+				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.GRASS_SLAB.get(), 1, 3, 8, 1),
+				                  ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:36: error: package VillagerTrades does not exist
+				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.DARK_CHERRY_PLANKS.get(), 3, 4, 8, 1),
+				                  ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:37: error: package VillagerTrades does not exist
+				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.CHERRY_WINE.get(), 1, 1, 8, 1)
+				                  ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:46: error: method does not override or implement a method from a supertype
+	@Override
+	^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/mixin/FoxEntityEatSweetBerriesGoalMixin.java:53: error: random has protected access in Level
+        int j = 1 + fox().level().random.nextInt(2) + (age == 3 ? 1 : 0);
+                                 ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/mixin/WanderingTraderManagerMixin.java:39: error: random has protected access in Level
+		if (world.random.nextDouble() < PlatformHelper.getTraderSpawnChance()) {
+		         ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/mixin/WanderingTraderManagerMixin.java:75: error: cannot find symbol
+									this.serverLevelData.setWanderingTraderId(wanderingTraderEntity.getUUID());
+									                    ^
+  symbol:   method setWanderingTraderId(UUID)
+  location: variable serverLevelData of type ServerLevelData
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/mixin/WanderingTraderManagerMixin.java:96: error: random has protected access in Level
+			int x = pos.getX() + world.random.nextInt(range * 2) - range;
+			                          ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/mixin/WanderingTraderManagerMixin.java:97: error: random has protected access in Level
+			int z = pos.getZ() + world.random.nextInt(range * 2) - range;
+			                          ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/mixin/ConsumableMixin.java:33: error: random has protected access in Level
+					if (world.isClientSide() || effect.effect() == null || !(world.random.nextFloat() < effect.probability())) continue;
+					                                                              ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:49: error: constructor ChunkPos in record ChunkPos cannot be applied to given types;
+            ChunkPos currentChunkPos = new ChunkPos(vineMutablePos);
+                                       ^
+  required: int,int
+  found:    MutableBlockPos
+  reason: actual and formal argument lists differ in length
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:60: error: constructor ChunkPos in record ChunkPos cannot be applied to given types;
+                        ChunkPos newChunkPos = new ChunkPos(mutable);
+                                               ^
+  required: int,int
+  found:    MutableBlockPos
+  reason: actual and formal argument lists differ in length
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:62: error: x has private access in ChunkPos
+                        if(newChunkPos.x != currentChunkPos.x || newChunkPos.z != currentChunkPos.z) continue;
+                                      ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:62: error: x has private access in ChunkPos
+                        if(newChunkPos.x != currentChunkPos.x || newChunkPos.z != currentChunkPos.z) continue;
+                                                           ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:62: error: z has private access in ChunkPos
+                        if(newChunkPos.x != currentChunkPos.x || newChunkPos.z != currentChunkPos.z) continue;
+                                                                            ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:62: error: z has private access in ChunkPos
+                        if(newChunkPos.x != currentChunkPos.x || newChunkPos.z != currentChunkPos.z) continue;
+                                                                                                 ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/item/BasketItem.java:26: error: cannot find symbol
+        return contents == null ? Stream.empty() : contents.nonEmptyStream();
+                                                           ^
+  symbol:   method nonEmptyStream()
+  location: variable contents of type ItemContainerContents
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/item/BasketItem.java:35: error: incompatible types: NonNullList<ItemStack> cannot be converted to List<ItemStackTemplate>
+        return Optional.of(new BundleTooltip(new BundleContents(nonNullList)));
+                                                                ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ArmorRegistryClient.java:80: error: cannot find symbol
+        return RenderType.armorCutoutNoCull(slot == EquipmentSlot.LEGS ? LEGGINGS_TEXTURE : ARMOR_TEXTURE);
+                         ^
+  symbol:   method armorCutoutNoCull(slot == Eq[...]XTURE)
+  location: class RenderType
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ArmorRegistryClient.java:101: error: method getName in class Item cannot be applied to given types;
+        tooltip.add(Component.nullToEmpty((helmet.getItem() instanceof WinemakerHelmetItem ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + ObjectRegistry.STRAW_HAT.get().getName().getString() + "]"));
+                                                                                                                                                                                                       ^
+  required: ItemStack
+  found:    no arguments
+  reason: actual and formal argument lists differ in length
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ArmorRegistryClient.java:102: error: method getName in class Item cannot be applied to given types;
+        tooltip.add(Component.nullToEmpty((chestplate.getItem() instanceof WinemakerChestItem ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + ObjectRegistry.WINEMAKER_APRON.get().getName().getString() + "]"));
+                                                                                                                                                                                                                ^
+  required: ItemStack
+  found:    no arguments
+  reason: actual and formal argument lists differ in length
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ArmorRegistryClient.java:103: error: method getName in class Item cannot be applied to given types;
+        tooltip.add(Component.nullToEmpty((leggings.getItem() instanceof WinemakerLegsItem ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + ObjectRegistry.WINEMAKER_LEGGINGS.get().getName().getString() + "]"));
+                                                                                                                                                                                                                ^
+  required: ItemStack
+  found:    no arguments
+  reason: actual and formal argument lists differ in length
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ArmorRegistryClient.java:104: error: method getName in class Item cannot be applied to given types;
+        tooltip.add(Component.nullToEmpty((boots.getItem() instanceof WinemakerBootsItem ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + ObjectRegistry.WINEMAKER_BOOTS.get().getName().getString() + "]"));
+                                                                                                                                                                                                           ^
+  required: ItemStack
+  found:    no arguments
+  reason: actual and formal argument lists differ in length
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/TabRegistry.java:18: error: Output has protected access in CreativeModeTab
+            .displayItems((parameters, out) -> {
+                                       ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/TabRegistry.java:18: error: Output has protected access in CreativeModeTab
+            .displayItems((parameters, out) -> {
+                          ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ObjectRegistry.java:78: error: SaplingBlock(TreeGrower,Properties) has protected access in SaplingBlock
+    public static final RegistrySupplier<Block> DARK_CHERRY_SAPLING = registerWithItem("dark_cherry_sapling", () -> new SaplingBlock(new TreeGrower("dark_cherry_tree", Optional.of(VineryConfiguredFeatures.DARK_CHERRY_KEY), Optional.of(VineryConfiguredFeatures.DARK_CHERRY_KEY), Optional.empty()), blockProps("dark_cherry_sapling").noCollision().randomTicks().instabreak().sound(SoundType.GRASS)));
+                                                                                                                    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ObjectRegistry.java:79: error: SaplingBlock(TreeGrower,Properties) has protected access in SaplingBlock
+    public static final RegistrySupplier<Block> APPLE_TREE_SAPLING = registerWithItem("apple_tree_sapling", () -> new SaplingBlock(new TreeGrower("apple_tree", Optional.of(VineryConfiguredFeatures.APPLE_KEY), Optional.of(VineryConfiguredFeatures.APPLE_VARIANT_KEY), Optional.empty()), blockProps("apple_tree_sapling").noCollision().randomTicks().instabreak().sound(SoundType.GRASS)));
+                                                                                                                  ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ObjectRegistry.java:109: error: StairBlock(BlockState,Properties) has protected access in StairBlock
+    public static final RegistrySupplier<Block> DARK_CHERRY_STAIRS = registerWithItem("dark_cherry_stairs", () -> new StairBlock(DARK_CHERRY_PLANKS.get().defaultBlockState(), blockProps("dark_cherry_stairs", DARK_CHERRY_PLANKS.get())));
+                                                                                                                  ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ObjectRegistry.java:114: error: PressurePlateBlock(BlockSetType,Properties) has protected access in PressurePlateBlock
+    public static final RegistrySupplier<Block> DARK_CHERRY_PRESSURE_PLATE = registerWithItem("dark_cherry_pressure_plate", () -> new PressurePlateBlock(BlockSetType.CHERRY, blockProps("dark_cherry_pressure_plate", Blocks.OAK_PRESSURE_PLATE)));
+                                                                                                                                  ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ObjectRegistry.java:115: error: DoorBlock(BlockSetType,Properties) has protected access in DoorBlock
+    public static final RegistrySupplier<Block> DARK_CHERRY_DOOR = registerWithItem("dark_cherry_door", () -> new DoorBlock(BlockSetType.CHERRY, blockProps("dark_cherry_door", Blocks.OAK_DOOR)));
+                                                                                                              ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ObjectRegistry.java:116: error: TrapDoorBlock(BlockSetType,Properties) has protected access in TrapDoorBlock
+    public static final RegistrySupplier<Block> DARK_CHERRY_TRAPDOOR = registerWithItem("dark_cherry_trapdoor", () -> new TrapDoorBlock(BlockSetType.CHERRY, blockProps("dark_cherry_trapdoor", Blocks.OAK_TRAPDOOR)));
+                                                                                                                      ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ObjectRegistry.java:326: error: ButtonBlock(BlockSetType,int,Properties) has protected access in ButtonBlock
+        return new ButtonBlock(BlockSetType.CHERRY, 30, properties);
+               ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/EntityTypeRegistry.java:34: error: BlockEntitySupplier has private access in BlockEntityType
+    public static final RegistrySupplier<BlockEntityType<DarkCherrySignBlockEntity>> MOD_SIGN = registerBlockEntity("mod_sign", () -> new BlockEntityType<>(DarkCherrySignBlockEntity::new, Set.of(DARK_CHERRY_SIGN.get(), DARK_CHERRY_WALL_SIGN.get())));
+                                                                                                                                                            ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/EntityTypeRegistry.java:35: error: BlockEntitySupplier has private access in BlockEntityType
+    public static final RegistrySupplier<BlockEntityType<DarkCherryHangingSignBlockEntity>> MOD_HANGING_SIGN = registerBlockEntity("mod_hanging_sign", () -> new BlockEntityType<>(DarkCherryHangingSignBlockEntity::new, Set.of(DARK_CHERRY_HANGING_SIGN.get(), DARK_CHERRY_WALL_HANGING_SIGN.get())));
+                                                                                                                                                                                   ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/EntityTypeRegistry.java:39: error: BlockEntitySupplier has private access in BlockEntityType
+                    new BlockEntityType<>(StorageBlockEntity::new, StorageTypeRegistry.registerBlocks(new HashSet<>()))
+                                          ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/EntityTypeRegistry.java:43: error: BlockEntitySupplier has private access in BlockEntityType
+            new BlockEntityType<>(CabinetBlockEntity::new, Set.of(StorageTypeRegistry.getCabinetBlocks())));
+                                  ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/EntityTypeRegistry.java:47: error: BlockEntitySupplier has private access in BlockEntityType
+                    new BlockEntityType<>(StoragePotBlockEntity::new, Set.of(STORAGE_POT.get()))
+                                          ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/EntityTypeRegistry.java:66: error: BlockEntitySupplier has private access in BlockEntityType
+    public static final RegistrySupplier<BlockEntityType<ApplePressBlockEntity>> APPLE_PRESS_BLOCK_ENTITY = registerBlockEntity("apple_press", () -> new BlockEntityType<>(ApplePressBlockEntity::new, Set.of(APPLE_PRESS.get())));
+                                                                                                                                                                           ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/EntityTypeRegistry.java:67: error: BlockEntitySupplier has private access in BlockEntityType
+    public static final RegistrySupplier<BlockEntityType<FermentationBarrelBlockEntity>> FERMENTATION_BARREL_ENTITY = registerBlockEntity("fermentation_barrel", () -> new BlockEntityType<>(FermentationBarrelBlockEntity::new, Set.of(FERMENTATION_BARREL.get())));
+                                                                                                                                                                                             ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/EntityTypeRegistry.java:68: error: BlockEntitySupplier has private access in BlockEntityType
+    public static final RegistrySupplier<BlockEntityType<CompletionistBannerEntity>> VINERY_STANDARD = registerBlockEntity("vinery_standard", () -> new BlockEntityType<>(CompletionistBannerEntity::new, Set.of(ObjectRegistry.VINERY_STANDARD.get(), VINERY_WALL_STANDARD.get())));
+                                                                                                                                                                          ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/EntityTypeRegistry.java:71: error: BlockEntitySupplier has private access in BlockEntityType
+                    new BlockEntityType<>(DarkCherryBarrelBlockEntity::new, Set.of(DARK_CHERRY_BARREL.get()))
+                                          ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/EntityTypeRegistry.java:74: error: BlockEntitySupplier has private access in BlockEntityType
+    public static final RegistrySupplier<BlockEntityType<LatticeBlockEntity>> LATTICE = registerBlockEntity("lattice", () -> new BlockEntityType<>(LatticeBlockEntity::new, Set.of(OAK_LATTICE.get(), SPRUCE_LATTICE.get(), CHERRY_LATTICE.get(), BIRCH_LATTICE.get(), DARK_OAK_LATTICE.get(), ACACIA_LATTICE.get(), BAMBOO_LATTICE.get(), JUNGLE_LATTICE.get(), MANGROVE_LATTICE.get(), DARK_CHERRY_LATTICE.get())));
+                                                                                                                                                   ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/entity/LatticeBlockEntity.java:43: error: random has protected access in Level
+            this.showHanging = level.random.nextFloat() < 0.15f;
+                                    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ScreenhandlerTypeRegistry.java:19: error: <T>MenuType(MenuSupplier<T>,FeatureFlagSet) has private access in MenuType
+    public static final RegistrySupplier<MenuType<FermentationBarrelGuiHandler>> FERMENTATION_BARREL_GUI_HANDLER = register("fermentation_barrel_gui_handler", () -> new MenuType<>(FermentationBarrelGuiHandler::new, FeatureFlags.VANILLA_SET));
+                                                                                                                                                                     ^
+  where T is a type-variable:
+    T extends AbstractContainerMenu declared in class MenuType
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ScreenhandlerTypeRegistry.java:19: error: MenuSupplier has private access in MenuType
+    public static final RegistrySupplier<MenuType<FermentationBarrelGuiHandler>> FERMENTATION_BARREL_GUI_HANDLER = register("fermentation_barrel_gui_handler", () -> new MenuType<>(FermentationBarrelGuiHandler::new, FeatureFlags.VANILLA_SET));
+                                                                                                                                                                                    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ScreenhandlerTypeRegistry.java:20: error: <T>MenuType(MenuSupplier<T>,FeatureFlagSet) has private access in MenuType
+    public static final RegistrySupplier<MenuType<ApplePressGuiHandler>> APPLE_PRESS_GUI_HANDLER = register("apple_press_gui_handler", () -> new MenuType<>(ApplePressGuiHandler::new, FeatureFlags.VANILLA_SET));
+                                                                                                                                             ^
+  where T is a type-variable:
+    T extends AbstractContainerMenu declared in class MenuType
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ScreenhandlerTypeRegistry.java:20: error: MenuSupplier has private access in MenuType
+    public static final RegistrySupplier<MenuType<ApplePressGuiHandler>> APPLE_PRESS_GUI_HANDLER = register("apple_press_gui_handler", () -> new MenuType<>(ApplePressGuiHandler::new, FeatureFlags.VANILLA_SET));
+                                                                                                                                                            ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/FlammableBlockRegistry.java:24: error: setFlammable(Block,int,int) has private access in FireBlock
+            fireBlock.setFlammable(block, burnOdd, igniteOdd);
+                     ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/RecipeTypesRegistry.java:23: error: no suitable method found for create(String,Fermentati[...]::new)
+    public static final RegistrySupplier<RecipeSerializer<FermentationBarrelRecipe>> FERMENTATION_BARREL_RECIPE_SERIALIZER = create("wine_fermentation", FermentationBarrelRecipe.Serializer::new);
+                                                                                                                             ^
+    method RecipeTypesRegistry.<T#1>create(String,Supplier<RecipeSerializer<T#1>>) is not applicable
+      (cannot infer type-variable(s) T#1
+        (argument mismatch; bad return type in method reference
+          Serializer cannot be converted to RecipeSerializer<T#1>))
+    method RecipeTypesRegistry.<T#2>create(String) is not applicable
+      (cannot infer type-variable(s) T#2
+        (actual and formal argument lists differ in length))
+  where T#1,T#2 are type-variables:
+    T#1 extends Recipe<?> declared in method <T#1>create(String,Supplier<RecipeSerializer<T#1>>)
+    T#2 extends Recipe<?> declared in method <T#2>create(String)
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/RecipeTypesRegistry.java:26: error: no suitable method found for create(String,ApplePress[...]::new)
+    public static final RegistrySupplier<RecipeSerializer<ApplePressMashingRecipe>> APPLE_PRESS_MASHING_RECIPE_SERIALIZER = create("apple_mashing", ApplePressMashingRecipe.Serializer::new);
+                                                                                                                            ^
+    method RecipeTypesRegistry.<T#1>create(String,Supplier<RecipeSerializer<T#1>>) is not applicable
+      (cannot infer type-variable(s) T#1
+        (argument mismatch; bad return type in method reference
+          Serializer cannot be converted to RecipeSerializer<T#1>))
+    method RecipeTypesRegistry.<T#2>create(String) is not applicable
+      (cannot infer type-variable(s) T#2
+        (actual and formal argument lists differ in length))
+  where T#1,T#2 are type-variables:
+    T#1 extends Recipe<?> declared in method <T#1>create(String,Supplier<RecipeSerializer<T#1>>)
+    T#2 extends Recipe<?> declared in method <T#2>create(String)
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/RecipeTypesRegistry.java:29: error: no suitable method found for create(String,ApplePress[...]::new)
+    public static final RegistrySupplier<RecipeSerializer<ApplePressFermentingRecipe>> APPLE_PRESS_FERMENTING_RECIPE_SERIALIZER = create("apple_fermenting", ApplePressFermentingRecipe.Serializer::new);
+                                                                                                                                  ^
+    method RecipeTypesRegistry.<T#1>create(String,Supplier<RecipeSerializer<T#1>>) is not applicable
+      (cannot infer type-variable(s) T#1
+        (argument mismatch; bad return type in method reference
+          Serializer cannot be converted to RecipeSerializer<T#1>))
+    method RecipeTypesRegistry.<T#2>create(String) is not applicable
+      (cannot infer type-variable(s) T#2
+        (actual and formal argument lists differ in length))
+  where T#1,T#2 are type-variables:
+    T#1 extends Recipe<?> declared in method <T#1>create(String,Supplier<RecipeSerializer<T#1>>)
+    T#2 extends Recipe<?> declared in method <T#2>create(String)
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/command/WineDebugCommands.java:21: error: cannot find symbol
+                        .requires(source -> source.hasPermission(2) && source.getEntity() instanceof ServerPlayer)
+                                                  ^
+  symbol:   method hasPermission(int)
+  location: variable source of type CommandSourceStack
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/StemBlock.java:43: error: random has protected access in Level
+        final int x = 1 + world.random.nextInt(this.isMature(state) ? 2 : 1);
+                               ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/StemBlock.java:51: error: random has protected access in Level
+        world.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+                                                                                                                    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/GrapeVineBlock.java:58: error: random has protected access in Level
+            int x = world.random.nextInt(2);
+                         ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/GrapeVineBlock.java:60: error: random has protected access in Level
+            world.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+                                                                                                                        ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/DarkCherryLeavesBlock.java:77: error: random has protected access in Level
+        boolean canGrowCherries = ctx.getLevel().random.nextFloat() < 0.3f;
+                                                ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/DarkCherryLeavesBlock.java:169: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/PaleStemBlock.java:109: error: random has protected access in Level
+                        int delay = 4800 + world.random.nextInt(4801);
+                                                ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/PaleStemBlock.java:129: error: random has protected access in Level
+            int delay = 4800 + world.random.nextInt(4801);
+                                    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/GrapeBush.java:75: error: random has protected access in Level
+            int x = world.random.nextInt(2);
+                         ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/GrapeBush.java:77: error: random has protected access in Level
+            world.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+                                                                                                                        ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/SpreadableGrassSlabBlock.java:86: error: cannot find symbol
+        int i = LightEngine.getLightBlockInto(GRASS_BLOCK.defaultBlockState(), blockState, Direction.UP, blockState.getLightBlock());
+                                                                                                                   ^
+  symbol:   method getLightBlock()
+  location: variable blockState of type BlockState
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/AppleLeavesBlock.java:84: error: random has protected access in Level
+        boolean canGrowApples = ctx.getLevel().random.nextFloat() < 0.3f;
+                                              ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/AppleLeavesBlock.java:174: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/util/ClientUtil.java:14: error: cannot find symbol
+        return LightTexture.pack(bLight, sLight);
+               ^
+  symbol:   variable LightTexture
+  location: class ClientUtil
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/LatticeRenderer.java:176: error: blockState has private access in BlockEntityRenderState
+        BlockState blockState = state.blockState;
+                                     ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/LatticeRenderer.java:191: error: cannot find symbol
+        RenderType renderType = RenderType.entityCutoutNoCull(texture);
+                                          ^
+  symbol:   method entityCutoutNoCull(Identifier)
+  location: class RenderType
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/storage/FourBottleRenderer.java:39: error: cannot find symbol
+                collector.submitBlock(poseStack, blockState, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+                         ^
+  symbol:   method submitBlock(PoseStack,BlockState,int,int,int)
+  location: variable collector of type SubmitNodeCollector
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/storage/BigBottleRenderer.java:24: error: cannot find symbol
+            collector.submitBlock(poseStack, blockState, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+                     ^
+  symbol:   method submitBlock(PoseStack,BlockState,int,int,int)
+  location: variable collector of type SubmitNodeCollector
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/storage/WineBottleRenderer.java:43: error: cannot find symbol
+        collector.submitBlock(poseStack, getState(item), state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+                 ^
+  symbol:   method submitBlock(PoseStack,BlockState,int,int,int)
+  location: variable collector of type SubmitNodeCollector
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/storage/NineBottleRenderer.java:49: error: cannot find symbol
+            collector.submitBlock(poseStack, blockState, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+                     ^
+  symbol:   method submitBlock(PoseStack,BlockState,int,int,int)
+  location: variable collector of type SubmitNodeCollector
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/storage/StorageBlockEntityRenderer.java:83: error: blockState has private access in BlockEntityRenderState
+        applyBlockAngle(poseStack, state.blockState, 180);
+                                        ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/storage/WineBoxRenderer.java:33: error: cannot find symbol
+        collector.submitBlock(poseStack, renderState, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+                 ^
+  symbol:   method submitBlock(PoseStack,BlockState,int,int,int)
+  location: variable collector of type SubmitNodeCollector
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/CompletionistBannerRenderer.java:47: error: cannot find symbol
+        this.materials = context.materials();
+                                ^
+  symbol:   method materials()
+  location: variable context of type Context
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/CompletionistBannerRenderer.java:123: error: cannot find symbol
+        Material material = ModelBakery.BANNER_BASE;
+                                       ^
+  symbol:   variable BANNER_BASE
+  location: class ModelBakery
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/CompletionistBannerRenderer.java:124: error: invalid method reference
+        RenderType baseType = material.renderType(RenderType::entitySolid);
+                                                  ^
+  cannot find symbol
+    symbol:   method entitySolid()
+    location: class RenderType
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/CompletionistBannerRenderer.java:130: error: cannot find symbol
+        collector.submitModel(this.flagModel, state.phase, poseStack, RenderType.entitySolid(state.texture),
+                                                                                ^
+  symbol:   method entitySolid(Identifier)
+  location: class RenderType
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/model/CompletionistBannerFlagModel.java:25: error: invalid method reference
+        super(root, RenderType::entitySolid);
+                    ^
+  cannot find symbol
+    symbol:   method entitySolid(Identifier)
+    location: class RenderType
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/ApplePressGui.java:41: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/ApplePressGui.java:66: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/FermentationBarrelGui.java:33: error: cannot assign a value to final variable imageWidth
+        this.imageWidth = 176;
+            ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/FermentationBarrelGui.java:34: error: cannot assign a value to final variable imageHeight
+        this.imageHeight = 166;
+            ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/FermentationBarrelGui.java:48: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/FermentationBarrelGui.java:164: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/FermentationBarrelGui.java:175: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/VineryClient.java:43: error: cannot find symbol
+        RenderTypeRegistry.register(ChunkSectionLayer.CUTOUT,
+        ^
+  symbol:   variable RenderTypeRegistry
+  location: class VineryClient
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/VineryClient.java:64: error: cannot find symbol
+        RenderTypeRegistry.register(ChunkSectionLayer.TRANSLUCENT, WINDOW.get(), WINDOW_BLOCK.get());
+        ^
+  symbol:   variable RenderTypeRegistry
+  location: class VineryClient
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/VineryClient.java:68: error: no suitable method found for registerBlockColors((state,wor[...]s); },Block)
+        ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> {
+                            ^
+    method ColorHandlerRegistry.registerBlockColors(BlockTintSource,Block...) is not applicable
+      (argument mismatch; incompatible parameter types in lambda expression)
+    method ColorHandlerRegistry.registerBlockColors(BlockTintSource,Supplier<? extends Block>...) is not applicable
+      (varargs mismatch; Block cannot be converted to Supplier<? extends Block>)
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/VineryClient.java:75: error: no suitable method found for registerBlockColors((state,wor[...]s); },Block,Block)
+        ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> {
+                            ^
+    method ColorHandlerRegistry.registerBlockColors(BlockTintSource,Block...) is not applicable
+      (argument mismatch; incompatible parameter types in lambda expression)
+    method ColorHandlerRegistry.registerBlockColors(BlockTintSource,Supplier<? extends Block>...) is not applicable
+      (varargs mismatch; Block cannot be converted to Supplier<? extends Block>)
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/VineryClient.java:120: error: cannot find symbol
+        BlockEntityRendererRegistry.register((BlockEntityType<SignBlockEntity>) (BlockEntityType<?>) EntityTypeRegistry.MOD_SIGN.get(), SignRenderer::new);
+                                                                                                                                        ^
+  symbol:   class SignRenderer
+  location: class VineryClient
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/util/GeneralUtil.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+169 errors
+[Incubating] Problems report is available at: file:///Users/alextodd/temp/Github-NOTSYNCED/Vinery/build/reports/problems/problems-report.html
+FAILURE: Build failed with an exception.
+* What went wrong:
+Execution failed for task ':common:compileJava' (registered by plugin class 'org.gradle.api.plugins.JavaBasePlugin').
+> Compilation failed; see the compiler output below.
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/util/GeneralUtil.java:107: error: constructor ChunkPos in record ChunkPos cannot be applied to given types;
+          return tracking(world, new ChunkPos(pos));
+                                 ^
+    required: int,int
+    found:    BlockPos
+    reason: actual and formal argument lists differ in length
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:49: error: constructor ChunkPos in record ChunkPos cannot be applied to given types;
+              ChunkPos currentChunkPos = new ChunkPos(vineMutablePos);
+                                         ^
+    required: int,int
+    found:    MutableBlockPos
+    reason: actual and formal argument lists differ in length
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:60: error: constructor ChunkPos in record ChunkPos cannot be applied to given types;
+                          ChunkPos newChunkPos = new ChunkPos(mutable);
+                                                 ^
+    required: int,int
+    found:    MutableBlockPos
+    reason: actual and formal argument lists differ in length
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ArmorRegistryClient.java:101: error: method getName in class Item cannot be applied to given types;
+          tooltip.add(Component.nullToEmpty((helmet.getItem() instanceof WinemakerHelmetItem ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + ObjectRegistry.STRAW_HAT.get().getName().getString() + "]"));
+                                                                                                                                                                                                         ^
+    required: ItemStack
+    found:    no arguments
+    reason: actual and formal argument lists differ in length
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ArmorRegistryClient.java:102: error: method getName in class Item cannot be applied to given types;
+          tooltip.add(Component.nullToEmpty((chestplate.getItem() instanceof WinemakerChestItem ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + ObjectRegistry.WINEMAKER_APRON.get().getName().getString() + "]"));
+                                                                                                                                                                                                                  ^
+    required: ItemStack
+    found:    no arguments
+    reason: actual and formal argument lists differ in length
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ArmorRegistryClient.java:103: error: method getName in class Item cannot be applied to given types;
+          tooltip.add(Component.nullToEmpty((leggings.getItem() instanceof WinemakerLegsItem ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + ObjectRegistry.WINEMAKER_LEGGINGS.get().getName().getString() + "]"));
+                                                                                                                                                                                                                  ^
+    required: ItemStack
+    found:    no arguments
+    reason: actual and formal argument lists differ in length
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ArmorRegistryClient.java:104: error: method getName in class Item cannot be applied to given types;
+          tooltip.add(Component.nullToEmpty((boots.getItem() instanceof WinemakerBootsItem ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + ObjectRegistry.WINEMAKER_BOOTS.get().getName().getString() + "]"));
+                                                                                                                                                                                                             ^
+    required: ItemStack
+    found:    no arguments
+    reason: actual and formal argument lists differ in length
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/RecipeTypesRegistry.java:23: error: no suitable method found for create(String,Fermentati[...]::new)
+      public static final RegistrySupplier<RecipeSerializer<FermentationBarrelRecipe>> FERMENTATION_BARREL_RECIPE_SERIALIZER = create("wine_fermentation", FermentationBarrelRecipe.Serializer::new);
+                                                                                                                               ^
+      method RecipeTypesRegistry.<T#1>create(String,Supplier<RecipeSerializer<T#1>>) is not applicable
+        (cannot infer type-variable(s) T#1
+          (argument mismatch; bad return type in method reference
+            Serializer cannot be converted to RecipeSerializer<T#1>))
+      method RecipeTypesRegistry.<T#2>create(String) is not applicable
+        (cannot infer type-variable(s) T#2
+          (actual and formal argument lists differ in length))
+    where T#1,T#2 are type-variables:
+      T#1 extends Recipe<?> declared in method <T#1>create(String,Supplier<RecipeSerializer<T#1>>)
+      T#2 extends Recipe<?> declared in method <T#2>create(String)
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/RecipeTypesRegistry.java:26: error: no suitable method found for create(String,ApplePress[...]::new)
+      public static final RegistrySupplier<RecipeSerializer<ApplePressMashingRecipe>> APPLE_PRESS_MASHING_RECIPE_SERIALIZER = create("apple_mashing", ApplePressMashingRecipe.Serializer::new);
+                                                                                                                              ^
+      method RecipeTypesRegistry.<T#1>create(String,Supplier<RecipeSerializer<T#1>>) is not applicable
+        (cannot infer type-variable(s) T#1
+          (argument mismatch; bad return type in method reference
+            Serializer cannot be converted to RecipeSerializer<T#1>))
+      method RecipeTypesRegistry.<T#2>create(String) is not applicable
+        (cannot infer type-variable(s) T#2
+          (actual and formal argument lists differ in length))
+    where T#1,T#2 are type-variables:
+      T#1 extends Recipe<?> declared in method <T#1>create(String,Supplier<RecipeSerializer<T#1>>)
+      T#2 extends Recipe<?> declared in method <T#2>create(String)
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/RecipeTypesRegistry.java:29: error: no suitable method found for create(String,ApplePress[...]::new)
+      public static final RegistrySupplier<RecipeSerializer<ApplePressFermentingRecipe>> APPLE_PRESS_FERMENTING_RECIPE_SERIALIZER = create("apple_fermenting", ApplePressFermentingRecipe.Serializer::new);
+                                                                                                                                    ^
+      method RecipeTypesRegistry.<T#1>create(String,Supplier<RecipeSerializer<T#1>>) is not applicable
+        (cannot infer type-variable(s) T#1
+          (argument mismatch; bad return type in method reference
+            Serializer cannot be converted to RecipeSerializer<T#1>))
+      method RecipeTypesRegistry.<T#2>create(String) is not applicable
+        (cannot infer type-variable(s) T#2
+          (actual and formal argument lists differ in length))
+    where T#1,T#2 are type-variables:
+      T#1 extends Recipe<?> declared in method <T#1>create(String,Supplier<RecipeSerializer<T#1>>)
+      T#2 extends Recipe<?> declared in method <T#2>create(String)
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/VineryClient.java:68: error: no suitable method found for registerBlockColors((state,wor[...]s); },Block)
+          ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> {
+                              ^
+      method ColorHandlerRegistry.registerBlockColors(BlockTintSource,Block...) is not applicable
+        (argument mismatch; incompatible parameter types in lambda expression)
+      method ColorHandlerRegistry.registerBlockColors(BlockTintSource,Supplier<? extends Block>...) is not applicable
+        (varargs mismatch; Block cannot be converted to Supplier<? extends Block>)
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/VineryClient.java:75: error: no suitable method found for registerBlockColors((state,wor[...]s); },Block,Block)
+          ColorHandlerRegistry.registerBlockColors((state, world, pos, tintIndex) -> {
+                              ^
+      method ColorHandlerRegistry.registerBlockColors(BlockTintSource,Block...) is not applicable
+        (argument mismatch; incompatible parameter types in lambda expression)
+      method ColorHandlerRegistry.registerBlockColors(BlockTintSource,Supplier<? extends Block>...) is not applicable
+        (varargs mismatch; Block cannot be converted to Supplier<? extends Block>)
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/FermentationBarrelGui.java:33: error: cannot assign a value to final variable imageWidth
+          this.imageWidth = 176;
+              ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/FermentationBarrelGui.java:34: error: cannot assign a value to final variable imageHeight
+          this.imageHeight = 166;
+              ^
+  Note: Recompile with -Xlint:deprecation for details.
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/CompletionistBannerRenderer.java:124: error: invalid method reference
+          RenderType baseType = material.renderType(RenderType::entitySolid);
+                                                    ^
+    cannot find symbol
+      symbol:   method entitySolid()
+      location: class RenderType
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/model/CompletionistBannerFlagModel.java:25: error: invalid method reference
+          super(root, RenderType::entitySolid);
+                      ^
+    cannot find symbol
+      symbol:   method entitySolid(Identifier)
+      location: class RenderType
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/compat/jei/category/ApplePressFermentingCategory.java:13: error: cannot find symbol
+  import net.minecraft.client.gui.GuiGraphics;
+                                 ^
+    symbol:   class GuiGraphics
+    location: package net.minecraft.client.gui
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/compat/jei/category/ApplePressFermentingCategory.java:93: error: cannot find symbol
+      public void draw(ApplePressFermentingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+                                                                                            ^
+    symbol:   class GuiGraphics
+    location: class ApplePressFermentingCategory
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/compat/jei/category/FermentationBarrelCategory.java:13: error: cannot find symbol
+  import net.minecraft.client.gui.GuiGraphics;
+                                 ^
+    symbol:   class GuiGraphics
+    location: package net.minecraft.client.gui
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/compat/jei/category/FermentationBarrelCategory.java:103: error: cannot find symbol
+      public void draw(FermentationBarrelRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+                                                                                          ^
+    symbol:   class GuiGraphics
+    location: class FermentationBarrelCategory
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/util/VillagerUtil.java:5: error: cannot find symbol
+  import net.minecraft.world.entity.npc.villager.VillagerTrades;
+                                                ^
+    symbol:   class VillagerTrades
+    location: package net.minecraft.world.entity.npc.villager
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:4: error: cannot find symbol
+  import net.minecraft.world.entity.npc.villager.VillagerTrades;
+                                                ^
+    symbol:   class VillagerTrades
+    location: package net.minecraft.world.entity.npc.villager
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/mixin/SpreadingSnowyDirtBlockMixin.java:6: error: cannot find symbol
+  import net.minecraft.world.level.block.SpreadingSnowyDirtBlock;
+                                        ^
+    symbol:   class SpreadingSnowyDirtBlock
+    location: package net.minecraft.world.level.block
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/util/ClientUtil.java:5: error: cannot find symbol
+  import net.minecraft.client.renderer.LightTexture;
+                                      ^
+    symbol:   class LightTexture
+    location: package net.minecraft.client.renderer
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/CompletionistBannerRenderer.java:20: error: cannot find symbol
+  import net.minecraft.client.resources.model.sprite.MaterialSet;
+                                                    ^
+    symbol:   class MaterialSet
+    location: package net.minecraft.client.resources.model.sprite
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/CompletionistBannerRenderer.java:41: error: cannot find symbol
+      private final MaterialSet materials;
+                    ^
+    symbol:   class MaterialSet
+    location: class CompletionistBannerRenderer
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/ApplePressGui.java:5: error: cannot find symbol
+  import net.minecraft.client.gui.GuiGraphics;
+                                 ^
+    symbol:   class GuiGraphics
+    location: package net.minecraft.client.gui
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/ApplePressGui.java:42: error: cannot find symbol
+      protected void renderBg(GuiGraphics guiGraphics, float f, int i, int j) {
+                              ^
+    symbol:   class GuiGraphics
+    location: class ApplePressGui
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/ApplePressGui.java:49: error: cannot find symbol
+      private void renderProgressArrows(GuiGraphics guiGraphics, int x, int y) {
+                                        ^
+    symbol:   class GuiGraphics
+    location: class ApplePressGui
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/ApplePressGui.java:67: error: cannot find symbol
+      public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
+                         ^
+    symbol:   class GuiGraphics
+    location: class ApplePressGui
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/FermentationBarrelGui.java:5: error: cannot find symbol
+  import net.minecraft.client.gui.GuiGraphics;
+                                 ^
+    symbol:   class GuiGraphics
+    location: package net.minecraft.client.gui
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/FermentationBarrelGui.java:49: error: cannot find symbol
+      public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
+                         ^
+    symbol:   class GuiGraphics
+    location: class FermentationBarrelGui
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/FermentationBarrelGui.java:139: error: cannot find symbol
+      public static void drawJuiceBar(GuiGraphics guiGraphics, String juiceType, int juiceAmount, int originX, int originY) {
+                                      ^
+    symbol:   class GuiGraphics
+    location: class FermentationBarrelGui
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/FermentationBarrelGui.java:165: error: cannot find symbol
+      protected void renderBg(GuiGraphics guiGraphics, float partialTicks, int mouseX, int mouseY) {
+                              ^
+    symbol:   class GuiGraphics
+    location: class FermentationBarrelGui
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/FermentationBarrelGui.java:176: error: cannot find symbol
+      protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+                                  ^
+    symbol:   class GuiGraphics
+    location: class FermentationBarrelGui
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/FermentationBarrelGui.java:181: error: cannot find symbol
+      protected void renderCraftingProgress(GuiGraphics guiGraphics, int guiLeft, int guiTop) {
+                                            ^
+    symbol:   class GuiGraphics
+    location: class FermentationBarrelGui
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/VineryClient.java:8: error: cannot find symbol
+  import dev.architectury.registry.client.rendering.RenderTypeRegistry;
+                                                   ^
+    symbol:   class RenderTypeRegistry
+    location: package dev.architectury.registry.client.rendering
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/VineryClient.java:15: error: cannot find symbol
+  import net.minecraft.client.renderer.blockentity.SignRenderer;
+                                                  ^
+    symbol:   class SignRenderer
+    location: package net.minecraft.client.renderer.blockentity
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/util/FoodComponent.java:51: error: cannot find symbol
+  					ItemStack.SINGLE_ITEM_CODEC.optionalFieldOf("using_converts_to").forGetter(FoodComponent::usingConvertsTo),
+  					         ^
+    symbol:   variable SINGLE_ITEM_CODEC
+    location: class ItemStack
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/util/GeneralUtil.java:278: error: cannot find symbol
+          if (level instanceof ServerLevel serverLevel && !itemStack.isEmpty() && serverLevel.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS)) {
+                                                                                                                                 ^
+    symbol:   variable RULE_DOBLOCKDROPS
+    location: class GameRules
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/util/ClientUtil.java:14: error: cannot find symbol
+          return LightTexture.pack(bLight, sLight);
+                 ^
+    symbol:   variable LightTexture
+    location: class ClientUtil
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/CompletionistBannerRenderer.java:123: error: cannot find symbol
+          Material material = ModelBakery.BANNER_BASE;
+                                         ^
+    symbol:   variable BANNER_BASE
+    location: class ModelBakery
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/VineryClient.java:43: error: cannot find symbol
+          RenderTypeRegistry.register(ChunkSectionLayer.CUTOUT,
+          ^
+    symbol:   variable RenderTypeRegistry
+    location: class VineryClient
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/VineryClient.java:64: error: cannot find symbol
+          RenderTypeRegistry.register(ChunkSectionLayer.TRANSLUCENT, WINDOW.get(), WINDOW_BLOCK.get());
+          ^
+    symbol:   variable RenderTypeRegistry
+    location: class VineryClient
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/VineryClient.java:120: error: cannot find symbol
+          BlockEntityRendererRegistry.register((BlockEntityType<SignBlockEntity>) (BlockEntityType<?>) EntityTypeRegistry.MOD_SIGN.get(), SignRenderer::new);
+                                                                                                                                          ^
+    symbol:   class SignRenderer
+    location: class VineryClient
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/util/GeneralUtil.java:271: error: random has protected access in Level
+          double deltaX = i == 0 ? Mth.nextDouble(level.random, -0.1, 0.1) : (double)i * 0.1;
+                                                       ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/util/GeneralUtil.java:272: error: random has protected access in Level
+          double deltaY = j == 0 ? Mth.nextDouble(level.random, 0.0, 0.1) : (double)j * 0.1 + 0.1;
+                                                       ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/util/GeneralUtil.java:273: error: random has protected access in Level
+          double deltaZ = k == 0 ? Mth.nextDouble(level.random, -0.1, 0.1) : (double)k * 0.1;
+                                                       ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/mixin/FoxEntityEatSweetBerriesGoalMixin.java:53: error: random has protected access in Level
+          int j = 1 + fox().level().random.nextInt(2) + (age == 3 ? 1 : 0);
+                                   ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/mixin/WanderingTraderManagerMixin.java:39: error: random has protected access in Level
+  		if (world.random.nextDouble() < PlatformHelper.getTraderSpawnChance()) {
+  		         ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/mixin/WanderingTraderManagerMixin.java:96: error: random has protected access in Level
+  			int x = pos.getX() + world.random.nextInt(range * 2) - range;
+  			                          ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/mixin/WanderingTraderManagerMixin.java:97: error: random has protected access in Level
+  			int z = pos.getZ() + world.random.nextInt(range * 2) - range;
+  			                          ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/mixin/ConsumableMixin.java:33: error: random has protected access in Level
+  					if (world.isClientSide() || effect.effect() == null || !(world.random.nextFloat() < effect.probability())) continue;
+  					                                                              ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:62: error: x has private access in ChunkPos
+                          if(newChunkPos.x != currentChunkPos.x || newChunkPos.z != currentChunkPos.z) continue;
+                                        ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:62: error: x has private access in ChunkPos
+                          if(newChunkPos.x != currentChunkPos.x || newChunkPos.z != currentChunkPos.z) continue;
+                                                             ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:62: error: z has private access in ChunkPos
+                          if(newChunkPos.x != currentChunkPos.x || newChunkPos.z != currentChunkPos.z) continue;
+                                                                              ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:62: error: z has private access in ChunkPos
+                          if(newChunkPos.x != currentChunkPos.x || newChunkPos.z != currentChunkPos.z) continue;
+                                                                                                   ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/TabRegistry.java:18: error: Output has protected access in CreativeModeTab
+              .displayItems((parameters, out) -> {
+                                         ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/TabRegistry.java:18: error: Output has protected access in CreativeModeTab
+              .displayItems((parameters, out) -> {
+                            ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ObjectRegistry.java:78: error: SaplingBlock(TreeGrower,Properties) has protected access in SaplingBlock
+      public static final RegistrySupplier<Block> DARK_CHERRY_SAPLING = registerWithItem("dark_cherry_sapling", () -> new SaplingBlock(new TreeGrower("dark_cherry_tree", Optional.of(VineryConfiguredFeatures.DARK_CHERRY_KEY), Optional.of(VineryConfiguredFeatures.DARK_CHERRY_KEY), Optional.empty()), blockProps("dark_cherry_sapling").noCollision().randomTicks().instabreak().sound(SoundType.GRASS)));
+                                                                                                                      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ObjectRegistry.java:79: error: SaplingBlock(TreeGrower,Properties) has protected access in SaplingBlock
+      public static final RegistrySupplier<Block> APPLE_TREE_SAPLING = registerWithItem("apple_tree_sapling", () -> new SaplingBlock(new TreeGrower("apple_tree", Optional.of(VineryConfiguredFeatures.APPLE_KEY), Optional.of(VineryConfiguredFeatures.APPLE_VARIANT_KEY), Optional.empty()), blockProps("apple_tree_sapling").noCollision().randomTicks().instabreak().sound(SoundType.GRASS)));
+                                                                                                                    ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ObjectRegistry.java:109: error: StairBlock(BlockState,Properties) has protected access in StairBlock
+      public static final RegistrySupplier<Block> DARK_CHERRY_STAIRS = registerWithItem("dark_cherry_stairs", () -> new StairBlock(DARK_CHERRY_PLANKS.get().defaultBlockState(), blockProps("dark_cherry_stairs", DARK_CHERRY_PLANKS.get())));
+                                                                                                                    ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ObjectRegistry.java:114: error: PressurePlateBlock(BlockSetType,Properties) has protected access in PressurePlateBlock
+      public static final RegistrySupplier<Block> DARK_CHERRY_PRESSURE_PLATE = registerWithItem("dark_cherry_pressure_plate", () -> new PressurePlateBlock(BlockSetType.CHERRY, blockProps("dark_cherry_pressure_plate", Blocks.OAK_PRESSURE_PLATE)));
+                                                                                                                                    ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ObjectRegistry.java:115: error: DoorBlock(BlockSetType,Properties) has protected access in DoorBlock
+      public static final RegistrySupplier<Block> DARK_CHERRY_DOOR = registerWithItem("dark_cherry_door", () -> new DoorBlock(BlockSetType.CHERRY, blockProps("dark_cherry_door", Blocks.OAK_DOOR)));
+                                                                                                                ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ObjectRegistry.java:116: error: TrapDoorBlock(BlockSetType,Properties) has protected access in TrapDoorBlock
+      public static final RegistrySupplier<Block> DARK_CHERRY_TRAPDOOR = registerWithItem("dark_cherry_trapdoor", () -> new TrapDoorBlock(BlockSetType.CHERRY, blockProps("dark_cherry_trapdoor", Blocks.OAK_TRAPDOOR)));
+                                                                                                                        ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ObjectRegistry.java:326: error: ButtonBlock(BlockSetType,int,Properties) has protected access in ButtonBlock
+          return new ButtonBlock(BlockSetType.CHERRY, 30, properties);
+                 ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/EntityTypeRegistry.java:34: error: BlockEntitySupplier has private access in BlockEntityType
+      public static final RegistrySupplier<BlockEntityType<DarkCherrySignBlockEntity>> MOD_SIGN = registerBlockEntity("mod_sign", () -> new BlockEntityType<>(DarkCherrySignBlockEntity::new, Set.of(DARK_CHERRY_SIGN.get(), DARK_CHERRY_WALL_SIGN.get())));
+                                                                                                                                                              ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/EntityTypeRegistry.java:35: error: BlockEntitySupplier has private access in BlockEntityType
+      public static final RegistrySupplier<BlockEntityType<DarkCherryHangingSignBlockEntity>> MOD_HANGING_SIGN = registerBlockEntity("mod_hanging_sign", () -> new BlockEntityType<>(DarkCherryHangingSignBlockEntity::new, Set.of(DARK_CHERRY_HANGING_SIGN.get(), DARK_CHERRY_WALL_HANGING_SIGN.get())));
+                                                                                                                                                                                     ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/EntityTypeRegistry.java:39: error: BlockEntitySupplier has private access in BlockEntityType
+                      new BlockEntityType<>(StorageBlockEntity::new, StorageTypeRegistry.registerBlocks(new HashSet<>()))
+                                            ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/EntityTypeRegistry.java:43: error: BlockEntitySupplier has private access in BlockEntityType
+              new BlockEntityType<>(CabinetBlockEntity::new, Set.of(StorageTypeRegistry.getCabinetBlocks())));
+                                    ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/EntityTypeRegistry.java:47: error: BlockEntitySupplier has private access in BlockEntityType
+                      new BlockEntityType<>(StoragePotBlockEntity::new, Set.of(STORAGE_POT.get()))
+                                            ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/EntityTypeRegistry.java:66: error: BlockEntitySupplier has private access in BlockEntityType
+      public static final RegistrySupplier<BlockEntityType<ApplePressBlockEntity>> APPLE_PRESS_BLOCK_ENTITY = registerBlockEntity("apple_press", () -> new BlockEntityType<>(ApplePressBlockEntity::new, Set.of(APPLE_PRESS.get())));
+                                                                                                                                                                             ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/EntityTypeRegistry.java:67: error: BlockEntitySupplier has private access in BlockEntityType
+      public static final RegistrySupplier<BlockEntityType<FermentationBarrelBlockEntity>> FERMENTATION_BARREL_ENTITY = registerBlockEntity("fermentation_barrel", () -> new BlockEntityType<>(FermentationBarrelBlockEntity::new, Set.of(FERMENTATION_BARREL.get())));
+                                                                                                                                                                                               ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/EntityTypeRegistry.java:68: error: BlockEntitySupplier has private access in BlockEntityType
+      public static final RegistrySupplier<BlockEntityType<CompletionistBannerEntity>> VINERY_STANDARD = registerBlockEntity("vinery_standard", () -> new BlockEntityType<>(CompletionistBannerEntity::new, Set.of(ObjectRegistry.VINERY_STANDARD.get(), VINERY_WALL_STANDARD.get())));
+                                                                                                                                                                            ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/EntityTypeRegistry.java:71: error: BlockEntitySupplier has private access in BlockEntityType
+                      new BlockEntityType<>(DarkCherryBarrelBlockEntity::new, Set.of(DARK_CHERRY_BARREL.get()))
+                                            ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/EntityTypeRegistry.java:74: error: BlockEntitySupplier has private access in BlockEntityType
+      public static final RegistrySupplier<BlockEntityType<LatticeBlockEntity>> LATTICE = registerBlockEntity("lattice", () -> new BlockEntityType<>(LatticeBlockEntity::new, Set.of(OAK_LATTICE.get(), SPRUCE_LATTICE.get(), CHERRY_LATTICE.get(), BIRCH_LATTICE.get(), DARK_OAK_LATTICE.get(), ACACIA_LATTICE.get(), BAMBOO_LATTICE.get(), JUNGLE_LATTICE.get(), MANGROVE_LATTICE.get(), DARK_CHERRY_LATTICE.get())));
+                                                                                                                                                     ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/entity/LatticeBlockEntity.java:43: error: random has protected access in Level
+              this.showHanging = level.random.nextFloat() < 0.15f;
+                                      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ScreenhandlerTypeRegistry.java:19: error: <T>MenuType(MenuSupplier<T>,FeatureFlagSet) has private access in MenuType
+      public static final RegistrySupplier<MenuType<FermentationBarrelGuiHandler>> FERMENTATION_BARREL_GUI_HANDLER = register("fermentation_barrel_gui_handler", () -> new MenuType<>(FermentationBarrelGuiHandler::new, FeatureFlags.VANILLA_SET));
+                                                                                                                                                                       ^
+    where T is a type-variable:
+      T extends AbstractContainerMenu declared in class MenuType
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ScreenhandlerTypeRegistry.java:19: error: MenuSupplier has private access in MenuType
+      public static final RegistrySupplier<MenuType<FermentationBarrelGuiHandler>> FERMENTATION_BARREL_GUI_HANDLER = register("fermentation_barrel_gui_handler", () -> new MenuType<>(FermentationBarrelGuiHandler::new, FeatureFlags.VANILLA_SET));
+                                                                                                                                                                                      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ScreenhandlerTypeRegistry.java:20: error: <T>MenuType(MenuSupplier<T>,FeatureFlagSet) has private access in MenuType
+      public static final RegistrySupplier<MenuType<ApplePressGuiHandler>> APPLE_PRESS_GUI_HANDLER = register("apple_press_gui_handler", () -> new MenuType<>(ApplePressGuiHandler::new, FeatureFlags.VANILLA_SET));
+                                                                                                                                               ^
+    where T is a type-variable:
+      T extends AbstractContainerMenu declared in class MenuType
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ScreenhandlerTypeRegistry.java:20: error: MenuSupplier has private access in MenuType
+      public static final RegistrySupplier<MenuType<ApplePressGuiHandler>> APPLE_PRESS_GUI_HANDLER = register("apple_press_gui_handler", () -> new MenuType<>(ApplePressGuiHandler::new, FeatureFlags.VANILLA_SET));
+                                                                                                                                                              ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/FlammableBlockRegistry.java:24: error: setFlammable(Block,int,int) has private access in FireBlock
+              fireBlock.setFlammable(block, burnOdd, igniteOdd);
+                       ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/StemBlock.java:43: error: random has protected access in Level
+          final int x = 1 + world.random.nextInt(this.isMature(state) ? 2 : 1);
+                                 ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/StemBlock.java:51: error: random has protected access in Level
+          world.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+                                                                                                                      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/GrapeVineBlock.java:58: error: random has protected access in Level
+              int x = world.random.nextInt(2);
+                           ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/GrapeVineBlock.java:60: error: random has protected access in Level
+              world.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+                                                                                                                          ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/DarkCherryLeavesBlock.java:77: error: random has protected access in Level
+          boolean canGrowCherries = ctx.getLevel().random.nextFloat() < 0.3f;
+                                                  ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/PaleStemBlock.java:109: error: random has protected access in Level
+                          int delay = 4800 + world.random.nextInt(4801);
+                                                  ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/PaleStemBlock.java:129: error: random has protected access in Level
+              int delay = 4800 + world.random.nextInt(4801);
+                                      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/GrapeBush.java:75: error: random has protected access in Level
+              int x = world.random.nextInt(2);
+                           ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/GrapeBush.java:77: error: random has protected access in Level
+              world.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+                                                                                                                          ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/AppleLeavesBlock.java:84: error: random has protected access in Level
+          boolean canGrowApples = ctx.getLevel().random.nextFloat() < 0.3f;
+                                                ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/LatticeRenderer.java:176: error: blockState has private access in BlockEntityRenderState
+          BlockState blockState = state.blockState;
+                                       ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/storage/StorageBlockEntityRenderer.java:83: error: blockState has private access in BlockEntityRenderState
+          applyBlockAngle(poseStack, state.blockState, 180);
+                                          ^
+  Note: Recompile with -Xlint:unchecked for details.
+  Note: Some input files use or override a deprecated API.
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/ApplePressFermentingRecipe.java:44: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/ApplePressFermentingRecipe.java:107: error: method does not override or implement a method from a supertype
+          @Override
+          ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/ApplePressFermentingRecipe.java:116: error: method does not override or implement a method from a supertype
+          @Override
+          ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/ApplePressMashingRecipe.java:37: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/ApplePressMashingRecipe.java:90: error: method does not override or implement a method from a supertype
+          @Override
+          ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/ApplePressMashingRecipe.java:98: error: method does not override or implement a method from a supertype
+          @Override
+          ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/FermentationBarrelRecipe.java:82: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/FermentationBarrelRecipe.java:134: error: method does not override or implement a method from a supertype
+          @Override
+          ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/FermentationBarrelRecipe.java:146: error: method does not override or implement a method from a supertype
+          @Override
+          ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/compat/jei/category/ApplePressFermentingCategory.java:66: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/compat/jei/category/ApplePressMashingCategory.java:53: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/compat/jei/category/FermentationBarrelCategory.java:58: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:46: error: method does not override or implement a method from a supertype
+  	@Override
+  	^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/DarkCherryLeavesBlock.java:169: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/AppleLeavesBlock.java:174: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/ApplePressGui.java:41: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/ApplePressGui.java:66: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/FermentationBarrelGui.java:48: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/FermentationBarrelGui.java:164: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/gui/FermentationBarrelGui.java:175: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/compat/rei/press/ApplePressFermentingDisplay.java:45: error: cannot find symbol
+                  Optional.of(recipe.id().location()));
+                                         ^
+    symbol:   method location()
+    location: class ResourceKey<Recipe<?>>
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/compat/rei/press/ApplePressDisplay.java:46: error: cannot find symbol
+                  Optional.of(recipe.id().location()));
+                                         ^
+    symbol:   method location()
+    location: class ResourceKey<Recipe<?>>
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/compat/rei/wine/FermentationBarrelDisplay.java:56: error: cannot find symbol
+          this(prepareInputs(recipe.value()), prepareOutputs(recipe.value()), Optional.of(recipe.id().location()),
+                                                                                                     ^
+    symbol:   method location()
+    location: class ResourceKey<Recipe<?>>
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/util/GeneralUtil.java:186: error: cannot find symbol
+          return world.dimension().location();
+                                  ^
+    symbol:   method location()
+    location: class ResourceKey<Level>
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/mixin/WanderingTraderManagerMixin.java:75: error: cannot find symbol
+  									this.serverLevelData.setWanderingTraderId(wanderingTraderEntity.getUUID());
+  									                    ^
+    symbol:   method setWanderingTraderId(UUID)
+    location: variable serverLevelData of type ServerLevelData
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/item/BasketItem.java:26: error: cannot find symbol
+          return contents == null ? Stream.empty() : contents.nonEmptyStream();
+                                                             ^
+    symbol:   method nonEmptyStream()
+    location: variable contents of type ItemContainerContents
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/registry/ArmorRegistryClient.java:80: error: cannot find symbol
+          return RenderType.armorCutoutNoCull(slot == EquipmentSlot.LEGS ? LEGGINGS_TEXTURE : ARMOR_TEXTURE);
+                           ^
+    symbol:   method armorCutoutNoCull(slot == Eq[...]XTURE)
+    location: class RenderType
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/command/WineDebugCommands.java:21: error: cannot find symbol
+                          .requires(source -> source.hasPermission(2) && source.getEntity() instanceof ServerPlayer)
+                                                    ^
+    symbol:   method hasPermission(int)
+    location: variable source of type CommandSourceStack
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/block/SpreadableGrassSlabBlock.java:86: error: cannot find symbol
+          int i = LightEngine.getLightBlockInto(GRASS_BLOCK.defaultBlockState(), blockState, Direction.UP, blockState.getLightBlock());
+                                                                                                                     ^
+    symbol:   method getLightBlock()
+    location: variable blockState of type BlockState
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/LatticeRenderer.java:191: error: cannot find symbol
+          RenderType renderType = RenderType.entityCutoutNoCull(texture);
+                                            ^
+    symbol:   method entityCutoutNoCull(Identifier)
+    location: class RenderType
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/storage/FourBottleRenderer.java:39: error: cannot find symbol
+                  collector.submitBlock(poseStack, blockState, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+                           ^
+    symbol:   method submitBlock(PoseStack,BlockState,int,int,int)
+    location: variable collector of type SubmitNodeCollector
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/storage/BigBottleRenderer.java:24: error: cannot find symbol
+              collector.submitBlock(poseStack, blockState, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+                       ^
+    symbol:   method submitBlock(PoseStack,BlockState,int,int,int)
+    location: variable collector of type SubmitNodeCollector
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/storage/WineBottleRenderer.java:43: error: cannot find symbol
+          collector.submitBlock(poseStack, getState(item), state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+                   ^
+    symbol:   method submitBlock(PoseStack,BlockState,int,int,int)
+    location: variable collector of type SubmitNodeCollector
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/storage/NineBottleRenderer.java:49: error: cannot find symbol
+              collector.submitBlock(poseStack, blockState, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+                       ^
+    symbol:   method submitBlock(PoseStack,BlockState,int,int,int)
+    location: variable collector of type SubmitNodeCollector
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/storage/WineBoxRenderer.java:33: error: cannot find symbol
+          collector.submitBlock(poseStack, renderState, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+                   ^
+    symbol:   method submitBlock(PoseStack,BlockState,int,int,int)
+    location: variable collector of type SubmitNodeCollector
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/CompletionistBannerRenderer.java:47: error: cannot find symbol
+          this.materials = context.materials();
+                                  ^
+    symbol:   method materials()
+    location: variable context of type Context
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/client/render/block/CompletionistBannerRenderer.java:130: error: cannot find symbol
+          collector.submitModel(this.flagModel, state.phase, poseStack, RenderType.entitySolid(state.texture),
+                                                                                  ^
+    symbol:   method entitySolid(Identifier)
+    location: class RenderType
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:16: error: incompatible types: cannot infer type arguments for HashMap<>
+  		HashMap<Integer, VillagerTrades.ItemListing[]> trades = new HashMap<>();
+  		                                                                   ^
+      reason: inferred type does not conform to equality constraint(s)
+        inferred: Object
+        equality constraints(s): ItemListing[]
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/item/BasketItem.java:35: error: incompatible types: NonNullList<ItemStack> cannot be converted to List<ItemStackTemplate>
+          return Optional.of(new BundleTooltip(new BundleContents(nonNullList)));
+                                                                  ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/ApplePressFermentingRecipe.java:23: error: ApplePressFermentingRecipe is not abstract and does not override abstract method group() in Recipe
+  public class ApplePressFermentingRecipe implements Recipe<ApplePressFermentingRecipeInput> {
+         ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/ApplePressMashingRecipe.java:22: error: ApplePressMashingRecipe is not abstract and does not override abstract method group() in Recipe
+  public class ApplePressMashingRecipe implements Recipe<ApplePressMashingRecipeInput> {
+         ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/FermentationBarrelRecipe.java:27: error: FermentationBarrelRecipe is not abstract and does not override abstract method group() in Recipe
+  public class FermentationBarrelRecipe implements Recipe<FermentationBarrelRecipeInput> {
+         ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/compat/jei/category/ApplePressFermentingCategory.java:23: error: ApplePressFermentingCategory is not abstract and does not override abstract method getHeight() in IRecipeCategory
+  public class ApplePressFermentingCategory implements IRecipeCategory<ApplePressFermentingRecipe> {
+         ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/compat/jei/category/ApplePressMashingCategory.java:19: error: ApplePressMashingCategory is not abstract and does not override abstract method getHeight() in IRecipeCategory
+  public class ApplePressMashingCategory implements IRecipeCategory<ApplePressMashingRecipe> {
+         ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/compat/jei/category/FermentationBarrelCategory.java:24: error: FermentationBarrelCategory is not abstract and does not override abstract method getHeight() in IRecipeCategory
+  public class FermentationBarrelCategory implements IRecipeCategory<FermentationBarrelRecipe> {
+         ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/FermentationBarrelRecipe.java:127: error: interface expected here
+      public static class Serializer implements RecipeSerializer<FermentationBarrelRecipe> {
+                                                ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/ApplePressMashingRecipe.java:88: error: interface expected here
+      public static class Serializer implements RecipeSerializer<ApplePressMashingRecipe> {
+                                                ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/recipe/ApplePressFermentingRecipe.java:99: error: interface expected here
+      public static class Serializer implements RecipeSerializer<ApplePressFermentingRecipe> {
+                                                ^
+  Note: /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/util/GeneralUtil.java uses unchecked or unsafe operations.
+  Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/mixin/SpreadingSnowyDirtBlockMixin.java:16: error: cannot find symbol
+  @Mixin(SpreadingSnowyDirtBlock.class)
+         ^
+    symbol: class SpreadingSnowyDirtBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/util/VillagerUtil.java:18: error: package VillagerTrades does not exist
+      public static class SellItemFactory implements VillagerTrades.ItemListing {
+                                                                   ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/util/VillagerUtil.java:60: error: package VillagerTrades does not exist
+      public static class BuyForOneEmeraldFactory implements VillagerTrades.ItemListing {
+                                                                           ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:13: error: package VillagerTrades does not exist
+  	public static final HashMap<Integer, VillagerTrades.ItemListing[]> TRADES = createTrades();
+  	                                                   ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:15: error: package VillagerTrades does not exist
+  	private static  HashMap<Integer, VillagerTrades.ItemListing[]> createTrades() {
+  	                                               ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:16: error: package VillagerTrades does not exist
+  		HashMap<Integer, VillagerTrades.ItemListing[]> trades = new HashMap<>();
+  		                               ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:17: error: package VillagerTrades does not exist
+  		trades.put(1, new VillagerTrades.ItemListing[]{
+  		                                ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:18: error: package VillagerTrades does not exist
+  				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.RED_GRAPE_SEEDS.get(), 1, 1, 8, 1),
+  				                  ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:19: error: package VillagerTrades does not exist
+  				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.WHITE_GRAPE_SEEDS.get(), 1, 1, 8, 1),
+  				                  ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:20: error: package VillagerTrades does not exist
+  				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.TAIGA_RED_GRAPE_SEEDS.get(), 1, 1, 8, 1),
+  				                  ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:21: error: package VillagerTrades does not exist
+  				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.TAIGA_WHITE_GRAPE_SEEDS.get(), 1, 1, 8, 1),
+  				                  ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:22: error: package VillagerTrades does not exist
+  				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.SAVANNA_RED_GRAPE_SEEDS.get(), 1, 1, 8, 1),
+  				                  ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:23: error: package VillagerTrades does not exist
+  				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.SAVANNA_WHITE_GRAPE_SEEDS.get(), 1, 1, 8, 1),
+  				                  ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:24: error: package VillagerTrades does not exist
+  				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.JUNGLE_RED_GRAPE_SEEDS.get(), 1, 1, 8, 1),
+  				                  ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:25: error: package VillagerTrades does not exist
+  				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.JUNGLE_WHITE_GRAPE.get(), 1, 1, 8, 1),
+  				                  ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:26: error: package VillagerTrades does not exist
+  				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.DARK_CHERRY_SAPLING.get(), 3, 1, 8, 1),
+  				                  ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:27: error: package VillagerTrades does not exist
+  				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.APPLE_TREE_SAPLING.get(), 5, 1, 8, 1),
+  				                  ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:28: error: package VillagerTrades does not exist
+  				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.RED_GRAPE.get(), 2, 1, 8, 1),
+  				                  ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:29: error: package VillagerTrades does not exist
+  				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.RED_GRAPEJUICE.get(), 4, 1, 8, 1),
+  				                  ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:30: error: package VillagerTrades does not exist
+  				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.WHITE_GRAPEJUICE.get(), 4, 1, 8, 1),
+  				                  ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:31: error: package VillagerTrades does not exist
+  				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.RED_SAVANNA_GRAPEJUICE.get(), 4, 1, 8, 1),
+  				                  ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:32: error: package VillagerTrades does not exist
+  				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.WHITE_TAIGA_GRAPEJUICE.get(), 4, 1, 8, 1),
+  				                  ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:33: error: package VillagerTrades does not exist
+  				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.RED_JUNGLE_GRAPEJUICE.get(), 4, 1, 8, 1),
+  				                  ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:34: error: package VillagerTrades does not exist
+  				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.COARSE_DIRT_SLAB.get(), 1, 3, 8, 1),
+  				                  ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:35: error: package VillagerTrades does not exist
+  				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.GRASS_SLAB.get(), 1, 3, 8, 1),
+  				                  ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:36: error: package VillagerTrades does not exist
+  				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.DARK_CHERRY_PLANKS.get(), 3, 4, 8, 1),
+  				                  ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/common/src/main/java/net/satisfy/vinery/core/entity/WanderingWinemakerEntity.java:37: error: package VillagerTrades does not exist
+  				new VillagerTrades.ItemsForEmeralds(ObjectRegistry.CHERRY_WINE.get(), 1, 1, 8, 1)
+  				                  ^
+  169 errors
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+For more on this, please refer to https://docs.gradle.org/9.5.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+BUILD FAILED in 1s
+1 actionable task: 1 executed
