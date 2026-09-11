@@ -1,3 +1,15 @@
+[1.6.0]
+
+**Welcome to 1.21.10!**
+
+**Changed**
+* Ported to Minecraft 1.21.10 (Fabric + NeoForge, Architectury 18)
+* Recipes are synced to the client by the mod so JEI and REI show Vinery recipes on 1.21.2+ servers
+* Item models, recipes, loot tables and armor equipment assets migrated to the 1.21.10 data formats
+* Dark Cherry boats now use vanilla boat entities
+
+***
+
 [1.5.3]
 
 **Fixed**

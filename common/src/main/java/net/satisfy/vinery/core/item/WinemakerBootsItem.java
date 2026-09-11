@@ -1,6 +1,8 @@
 package net.satisfy.vinery.core.item;
 
-import net.minecraft.client.Minecraft;
+import dev.architectury.platform.Platform;
+import dev.architectury.utils.Env;
+import net.satisfy.vinery.client.util.ClientUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -30,7 +32,7 @@ public class WinemakerBootsItem extends Item {
 
     @Override
     public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext ctx, @NotNull TooltipDisplay display, @NotNull Consumer<Component> consumer, @NotNull TooltipFlag flag) {
-        if (Minecraft.getInstance().level != null && Minecraft.getInstance().level.isClientSide()) {
+        if (Platform.getEnvironment() == Env.CLIENT && ClientUtil.hasClientLevel()) {
             List<Component> tooltip = new ArrayList<>();
             ArmorRegistryClient.appendToolTip(tooltip);
             tooltip.forEach(consumer);

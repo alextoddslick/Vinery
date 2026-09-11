@@ -3,7 +3,7 @@ package net.satisfy.vinery.core.item;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
+import net.satisfy.vinery.client.util.ClientUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
@@ -129,7 +129,7 @@ public class DrinkBlockItem extends BlockItem {
 
     @Environment(EnvType.CLIENT)
     private Level getLevel() {
-        return Minecraft.getInstance().level;
+        return ClientUtil.getClientLevel();
     }
 
     @Override
