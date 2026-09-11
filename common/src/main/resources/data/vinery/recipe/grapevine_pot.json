@@ -1,19 +1,15 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "group": "grapevine_pot",
-    "pattern": [
-        "_ _",
-        "SSS"
-    ],
-    "key": {
-        "_": {
-            "tag": "minecraft:wooden_slabs"
-        },
-        "S": {
-            "tag": "minecraft:planks"
-        }
-    },
-    "result": {
-        "id": "vinery:grapevine_pot"
-    }
+  "type": "minecraft:crafting_shaped",
+  "group": "grapevine_pot",
+  "pattern": [
+    "_ _",
+    "SSS"
+  ],
+  "key": {
+    "_": "#minecraft:wooden_slabs",
+    "S": "#minecraft:planks"
+  },
+  "result": {
+    "id": "vinery:grapevine_pot"
+  }
 }

@@ -91,7 +91,7 @@
     "sapling_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "vinery:apple_sapling",
+        "Name": "vinery:apple_tree_sapling",
         "Properties": {
           "stage": "0"
         }

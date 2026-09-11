@@ -1,34 +1,35 @@
 package net.satisfy.vinery.core.recipe;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.RegistryAccess;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
-import net.minecraft.world.entity.player.StackedContents;
+import net.minecraft.world.entity.player.StackedItemContents;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.PlacementInfo;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeBookCategories;
+import net.minecraft.world.item.crafting.RecipeBookCategory;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.satisfy.vinery.core.block.entity.FermentationBarrelBlockEntity;
 import net.satisfy.vinery.core.recipe.input.FermentationBarrelRecipeInput;
 import net.satisfy.vinery.core.registry.ObjectRegistry;
 import net.satisfy.vinery.core.registry.RecipeTypesRegistry;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class FermentationBarrelRecipe implements Recipe<FermentationBarrelRecipeInput> {
     private final NonNullList<Ingredient> inputs;
     private final ItemStack output;
     private final FermentationBarrelRecipeInput.JuiceData juiceData;
     private final boolean wineBottleRequired;
-    public static RecipeType<FermentationBarrelRecipe> Type = RecipeTypesRegistry.FERMENTATION_BARREL_RECIPE_TYPE.get();
+    private PlacementInfo placementInfo;
 
     public FermentationBarrelRecipe(NonNullList<Ingredient> inputs, FermentationBarrelRecipeInput.JuiceData data, ItemStack output, boolean wineBottleRequired) {
         this.inputs = inputs;
@@ -38,8 +39,13 @@ public class FermentationBarrelRecipe implements Recipe<FermentationBarrelRecipe
         this.wineBottleRequired = wineBottleRequired;
     }
 
-    public FermentationBarrelRecipeInput.JuiceData getJuiceData()
-    {
+    public static NonNullList<Ingredient> toNonNullList(List<Ingredient> ingredients) {
+        NonNullList<Ingredient> list = NonNullList.createWithCapacity(ingredients.size());
+        list.addAll(ingredients);
+        return list;
+    }
+
+    public FermentationBarrelRecipeInput.JuiceData getJuiceData() {
         return this.juiceData;
     }
 
@@ -59,7 +65,7 @@ public class FermentationBarrelRecipe implements Recipe<FermentationBarrelRecipe
             if (wineBottle.isEmpty() || !wineBottle.is(ObjectRegistry.WINE_BOTTLE.get())) return false;
         }
 
-        StackedContents recipeMatcher = new StackedContents();
+        StackedItemContents recipeMatcher = new StackedItemContents();
         int matchingStacks = 0;
 
         for (int i = 0; i < input.getIngredientSlots().size(); i++) {
@@ -78,18 +84,10 @@ public class FermentationBarrelRecipe implements Recipe<FermentationBarrelRecipe
         return this.output.copy();
     }
 
-
-    @Override
     public @NotNull NonNullList<Ingredient> getIngredients() {
         return this.inputs;
     }
 
-    @Override
-    public boolean canCraftInDimensions(int width, int height) {
-        return true;
-    }
-
-    @Override
     public @NotNull ItemStack getResultItem(HolderLookup.Provider registryAccess) {
         return this.output.copy();
     }
@@ -99,13 +97,26 @@ public class FermentationBarrelRecipe implements Recipe<FermentationBarrelRecipe
     }
 
     @Override
-    public @NotNull RecipeSerializer<?> getSerializer() {
+    public @NotNull RecipeSerializer<FermentationBarrelRecipe> getSerializer() {
         return RecipeTypesRegistry.FERMENTATION_BARREL_RECIPE_SERIALIZER.get();
     }
 
     @Override
-    public @NotNull RecipeType<?> getType() {
+    public @NotNull RecipeType<FermentationBarrelRecipe> getType() {
         return RecipeTypesRegistry.FERMENTATION_BARREL_RECIPE_TYPE.get();
+    }
+
+    @Override
+    public @NotNull PlacementInfo placementInfo() {
+        if (this.placementInfo == null) {
+            this.placementInfo = PlacementInfo.create(this.inputs);
+        }
+        return this.placementInfo;
+    }
+
+    @Override
+    public @NotNull RecipeBookCategory recipeBookCategory() {
+        return RecipeBookCategories.CRAFTING_MISC;
     }
 
     @Override
@@ -119,12 +130,12 @@ public class FermentationBarrelRecipe implements Recipe<FermentationBarrelRecipe
                         Codec.BOOL.fieldOf("required").forGetter(b -> b)
                 ).apply(inst, b -> b)
         );
+
         @Override
-        public MapCodec<FermentationBarrelRecipe> codec() {
+        public @NotNull MapCodec<FermentationBarrelRecipe> codec() {
             return RecordCodecBuilder.mapCodec(instance -> instance.group(
                     Ingredient.CODEC.listOf().fieldOf("ingredients")
-                            .xmap(list -> NonNullList.of(Ingredient.EMPTY, list.toArray(new Ingredient[0])),
-                                    ingredients -> ingredients)
+                            .xmap(FermentationBarrelRecipe::toNonNullList, ingredients -> ingredients)
                             .forGetter(FermentationBarrelRecipe::getInputs),
                     FermentationBarrelRecipeInput.JuiceData.CODEC.fieldOf("juice").forGetter(FermentationBarrelRecipe::getJuiceData),
                     ItemStack.CODEC.fieldOf("result").forGetter(r -> r.output),
@@ -133,22 +144,22 @@ public class FermentationBarrelRecipe implements Recipe<FermentationBarrelRecipe
         }
 
         @Override
-        public StreamCodec<RegistryFriendlyByteBuf, FermentationBarrelRecipe> streamCodec() {
+        public @NotNull StreamCodec<RegistryFriendlyByteBuf, FermentationBarrelRecipe> streamCodec() {
             return StreamCodec.of(
                     (buf, recipe) -> {
                         buf.writeVarInt(recipe.inputs.size());
                         for (Ingredient ingredient : recipe.inputs) {
                             Ingredient.CONTENTS_STREAM_CODEC.encode(buf, ingredient);
                         }
-                        FermentationBarrelRecipeInput.JuiceData.STREAM_CODEC.encode(buf,recipe.getJuiceData());
+                        FermentationBarrelRecipeInput.JuiceData.STREAM_CODEC.encode(buf, recipe.getJuiceData());
                         ItemStack.STREAM_CODEC.encode(buf, recipe.output);
                         buf.writeBoolean(recipe.wineBottleRequired);
                     },
                     buf -> {
                         int size = buf.readVarInt();
-                        NonNullList<Ingredient> inputs = NonNullList.withSize(size, Ingredient.EMPTY);
+                        NonNullList<Ingredient> inputs = NonNullList.createWithCapacity(size);
                         for (int i = 0; i < size; i++) {
-                            inputs.set(i, Ingredient.CONTENTS_STREAM_CODEC.decode(buf));
+                            inputs.add(Ingredient.CONTENTS_STREAM_CODEC.decode(buf));
                         }
 
                         FermentationBarrelRecipeInput.JuiceData juiceData =

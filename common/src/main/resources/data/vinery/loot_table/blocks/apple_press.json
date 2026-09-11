@@ -1,2 +1,4 @@
 {
+  "type": "minecraft:block",
+  "random_sequence": "vinery:blocks/apple_press"
 }

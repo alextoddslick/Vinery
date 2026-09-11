@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
 import net.satisfy.vinery.core.command.WineDebugCommands;
 import net.satisfy.vinery.core.event.EventHandler;
+import net.satisfy.vinery.core.network.VineryNetwork;
 import net.satisfy.vinery.core.registry.*;
 import net.satisfy.vinery.core.util.WineEffectSetup;
 import net.satisfy.vinery.core.world.feature.VineryFeatures;
@@ -15,6 +16,7 @@ public class Vinery {
     public static final String MOD_ID = "vinery";
 
     public static void init() {
+        VineryNetwork.init();
         MobEffectRegistry.register();
         ObjectRegistry.init();
         EntityTypeRegistry.init();

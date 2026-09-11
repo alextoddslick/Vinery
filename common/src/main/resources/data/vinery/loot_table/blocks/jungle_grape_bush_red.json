@@ -82,5 +82,6 @@
     {
       "function": "minecraft:explosion_decay"
     }
-  ]
+  ],
+  "random_sequence": "vinery:blocks/jungle_grape_bush_red"
 }

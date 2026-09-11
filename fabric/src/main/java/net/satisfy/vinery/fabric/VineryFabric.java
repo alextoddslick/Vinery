@@ -22,9 +22,10 @@ public class VineryFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         AutoConfig.register(VineryFabricConfig.class, GsonConfigSerializer::new);
-        VineryFabricVillagers.registerPOIAndProfession();
 
         Vinery.init();
+        // must run after Vinery.init(), the POI type is built from the (now registered) fermentation barrel block
+        VineryFabricVillagers.registerPOIAndProfession();
         CompostableRegistry.registerCompostable();
         VineryBiomeModification.init();
         Vinery.commonSetup();

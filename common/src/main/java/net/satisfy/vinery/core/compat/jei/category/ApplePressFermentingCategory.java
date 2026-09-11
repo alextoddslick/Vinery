@@ -8,21 +8,21 @@ import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
-import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
-import net.minecraft.client.Minecraft;
+import mezz.jei.api.recipe.types.IRecipeType;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.recipe.ApplePressFermentingRecipe;
 import net.satisfy.vinery.core.registry.ObjectRegistry;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector2i;
 
 public class ApplePressFermentingCategory implements IRecipeCategory<ApplePressFermentingRecipe> {
-    public static final RecipeType<ApplePressFermentingRecipe> APPLE_PRESS_TYPE = RecipeType.create("vinery", "apple_press_fermenting", ApplePressFermentingRecipe.class);
+    public static final IRecipeType<ApplePressFermentingRecipe> APPLE_PRESS_TYPE =
+            IRecipeType.create(Vinery.MOD_ID, "apple_press_fermenting", ApplePressFermentingRecipe.class);
 
     private static final int BACKGROUND_WIDTH = 160;
     private static final int BACKGROUND_HEIGHT = 70;
@@ -52,7 +52,7 @@ public class ApplePressFermentingCategory implements IRecipeCategory<ApplePressF
 
     @NotNull
     @Override
-    public RecipeType<ApplePressFermentingRecipe> getRecipeType() {
+    public IRecipeType<ApplePressFermentingRecipe> getRecipeType() {
         return APPLE_PRESS_TYPE;
     }
 
@@ -78,16 +78,14 @@ public class ApplePressFermentingCategory implements IRecipeCategory<ApplePressF
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, ApplePressFermentingRecipe recipe, IFocusGroup focuses) {
         builder.addSlot(RecipeIngredientRole.INPUT, 101 - X_OFFSET, 50 - Y_OFFSET)
-                .addIngredients(recipe.getIngredients().get(0));
+                .add(recipe.getInput());
 
-        assert Minecraft.getInstance().level != null;
         builder.addSlot(RecipeIngredientRole.OUTPUT, 119 - X_OFFSET, 18 - Y_OFFSET)
-                .addItemStack(recipe.getResultItem(Minecraft.getInstance().level.registryAccess()));
+                .add(recipe.getResultItem(null));
 
         if (recipe.requiresBottle()) {
-            ItemStack wineBottle = new ItemStack(ObjectRegistry.WINE_BOTTLE.get());
             builder.addSlot(RecipeIngredientRole.INPUT, 119 - X_OFFSET, 50 - Y_OFFSET)
-                    .addIngredients(Ingredient.of(wineBottle));
+                    .add(new ItemStack(ObjectRegistry.WINE_BOTTLE.get()));
         }
     }
 

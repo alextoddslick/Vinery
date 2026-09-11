@@ -6,18 +6,19 @@ import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
-import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
-import net.minecraft.client.Minecraft;
+import mezz.jei.api.recipe.types.IRecipeType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.recipe.ApplePressMashingRecipe;
 import net.satisfy.vinery.core.registry.ObjectRegistry;
 import org.jetbrains.annotations.NotNull;
 
 public class ApplePressMashingCategory implements IRecipeCategory<ApplePressMashingRecipe> {
-    public static final RecipeType<ApplePressMashingRecipe> APPLE_PRESS_MASHING_TYPE = RecipeType.create("vinery", "apple_press_mashing", ApplePressMashingRecipe.class);
+    public static final IRecipeType<ApplePressMashingRecipe> APPLE_PRESS_MASHING_TYPE =
+            IRecipeType.create(Vinery.MOD_ID, "apple_press_mashing", ApplePressMashingRecipe.class);
 
     private static final int BACKGROUND_WIDTH = 160;
     private static final int BACKGROUND_HEIGHT = 70;
@@ -38,7 +39,7 @@ public class ApplePressMashingCategory implements IRecipeCategory<ApplePressMash
 
     @NotNull
     @Override
-    public RecipeType<ApplePressMashingRecipe> getRecipeType() {
+    public IRecipeType<ApplePressMashingRecipe> getRecipeType() {
         return APPLE_PRESS_MASHING_TYPE;
     }
 
@@ -64,10 +65,9 @@ public class ApplePressMashingCategory implements IRecipeCategory<ApplePressMash
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, ApplePressMashingRecipe recipe, IFocusGroup focuses) {
         builder.addSlot(RecipeIngredientRole.INPUT, 44 - X_OFFSET, 34 - Y_OFFSET)
-                .addIngredients(recipe.getIngredients().get(0));
+                .add(recipe.getInput());
 
-        assert Minecraft.getInstance().level != null;
         builder.addSlot(RecipeIngredientRole.OUTPUT, 101 - X_OFFSET, 50 - Y_OFFSET)
-                .addItemStack(recipe.getResultItem(Minecraft.getInstance().level.registryAccess()));
+                .add(recipe.getResultItem(null));
     }
 }

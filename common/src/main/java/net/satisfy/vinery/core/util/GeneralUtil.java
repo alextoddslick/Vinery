@@ -84,7 +84,7 @@ public class GeneralUtil {
 
     public static <T extends Block> RegistrySupplier<T> registerWithItem(DeferredRegister<Block> registerB, Registrar<Block> registrarB, DeferredRegister<Item> registerI, Registrar<Item> registrarI, ResourceLocation name, Supplier<T> block) {
         RegistrySupplier<T> toReturn = registerWithoutItem(registerB, registrarB, name, block);
-        registerItem(registerI, registrarI, name, () -> new BlockItem(toReturn.get(), itemProps(name.getPath()).useBlockDescriptionPrefix()));
+        registerItem(registerI, registrarI, name, () -> new net.satisfy.vinery.core.item.VineryBlockItem(toReturn.get(), itemProps(name.getPath()).useBlockDescriptionPrefix()));
         return toReturn;
     }
 

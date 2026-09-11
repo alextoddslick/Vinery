@@ -27,6 +27,9 @@
     "preLaunch": [
       "net.satisfy.vinery.fabric.VineryFabricPre"
     ],
+    "rei_common": [
+      "net.satisfy.vinery.fabric.core.rei.VineryReiCommonPluginFabric"
+    ],
     "rei_client": [
       "net.satisfy.vinery.fabric.core.rei.VineryReiClientPluginFabric"
     ],
@@ -43,8 +46,8 @@
   ],
   "depends": {
     "fabric-api": "*",
-    "minecraft": ">=1.20",
-    "architectury": ">=9.0.8"
+    "minecraft": ">=1.21.10",
+    "architectury": ">=18.0.8"
   },
   "conflicts": {
     "copperative": "*",

@@ -6,10 +6,6 @@
   "client": [
   ],
   "mixins": [
-    "BootsItemMixin",
-    "ChestplateItemMixin",
-    "HelmetItemMixin",
-    "LeggingsItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1
