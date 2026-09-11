@@ -22,7 +22,7 @@ public class StrawHatRenderer implements ArmorRenderer {
     @Override
     public void render(PoseStack matrices, SubmitNodeCollector queue, ItemStack stack, HumanoidRenderState state, EquipmentSlot slot, int light,
                        HumanoidModel<HumanoidRenderState> contextModel) {
-        queue.submitModel(this.model, state, matrices, ArmorRegistryClient.renderType(this.model, slot), light, OverlayTexture.NO_OVERLAY,
+        queue.submitModel(this.model, state, matrices, ArmorRegistryClient.renderType(slot), light, OverlayTexture.NO_OVERLAY,
                 state.outlineColor, null);
     }
 }

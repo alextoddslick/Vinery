@@ -13,7 +13,6 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.satisfy.vinery.client.model.StrawHatModel;
-import net.satisfy.vinery.client.model.VineryArmorModel;
 import net.satisfy.vinery.client.model.WinemakerBootsModel;
 import net.satisfy.vinery.client.model.WinemakerChestplateModel;
 import net.satisfy.vinery.client.model.WinemakerLeggingsModel;
@@ -77,7 +76,7 @@ public class ArmorRegistryClient {
      * Render type used on Fabric, where {@code ArmorRenderer} takes over the whole armor layer and therefore has to
      * pick the texture itself. On NeoForge the texture comes from the {@code vinery:winemaker} equipment asset.
      */
-    public static RenderType renderType(VineryArmorModel model, EquipmentSlot slot) {
+    public static RenderType renderType(EquipmentSlot slot) {
         return RenderType.armorCutoutNoCull(slot == EquipmentSlot.LEGS ? LEGGINGS_TEXTURE : ARMOR_TEXTURE);
     }
 

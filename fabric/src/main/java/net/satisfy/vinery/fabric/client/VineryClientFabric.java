@@ -27,6 +27,7 @@ public class VineryClientFabric implements ClientModInitializer {
     public void onInitializeClient() {
         VineryClient.preInitClient();
         VineryClient.onInitializeClient();
+        VineryClient.registerScreenFactory();
 
         ArmorRenderer.register(StrawHatRenderer::new, ObjectRegistry.STRAW_HAT.get());
         ArmorRenderer.register(WinemakerChestplateRenderer::new, ObjectRegistry.WINEMAKER_APRON.get());

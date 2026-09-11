@@ -80,7 +80,6 @@ public class VineryClient {
         }, JUNGLE_RED_GRAPE_BUSH.get(), JUNGLE_WHITE_GRAPE_BUSH.get());
 
         registerStorageType();
-        registerScreenFactory();
         registerBlockEntityRenderer();
     }
 
@@ -102,6 +101,10 @@ public class VineryClient {
         registerStorageTypes(StorageTypeRegistry.WINE_BOTTLE, new WineBottleRenderer());
     }
 
+    /**
+     * Only called from the Fabric entrypoint: on NeoForge {@code RegisterMenuScreensEvent} fires before
+     * {@link #onInitializeClient()} would run, so {@code VineryClientNeoForge} registers the screens itself.
+     */
     public static void registerScreenFactory() {
         MenuScreenRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.FERMENTATION_BARREL_GUI_HANDLER.get(), FermentationBarrelGui::new);
         MenuScreenRegistry.registerScreenFactory(ScreenhandlerTypeRegistry.APPLE_PRESS_GUI_HANDLER.get(), ApplePressGui::new);
