@@ -1,5 +1,6 @@
 package net.satisfy.vinery.core.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -51,13 +52,20 @@ public class GrapevinePotBlock extends Block {
     private static final int DECREMENT_PER_WINE_BOTTLE = 3;
     private static final GrapeProperty GRAPEVINE_TYPE = GrapeProperty.create("type");
 
+    public static final MapCodec<GrapevinePotBlock> CODEC = simpleCodec(GrapevinePotBlock::new);
+
     public GrapevinePotBlock(Properties settings) {
         super(settings);
         this.registerDefaultState(this.defaultBlockState().setValue(STAGE, 0).setValue(STORAGE, 0).setValue(GRAPEVINE_TYPE, GrapeTypeRegistry.NONE));
     }
 
     @Override
-    public @NotNull VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    protected @NotNull MapCodec<? extends Block> codec() {
+        return CODEC;
+    }
+
+    @Override
+    protected @NotNull VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         if (state.getValue(STAGE) < 3) {
             return super.getCollisionShape(state, world, pos, context);
         } else {
@@ -65,7 +73,7 @@ public class GrapevinePotBlock extends Block {
         }
     }
     @Override
-    public void fallOn(Level world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+    public void fallOn(Level world, BlockState state, BlockPos pos, Entity entity, double fallDistance) {
         super.fallOn(world, state, pos, entity, fallDistance);
         if (entity instanceof LivingEntity) {
             final int activeStage = state.getValue(STAGE);
@@ -156,7 +164,7 @@ public class GrapevinePotBlock extends Block {
 
 
     @Override
-    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    protected @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         VoxelShape shape = Shapes.empty();
         shape = Shapes.or(shape, Shapes.box(0.9375, 0, 0, 1, 0.625, 1));
         shape = Shapes.or(shape, Shapes.box(0, 0, 0, 0.0625, 0.625, 1));

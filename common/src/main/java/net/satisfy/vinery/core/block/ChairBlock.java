@@ -2,6 +2,8 @@ package net.satisfy.vinery.core.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -75,7 +77,7 @@ public class ChairBlock extends Block {
     }
 
     @Override
-    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+    protected boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
         if (state.getValue(HALF) != DoubleBlockHalf.UPPER) {
             return super.canSurvive(state, world, pos);
         } else {
@@ -91,9 +93,16 @@ public class ChairBlock extends Block {
         return pos.getY() < world.getMaxY() - 1 && world.getBlockState(pos.above()).canBeReplaced(context) ? this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite()).setValue(HALF, DoubleBlockHalf.LOWER) : null;
     }
 
+    public static final MapCodec<ChairBlock> CODEC = simpleCodec(ChairBlock::new);
+
     public ChairBlock(Properties settings) {
         super(settings);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(HALF, DoubleBlockHalf.LOWER));
+    }
+
+    @Override
+    protected @NotNull MapCodec<? extends Block> codec() {
+        return CODEC;
     }
 
     @Override
@@ -105,23 +114,21 @@ public class ChairBlock extends Block {
     }
 
     @Override
-    public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
-        if (!state.is(newState.getBlock())) {
-            if (state.getValue(HALF) == DoubleBlockHalf.LOWER) {
-                BlockPos abovePos = pos.above();
-                BlockState aboveState = world.getBlockState(abovePos);
-                if (aboveState.getBlock() == this && aboveState.getValue(HALF) == DoubleBlockHalf.UPPER) {
-                    world.setBlock(abovePos, net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(), 35);
-                }
-            } else {
-                BlockPos belowPos = pos.below();
-                BlockState belowState = world.getBlockState(belowPos);
-                if (belowState.getBlock() == this && belowState.getValue(HALF) == DoubleBlockHalf.LOWER) {
-                    world.setBlock(belowPos, net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(), 35);
-                }
+    protected void affectNeighborsAfterRemoval(BlockState state, ServerLevel world, BlockPos pos, boolean moved) {
+        if (state.getValue(HALF) == DoubleBlockHalf.LOWER) {
+            BlockPos abovePos = pos.above();
+            BlockState aboveState = world.getBlockState(abovePos);
+            if (aboveState.getBlock() == this && aboveState.getValue(HALF) == DoubleBlockHalf.UPPER) {
+                world.setBlock(abovePos, net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(), 35);
             }
-            super.onRemove(state, world, pos, newState, moved);
+        } else {
+            BlockPos belowPos = pos.below();
+            BlockState belowState = world.getBlockState(belowPos);
+            if (belowState.getBlock() == this && belowState.getValue(HALF) == DoubleBlockHalf.LOWER) {
+                world.setBlock(belowPos, net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(), 35);
+            }
         }
+        super.affectNeighborsAfterRemoval(state, world, pos, moved);
     }
 
     @Override
@@ -135,7 +142,7 @@ public class ChairBlock extends Block {
     }
 
     @Override
-    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    protected @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return state.getValue(HALF) == DoubleBlockHalf.UPPER ? SHAPE_UPPER_MAP.get(state.getValue(FACING)) : SHAPE_LOWER_MAP.get(state.getValue(FACING));
     }
 }

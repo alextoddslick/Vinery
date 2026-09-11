@@ -18,7 +18,8 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
-import net.minecraft.world.level.block.BushBlock;
+import net.minecraft.world.level.block.VegetationBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -34,38 +35,38 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 
-@SuppressWarnings("deprecation")
-public class GrapeBush extends BushBlock implements BonemealableBlock {
+public class GrapeBush extends VegetationBlock implements BonemealableBlock {
     public static final IntegerProperty AGE;
     private static final VoxelShape SHAPE;
 
     public final GrapeType type;
-    public static final MapCodec<GrapeBush> CODEC = RecordCodecBuilder.mapCodec(inst-> inst.group(
-            Properties.CODEC.fieldOf("settings").forGetter(GrapeBush::properties),
+    public static final MapCodec<GrapeBush> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
+            BlockBehaviour.Properties.CODEC.fieldOf("settings").forGetter(BlockBehaviour::properties),
             GrapeType.CODEC.fieldOf("type").forGetter(GrapeBush::grapeType)
-    ).apply(inst,GrapeBush::new));
+    ).apply(inst, GrapeBush::new));
+
     public GrapeBush(Properties settings, GrapeType type) {
         super(settings);
         this.type = type;
     }
 
     @Override
-    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    protected @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
     @Override
-    protected MapCodec<? extends BushBlock> codec() {
+    protected @NotNull MapCodec<? extends VegetationBlock> codec() {
         return CODEC;
     }
 
     @Override
-    public ItemStack getCloneItemStack(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+    protected @NotNull ItemStack getCloneItemStack(LevelReader levelReader, BlockPos blockPos, BlockState blockState, boolean includeData) {
         return new ItemStack(this.grapeType().getSeeds());
     }
 
     @Override
-    public @NotNull InteractionResult useItemOn(ItemStack stack,BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         int i = state.getValue(AGE);
         boolean bl = i == 3;
         if (!bl && stack.is(Items.BONE_MEAL)) {
@@ -77,7 +78,7 @@ public class GrapeBush extends BushBlock implements BonemealableBlock {
             world.setBlock(pos, state.setValue(AGE, 1), 2);
             return InteractionResult.SUCCESS;
         } else {
-            return super.useItemOn(stack,state, world, pos, player, hand, hit);
+            return super.useItemOn(stack, state, world, pos, player, hand, hit);
         }
     }
 
@@ -118,7 +119,7 @@ public class GrapeBush extends BushBlock implements BonemealableBlock {
 
     @Override
     protected boolean mayPlaceOn(BlockState floor, BlockGetter world, BlockPos pos) {
-        return floor.isSolidRender(world, pos);
+        return floor.isSolidRender();
     }
 
     public GrapeType grapeType() {
@@ -147,9 +148,18 @@ public class GrapeBush extends BushBlock implements BonemealableBlock {
     }
 
     public static class SavannaGrapeBush extends GrapeBush {
+        public static final MapCodec<SavannaGrapeBush> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
+                BlockBehaviour.Properties.CODEC.fieldOf("settings").forGetter(BlockBehaviour::properties),
+                GrapeType.CODEC.fieldOf("type").forGetter(GrapeBush::grapeType)
+        ).apply(inst, SavannaGrapeBush::new));
 
         public SavannaGrapeBush(Properties settings, GrapeType type) {
             super(settings, type);
+        }
+
+        @Override
+        protected @NotNull MapCodec<? extends VegetationBlock> codec() {
+            return CODEC;
         }
 
         @Override
@@ -159,9 +169,18 @@ public class GrapeBush extends BushBlock implements BonemealableBlock {
     }
 
     public static class TaigaGrapeBush extends GrapeBush {
+        public static final MapCodec<TaigaGrapeBush> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
+                BlockBehaviour.Properties.CODEC.fieldOf("settings").forGetter(BlockBehaviour::properties),
+                GrapeType.CODEC.fieldOf("type").forGetter(GrapeBush::grapeType)
+        ).apply(inst, TaigaGrapeBush::new));
 
         public TaigaGrapeBush(Properties settings, GrapeType type) {
             super(settings, type);
+        }
+
+        @Override
+        protected @NotNull MapCodec<? extends VegetationBlock> codec() {
+            return CODEC;
         }
 
         @Override

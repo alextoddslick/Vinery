@@ -1,5 +1,6 @@
 package net.satisfy.vinery.core.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -27,12 +28,20 @@ public class TableBlock extends LineConnectingBlock implements SimpleWaterlogged
     public static final VoxelShape TOP_SHAPE;
     public static final VoxelShape[] LEG_SHAPES;
 
+    public static final MapCodec<TableBlock> CODEC = simpleCodec(TableBlock::new);
+
     public TableBlock(BlockBehaviour.Properties settings) {
         super(settings);
         this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false));
     }
 
-    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    @Override
+    protected @NotNull MapCodec<? extends Block> codec() {
+        return CODEC;
+    }
+
+    @Override
+    protected @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         Direction direction = state.getValue(FACING);
         GeneralUtil.LineConnectingType type = state.getValue(TYPE);
 
@@ -53,18 +62,21 @@ public class TableBlock extends LineConnectingBlock implements SimpleWaterlogged
         }
     }
 
+    @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         Level world = context.getLevel();
         BlockPos clickedPos = context.getClickedPos();
         return Objects.requireNonNull(super.getStateForPlacement(context)).setValue(WATERLOGGED, world.getFluidState(clickedPos).getType() == Fluids.WATER);
     }
 
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(WATERLOGGED);
     }
 
-    public @NotNull FluidState getFluidState(BlockState state) {
+    @Override
+    protected @NotNull FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 

@@ -1,5 +1,6 @@
 package net.satisfy.vinery.core.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -7,19 +8,18 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.TintedParticleLeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -30,13 +30,17 @@ import net.satisfy.vinery.platform.PlatformHelper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class AppleLeavesBlock extends LeavesBlock implements BonemealableBlock {
+public class AppleLeavesBlock extends TintedParticleLeavesBlock implements BonemealableBlock {
+    public static final MapCodec<AppleLeavesBlock> CODEC = simpleCodec(AppleLeavesBlock::new);
+
     public static final BooleanProperty CAN_GROW_APPLES = BooleanProperty.create("can_grow_apples");
     public static final BooleanProperty HAS_APPLES = BooleanProperty.create("has_apples");
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 3);
 
+    private static final float LEAF_PARTICLE_CHANCE = 0.01F;
+
     public AppleLeavesBlock(Properties settings) {
-        super(settings);
+        super(LEAF_PARTICLE_CHANCE, settings);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(PERSISTENT, true)
                 .setValue(DISTANCE, 7)
@@ -44,6 +48,11 @@ public class AppleLeavesBlock extends LeavesBlock implements BonemealableBlock {
                 .setValue(HAS_APPLES, false)
                 .setValue(AGE, 0)
                 .setValue(WATERLOGGED, false));
+    }
+
+    @Override
+    public @NotNull MapCodec<AppleLeavesBlock> codec() {
+        return CODEC;
     }
 
     @Override
@@ -144,7 +153,7 @@ public class AppleLeavesBlock extends LeavesBlock implements BonemealableBlock {
     }
 
     @Override
-    public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+    protected @NotNull BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess scheduledTickAccess, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
         return updateDistance(state, world, pos);
     }
 
@@ -152,7 +161,7 @@ public class AppleLeavesBlock extends LeavesBlock implements BonemealableBlock {
         return neighborState.getBlock() instanceof LeavesBlock ? neighborState.getValue(DISTANCE) : (neighborState.is(BlockTags.LOGS) ? 0 : 7);
     }
 
-    private BlockState updateDistance(BlockState state, LevelAccessor world, BlockPos pos) {
+    private BlockState updateDistance(BlockState state, LevelReader world, BlockPos pos) {
         int minDistance = 7;
         for (Direction dir : Direction.values()) {
             BlockState neighbor = world.getBlockState(pos.relative(dir));
@@ -163,7 +172,7 @@ public class AppleLeavesBlock extends LeavesBlock implements BonemealableBlock {
     }
 
     @Override
-    public int getLightBlock(BlockState state, BlockGetter world, BlockPos pos) {
+    public int getLightBlock(BlockState state) {
         return 1;
     }
 }

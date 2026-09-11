@@ -68,7 +68,7 @@ public abstract class StorageBlock extends FacingBlock implements EntityBlock {
     }
 
     public void add(Level level, BlockPos blockPos, Player player, StorageBlockEntity shelfBlockEntity, ItemStack itemStack, int i) {
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             SoundEvent soundEvent = getAddSound(level, blockPos, player, i);
             shelfBlockEntity.setStack(i, itemStack.split(1));
             level.playSound(null, blockPos, soundEvent, SoundSource.BLOCKS, 1.0F, 1.0F);
@@ -79,7 +79,7 @@ public abstract class StorageBlock extends FacingBlock implements EntityBlock {
         }
     }
     public void remove(Level level, BlockPos blockPos, Player player, StorageBlockEntity shelfBlockEntity, int i) {
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             ItemStack itemStack = shelfBlockEntity.removeStack(i);
             SoundEvent soundEvent = getRemoveSound(level, blockPos, player, i);
             level.playSound(null, blockPos, soundEvent, SoundSource.BLOCKS, 1.0F, 1.0F);
@@ -99,21 +99,12 @@ public abstract class StorageBlock extends FacingBlock implements EntityBlock {
     }
 
     @Override
-    public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
-        if (!state.is(newState.getBlock())) {
-            BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof StorageBlockEntity shelf) {
-                if (world instanceof ServerLevel) {
-                    Containers.dropContents(world, pos, shelf.getInventory());
-                }
-                world.updateNeighbourForOutputSignal(pos, this);
-            }
-            super.onRemove(state, world, pos, newState, moved);
-        }
+    protected void affectNeighborsAfterRemoval(BlockState state, ServerLevel world, BlockPos pos, boolean moved) {
+        Containers.updateNeighboursAfterDestroy(state, world, pos);
     }
 
     @Override
-    public @NotNull RenderShape getRenderShape(BlockState state) {
+    protected @NotNull RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
     }
 

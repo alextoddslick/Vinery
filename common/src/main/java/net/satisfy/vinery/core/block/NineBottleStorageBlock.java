@@ -1,6 +1,7 @@
 package net.satisfy.vinery.core.block;
 
 import net.minecraft.ChatFormatting;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -8,13 +9,22 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.BlockGetter;
 import net.satisfy.vinery.core.registry.StorageTypeRegistry;
 import net.satisfy.vinery.core.registry.TagRegistry;
 
-import java.util.List;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import org.jetbrains.annotations.NotNull;
 
-public class NineBottleStorageBlock extends StorageBlock {
+import java.util.function.Consumer;
+
+public class NineBottleStorageBlock extends StorageBlock implements BlockTooltip {
+    public static final MapCodec<NineBottleStorageBlock> CODEC = simpleCodec(NineBottleStorageBlock::new);
+
+    @Override
+    protected @NotNull MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return CODEC;
+    }
+
 
 
     public NineBottleStorageBlock(Properties settings) {
@@ -57,7 +67,7 @@ public class NineBottleStorageBlock extends StorageBlock {
     }
 
     @Override
-    public void appendHoverText(ItemStack itemStack, Item.TooltipContext tooltipContext, List<Component> tooltip, TooltipFlag tooltipFlag) {
+    public void appendBlockHoverText(ItemStack itemStack, Item.TooltipContext tooltipContext, Consumer<Component> tooltip, TooltipFlag tooltipFlag) {
         MutableComponent allBold = Component.translatable("tooltip.vinery.small_bottle_first")
                 .withStyle(style -> style.withBold(true).withColor(ChatFormatting.GRAY));
         MutableComponent allRest = Component.translatable("tooltip.vinery.small_bottle_rest")
@@ -67,6 +77,6 @@ public class NineBottleStorageBlock extends StorageBlock {
         MutableComponent full = Component.translatable("tooltip.vinery.storage", combined)
                 .withStyle(ChatFormatting.GRAY);
 
-        tooltip.add(full);
+        tooltip.accept(full);
     }
 }

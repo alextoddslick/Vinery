@@ -7,7 +7,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
@@ -32,26 +33,25 @@ public class CompletionistWallBannerBlock extends CompletionistBannerBlock {
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
-    public @NotNull String getDescriptionId() {
-        return this.asItem().getDescriptionId();
-    }
-
     @SuppressWarnings("deprecation")
-    public boolean canSurvive(@NotNull BlockState blockState, LevelReader levelReader, BlockPos blockPos) {
+    protected boolean canSurvive(@NotNull BlockState blockState, LevelReader levelReader, BlockPos blockPos) {
         return levelReader.getBlockState(blockPos.relative(blockState.getValue(FACING))).isSolid();
     }
 
-    public @NotNull BlockState updateShape(@NotNull BlockState blockState, @NotNull Direction direction, @NotNull BlockState blockState2, @NotNull LevelAccessor levelAccessor, @NotNull BlockPos blockPos, @NotNull BlockPos blockPos2) {
-        if (direction == blockState.getValue(FACING) && !blockState.canSurvive(levelAccessor, blockPos)) {
+    @Override
+    protected @NotNull BlockState updateShape(@NotNull BlockState blockState, @NotNull LevelReader levelReader, @NotNull ScheduledTickAccess scheduledTickAccess, @NotNull BlockPos blockPos, @NotNull Direction direction, @NotNull BlockPos blockPos2, @NotNull BlockState blockState2, @NotNull RandomSource randomSource) {
+        if (direction == blockState.getValue(FACING) && !blockState.canSurvive(levelReader, blockPos)) {
             return Blocks.AIR.defaultBlockState();
         }
-        return super.updateShape(blockState, direction, blockState2, levelAccessor, blockPos, blockPos2);
+        return super.updateShape(blockState, levelReader, scheduledTickAccess, blockPos, direction, blockPos2, blockState2, randomSource);
     }
 
-    public @NotNull VoxelShape getShape(@NotNull BlockState blockState, @NotNull BlockGetter blockGetter, @NotNull BlockPos blockPos, @NotNull CollisionContext collisionContext) {
+    protected @NotNull VoxelShape getShape(@NotNull BlockState blockState, @NotNull BlockGetter blockGetter, @NotNull BlockPos blockPos, @NotNull CollisionContext collisionContext) {
         return SHAPES.get(blockState.getValue(FACING));
     }
 
+    @org.jetbrains.annotations.Nullable
+    @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockState blockState = this.defaultBlockState();
         Level level = context.getLevel();
@@ -69,11 +69,11 @@ public class CompletionistWallBannerBlock extends CompletionistBannerBlock {
         return null;
     }
 
-    public @NotNull BlockState rotate(BlockState blockState, Rotation rotation) {
+    protected @NotNull BlockState rotate(BlockState blockState, Rotation rotation) {
         return blockState.setValue(FACING, rotation.rotate(blockState.getValue(FACING)));
     }
 
-    public @NotNull BlockState mirror(BlockState blockState, Mirror mirror) {
+    protected @NotNull BlockState mirror(BlockState blockState, Mirror mirror) {
         return blockState.rotate(mirror.getRotation(blockState.getValue(FACING)));
     }
 
