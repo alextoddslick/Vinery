@@ -1,6 +1,9 @@
 package net.satisfy.vinery.core.block;
 
 import com.mojang.datafixers.util.Pair;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -13,8 +16,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -36,10 +44,24 @@ public class WineBottleBlock extends StorageBlock {
 
     private final int maxCount;
 
+    public static final MapCodec<WineBottleBlock> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
+            Properties.CODEC.fieldOf("settings").forGetter(BlockBehaviour::properties),
+            Codec.INT.fieldOf("max_count").forGetter(WineBottleBlock::maxCount)
+    ).apply(inst, WineBottleBlock::new));
+
     public WineBottleBlock(Properties settings, int maxCount) {
         super(settings);
         this.maxCount = maxCount;
         this.registerDefaultState(this.defaultBlockState().setValue(FAKE_MODEL, true));
+    }
+
+    @Override
+    protected @NotNull MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return CODEC;
+    }
+
+    public int maxCount() {
+        return this.maxCount;
     }
 
     @Override
@@ -59,7 +81,7 @@ public class WineBottleBlock extends StorageBlock {
                     }
                     world.playSound(null, pos, SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
                 }
-                return InteractionResult.SUCCESS);
+                return InteractionResult.SUCCESS;
             } else if (stack.isEmpty() && !isEmpty(inventory)) {
                 int posInE = getLastFullSlot(inventory);
                 if(posInE == Integer.MIN_VALUE) return InteractionResult.TRY_WITH_EMPTY_HAND;
@@ -73,7 +95,7 @@ public class WineBottleBlock extends StorageBlock {
                     }
                     world.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
                 }
-                return InteractionResult.SUCCESS);
+                return InteractionResult.SUCCESS;
             }
         }
         return InteractionResult.TRY_WITH_EMPTY_HAND;
@@ -102,7 +124,7 @@ public class WineBottleBlock extends StorageBlock {
 
 
     @Override
-    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    protected @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
@@ -113,11 +135,11 @@ public class WineBottleBlock extends StorageBlock {
     }
 
     @Override
-    public @NotNull BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState2, LevelAccessor levelAccessor, BlockPos blockPos, BlockPos blockPos2) {
-        if (direction == Direction.DOWN && !blockState.canSurvive(levelAccessor, blockPos)) {
+    protected @NotNull BlockState updateShape(BlockState blockState, LevelReader levelReader, ScheduledTickAccess scheduledTickAccess, BlockPos blockPos, Direction direction, BlockPos blockPos2, BlockState blockState2, RandomSource randomSource) {
+        if (direction == Direction.DOWN && !blockState.canSurvive(levelReader, blockPos) && levelReader instanceof LevelAccessor levelAccessor) {
             levelAccessor.destroyBlock(blockPos, true);
         }
-        return super.updateShape(blockState, direction, blockState2, levelAccessor, blockPos, blockPos2);
+        return super.updateShape(blockState, levelReader, scheduledTickAccess, blockPos, direction, blockPos2, blockState2, randomSource);
     }
     @Override
     public int size() {

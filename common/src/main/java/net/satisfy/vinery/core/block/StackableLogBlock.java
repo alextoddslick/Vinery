@@ -1,5 +1,6 @@
 package net.satisfy.vinery.core.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
@@ -51,6 +52,13 @@ public class StackableLogBlock extends SlabBlock {
     public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
 
 
+    public static final MapCodec<StackableLogBlock> CODEC = simpleCodec(StackableLogBlock::new);
+
+    @Override
+    public @NotNull MapCodec<? extends SlabBlock> codec() {
+        return CODEC;
+    }
+
     public StackableLogBlock(Properties settings) {
         super(settings);
         this.registerDefaultState(this.defaultBlockState().setValue(TYPE, SlabType.BOTTOM).setValue(FIRED, false).setValue(WATERLOGGED, false).setValue(FACING, Direction.NORTH));
@@ -79,6 +87,7 @@ public class StackableLogBlock extends SlabBlock {
     }
 
     @Nullable
+    @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
         BlockPos blockPos = ctx.getClickedPos();
         BlockState blockState = ctx.getLevel().getBlockState(blockPos);
@@ -131,9 +140,9 @@ public class StackableLogBlock extends SlabBlock {
             Holder<Enchantment> frostWalker = livingEntity.level()
                     .registryAccess()
                     .lookupOrThrow(Registries.ENCHANTMENT)
-                    .getHolderOrThrow(Enchantments.FROST_WALKER);
+                    .getOrThrow(Enchantments.FROST_WALKER);
             if(livingEntity.getItemBySlot(EquipmentSlot.FEET).getEnchantments().getLevel(frostWalker) < 0){
-                entity.hurt(world.damageSources().inFire(), 1.f);
+                entity.hurtOrSimulate(world.damageSources().inFire(), 1.f);
             }
         }
 
@@ -141,7 +150,7 @@ public class StackableLogBlock extends SlabBlock {
     }
 
     @Override
-    public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
+    protected @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
         SlabType slabType = blockState.getValue(TYPE);
         Direction facing = blockState.getValue(FACING);
 

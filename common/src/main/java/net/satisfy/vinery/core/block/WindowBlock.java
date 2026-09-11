@@ -1,11 +1,16 @@
 package net.satisfy.vinery.core.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
+import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.IronBarsBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -19,11 +24,19 @@ import org.jetbrains.annotations.Nullable;
 public class WindowBlock extends IronBarsBlock {
     public static final IntegerProperty PART = IntegerProperty.create("part", 0, 3);
 
+    public static final MapCodec<WindowBlock> CODEC = simpleCodec(WindowBlock::new);
+
+    @Override
+    public @NotNull MapCodec<? extends IronBarsBlock> codec() {
+        return CODEC;
+    }
+
     public WindowBlock(BlockBehaviour.Properties settings) {
         super(settings);
         this.registerDefaultState(this.stateDefinition.any().setValue(NORTH, false).setValue(EAST, false).setValue(SOUTH, false).setValue(WEST, false).setValue(WATERLOGGED, false));
     }
 
+    @Override
     public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
         if (!world.isClientSide()) {
             this.updateWindows(world, pos, state);
@@ -31,12 +44,13 @@ public class WindowBlock extends IronBarsBlock {
 
     }
 
-    public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+    @Override
+    protected @NotNull BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess scheduledTickAccess, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
         if (state.getValue(WATERLOGGED)) {
-            world.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
+            scheduledTickAccess.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
 
-        return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
+        return super.updateShape(state, world, scheduledTickAccess, pos, direction, neighborPos, neighborState, random);
     }
 
     private void updateWindows(LevelAccessor world, BlockPos pos, BlockState state) {
@@ -82,8 +96,9 @@ public class WindowBlock extends IronBarsBlock {
         return pos;
     }
 
-    public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
-        super.neighborChanged(state, world, pos, block, fromPos, isMoving);
+    @Override
+    protected void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, @Nullable Orientation orientation, boolean isMoving) {
+        super.neighborChanged(state, world, pos, block, orientation, isMoving);
         if (!world.isClientSide()) {
             this.updatePartOnNeighborChange(world, pos, state);
         }
@@ -103,6 +118,7 @@ public class WindowBlock extends IronBarsBlock {
 
     }
 
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(PART, NORTH, EAST, WEST, SOUTH, WATERLOGGED);
     }

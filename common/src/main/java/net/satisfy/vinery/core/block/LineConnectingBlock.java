@@ -1,10 +1,8 @@
 package net.satisfy.vinery.core.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -15,7 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.level.redstone.Orientation;
 import net.satisfy.vinery.core.util.GeneralUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -25,15 +23,18 @@ public class LineConnectingBlock extends Block {
     public static final EnumProperty<Direction> FACING;
     public static final EnumProperty<GeneralUtil.LineConnectingType> TYPE;
 
+    public static final MapCodec<LineConnectingBlock> CODEC = simpleCodec(LineConnectingBlock::new);
+
+    @Override
+    protected @NotNull MapCodec<? extends Block> codec() {
+        return CODEC;
+    }
+
     public LineConnectingBlock(BlockBehaviour.Properties settings) {
         super(settings);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(TYPE, GeneralUtil.LineConnectingType.NONE));
-    }
-
-    public @NotNull InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        return InteractionResult.PASS;
     }
 
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
@@ -50,8 +51,9 @@ public class LineConnectingBlock extends Block {
         };
     }
 
-    public void neighborChanged(BlockState state, Level world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
-        if (!world.isClientSide) {
+    @Override
+    protected void neighborChanged(BlockState state, Level world, BlockPos pos, Block sourceBlock, @Nullable Orientation orientation, boolean notify) {
+        if (!world.isClientSide()) {
             Direction facing = state.getValue(FACING);
             GeneralUtil.LineConnectingType type = switch (facing) {
                 case EAST -> this.getType(state, world.getBlockState(pos.south()), world.getBlockState(pos.north()));
@@ -81,15 +83,16 @@ public class LineConnectingBlock extends Block {
         }
     }
 
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, TYPE);
     }
 
-    public @NotNull BlockState rotate(BlockState state, Rotation rotation) {
+    protected @NotNull BlockState rotate(BlockState state, Rotation rotation) {
         return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
-    public @NotNull BlockState mirror(BlockState state, Mirror mirror) {
+    protected @NotNull BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 
