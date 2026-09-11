@@ -5,18 +5,13 @@ import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.resources.model.EquipmentClientInfo;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.PackLocationInfo;
-import net.minecraft.server.packs.PackResources;
-import net.minecraft.server.packs.PackSelectionConfig;
 import net.minecraft.server.packs.PackType;
-import net.minecraft.server.packs.PathPackResources;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
@@ -32,11 +27,10 @@ import net.satisfy.vinery.core.block.state.properties.VineryWoodType;
 import net.satisfy.vinery.core.registry.ArmorRegistryClient;
 import net.satisfy.vinery.core.registry.ObjectRegistry;
 import net.satisfy.vinery.core.registry.ScreenhandlerTypeRegistry;
-import org.jetbrains.annotations.NotNull;
-
-import java.nio.file.Path;
-import java.util.Optional;
 import java.util.function.Supplier;
+
+
+
 
 @EventBusSubscriber(modid = Vinery.MOD_ID, value = Dist.CLIENT)
 public class VineryClientNeoForge {
@@ -55,43 +49,14 @@ public class VineryClientNeoForge {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void onAddPackFinders(AddPackFindersEvent event) {
-        if (event.getPackType() == PackType.CLIENT_RESOURCES) {
-            Path packPath = ModList.get().getModFileById(Vinery.MOD_ID)
-                    .getFile()
-                    .findResource("resourcepacks/bushy_leaves");
-
-            event.addRepositorySource(consumer -> {
-                PackLocationInfo packLocationInfo = new PackLocationInfo(
-                        ResourceLocation.fromNamespaceAndPath(Vinery.MOD_ID, "bushy_leaves").toString(),
-                        Component.literal("Bushy Leaves for Vinery"),
-                        PackSource.BUILT_IN,
-                        Optional.empty()
-                );
-
-                Pack.ResourcesSupplier resourcesSupplier = new Pack.ResourcesSupplier() {
-                    @Override
-                    public @NotNull PathPackResources openPrimary(PackLocationInfo info) {
-                        return new PathPackResources(info, packPath);
-                    }
-
-                    @Override
-                    public @NotNull PackResources openFull(PackLocationInfo info, Pack.Metadata metadata) {
-                        return new PathPackResources(info, packPath);
-                    }
-                };
-
-                Pack pack = Pack.readMetaAndCreate(
-                        packLocationInfo,
-                        resourcesSupplier,
-                        PackType.CLIENT_RESOURCES,
-                        new PackSelectionConfig(false, Pack.Position.TOP, false)
-                );
-
-                if (pack != null) {
-                    consumer.accept(pack);
-                }
-            });
-        }
+        event.addPackFinders(
+                ResourceLocation.fromNamespaceAndPath(Vinery.MOD_ID, "resourcepacks/bushy_leaves"),
+                PackType.CLIENT_RESOURCES,
+                Component.literal("Bushy Leaves for Vinery"),
+                PackSource.BUILT_IN,
+                false,
+                Pack.Position.TOP
+        );
     }
 
     /**
