@@ -9,17 +9,22 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextColor;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUseAnimation;
 import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.ItemUseAnimation;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -32,8 +37,7 @@ import net.satisfy.vinery.core.util.WineYears;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class DrinkBlockItem extends BlockItem {
@@ -65,7 +69,8 @@ public class DrinkBlockItem extends BlockItem {
 
     @Override
     protected BlockState getPlacementState(BlockPlaceContext context) {
-        if (!Objects.requireNonNull(context.getPlayer()).isCrouching()) {
+        Player player = context.getPlayer();
+        if (player == null || !player.isCrouching()) {
             return null;
         }
         BlockState blockState = this.getBlock().getStateForPlacement(context);
@@ -81,7 +86,7 @@ public class DrinkBlockItem extends BlockItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext tooltipContext, List<Component> tooltip, TooltipFlag tooltipFlag) {
+    public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext tooltipContext, @NotNull TooltipDisplay tooltipDisplay, @NotNull Consumer<Component> tooltip, @NotNull TooltipFlag tooltipFlag) {
         Level world = null;
         if (tooltipContext.registries() != null) {
             world = getLevel();
@@ -98,27 +103,27 @@ public class DrinkBlockItem extends BlockItem {
             durationTicks = Math.max(0, durationTicks);
             String formattedDuration = formatDuration(durationTicks);
             String tooltipText = effectName + amplifierRoman + " (" + formattedDuration + ")";
-            tooltip.add(Component.literal(tooltipText).withStyle(effect.getCategory().getTooltipFormatting()));
+            tooltip.accept(Component.literal(tooltipText).withStyle(effect.getCategory().getTooltipFormatting()));
         } else {
-            tooltip.add(Component.translatable("effect.none").withStyle(ChatFormatting.GRAY));
+            tooltip.accept(Component.translatable("effect.none").withStyle(ChatFormatting.GRAY));
         }
 
-        tooltip.add(Component.empty());
+        tooltip.accept(Component.empty());
         if (world != null && stack.get(DataComponentRegistry.WINE_YEAR.get()) != null) {
             int ageYears = Math.max(0, WineYears.getWineAgeYears(stack, world));
             int ageDays = WineYears.getWineAgeDays(stack, world);
-            tooltip.add(Component.translatable("tooltip.vinery.age", ageYears).withStyle(ChatFormatting.WHITE));
-            tooltip.add(Component.empty());
+            tooltip.accept(Component.translatable("tooltip.vinery.age", ageYears).withStyle(ChatFormatting.WHITE));
+            tooltip.accept(Component.empty());
 
             int daysPerYear = stack.get(DataComponentRegistry.WINE_YEAR.get()).daysPerYear();
             int yearsPerLevel = stack.get(DataComponentRegistry.WINE_YEAR.get()).yearsPerEffectLevel();
             int cycle = Math.max(1, daysPerYear * Math.max(1, yearsPerLevel));
             int daysToNextUpgrade = cycle - (ageDays % cycle);
 
-            tooltip.add(Component.translatable("tooltip.vinery.next_upgrade", daysToNextUpgrade)
+            tooltip.accept(Component.translatable("tooltip.vinery.next_upgrade", daysToNextUpgrade)
                     .withStyle(style -> style.withColor(TextColor.fromRgb(0x93c47d))));
         }
-        tooltip.add(Component.translatable("tooltip.vinery.bottle_size." + bottleSize.name().toLowerCase())
+        tooltip.accept(Component.translatable("tooltip.vinery.bottle_size." + bottleSize.name().toLowerCase())
                 .withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
     }
 
@@ -129,7 +134,7 @@ public class DrinkBlockItem extends BlockItem {
 
     @Override
     public @NotNull ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity livingEntity) {
-        if (!level.isClientSide && effectSupplier != null) {
+        if (!level.isClientSide() && effectSupplier != null) {
             if (itemStack.get(DataComponentRegistry.WINE_YEAR.get()) == null) {
                 WineYears.setWineYear(itemStack, level);
             }
@@ -163,21 +168,19 @@ public class DrinkBlockItem extends BlockItem {
     }
 
     @Override
-    public void onCraftedBy(ItemStack stack, Level world, Player player) {
-        super.onCraftedBy(stack, world, player);
-        if (world != null && !world.isClientSide) {
+    public void onCraftedPostProcess(ItemStack stack, Level world) {
+        super.onCraftedPostProcess(stack, world);
+        if (world != null && !world.isClientSide()) {
             WineYears.setWineYear(stack, world);
         }
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, Level world, Entity entity, int slot, boolean selected) {
-        super.inventoryTick(stack, world, entity, slot, selected);
+    public void inventoryTick(ItemStack stack, ServerLevel level, Entity entity, @Nullable EquipmentSlot equipmentSlot) {
+        super.inventoryTick(stack, level, entity, equipmentSlot);
 
-        if (world != null && !world.isClientSide) {
-            if (stack.get(DataComponentRegistry.WINE_YEAR.get()) == null) {
-                WineYears.setWineYear(stack, world);
-            }
+        if (level != null && stack.get(DataComponentRegistry.WINE_YEAR.get()) == null) {
+            WineYears.setWineYear(stack, level);
         }
     }
 

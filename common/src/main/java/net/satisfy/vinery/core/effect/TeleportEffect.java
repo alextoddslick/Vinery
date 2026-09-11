@@ -1,5 +1,7 @@
 package net.satisfy.vinery.core.effect;
 
+import net.minecraft.server.level.ServerLevel;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.InstantenousMobEffect;
@@ -19,12 +21,12 @@ public class TeleportEffect extends InstantenousMobEffect {
     }
 
     @Override
-    public void applyInstantenousEffect(@Nullable Entity source, @Nullable Entity attacker, LivingEntity target, int amplifier, double proximity) {
+    public void applyInstantenousEffect(ServerLevel serverLevel, @Nullable Entity source, @Nullable Entity attacker, LivingEntity target, int amplifier, double proximity) {
         teleport(source);
     }
 
     @Override
-    public boolean applyEffectTick(LivingEntity source, int i) {
+    public boolean applyEffectTick(ServerLevel serverLevel, LivingEntity source, int i) {
         teleport(source);
         return true;
     }
@@ -48,7 +50,7 @@ public class TeleportEffect extends InstantenousMobEffect {
                     !fullBlockAt(world, pos.above()) &&
                     fullBlockAt(world, pos.below())) {
 
-                if (!player.level().isClientSide) {
+                if (!player.level().isClientSide()) {
                     player.teleportTo(x + 0.5, pos.getY() + 0.5, z + 0.5);
                 }
                 player.fallDistance = 0;

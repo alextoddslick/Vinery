@@ -1,35 +1,43 @@
 package net.satisfy.vinery.core.item;
 
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.ItemUseAnimation;
+import net.minecraft.world.item.ItemUtils;
+import net.minecraft.world.item.component.Consumable;
+import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.level.Level;
 import net.satisfy.vinery.core.registry.ObjectRegistry;
 import org.jetbrains.annotations.NotNull;
 
 public class GrapejuiceBottleItem extends Item {
+    private static final Consumable DRINK = Consumables.defaultDrink()
+            .consumeSeconds(2.0F)
+            .sound(SoundEvents.HONEY_DRINK)
+            .build();
 
     public GrapejuiceBottleItem(Item.Properties properties) {
-        super(properties);
+        super(properties.component(DataComponents.CONSUMABLE, DRINK));
     }
 
+    @Override
     public @NotNull ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity livingEntity) {
         if (livingEntity instanceof ServerPlayer serverPlayer) {
             CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, itemStack);
             serverPlayer.awardStat(Stats.ITEM_USED.get(this));
         }
 
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             livingEntity.removeEffect(MobEffects.POISON);
         }
 
@@ -44,23 +52,17 @@ public class GrapejuiceBottleItem extends Item {
         return itemStack.isEmpty() ? ItemStack.EMPTY : itemStack;
     }
 
-
-    public int getUseDuration(ItemStack itemStack) {
+    @Override
+    public int getUseDuration(ItemStack itemStack, LivingEntity livingEntity) {
         return 40;
     }
 
+    @Override
     public @NotNull ItemUseAnimation getUseAnimation(ItemStack itemStack) {
         return ItemUseAnimation.DRINK;
     }
 
-    public @NotNull SoundEvent getDrinkingSound() {
-        return SoundEvents.HONEY_DRINK;
-    }
-
-    public @NotNull SoundEvent getEatingSound() {
-        return SoundEvents.HONEY_DRINK;
-    }
-
+    @Override
     public @NotNull InteractionResult use(Level level, Player player, InteractionHand interactionHand) {
         return ItemUtils.startUsingInstantly(level, player, interactionHand);
     }

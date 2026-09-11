@@ -39,7 +39,7 @@ public final class WineDebugCommands {
             return 0;
         }
 
-        Level level = player.serverLevel();
+        Level level = player.level();
         WineYearComponent component = getOrCreateComponent(stack, level);
 
         int currentDay = WineYears.getDays(level);
@@ -74,7 +74,7 @@ public final class WineDebugCommands {
             return 0;
         }
 
-        Level level = player.serverLevel();
+        Level level = player.level();
         WineYearComponent component = getOrCreateComponent(stack, level);
 
         int ageYears = WineYears.getWineAgeYears(stack, level);

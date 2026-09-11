@@ -6,6 +6,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.util.ExtraCodecs;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
 
@@ -13,12 +14,31 @@ import java.util.List;
 import java.util.Optional;
 
 public class FoodComponent {
+
+	/**
+	 * Replacement for the removed {@code FoodProperties.PossibleEffect} record.
+	 */
+	public record PossibleEffect(MobEffectInstance effect, float probability) {
+		public static final Codec<FoodComponent.PossibleEffect> CODEC = RecordCodecBuilder.create(instance ->
+				instance.group(
+						MobEffectInstance.CODEC.fieldOf("effect").forGetter(FoodComponent.PossibleEffect::effect),
+						Codec.floatRange(0.0F, 1.0F).optionalFieldOf("probability", 1.0F).forGetter(FoodComponent.PossibleEffect::probability)
+				).apply(instance, FoodComponent.PossibleEffect::new)
+		);
+
+		public static final StreamCodec<RegistryFriendlyByteBuf, FoodComponent.PossibleEffect> STREAM_CODEC = StreamCodec.composite(
+				MobEffectInstance.STREAM_CODEC, FoodComponent.PossibleEffect::effect,
+				ByteBufCodecs.FLOAT, FoodComponent.PossibleEffect::probability,
+				FoodComponent.PossibleEffect::new
+		);
+	}
+
 	private final int nutrition;
 	private final float saturationModifier;
 	private final boolean canAlwaysEat;
 	private final float eatSeconds;
 	private final Optional<ItemStack> usingConvertsTo;
-	private final List<FoodProperties.PossibleEffect> effects;
+	private final List<PossibleEffect> effects;
 	private final FoodProperties foodProperties;
 
 	// Codec for serialization/deserialization
@@ -29,7 +49,7 @@ public class FoodComponent {
 					Codec.BOOL.optionalFieldOf("can_always_eat", false).forGetter(FoodComponent::canAlwaysEat),
 					ExtraCodecs.POSITIVE_FLOAT.optionalFieldOf("eat_seconds", 1.6F).forGetter(FoodComponent::eatSeconds),
 					ItemStack.SINGLE_ITEM_CODEC.optionalFieldOf("using_converts_to").forGetter(FoodComponent::usingConvertsTo),
-					FoodProperties.PossibleEffect.CODEC.listOf().optionalFieldOf("effects", List.of()).forGetter(FoodComponent::getEffects)
+					PossibleEffect.CODEC.listOf().optionalFieldOf("effects", List.of()).forGetter(FoodComponent::getEffects)
 			).apply(instance, FoodComponent::new)
 	);
 
@@ -41,54 +61,35 @@ public class FoodComponent {
 					ByteBufCodecs.BOOL, FoodComponent::canAlwaysEat,
 					ByteBufCodecs.FLOAT, FoodComponent::eatSeconds,
 					ItemStack.STREAM_CODEC.apply(ByteBufCodecs::optional), FoodComponent::usingConvertsTo,
-					FoodProperties.PossibleEffect.STREAM_CODEC.apply(ByteBufCodecs.list()), FoodComponent::getEffects,
+					PossibleEffect.STREAM_CODEC.apply(ByteBufCodecs.list()), FoodComponent::getEffects,
 					FoodComponent::new
 			);
 
 	// Constructor used by codec
 	public FoodComponent(int nutrition, float saturationModifier, boolean canAlwaysEat,
 						 float eatSeconds, Optional<ItemStack> usingConvertsTo,
-						 List<FoodProperties.PossibleEffect> effects) {
+						 List<PossibleEffect> effects) {
 		this.nutrition = nutrition;
 		this.saturationModifier = saturationModifier;
 		this.canAlwaysEat = canAlwaysEat;
 		this.eatSeconds = eatSeconds;
 		this.usingConvertsTo = usingConvertsTo;
 		this.effects = effects;
-
-		// Build the FoodProperties
-		FoodProperties.Builder builder = new FoodProperties.Builder()
-				.nutrition(nutrition)
-				.saturationModifier(saturationModifier);
-
-		if (canAlwaysEat) {
-			builder.alwaysEdible();
-		}
-
-		//usingConvertsTo.ifPresent(builder.);
-
-		for (FoodProperties.PossibleEffect effect : effects) {
-			builder.effect(effect.effect(), effect.probability());
-		}
-
-		this.foodProperties = builder.build();
+		this.foodProperties = buildFoodProperties(nutrition, saturationModifier, canAlwaysEat);
 	}
 
 	// Simple constructor for basic usage
-	public FoodComponent(List<FoodProperties.PossibleEffect> statusEffects) {
+	public FoodComponent(List<PossibleEffect> statusEffects) {
 		this(1, 0.0f, true, 1.6F, Optional.empty(), statusEffects);
 	}
 
 	// Constructor matching your original method signature
 	public FoodComponent(int nutrition, float saturationModifier, boolean canAlwaysEat,
-						 boolean fastFood, boolean meat, List<FoodProperties.PossibleEffect> statusEffects) {
-		this.nutrition = nutrition;
-		this.saturationModifier = saturationModifier;
-		this.canAlwaysEat = canAlwaysEat;
-		this.eatSeconds = fastFood ? 0.8F : 1.6F; // Fast food eats quicker
-		this.usingConvertsTo = Optional.empty();
-		this.effects = statusEffects;
+						 boolean fastFood, boolean meat, List<PossibleEffect> statusEffects) {
+		this(nutrition, saturationModifier, canAlwaysEat, fastFood ? 0.8F : 1.6F, Optional.empty(), statusEffects);
+	}
 
+	private static FoodProperties buildFoodProperties(int nutrition, float saturationModifier, boolean canAlwaysEat) {
 		FoodProperties.Builder builder = new FoodProperties.Builder()
 				.nutrition(nutrition)
 				.saturationModifier(saturationModifier);
@@ -96,19 +97,12 @@ public class FoodComponent {
 		if (canAlwaysEat) {
 			builder.alwaysEdible();
 		}
-		if (fastFood) {
-			builder.fast();
-		}
 
-		for (FoodProperties.PossibleEffect effect : statusEffects) {
-			builder.effect(effect.effect(), effect.probability());
-		}
-
-		this.foodProperties = builder.build();
+		return builder.build();
 	}
 
 	// Getters
-	public List<FoodProperties.PossibleEffect> getEffects() {
+	public List<PossibleEffect> getEffects() {
 		return effects;
 	}
 

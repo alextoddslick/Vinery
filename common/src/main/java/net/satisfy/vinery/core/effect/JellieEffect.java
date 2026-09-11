@@ -1,5 +1,7 @@
 package net.satisfy.vinery.core.effect;
 
+import net.minecraft.server.level.ServerLevel;
+
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;
@@ -22,7 +24,7 @@ public class JellieEffect extends MobEffect {
     }
 
     @Override
-    public boolean applyEffectTick(LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(ServerLevel serverLevel, LivingEntity entity, int amplifier) {
         if (entity.getHealth() < entity.getMaxHealth()) {
             entity.heal(1.0f);
         }
