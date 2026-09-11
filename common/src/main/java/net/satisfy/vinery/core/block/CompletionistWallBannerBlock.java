@@ -12,7 +12,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
@@ -21,7 +21,7 @@ import java.util.Map;
 
 public class CompletionistWallBannerBlock extends CompletionistBannerBlock {
 
-    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+    public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
     private static final Map<Direction, VoxelShape> SHAPES = Maps.newEnumMap(ImmutableMap.of(Direction.SOUTH, box(0.0, 0.0, 14.0, 16.0, 12.5, 16.0), Direction.NORTH, box(0.0, 0.0, 0.0, 16.0, 12.5, 2.0), Direction.EAST, box(14.0, 0.0, 0.0, 16.0, 12.5, 16.0), Direction.WEST, box(0.0, 0.0, 0.0, 2.0, 12.5, 16.0)));
 
     public CompletionistWallBannerBlock(Properties properties) {

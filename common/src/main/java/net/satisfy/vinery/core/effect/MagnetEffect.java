@@ -18,7 +18,7 @@ public class MagnetEffect extends MobEffect {
     @Override
     public boolean applyEffectTick(LivingEntity entity, int amplifier) {
         if (entity instanceof Player player && !player.isShiftKeyDown()) {
-            List<Entity> entities = player.getCommandSenderWorld().getEntities(player, player.getBoundingBox().inflate(5 + amplifier), p -> p instanceof ItemEntity);
+            List<Entity> entities = player.level().getEntities(player, player.getBoundingBox().inflate(5 + amplifier), p -> p instanceof ItemEntity);
             for (Entity entityNearby : entities) {
 
                 if(player.getInventory().getFreeSlot() == -1){

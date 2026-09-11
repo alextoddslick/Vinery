@@ -27,7 +27,7 @@ public class CreeperEffect extends InstantenousMobEffect {
 
     private void explode(Entity source, int amplifier){
         if (source instanceof ServerPlayer serverPlayer && serverPlayer.gameMode.getGameModeForPlayer() != GameType.CREATIVE) {
-            Level world = serverPlayer.getCommandSenderWorld();
+            Level world = serverPlayer.level();
             double x = serverPlayer.getX();
             double y = serverPlayer.getY();
             double z = serverPlayer.getZ();

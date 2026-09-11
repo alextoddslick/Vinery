@@ -54,7 +54,7 @@ public class BigBottleStorageBlock extends StorageBlock {
                 world.playSound(null, pos, OPEN_SOUND, SoundSource.BLOCKS, 0.4f, 0.4f);
                 world.setBlock(pos, state.setValue(OPEN, !state.getValue(OPEN)), UPDATE_ALL);
             }
-            return InteractionResult.sidedSuccess(world.isClientSide());
+            return InteractionResult.SUCCESS);
         } else if (state.getValue(OPEN)) {
             return super.useWithoutItem(state, world, pos, player, hit);
         }

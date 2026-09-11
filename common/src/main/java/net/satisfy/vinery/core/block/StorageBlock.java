@@ -11,7 +11,6 @@ import net.minecraft.util.Tuple;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -53,11 +52,11 @@ public abstract class StorageBlock extends FacingBlock implements EntityBlock {
                 }
                 if (!shelfBlockEntity.getInventory().get(i).isEmpty()) {
                     remove(world, pos, player, shelfBlockEntity, i);
-                    return InteractionResult.sidedSuccess(world.isClientSide);
+                    return InteractionResult.SUCCESS;
                 } else {
                     if (!stack.isEmpty() && canInsertStack(stack)) {
                         add(world, pos, player, shelfBlockEntity, stack, i);
-                        return InteractionResult.sidedSuccess(world.isClientSide);
+                        return InteractionResult.SUCCESS;
                     } else {
                         return InteractionResult.CONSUME;
                     }

@@ -61,7 +61,7 @@ public abstract class StemBlock extends Block implements BonemealableBlock {
         if (age > 3) {
             dropGrapes(world, state, pos, hit.getDirection());
             world.setBlock(pos, state.setValue(AGE, 2), 2);
-            return InteractionResult.sidedSuccess(world.isClientSide);
+            return InteractionResult.SUCCESS;
         }
         else {
             return InteractionResult.PASS;

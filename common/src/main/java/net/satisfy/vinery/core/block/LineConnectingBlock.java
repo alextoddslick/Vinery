@@ -14,7 +14,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.satisfy.vinery.core.util.GeneralUtil;
@@ -23,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("deprecation")
 public class LineConnectingBlock extends Block {
-    public static final DirectionProperty FACING;
+    public static final EnumProperty<Direction> FACING;
     public static final EnumProperty<GeneralUtil.LineConnectingType> TYPE;
 
     public LineConnectingBlock(BlockBehaviour.Properties settings) {

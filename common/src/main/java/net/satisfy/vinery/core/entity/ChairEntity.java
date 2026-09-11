@@ -93,8 +93,8 @@ public class ChairEntity extends Entity {
             yaw = s.getValue(BlockStateProperties.FACING).toYRot();
         } else {
             for (Property<?> prop : s.getProperties()) {
-                if (prop.getName().equals("facing") && prop instanceof net.minecraft.world.level.block.state.properties.DirectionProperty dir) {
-                    yaw = s.getValue(dir).toYRot();
+                if (prop.getName().equals("facing") && s.getValue(prop) instanceof net.minecraft.core.Direction dir) {
+                    yaw = dir.toYRot();
                     break;
                 }
             }

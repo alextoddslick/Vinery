@@ -3,7 +3,7 @@ package net.satisfy.vinery.core.mixin;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.ai.village.poi.PoiTypes;
 import net.minecraft.world.entity.npc.WanderingTrader;
@@ -34,7 +34,7 @@ public abstract class WanderingTraderManagerMixin implements CustomSpawner {
 
 	@Shadow @Final private ServerLevelData serverLevelData;
 
-	@Inject(method = "spawn", at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lnet/minecraft/world/entity/EntityType;spawn(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/MobSpawnType;)Lnet/minecraft/world/entity/Entity;"), cancellable = true)
+	@Inject(method = "spawn", at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lnet/minecraft/world/entity/EntityType;spawn(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/EntitySpawnReason;)Lnet/minecraft/world/entity/Entity;"), cancellable = true)
 	private void trySpawn(ServerLevel world, CallbackInfoReturnable<Boolean> cir) {
 		if (world.random.nextDouble() < PlatformHelper.getTraderSpawnChance()) {
 			ServerPlayer playerEntity = world.getRandomPlayer();
@@ -55,7 +55,7 @@ public abstract class WanderingTraderManagerMixin implements CustomSpawner {
 					if (biome != null && !biome.is(Biomes.THE_VOID)) {
 						var wanderingWinemakerType = EntityTypeRegistry.WANDERING_WINEMAKER.get();
 						if (wanderingWinemakerType != null) {
-							WanderingTrader wanderingTraderEntity = wanderingWinemakerType.spawn(world, blockPos3, MobSpawnType.EVENT);
+							WanderingTrader wanderingTraderEntity = wanderingWinemakerType.spawn(world, blockPos3, EntitySpawnReason.EVENT);
 							if (wanderingTraderEntity != null) {
 								if (PlatformHelper.shouldSpawnWithMules()) {
 									for (int j = 0; j < 2; ++j) {
@@ -63,7 +63,7 @@ public abstract class WanderingTraderManagerMixin implements CustomSpawner {
 										if (blockPos4 != null) {
 											var muleType = EntityTypeRegistry.MULE.get();
 											if (muleType != null) {
-												TraderMuleEntity traderMuleEntity = muleType.spawn(world, blockPos4, MobSpawnType.EVENT);
+												TraderMuleEntity traderMuleEntity = muleType.spawn(world, blockPos4, EntitySpawnReason.EVENT);
 												if (traderMuleEntity != null) {
 													traderMuleEntity.setLeashedTo(wanderingTraderEntity, true);
 												}

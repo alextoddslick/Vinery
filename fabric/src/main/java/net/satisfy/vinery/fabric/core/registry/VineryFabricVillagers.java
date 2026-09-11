@@ -70,7 +70,7 @@ public class VineryFabricVillagers {
                     String modId = parts[0];
                     String itemId = parts[1];
                     ResourceLocation rl = ResourceLocation.fromNamespaceAndPath(modId, itemId);
-                    Item item = registryAccess.registryOrThrow(Registries.ITEM).get(rl);
+                    Item item = registryAccess.lookupOrThrow(Registries.ITEM).get(rl);
 
                     // Validate item exists and is not air
                     if (item != null && item != Items.AIR) {

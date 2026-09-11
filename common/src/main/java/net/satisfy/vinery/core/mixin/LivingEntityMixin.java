@@ -52,7 +52,7 @@ public abstract class LivingEntityMixin extends Entity {
 					if (world.isClientSide || effect.effect() == null || !(world.random.nextFloat() < effect.probability())) continue;
 					MobEffectInstance statusEffectInstance = new MobEffectInstance(effect.effect());
 					statusEffectInstance.amplifier = WineYears.getEffectLevel(stack, world);
-					if(statusEffectInstance.getEffect().equals(MobEffects.HEAL) || statusEffectInstance.getEffect().equals(MobEffects.HARM)){
+					if(statusEffectInstance.getEffect().equals(MobEffects.INSTANT_HEALTH) || statusEffectInstance.getEffect().equals(MobEffects.INSTANT_DAMAGE)){
 						statusEffectInstance.duration = 1;
 					}
 					this.addEffect(statusEffectInstance);
@@ -64,7 +64,7 @@ public abstract class LivingEntityMixin extends Entity {
 	@Inject(method = "calculateFallDamage", at = @At("RETURN"), cancellable = true)
 	public void modifyJumpBoostFallDamage(float fallDistance, float damageMultiplier, CallbackInfoReturnable<Integer> cir) {
 		LivingEntity entity = (LivingEntity) (Object) this;
-		if (entity.hasEffect(MobEffectRegistry.getHolder(MobEffectRegistry.IMPROVED_JUMP_BOOST)) && !entity.hasEffect(MobEffects.JUMP)) {
+		if (entity.hasEffect(MobEffectRegistry.getHolder(MobEffectRegistry.IMPROVED_JUMP_BOOST)) && !entity.hasEffect(MobEffects.JUMP_BOOST)) {
 			cir.setReturnValue(Math.max(0, cir.getReturnValue() - 1));
 		}
 	}

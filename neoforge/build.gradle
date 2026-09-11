@@ -83,6 +83,7 @@ remapJar {
     input.set shadowJar.archiveFile
     dependsOn shadowJar
     archiveClassifier.set(null)
+    atAccessWideners.add "vinery.accesswidener"
 }
 
 jar {

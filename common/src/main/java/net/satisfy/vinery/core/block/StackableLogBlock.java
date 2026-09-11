@@ -11,7 +11,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -29,7 +28,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
@@ -49,7 +48,7 @@ import java.util.function.Supplier;
 @SuppressWarnings("deprecation, unused")
 public class StackableLogBlock extends SlabBlock {
     public static final BooleanProperty FIRED = BooleanProperty.create("fired");
-    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+    public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
 
 
     public StackableLogBlock(Properties settings) {
@@ -58,12 +57,12 @@ public class StackableLogBlock extends SlabBlock {
     }
 
     @Override
-    public @NotNull ItemInteractionResult useItemOn(ItemStack stack,BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult useItemOn(ItemStack stack,BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         final SlabType stackSize = state.getValue(TYPE);
         if (stack.is(Items.FLINT_AND_STEEL) && stackSize == SlabType.DOUBLE) {
             world.setBlock(pos, state.setValue(FIRED, true), Block.UPDATE_ALL);
             world.playSound(player, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.NEUTRAL, 1.0F, 1.0F);
-            return ItemInteractionResult.SUCCESS;
+            return InteractionResult.SUCCESS;
         } else if (stack.getItem() instanceof ShovelItem && stackSize == SlabType.DOUBLE && state.getValue(FIRED)) {
             world.setBlockAndUpdate(pos, state.setValue(FIRED, false));
             world.playSound(player, pos, SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundSource.BLOCKS, 1.0F, 1.0F);
@@ -73,9 +72,9 @@ public class StackableLogBlock extends SlabBlock {
                     CampfireBlock.makeParticles(world, pos, false, false);
                 }
             }
-            return ItemInteractionResult.sidedSuccess(clientSide);
+            return InteractionResult.SUCCESS;
         } else {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            return InteractionResult.TRY_WITH_EMPTY_HAND;
         }
     }
 
@@ -131,7 +130,7 @@ public class StackableLogBlock extends SlabBlock {
         {
             Holder<Enchantment> frostWalker = livingEntity.level()
                     .registryAccess()
-                    .registryOrThrow(Registries.ENCHANTMENT)
+                    .lookupOrThrow(Registries.ENCHANTMENT)
                     .getHolderOrThrow(Enchantments.FROST_WALKER);
             if(livingEntity.getItemBySlot(EquipmentSlot.FEET).getEnchantments().getLevel(frostWalker) < 0){
                 entity.hurt(world.damageSources().inFire(), 1.f);

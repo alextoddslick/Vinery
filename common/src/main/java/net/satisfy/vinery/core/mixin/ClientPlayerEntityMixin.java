@@ -64,14 +64,14 @@ public abstract class ClientPlayerEntityMixin extends AbstractClientPlayer {
 
 //    @Redirect(method = "updateAutoJump", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;hasEffect(Lnet/minecraft/core/Holder;)Z"))
 //    public boolean improvedJumpBoost(LocalPlayer livingEntity, Holder<MobEffect> statusEffect) {
-//        return livingEntity.hasEffect(MobEffects.JUMP) || livingEntity.hasEffect(Mo);
+//        return livingEntity.hasEffect(MobEffects.JUMP_BOOST) || livingEntity.hasEffect(Mo);
 //    }
 //
 //    @Redirect(method = "updateAutoJump", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;getEffect(Lnet/minecraft/core/Holder;)Lnet/minecraft/world/effect/MobEffectInstance;"))
 //    public MobEffectInstance improvedJumpBoostAmplifier(LocalPlayer livingEntity, Holder<MobEffect> statusEffect) {
 //        return livingEntity.hasEffect(MobEffectRegistry.IMPROVED_JUMP_BOOST) ?
 //                livingEntity.getEffect(MobEffectRegistry.IMPROVED_JUMP_BOOST) :
-//                livingEntity.getEffect(MobEffects.JUMP);
+//                livingEntity.getEffect(MobEffects.JUMP_BOOST);
 //    }
 
     @Unique

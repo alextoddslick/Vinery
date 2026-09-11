@@ -26,7 +26,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.FastColor.ARGB32;
+import net.minecraft.util.ARGB;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
@@ -184,10 +184,10 @@ public class DarkCherrySignRenderer<T extends DarkCherrySignBlockEntity> impleme
             return -988212;
         } else {
             double d = 0.4;
-            int j = (int) ((double) ARGB32.red(i) * 0.4);
-            int k = (int) ((double) ARGB32.green(i) * 0.4);
-            int l = (int) ((double) ARGB32.blue(i) * 0.4);
-            return ARGB32.color(0, j, k, l);
+            int j = (int) ((double) ARGB.red(i) * 0.4);
+            int k = (int) ((double) ARGB.green(i) * 0.4);
+            int l = (int) ((double) ARGB.blue(i) * 0.4);
+            return ARGB.color(0, j, k, l);
         }
     }
 
