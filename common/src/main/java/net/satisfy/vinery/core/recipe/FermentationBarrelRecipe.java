@@ -8,6 +8,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.entity.player.StackedItemContents;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.PlacementInfo;
 import net.minecraft.world.item.crafting.Recipe;
@@ -35,7 +36,7 @@ public class FermentationBarrelRecipe implements Recipe<FermentationBarrelRecipe
                     .xmap(FermentationBarrelRecipe::toNonNullList, ingredients -> ingredients)
                     .forGetter(FermentationBarrelRecipe::getInputs),
             FermentationBarrelRecipeInput.JuiceData.CODEC.fieldOf("juice").forGetter(FermentationBarrelRecipe::getJuiceData),
-            ItemStack.CODEC.fieldOf("result").forGetter(FermentationBarrelRecipe::getOutput),
+            ItemStackTemplate.CODEC.fieldOf("result").forGetter(r -> r.output),
             WINE_BOTTLE_CODEC.fieldOf("wine_bottle").forGetter(FermentationBarrelRecipe::isWineBottleRequired)
     ).apply(instance, FermentationBarrelRecipe::new));
 
@@ -46,7 +47,7 @@ public class FermentationBarrelRecipe implements Recipe<FermentationBarrelRecipe
                     Ingredient.CONTENTS_STREAM_CODEC.encode(buf, ingredient);
                 }
                 FermentationBarrelRecipeInput.JuiceData.STREAM_CODEC.encode(buf, recipe.getJuiceData());
-                ItemStack.STREAM_CODEC.encode(buf, recipe.output);
+                ItemStackTemplate.STREAM_CODEC.encode(buf, recipe.output);
                 buf.writeBoolean(recipe.wineBottleRequired);
             },
             buf -> {
@@ -58,7 +59,7 @@ public class FermentationBarrelRecipe implements Recipe<FermentationBarrelRecipe
 
                 FermentationBarrelRecipeInput.JuiceData juiceData =
                         FermentationBarrelRecipeInput.JuiceData.STREAM_CODEC.decode(buf);
-                ItemStack output = ItemStack.STREAM_CODEC.decode(buf);
+                ItemStackTemplate output = ItemStackTemplate.STREAM_CODEC.decode(buf);
                 boolean wineBottleRequired = buf.readBoolean();
 
                 return new FermentationBarrelRecipe(inputs, juiceData, output, wineBottleRequired);
@@ -66,12 +67,12 @@ public class FermentationBarrelRecipe implements Recipe<FermentationBarrelRecipe
     );
 
     private final NonNullList<Ingredient> inputs;
-    private final ItemStack output;
+    private final ItemStackTemplate output;
     private final FermentationBarrelRecipeInput.JuiceData juiceData;
     private final boolean wineBottleRequired;
     private PlacementInfo placementInfo;
 
-    public FermentationBarrelRecipe(NonNullList<Ingredient> inputs, FermentationBarrelRecipeInput.JuiceData data, ItemStack output, boolean wineBottleRequired) {
+    public FermentationBarrelRecipe(NonNullList<Ingredient> inputs, FermentationBarrelRecipeInput.JuiceData data, ItemStackTemplate output, boolean wineBottleRequired) {
         this.inputs = inputs;
         this.juiceData = data;
         this.output = output;
@@ -121,7 +122,7 @@ public class FermentationBarrelRecipe implements Recipe<FermentationBarrelRecipe
 
     @Override
     public @NotNull ItemStack assemble(FermentationBarrelRecipeInput input) {
-        return this.output.copy();
+        return this.output.create();
     }
 
     public @NotNull NonNullList<Ingredient> getIngredients() {
@@ -129,11 +130,11 @@ public class FermentationBarrelRecipe implements Recipe<FermentationBarrelRecipe
     }
 
     public @NotNull ItemStack getResultItem() {
-        return this.output.copy();
+        return this.output.create();
     }
 
     public ItemStack getOutput() {
-        return this.output;
+        return this.output.create();
     }
 
     public NonNullList<Ingredient> getInputs() {

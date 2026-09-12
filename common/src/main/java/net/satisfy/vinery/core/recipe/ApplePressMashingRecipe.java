@@ -6,6 +6,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.PlacementInfo;
 import net.minecraft.world.item.crafting.Recipe;
@@ -21,20 +22,20 @@ import org.jetbrains.annotations.NotNull;
 public class ApplePressMashingRecipe implements Recipe<ApplePressMashingRecipeInput> {
     public static final MapCodec<ApplePressMashingRecipe> MAP_CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
             Ingredient.CODEC.fieldOf("input").forGetter(ApplePressMashingRecipe::getInput),
-            ItemStack.CODEC.fieldOf("output").forGetter(ApplePressMashingRecipe::getOutput)
+            ItemStackTemplate.CODEC.fieldOf("output").forGetter(r -> r.output)
     ).apply(inst, ApplePressMashingRecipe::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, ApplePressMashingRecipe> STREAM_CODEC = StreamCodec.composite(
             Ingredient.CONTENTS_STREAM_CODEC, ApplePressMashingRecipe::getInput,
-            ItemStack.STREAM_CODEC, ApplePressMashingRecipe::getOutput,
+            ItemStackTemplate.STREAM_CODEC, r -> r.output,
             ApplePressMashingRecipe::new
     );
 
     public final Ingredient input;
-    private final ItemStack output;
+    private final ItemStackTemplate output;
     private PlacementInfo placementInfo;
 
-    public ApplePressMashingRecipe(Ingredient input, ItemStack output) {
+    public ApplePressMashingRecipe(Ingredient input, ItemStackTemplate output) {
         this.input = input;
         this.output = output;
     }
@@ -46,7 +47,7 @@ public class ApplePressMashingRecipe implements Recipe<ApplePressMashingRecipeIn
 
     @Override
     public @NotNull ItemStack assemble(ApplePressMashingRecipeInput container) {
-        return this.output.copy();
+        return this.output.create();
     }
 
     public @NotNull NonNullList<Ingredient> getIngredients() {
@@ -56,7 +57,7 @@ public class ApplePressMashingRecipe implements Recipe<ApplePressMashingRecipeIn
     }
 
     public @NotNull ItemStack getResultItem() {
-        return this.output.copy();
+        return this.output.create();
     }
 
     @Override
@@ -102,6 +103,6 @@ public class ApplePressMashingRecipe implements Recipe<ApplePressMashingRecipeIn
     }
 
     public ItemStack getOutput() {
-        return output;
+        return this.output.create();
     }
 }

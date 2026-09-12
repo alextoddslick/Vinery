@@ -8,6 +8,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.PlacementInfo;
 import net.minecraft.world.item.crafting.Recipe;
@@ -29,23 +30,23 @@ public class ApplePressFermentingRecipe implements Recipe<ApplePressFermentingRe
 
     public static final MapCodec<ApplePressFermentingRecipe> MAP_CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
             Ingredient.CODEC.fieldOf("input").forGetter(ApplePressFermentingRecipe::getInput),
-            ItemStack.CODEC.fieldOf("output").forGetter(ApplePressFermentingRecipe::getOutput),
+            ItemStackTemplate.CODEC.fieldOf("output").forGetter(r -> r.output),
             WINE_BOTTLE_CODEC.fieldOf("wine_bottle").forGetter(ApplePressFermentingRecipe::isRequiresBottle)
     ).apply(inst, ApplePressFermentingRecipe::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, ApplePressFermentingRecipe> STREAM_CODEC = StreamCodec.composite(
             Ingredient.CONTENTS_STREAM_CODEC, ApplePressFermentingRecipe::getInput,
-            ItemStack.STREAM_CODEC, ApplePressFermentingRecipe::getOutput,
+            ItemStackTemplate.STREAM_CODEC, r -> r.output,
             ByteBufCodecs.BOOL, ApplePressFermentingRecipe::isRequiresBottle,
             ApplePressFermentingRecipe::new
     );
 
     public final Ingredient input;
-    private final ItemStack output;
+    private final ItemStackTemplate output;
     private final boolean requiresBottle;
     private PlacementInfo placementInfo;
 
-    public ApplePressFermentingRecipe(Ingredient input, ItemStack output, boolean requiresBottle) {
+    public ApplePressFermentingRecipe(Ingredient input, ItemStackTemplate output, boolean requiresBottle) {
         this.input = input;
         this.output = output;
         this.requiresBottle = requiresBottle;
@@ -62,7 +63,7 @@ public class ApplePressFermentingRecipe implements Recipe<ApplePressFermentingRe
 
     @Override
     public @NotNull ItemStack assemble(ApplePressFermentingRecipeInput container) {
-        return this.output.copy();
+        return this.output.create();
     }
 
     public @NotNull NonNullList<Ingredient> getIngredients() {
@@ -72,7 +73,7 @@ public class ApplePressFermentingRecipe implements Recipe<ApplePressFermentingRe
     }
 
     public @NotNull ItemStack getResultItem() {
-        return this.output.copy();
+        return this.output.create();
     }
 
     public Ingredient getInput() {
@@ -80,7 +81,7 @@ public class ApplePressFermentingRecipe implements Recipe<ApplePressFermentingRe
     }
 
     public ItemStack getOutput() {
-        return output;
+        return this.output.create();
     }
 
     public boolean isRequiresBottle() {
