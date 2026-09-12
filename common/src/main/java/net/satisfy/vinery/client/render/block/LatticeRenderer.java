@@ -7,6 +7,7 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.rendertype.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -188,7 +189,7 @@ public class LatticeRenderer implements BlockEntityRenderer<LatticeBlockEntity, 
 
         Block block = blockState.getBlock();
         Identifier texture = getTextureMap().getOrDefault(block, Vinery.identifier("textures/entity/lattice/default_lattice.png"));
-        RenderType renderType = RenderType.entityCutoutNoCull(texture);
+        RenderType renderType = RenderTypes.entityCutout(texture);
         int light = state.lightCoords;
         int overlay = OverlayTexture.NO_OVERLAY;
 

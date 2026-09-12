@@ -2,7 +2,7 @@ package net.satisfy.vinery.client.gui;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
@@ -33,40 +33,34 @@ public class ApplePressGui extends AbstractContainerScreen<ApplePressGuiHandler>
         super(handler, inventory, title);
     }
 
+    /**
+     * Since 26.1 screens no longer have {@code render}/{@code renderBg}: the background texture is contributed to
+     * the GUI render state from {@code extractBackground} (see vanilla {@code AbstractFurnaceScreen}), and the
+     * slots, labels and tooltips are handled by {@code AbstractContainerScreen.extractRenderState}.
+     */
     @Override
-    protected void init() {
-        super.init();
+    public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks) {
+        super.extractBackground(graphics, mouseX, mouseY, partialTicks);
+        int x = this.leftPos;
+        int y = this.topPos;
+        graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, x, y, 0.0F, 0.0F, this.imageWidth, this.imageHeight, 256, 256);
+        this.extractProgressArrows(graphics, x, y);
     }
 
-    @Override
-    protected void renderBg(GuiGraphics guiGraphics, float f, int i, int j) {
-        int x = (width - imageWidth) / 2;
-        int y = (height - imageHeight) / 2;
-        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, x, y, 0.0F, 0.0F, imageWidth, imageHeight, 256, 256);
-        renderProgressArrows(guiGraphics, x, y);
-    }
-
-    private void renderProgressArrows(GuiGraphics guiGraphics, int x, int y) {
+    private void extractProgressArrows(GuiGraphicsExtractor graphics, int x, int y) {
         if (menu.isCrafting(0)) {
             int height = menu.getScaledProgress(0);
             int xPosition = x + MASHING_BAR_X;
             int yPosition = y + MASHING_BAR_Y + height;
             int textureV = MASHING_BAR_V + height;
             int renderHeight = MASHING_BAR_HEIGHT - height;
-            guiGraphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, xPosition, yPosition, MASHING_BAR_U, textureV, MASHING_BAR_WIDTH, renderHeight, 256, 256);
+            graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, xPosition, yPosition, MASHING_BAR_U, textureV, MASHING_BAR_WIDTH, renderHeight, 256, 256);
         }
         if (menu.isCrafting(1)) {
             int height = menu.getScaledProgress(1);
             int xPosition = x + FERMENTING_BAR_X;
             int yPosition = y + FERMENTING_BAR_Y + FERMENTING_BAR_HEIGHT - height;
-            guiGraphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, xPosition, yPosition, FERMENTING_BAR_U, FERMENTING_BAR_V + FERMENTING_BAR_HEIGHT - height, FERMENTING_BAR_WIDTH, height, 256, 256);
+            graphics.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, xPosition, yPosition, FERMENTING_BAR_U, FERMENTING_BAR_V + FERMENTING_BAR_HEIGHT - height, FERMENTING_BAR_WIDTH, height, 256, 256);
         }
-    }
-
-    @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
-        renderBackground(guiGraphics,mouseX,mouseY,delta);
-        super.render(guiGraphics, mouseX, mouseY, delta);
-        renderTooltip(guiGraphics, mouseX, mouseY);
     }
 }

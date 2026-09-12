@@ -68,7 +68,7 @@ public class VineryClientFabric implements ClientModInitializer {
     private static void performDoubleJump(Player player) {
         Vec3 motion = player.getDeltaMovement();
         player.setDeltaMovement(motion.x, 0.42, motion.z);
-        player.hasImpulse = true;
+        player.needsSync = true;
     }
 
     private static boolean canJump(LocalPlayer player) {

@@ -3,6 +3,7 @@ package net.satisfy.vinery.client.render.block.storage;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.block.BlockModelResolver;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
@@ -23,6 +24,7 @@ public class StorageBlockEntityRenderer implements BlockEntityRenderer<StorageBl
     private static final HashMap<Identifier, StorageTypeRenderer> STORAGE_TYPES = new HashMap<>();
 
     private final ItemModelResolver itemModelResolver;
+    private final BlockModelResolver blockModelResolver;
 
     public static void registerStorageType(Identifier name, StorageTypeRenderer renderer) {
         STORAGE_TYPES.put(name, renderer);
@@ -34,6 +36,7 @@ public class StorageBlockEntityRenderer implements BlockEntityRenderer<StorageBl
 
     public StorageBlockEntityRenderer(BlockEntityRendererProvider.Context context) {
         this.itemModelResolver = context.itemModelResolver();
+        this.blockModelResolver = context.blockModelResolver();
     }
 
     @Override
@@ -48,6 +51,7 @@ public class StorageBlockEntityRenderer implements BlockEntityRenderer<StorageBl
         state.storageType = null;
         state.items = NonNullList.create();
         state.itemRenderStates = StorageRenderState.NO_ITEM_STATES;
+        state.resetBlockModels(0);
 
         BlockState blockState = entity.getBlockState();
         if (!(blockState.getBlock() instanceof StorageBlock storageBlock) || !entity.hasLevel()) {
@@ -62,10 +66,11 @@ public class StorageBlockEntityRenderer implements BlockEntityRenderer<StorageBl
             copy.set(i, inventory.get(i).copy());
         }
         state.items = copy;
+        state.resetBlockModels(copy.size());
 
         StorageTypeRenderer renderer = getRendererForId(state.storageType);
         if (renderer != null) {
-            renderer.extract(entity, state, this.itemModelResolver, partialTick);
+            renderer.extract(entity, state, this.itemModelResolver, this.blockModelResolver, partialTick);
         }
     }
 

@@ -9,16 +9,17 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.rendertype.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.resources.model.sprite.Material;
-import net.minecraft.client.resources.model.sprite.MaterialSet;
-import net.minecraft.client.resources.model.ModelBakery;
+import net.minecraft.client.resources.model.sprite.SpriteGetter;
+import net.minecraft.client.resources.model.sprite.SpriteId;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.state.BlockState;
@@ -38,13 +39,19 @@ public class CompletionistBannerRenderer implements BlockEntityRenderer<Completi
     private static final String POLE = "pole";
     private static final String BAR = "bar";
 
-    private final MaterialSet materials;
+    /**
+     * Pole and crossbar reuse the vanilla banner_base sprite off the banner atlas, exactly like the vanilla
+     * BannerRenderer does since 26.1. The old ModelBakery.BANNER_BASE Material / MaterialSet pair is gone.
+     */
+    private static final SpriteId BASE_SPRITE = Sheets.BANNER_BASE;
+
+    private final SpriteGetter sprites;
     private final CompletionistBannerFlagModel flagModel;
     private final ModelPart pole;
     private final ModelPart bar;
 
     public CompletionistBannerRenderer(BlockEntityRendererProvider.Context context) {
-        this.materials = context.materials();
+        this.sprites = context.sprites();
         ModelPart modelPart = context.bakeLayer(LAYER_LOCATION);
         this.pole = modelPart.getChild(POLE);
         this.bar = modelPart.getChild(BAR);
@@ -120,14 +127,13 @@ public class CompletionistBannerRenderer implements BlockEntityRenderer<Completi
         poseStack.pushPose();
         poseStack.scale(scale, -scale, -scale);
 
-        Material material = ModelBakery.BANNER_BASE;
-        RenderType baseType = material.renderType(RenderType::entitySolid);
+        RenderType baseType = BASE_SPRITE.renderType(RenderTypes::entitySolid);
         if (state.standing) {
-            collector.submitModelPart(this.pole, poseStack, baseType, state.lightCoords, OverlayTexture.NO_OVERLAY, this.materials.get(material));
+            collector.submitModelPart(this.pole, poseStack, baseType, state.lightCoords, OverlayTexture.NO_OVERLAY, this.sprites.get(BASE_SPRITE));
         }
-        collector.submitModelPart(this.bar, poseStack, baseType, state.lightCoords, OverlayTexture.NO_OVERLAY, this.materials.get(material));
+        collector.submitModelPart(this.bar, poseStack, baseType, state.lightCoords, OverlayTexture.NO_OVERLAY, this.sprites.get(BASE_SPRITE));
 
-        collector.submitModel(this.flagModel, state.phase, poseStack, RenderType.entitySolid(state.texture),
+        collector.submitModel(this.flagModel, state.phase, poseStack, RenderTypes.entitySolid(state.texture),
                 state.lightCoords, OverlayTexture.NO_OVERLAY, 0, state.breakProgress);
 
         poseStack.popPose();
