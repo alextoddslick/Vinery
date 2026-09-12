@@ -5,6 +5,7 @@ import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.recipe.IRecipeManager;
 import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.types.IRecipeHolderType;
 import mezz.jei.api.recipe.types.IRecipeType;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
@@ -63,8 +64,8 @@ public class VineryJEIPlugin implements IModPlugin {
         register(registration, ApplePressMashingCategory.APPLE_PRESS_MASHING_TYPE, RecipeTypesRegistry.APPLE_PRESS_MASHING_RECIPE_TYPE.get());
     }
 
-    private static <T extends Recipe<?>> void register(IRecipeRegistration registration, IRecipeType<T> jeiType, RecipeType<T> vanillaType) {
-        List<T> recipes = values(vanillaType);
+    private static <T extends Recipe<?>> void register(IRecipeRegistration registration, IRecipeHolderType<T> jeiType, RecipeType<T> vanillaType) {
+        List<RecipeHolder<T>> recipes = VineryClientRecipeCache.get(vanillaType);
         registration.addRecipes(jeiType, recipes);
         PUSHED.put(jeiType, recipes);
     }
@@ -94,28 +95,19 @@ public class VineryJEIPlugin implements IModPlugin {
     }
 
     @SuppressWarnings("unchecked")
-    private static <T extends Recipe<?>> void replace(IRecipeManager manager, IRecipeType<T> jeiType, RecipeType<T> vanillaType) {
-        List<T> current = values(vanillaType);
-        List<T> previous = (List<T>) PUSHED.getOrDefault(jeiType, List.of());
+    private static <T extends Recipe<?>> void replace(IRecipeManager manager, IRecipeHolderType<T> jeiType, RecipeType<T> vanillaType) {
+        List<RecipeHolder<T>> current = VineryClientRecipeCache.get(vanillaType);
+        List<RecipeHolder<T>> previous = (List<RecipeHolder<T>>) PUSHED.getOrDefault(jeiType, List.of());
 
-        List<T> stale = new ArrayList<>(previous);
+        List<RecipeHolder<T>> stale = new ArrayList<>(previous);
         stale.removeAll(current);
         if (!stale.isEmpty()) manager.hideRecipes(jeiType, stale);
 
-        List<T> added = new ArrayList<>(current);
+        List<RecipeHolder<T>> added = new ArrayList<>(current);
         added.removeAll(previous);
         if (!added.isEmpty()) manager.addRecipes(jeiType, added);
 
         PUSHED.put(jeiType, current);
-    }
-
-    private static <T extends Recipe<?>> List<T> values(RecipeType<T> type) {
-        List<RecipeHolder<T>> holders = VineryClientRecipeCache.get(type);
-        List<T> recipes = new ArrayList<>(holders.size());
-        for (RecipeHolder<T> holder : holders) {
-            recipes.add(holder.value());
-        }
-        return recipes;
     }
 
     @Override
@@ -160,6 +152,6 @@ public class VineryJEIPlugin implements IModPlugin {
 
         VineryJEIPlugin.addItemStackInputSlot(builder, ObjectRegistry.WINE_BOTTLE.get().getDefaultInstance());
 
-        VineryJEIPlugin.addItemStackOutputSlot(builder, recipe.getResultItem(null));
+        VineryJEIPlugin.addItemStackOutputSlot(builder, recipe.getResultItem());
     }
 }
