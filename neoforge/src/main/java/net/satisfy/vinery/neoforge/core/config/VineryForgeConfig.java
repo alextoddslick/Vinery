@@ -4,8 +4,6 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
-import java.util.List;
-
 public class VineryForgeConfig {
     public static final ModConfigSpec COMMON_CONFIG;
 
@@ -26,20 +24,9 @@ public class VineryForgeConfig {
     public static final ModConfigSpec.IntValue MAX_DURATION;
     public static final ModConfigSpec.BooleanValue GIVE_EFFECT;
     public static final ModConfigSpec.BooleanValue SHOW_TOOLTIP;
-    public static final ModConfigSpec.ConfigValue<List<? extends String>> LEVEL1_TRADES;
-    public static final ModConfigSpec.ConfigValue<List<? extends String>> LEVEL2_TRADES;
-    public static final ModConfigSpec.ConfigValue<List<? extends String>> LEVEL3_TRADES;
-    public static final ModConfigSpec.ConfigValue<List<? extends String>> LEVEL4_TRADES;
-    public static final ModConfigSpec.ConfigValue<List<? extends String>> LEVEL5_TRADES;
     public static final ModConfigSpec.DoubleValue TRADER_SPAWN_CHANCE;
     public static final ModConfigSpec.BooleanValue SPAWN_WITH_MULES;
     public static final ModConfigSpec.IntValue TRADER_SPAWN_DELAY;
-
-    public static List<? extends String> level1TradesCache;
-    public static List<? extends String> level2TradesCache;
-    public static List<? extends String> level3TradesCache;
-    public static List<? extends String> level4TradesCache;
-    public static List<? extends String> level5TradesCache;
 
     public static int totalFermentationTimeCache;
     public static int maxFluidLevelCache;
@@ -159,54 +146,6 @@ public class VineryForgeConfig {
                 .defineInRange("spawnDelay", 48000, 1, Integer.MAX_VALUE);
 
         commonBuilder.pop();
-        commonBuilder.push("VillagerTrades");
-
-        LEVEL1_TRADES = commonBuilder
-                .comment("List of trades for Level 1. Format: item|price|quantity|maxUses|isSelling")
-                .defineList("level1Trades", List.of(
-                        "vinery:red_grape|5|4|5|false",
-                        "vinery:white_grape|5|4|5|false",
-                        "vinery:red_grape_seeds|2|1|1|true",
-                        "vinery:white_grape_seeds|2|1|1|true"
-                ), obj -> obj instanceof String);
-
-        LEVEL2_TRADES = commonBuilder
-                .comment("List of trades for Level 2. Format: item|price|quantity|maxUses|isSelling")
-                .defineList("level2Trades", List.of(
-                        "vinery:wine_bottle|1|1|4|true",
-                        "vinery:cherry|12|1|4|false",
-                        "vinery:apple_mash|1|1|4|true"
-                ), obj -> obj instanceof String);
-
-        LEVEL3_TRADES = commonBuilder
-                .comment("List of trades for Level 3. Format: item|price|quantity|maxUses|isSelling")
-                .defineList("level3Trades", List.of(
-                        "vinery:white_grape_bag|7|1|2|true",
-                        "vinery:red_grape_bag|7|1|2|true",
-                        "vinery:cherry_bag|7|1|2|true",
-                        "vinery:apple_bag|7|1|2|true"
-                ), obj -> obj instanceof String);
-
-        LEVEL4_TRADES = commonBuilder
-                .comment("List of trades for Level 4. Format: item|price|quantity|maxUses|isSelling")
-                .defineList("level4Trades", List.of(
-                        "vinery:window|12|1|2|true",
-                        "vinery:dark_cherry_beam|6|4|2|true",
-                        "vinery:grapevine_pot|6|1|2|true",
-                        "vinery:taiga_red_grape_seeds|2|1|2|true",
-                        "vinery:taiga_white_grape_seeds|2|1|2|true"
-                ), obj -> obj instanceof String);
-
-        LEVEL5_TRADES = commonBuilder
-                .comment("List of trades for Level 5. Format: item|price|quantity|maxUses|isSelling")
-                .defineList("level5Trades", List.of(
-                        "vinery:wine_box|10|1|2|true",
-                        "vinery:lilitu_wine|4|1|2|true",
-                        "vinery:winemaker_apron|18|1|1|true",
-                        "vinery:straw_hat|12|1|1|true"
-                ), obj -> obj instanceof String);
-
-        commonBuilder.pop();
 
         COMMON_CONFIG = commonBuilder.build();
 
@@ -234,41 +173,6 @@ public class VineryForgeConfig {
         traderSpawnChanceCache = 0.5;
         spawnWithMulesCache = true;
         traderSpawnDelayCache = 48000;
-
-        level1TradesCache = List.of(
-                "vinery:red_grape|5|4|5|false",
-                "vinery:white_grape|5|4|5|false",
-                "vinery:red_grape_seeds|2|1|1|true",
-                "vinery:white_grape_seeds|2|1|1|true"
-        );
-
-        level2TradesCache = List.of(
-                "vinery:wine_bottle|1|1|4|true",
-                "vinery:cherry|12|1|4|false",
-                "vinery:apple_mash|1|1|4|true"
-        );
-
-        level3TradesCache = List.of(
-                "vinery:white_grape_bag|7|1|2|true",
-                "vinery:red_grape_bag|7|1|2|true",
-                "vinery:cherry_bag|7|1|2|true",
-                "vinery:apple_bag|7|1|2|true"
-        );
-
-        level4TradesCache = List.of(
-                "vinery:window|12|1|2|true",
-                "vinery:dark_cherry_beam|6|4|2|true",
-                "vinery:grapevine_pot|6|1|2|true",
-                "vinery:taiga_red_grape_seeds|2|1|2|true",
-                "vinery:taiga_white_grape_seeds|2|1|2|true"
-        );
-
-        level5TradesCache = List.of(
-                "vinery:wine_box|10|1|2|true",
-                "vinery:lilitu_wine|4|1|2|true",
-                "vinery:winemaker_apron|18|1|1|true",
-                "vinery:straw_hat|12|1|1|true"
-        );
     }
 
     @SubscribeEvent
@@ -302,10 +206,5 @@ public class VineryForgeConfig {
         traderSpawnChanceCache = TRADER_SPAWN_CHANCE.get();
         spawnWithMulesCache = SPAWN_WITH_MULES.get();
         traderSpawnDelayCache = TRADER_SPAWN_DELAY.get();
-        level1TradesCache = LEVEL1_TRADES.get();
-        level2TradesCache = LEVEL2_TRADES.get();
-        level3TradesCache = LEVEL3_TRADES.get();
-        level4TradesCache = LEVEL4_TRADES.get();
-        level5TradesCache = LEVEL5_TRADES.get();
     }
 }
