@@ -104,7 +104,7 @@ public class GeneralUtil {
 
     public static Collection<ServerPlayer> tracking(ServerLevel world, BlockPos pos) {
         Objects.requireNonNull(pos, "BlockPos cannot be null");
-        return tracking(world, new ChunkPos(pos));
+        return tracking(world, ChunkPos.containing(pos));
     }
 
     public static BlockPos getPreviousPlayerPosition(Player player, ChairEntity chairEntity) {
@@ -183,7 +183,7 @@ public class GeneralUtil {
     }
 
     private static Identifier getDimensionTypeId(Level world) {
-        return world.dimension().location();
+        return world.dimension().identifier();
     }
 
     public static void onStateReplaced(Level world, BlockPos pos) {
@@ -275,7 +275,7 @@ public class GeneralUtil {
     }
 
     private static void popResource(Level level, ItemEntity itemEntity, ItemStack itemStack) {
-        if (level instanceof ServerLevel serverLevel && !itemStack.isEmpty() && serverLevel.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS)) {
+        if (level instanceof ServerLevel serverLevel && !itemStack.isEmpty() && serverLevel.getGameRules().get(GameRules.BLOCK_DROPS)) {
             itemEntity.setDefaultPickUpDelay();
             level.addFreshEntity(itemEntity);
         }

@@ -18,7 +18,8 @@ public final class WineDebugCommands {
     public static void init() {
         CommandRegistrationEvent.EVENT.register((dispatcher, registryAccess, selection) -> dispatcher.register(
                 Commands.literal("wine")
-                        .requires(source -> source.hasPermission(2) && source.getEntity() instanceof ServerPlayer)
+                        .requires(Commands.<CommandSourceStack>hasPermission(Commands.LEVEL_GAMEMASTERS)
+                                .and(source -> source.getEntity() instanceof ServerPlayer))
                         .then(Commands.literal("age")
                                 .then(Commands.argument("years", IntegerArgumentType.integer(0, 100000))
                                         .executes(ctx -> ageHeld(ctx.getSource(), IntegerArgumentType.getInteger(ctx, "years")))))

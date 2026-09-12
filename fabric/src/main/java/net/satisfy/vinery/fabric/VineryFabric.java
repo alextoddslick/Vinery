@@ -4,8 +4,8 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
-import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
+import net.fabricmc.fabric.api.resource.v1.ResourceLoader;
+import net.fabricmc.fabric.api.resource.v1.pack.PackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.resources.Identifier;
@@ -33,10 +33,10 @@ public class VineryFabric implements ModInitializer {
         ServerLifecycleEvents.SERVER_STARTED.register(VineryFabricVillagers::init);
 
         Optional<ModContainer> modContainer = FabricLoader.getInstance().getModContainer(Vinery.MOD_ID);
-        modContainer.ifPresent(container -> ResourceManagerHelper.registerBuiltinResourcePack(
+        modContainer.ifPresent(container -> ResourceLoader.registerBuiltinPack(
                 Identifier.fromNamespaceAndPath(Vinery.MOD_ID, "bushy_leaves"),
                 container,
-                ResourcePackActivationType.NORMAL
+                PackActivationType.NORMAL
         ));
     }
 }

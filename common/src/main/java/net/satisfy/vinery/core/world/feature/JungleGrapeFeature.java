@@ -46,7 +46,7 @@ public class JungleGrapeFeature extends Feature<BlockStateConfiguration> {
             }
 
             BlockPos.MutableBlockPos vineMutablePos = new BlockPos.MutableBlockPos().set(mutable);
-            ChunkPos currentChunkPos = new ChunkPos(vineMutablePos);
+            ChunkPos currentChunkPos = ChunkPos.containing(vineMutablePos);
             BlockState currentBlockstate;
             BlockState aboveBlockstate;
 
@@ -57,9 +57,9 @@ public class JungleGrapeFeature extends Feature<BlockStateConfiguration> {
                 if (context.level().isEmptyBlock(vineMutablePos)) {
                     for (Direction direction : Direction.Plane.HORIZONTAL) {
                         mutable.set(vineMutablePos).move(direction);
-                        ChunkPos newChunkPos = new ChunkPos(mutable);
+                        ChunkPos newChunkPos = ChunkPos.containing(mutable);
 
-                        if(newChunkPos.x != currentChunkPos.x || newChunkPos.z != currentChunkPos.z) continue;
+                        if(newChunkPos.x() != currentChunkPos.x() || newChunkPos.z() != currentChunkPos.z()) continue;
 
                         currentBlockstate = context.config().state.setValue(GrapeVineBlock.getPropertyForFace(direction), true);
                         aboveBlockstate = context.level().getBlockState(vineMutablePos.above());

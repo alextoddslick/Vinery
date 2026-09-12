@@ -9,6 +9,7 @@ import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 
 import java.util.List;
 import java.util.Optional;
@@ -48,7 +49,8 @@ public class FoodComponent {
 					Codec.FLOAT.fieldOf("saturation").forGetter(FoodComponent::saturationModifier),
 					Codec.BOOL.optionalFieldOf("can_always_eat", false).forGetter(FoodComponent::canAlwaysEat),
 					ExtraCodecs.POSITIVE_FLOAT.optionalFieldOf("eat_seconds", 1.6F).forGetter(FoodComponent::eatSeconds),
-					ItemStack.SINGLE_ITEM_CODEC.optionalFieldOf("using_converts_to").forGetter(FoodComponent::usingConvertsTo),
+					ItemStackTemplate.CODEC.xmap(ItemStackTemplate::create, ItemStackTemplate::fromNonEmptyStack)
+							.optionalFieldOf("using_converts_to").forGetter(FoodComponent::usingConvertsTo),
 					PossibleEffect.CODEC.listOf().optionalFieldOf("effects", List.of()).forGetter(FoodComponent::getEffects)
 			).apply(instance, FoodComponent::new)
 	);
