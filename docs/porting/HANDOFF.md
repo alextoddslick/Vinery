@@ -9,8 +9,6 @@
    "Regenerating the reference sources" explains how to rebuild them.
 4. Alex only cares about Fabric; NeoForge is best-effort. Never run the client/simulator yourself; he tests.
 
-previous. **Fabric is the priority; NeoForge is best-effort** (Alex only cares about Fabric).
-
 Goal: port Vinery incrementally `1.21.1 -> 1.21.10 -> 26.1 -> 26.2`, one git branch per version, each based on the
 previous. **Fabric is the priority; NeoForge is best-effort** (Alex only cares about Fabric).
 
