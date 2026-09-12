@@ -182,12 +182,12 @@ public class ApplePressBlockEntity extends BlockEntity implements MenuProvider, 
         ItemStack output = entity.getItem(1);
         if (!recipe.matches(input, entity.level)) return false;
         if (output.isEmpty()) return true;
-        return output.getItem() == recipe.assemble(input, entity.level.registryAccess()).getItem();
+        return output.getItem() == recipe.assemble(input).getItem();
     }
 
     private static void processMashing(ApplePressBlockEntity entity, ApplePressMashingRecipe recipe, ApplePressMashingRecipeInput input) {
         assert entity.level != null;
-        ItemStack result = recipe.assemble(input, entity.level.registryAccess()).copy();
+        ItemStack result = recipe.assemble(input).copy();
         entity.removeItem(0, 1);
         ItemStack outputSlot = entity.getItem(1);
         if (outputSlot.isEmpty()) {
@@ -207,12 +207,12 @@ public class ApplePressBlockEntity extends BlockEntity implements MenuProvider, 
         }
         ItemStack output = entity.getItem(3);
         if (output.isEmpty()) return true;
-        return output.getItem() == recipe.assemble(input, entity.level.registryAccess()).getItem();
+        return output.getItem() == recipe.assemble(input).getItem();
     }
 
     private static void processFermenting(ApplePressBlockEntity entity, ApplePressFermentingRecipe recipe, ApplePressFermentingRecipeInput input) {
         assert entity.level != null;
-        ItemStack result = recipe.assemble(input, entity.level.registryAccess()).copy();
+        ItemStack result = recipe.assemble(input).copy();
         entity.removeItem(1, 1);
         if (recipe.requiresBottle()) {
             entity.removeItem(2, 1);

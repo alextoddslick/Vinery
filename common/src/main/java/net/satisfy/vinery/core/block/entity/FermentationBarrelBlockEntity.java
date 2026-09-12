@@ -2,7 +2,6 @@ package net.satisfy.vinery.core.block.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -168,8 +167,6 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Implem
             blockEntity.setJuiceType("");
         }
 
-        HolderLookup.Provider access = world.registryAccess();
-
         List<ItemStack> inputs = new java.util.ArrayList<>();
         for (int i = 1; i <= 3; i++) {
             ItemStack stack = blockEntity.getItem(i);
@@ -192,12 +189,12 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Implem
         } else {
             FermentationBarrelRecipe recipe = recipeHolder.get().value();
 
-            if (blockEntity.canCraft(recipe, input, access)) {
+            if (blockEntity.canCraft(recipe, input)) {
                 blockEntity.fermentationTime++;
 
                 if (blockEntity.fermentationTime >= PlatformHelper.getTotalFermentationTime()) {
                     blockEntity.fermentationTime = 0;
-                    blockEntity.craft(recipe, input, access);
+                    blockEntity.craft(recipe, input);
                 }
             } else {
                 blockEntity.fermentationTime = 0;
@@ -246,8 +243,8 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Implem
         }
     }
 
-    private boolean canCraft(FermentationBarrelRecipe recipe, FermentationBarrelRecipeInput input, HolderLookup.Provider access) {
-        if (recipe == null || recipe.assemble(input, access).isEmpty()) {
+    private boolean canCraft(FermentationBarrelRecipe recipe, FermentationBarrelRecipeInput input) {
+        if (recipe == null || recipe.assemble(input).isEmpty()) {
             return false;
         } else if (areIngredientsEmpty()) {
             return false;
@@ -263,7 +260,7 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Implem
                 }
             }
 
-            ItemStack recipeOutput = recipe.assemble(input, access);
+            ItemStack recipeOutput = recipe.assemble(input);
             if (recipeOutput.is(ObjectRegistry.WINE_BOTTLE.get())) {
                 ItemStack existingWineBottle = this.getItem(WINE_BOTTLE_SLOT);
                 if (existingWineBottle.isEmpty()) {
@@ -287,12 +284,12 @@ public class FermentationBarrelBlockEntity extends BlockEntity implements Implem
         return true;
     }
 
-    private void craft(FermentationBarrelRecipe recipe, FermentationBarrelRecipeInput input, HolderLookup.Provider access) {
-        if (!canCraft(recipe, input, access)) {
+    private void craft(FermentationBarrelRecipe recipe, FermentationBarrelRecipeInput input) {
+        if (!canCraft(recipe, input)) {
             return;
         }
 
-        ItemStack recipeOutput = recipe.assemble(input, access).copy();
+        ItemStack recipeOutput = recipe.assemble(input).copy();
 
         ItemStack existingOutput = this.getItem(OUTPUT_SLOT_GENERAL);
         if (existingOutput.isEmpty()) {

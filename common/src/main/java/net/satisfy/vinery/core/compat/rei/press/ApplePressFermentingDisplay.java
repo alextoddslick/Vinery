@@ -41,8 +41,8 @@ public class ApplePressFermentingDisplay extends BasicDisplay {
 
     public ApplePressFermentingDisplay(RecipeHolder<ApplePressFermentingRecipe> recipe) {
         this(Collections.singletonList(EntryIngredients.ofIngredient(recipe.value().input)),
-                Collections.singletonList(EntryIngredients.of(recipe.value().getResultItem(null))),
-                Optional.of(recipe.id().location()));
+                Collections.singletonList(EntryIngredients.of(recipe.value().getResultItem())),
+                Optional.of(recipe.id().identifier()));
     }
 
     public ApplePressFermentingDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs) {

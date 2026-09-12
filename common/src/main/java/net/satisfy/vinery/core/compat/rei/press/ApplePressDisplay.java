@@ -42,8 +42,8 @@ public class ApplePressDisplay extends BasicDisplay {
 
     public ApplePressDisplay(RecipeHolder<ApplePressMashingRecipe> recipe) {
         this(Collections.singletonList(EntryIngredients.ofIngredient(recipe.value().input)),
-                Collections.singletonList(EntryIngredients.of(recipe.value().getResultItem(null))),
-                Optional.of(recipe.id().location()));
+                Collections.singletonList(EntryIngredients.of(recipe.value().getResultItem())),
+                Optional.of(recipe.id().identifier()));
     }
 
     public ApplePressDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs) {

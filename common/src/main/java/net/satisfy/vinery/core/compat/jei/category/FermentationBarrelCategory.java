@@ -9,9 +9,10 @@ import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.category.IRecipeCategory;
-import mezz.jei.api.recipe.types.IRecipeType;
-import net.minecraft.client.gui.GuiGraphics;
+import mezz.jei.api.recipe.types.IRecipeHolderType;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.satisfy.vinery.client.gui.FermentationBarrelGui;
 import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.compat.jei.VineryJEIPlugin;
@@ -21,9 +22,9 @@ import net.satisfy.vinery.platform.PlatformHelper;
 import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("unused")
-public class FermentationBarrelCategory implements IRecipeCategory<FermentationBarrelRecipe> {
-    public static final IRecipeType<FermentationBarrelRecipe> FERMENTATION_BARREL =
-            IRecipeType.create(Vinery.MOD_ID, "wine_fermentation", FermentationBarrelRecipe.class);
+public class FermentationBarrelCategory implements IRecipeCategory<RecipeHolder<FermentationBarrelRecipe>> {
+    public static final IRecipeHolderType<FermentationBarrelRecipe> FERMENTATION_BARREL =
+            IRecipeHolderType.create(Vinery.identifier("wine_fermentation"));
     public static final int WIDTH = 124;
     public static final int HEIGHT = 70;
     public static final int WIDTH_OF = 26;
@@ -41,12 +42,12 @@ public class FermentationBarrelCategory implements IRecipeCategory<FermentationB
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, FermentationBarrelRecipe recipe, IFocusGroup focuses) {
-        VineryJEIPlugin.buildSlotsFromRecipe(builder, recipe);
+    public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<FermentationBarrelRecipe> holder, IFocusGroup focuses) {
+        VineryJEIPlugin.buildSlotsFromRecipe(builder, holder.value());
     }
 
     @Override
-    public @NotNull IRecipeType<FermentationBarrelRecipe> getRecipeType() {
+    public @NotNull IRecipeHolderType<FermentationBarrelRecipe> getRecipeType() {
         return FERMENTATION_BARREL;
     }
 
@@ -56,9 +57,13 @@ public class FermentationBarrelCategory implements IRecipeCategory<FermentationB
     }
 
     @Override
-    @SuppressWarnings("removal")
-    public @NotNull IDrawable getBackground() {
-        return this.background;
+    public int getWidth() {
+        return WIDTH;
+    }
+
+    @Override
+    public int getHeight() {
+        return HEIGHT;
     }
 
     @Override
@@ -100,17 +105,21 @@ public class FermentationBarrelCategory implements IRecipeCategory<FermentationB
     }
 
     @Override
-    public void draw(FermentationBarrelRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+    public void draw(RecipeHolder<FermentationBarrelRecipe> holder, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor guiGraphics, double mouseX, double mouseY) {
 
-        IRecipeCategory.super.draw(recipe, recipeSlotsView, guiGraphics, mouseX, mouseY);
+        this.background.draw(guiGraphics, 0, 0);
 
+        IRecipeCategory.super.draw(holder, recipeSlotsView, guiGraphics, mouseX, mouseY);
+
+        FermentationBarrelRecipe recipe = holder.value();
         if (recipe.getJuiceData().amount() > 0) {
             FermentationBarrelGui.drawJuiceBar(guiGraphics, recipe.getJuiceData().type(), recipe.getJuiceData().amount(), 56, 31);
         }
     }
 
     @Override
-    public void getTooltip(ITooltipBuilder tooltip, FermentationBarrelRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
+    public void getTooltip(ITooltipBuilder tooltip, RecipeHolder<FermentationBarrelRecipe> holder, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
+        FermentationBarrelRecipe recipe = holder.value();
         if (recipe.getJuiceData().amount() > 0 && isMouseOverFluidArea((int) mouseX, (int) mouseY)) {
             tooltip.add(getFluidTooltip(recipe.getJuiceData().type(), recipe.getJuiceData().amount()));
         }

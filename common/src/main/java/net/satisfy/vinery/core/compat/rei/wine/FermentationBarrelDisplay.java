@@ -53,7 +53,7 @@ public class FermentationBarrelDisplay extends BasicDisplay {
     private final String juiceType;
 
     public FermentationBarrelDisplay(RecipeHolder<FermentationBarrelRecipe> recipe) {
-        this(prepareInputs(recipe.value()), prepareOutputs(recipe.value()), Optional.of(recipe.id().location()),
+        this(prepareInputs(recipe.value()), prepareOutputs(recipe.value()), Optional.of(recipe.id().identifier()),
                 recipe.value().getJuiceData().amount(), recipe.value().getJuiceData().type());
     }
 
@@ -82,7 +82,7 @@ public class FermentationBarrelDisplay extends BasicDisplay {
     }
 
     private static List<EntryIngredient> prepareOutputs(FermentationBarrelRecipe recipe) {
-        return Collections.singletonList(EntryIngredients.of(recipe.getResultItem(null)));
+        return Collections.singletonList(EntryIngredients.of(recipe.getResultItem()));
     }
 
     @Override

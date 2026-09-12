@@ -9,20 +9,21 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.category.IRecipeCategory;
-import mezz.jei.api.recipe.types.IRecipeType;
-import net.minecraft.client.gui.GuiGraphics;
+import mezz.jei.api.recipe.types.IRecipeHolderType;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.recipe.ApplePressFermentingRecipe;
 import net.satisfy.vinery.core.registry.ObjectRegistry;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Vector2i;
 
-public class ApplePressFermentingCategory implements IRecipeCategory<ApplePressFermentingRecipe> {
-    public static final IRecipeType<ApplePressFermentingRecipe> APPLE_PRESS_TYPE =
-            IRecipeType.create(Vinery.MOD_ID, "apple_press_fermenting", ApplePressFermentingRecipe.class);
+public class ApplePressFermentingCategory implements IRecipeCategory<RecipeHolder<ApplePressFermentingRecipe>> {
+    public static final IRecipeHolderType<ApplePressFermentingRecipe> APPLE_PRESS_TYPE =
+            IRecipeHolderType.create(Vinery.identifier("apple_press_fermenting"));
 
     private static final int BACKGROUND_WIDTH = 160;
     private static final int BACKGROUND_HEIGHT = 70;
@@ -52,7 +53,7 @@ public class ApplePressFermentingCategory implements IRecipeCategory<ApplePressF
 
     @NotNull
     @Override
-    public IRecipeType<ApplePressFermentingRecipe> getRecipeType() {
+    public IRecipeHolderType<ApplePressFermentingRecipe> getRecipeType() {
         return APPLE_PRESS_TYPE;
     }
 
@@ -62,11 +63,14 @@ public class ApplePressFermentingCategory implements IRecipeCategory<ApplePressF
         return title;
     }
 
-    @NotNull
     @Override
-    @SuppressWarnings("removal")
-    public IDrawable getBackground() {
-        return background;
+    public int getWidth() {
+        return BACKGROUND_WIDTH;
+    }
+
+    @Override
+    public int getHeight() {
+        return BACKGROUND_HEIGHT;
     }
 
     @Override
@@ -76,12 +80,13 @@ public class ApplePressFermentingCategory implements IRecipeCategory<ApplePressF
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, ApplePressFermentingRecipe recipe, IFocusGroup focuses) {
+    public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<ApplePressFermentingRecipe> holder, IFocusGroup focuses) {
+        ApplePressFermentingRecipe recipe = holder.value();
         builder.addSlot(RecipeIngredientRole.INPUT, 101 - X_OFFSET, 50 - Y_OFFSET)
                 .add(recipe.getInput());
 
         builder.addSlot(RecipeIngredientRole.OUTPUT, 119 - X_OFFSET, 18 - Y_OFFSET)
-                .add(recipe.getResultItem(null));
+                .add(recipe.getResultItem());
 
         if (recipe.requiresBottle()) {
             builder.addSlot(RecipeIngredientRole.INPUT, 119 - X_OFFSET, 50 - Y_OFFSET)
@@ -90,7 +95,8 @@ public class ApplePressFermentingCategory implements IRecipeCategory<ApplePressF
     }
 
     @Override
-    public void draw(ApplePressFermentingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+    public void draw(RecipeHolder<ApplePressFermentingRecipe> holder, IRecipeSlotsView recipeSlotsView, GuiGraphicsExtractor guiGraphics, double mouseX, double mouseY) {
+        background.draw(guiGraphics, 0, 0);
         arrow.draw(guiGraphics, ARROW_POS.x() - X_OFFSET, ARROW_POS.y() - Y_OFFSET);
     }
 }
