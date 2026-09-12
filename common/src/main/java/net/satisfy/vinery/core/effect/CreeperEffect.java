@@ -3,7 +3,7 @@ package net.satisfy.vinery.core.effect;
 import net.minecraft.server.level.ServerLevel;
 
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.effect.InstantenousMobEffect;
+import net.minecraft.world.effect.InstantaneousMobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -11,13 +11,13 @@ import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
-public class CreeperEffect extends InstantenousMobEffect {
+public class CreeperEffect extends InstantaneousMobEffect {
     public CreeperEffect() {
         super(MobEffectCategory.HARMFUL, 0xFF0000);
     }
 
     @Override
-    public void applyInstantenousEffect(ServerLevel serverLevel, @Nullable Entity source, @Nullable Entity attacker, LivingEntity target, int amplifier, double proximity) {
+    public void applyInstantaneousEffect(ServerLevel serverLevel, @Nullable Entity source, @Nullable Entity attacker, LivingEntity target, int amplifier, double proximity) {
         explode(source, amplifier);
     }
 

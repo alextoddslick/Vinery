@@ -7,7 +7,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.Tuple;
+import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -41,12 +41,12 @@ public abstract class StorageBlock extends FacingBlock implements EntityBlock {
         ItemStack stack = player.getMainHandItem();
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof StorageBlockEntity shelfBlockEntity) {
-            Optional<Tuple<Float, Float>> optional = GeneralUtil.getRelativeHitCoordinatesForBlockFace(hit, state.getValue(FACING), unAllowedDirections());
+            Optional<Vec2> optional = GeneralUtil.getRelativeHitCoordinatesForBlockFace(hit, state.getValue(FACING), unAllowedDirections());
             if (optional.isEmpty()) {
                 return InteractionResult.PASS;
             } else {
-                Tuple<Float, Float> ff = optional.get();
-                int i = getSection(ff.getA(), ff.getB());
+                Vec2 ff = optional.get();
+                int i = getSection(ff.x, ff.y);
                 if (i == Integer.MIN_VALUE) {
                     return InteractionResult.PASS;
                 }

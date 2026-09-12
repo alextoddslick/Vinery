@@ -85,9 +85,10 @@ public class VineryClient {
         BlockEntityRendererRegistry.register(EntityTypeRegistry.VINERY_STANDARD.get(), CompletionistBannerRenderer::new);
         BlockEntityRendererRegistry.register(EntityTypeRegistry.STORAGE_ENTITY.get(), StorageBlockEntityRenderer::new);
         BlockEntityRendererRegistry.register(EntityTypeRegistry.LATTICE.get(), LatticeRenderer::new);
-        // Vanilla StandingSignRenderer/HangingSignRenderer read Sheets.SIGN_SPRITES, which is built from
-        // WoodType.values() and therefore already covers vinery:dark_cherry. Their generic signature is fixed to
-        // SignBlockEntity, hence the unchecked casts.
+        // Since 26.2 the sign *body* is an ordinary block model (the signs.png atlas and Sheets.SIGN_SPRITES are
+        // gone) and StandingSignRenderer/HangingSignRenderer only draw the text, so nothing wood-type specific has
+        // to be registered here - the dark cherry blockstates/models supply the geometry. Their generic signature
+        // is fixed to SignBlockEntity, hence the unchecked casts.
         BlockEntityRendererRegistry.register((BlockEntityType<SignBlockEntity>) (BlockEntityType<?>) EntityTypeRegistry.MOD_SIGN.get(), StandingSignRenderer::new);
         BlockEntityRendererRegistry.register((BlockEntityType<SignBlockEntity>) (BlockEntityType<?>) EntityTypeRegistry.MOD_HANGING_SIGN.get(), HangingSignRenderer::new);
     }

@@ -20,10 +20,10 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.Mth;
 import net.minecraft.util.StringRepresentable;
-import net.minecraft.util.Tuple;
+import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -231,8 +231,8 @@ public class GeneralUtil {
 
     public static void popResourceFromFace(Level level, BlockPos blockPos, Direction side, ItemStack itemStack) {
         BlockState blockState = level.getBlockState(blockPos);
-        double itemWidth = EntityType.ITEM.getWidth();
-        double itemHeight = EntityType.ITEM.getHeight();
+        double itemWidth = EntityTypes.ITEM.getWidth();
+        double itemHeight = EntityTypes.ITEM.getHeight();
         VoxelShape shape = blockState.getCollisionShape(level, blockPos);
         double posX = (double)blockPos.getX() + 0.5;
         double posY = (double)blockPos.getY() + 0.5;
@@ -294,7 +294,7 @@ public class GeneralUtil {
         return buffer[0];
     }
 
-    public static Optional<Tuple<Float, Float>> getRelativeHitCoordinatesForBlockFace(
+    public static Optional<Vec2> getRelativeHitCoordinatesForBlockFace(
             BlockHitResult blockHitResult,
             Direction direction,
             Direction[] unAllowedDirections) {
@@ -327,10 +327,10 @@ public class GeneralUtil {
                 : hitDirection;
 
         return switch (effectiveDirection) {
-            case NORTH -> Optional.of(new Tuple<>(1.0f - x, y));
-            case SOUTH -> Optional.of(new Tuple<>(x, y));
-            case WEST -> Optional.of(new Tuple<>(z, y));
-            case EAST -> Optional.of(new Tuple<>(1.0f - z, y));
+            case NORTH -> Optional.of(new Vec2(1.0f - x, y));
+            case SOUTH -> Optional.of(new Vec2(x, y));
+            case WEST -> Optional.of(new Vec2(z, y));
+            case EAST -> Optional.of(new Vec2(1.0f - z, y));
             default -> Optional.empty();
         };
     }

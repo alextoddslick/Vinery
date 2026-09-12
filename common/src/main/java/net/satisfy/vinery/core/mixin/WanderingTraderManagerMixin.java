@@ -4,7 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EntitySpawnReason;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.SpawnPlacementType;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
@@ -92,14 +92,14 @@ public abstract class WanderingTraderManagerMixin implements CustomSpawner {
 	@Nullable
 	private BlockPos vinery$findSpawnPositionNear(ServerLevel world, BlockPos pos, int range) {
 		BlockPos found = null;
-		SpawnPlacementType spawnPlacementType = SpawnPlacements.getPlacementType(EntityType.WANDERING_TRADER);
+		SpawnPlacementType spawnPlacementType = SpawnPlacements.getPlacementType(EntityTypes.WANDERING_TRADER);
 
 		for (int i = 0; i < 10; ++i) {
 			int x = pos.getX() + world.getRandom().nextInt(range * 2) - range;
 			int z = pos.getZ() + world.getRandom().nextInt(range * 2) - range;
 			int y = world.getHeight(Heightmap.Types.WORLD_SURFACE, x, z);
 			BlockPos candidate = new BlockPos(x, y, z);
-			if (spawnPlacementType.isSpawnPositionOk(world, candidate, EntityType.WANDERING_TRADER)) {
+			if (spawnPlacementType.isSpawnPositionOk(world, candidate, EntityTypes.WANDERING_TRADER)) {
 				found = candidate;
 				break;
 			}

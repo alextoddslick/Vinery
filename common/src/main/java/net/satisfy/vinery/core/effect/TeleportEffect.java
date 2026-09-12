@@ -4,7 +4,7 @@ import net.minecraft.server.level.ServerLevel;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.effect.InstantenousMobEffect;
+import net.minecraft.world.effect.InstantaneousMobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -14,14 +14,14 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-public class TeleportEffect extends InstantenousMobEffect {
+public class TeleportEffect extends InstantaneousMobEffect {
 
     public TeleportEffect() {
         super(MobEffectCategory.BENEFICIAL, 0xFF69B4);
     }
 
     @Override
-    public void applyInstantenousEffect(ServerLevel serverLevel, @Nullable Entity source, @Nullable Entity attacker, LivingEntity target, int amplifier, double proximity) {
+    public void applyInstantaneousEffect(ServerLevel serverLevel, @Nullable Entity source, @Nullable Entity attacker, LivingEntity target, int amplifier, double proximity) {
         teleport(source);
     }
 

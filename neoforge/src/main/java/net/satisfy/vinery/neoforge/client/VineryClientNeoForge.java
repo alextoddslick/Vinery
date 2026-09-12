@@ -1,7 +1,6 @@
 package net.satisfy.vinery.neoforge.client;
 
 import net.minecraft.client.model.Model;
-import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.resources.model.EquipmentClientInfo;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
@@ -22,7 +21,6 @@ import net.satisfy.vinery.client.VineryClient;
 import net.satisfy.vinery.client.gui.ApplePressGui;
 import net.satisfy.vinery.client.gui.FermentationBarrelGui;
 import net.satisfy.vinery.core.Vinery;
-import net.satisfy.vinery.core.block.state.properties.VineryWoodType;
 import net.satisfy.vinery.core.registry.ArmorRegistryClient;
 import net.satisfy.vinery.core.registry.ObjectRegistry;
 import net.satisfy.vinery.core.registry.ScreenhandlerTypeRegistry;
@@ -42,7 +40,6 @@ public class VineryClientNeoForge {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         VineryClient.onInitializeClient();
-        Sheets.addWoodType(VineryWoodType.DARK_CHERRY);
     }
 
     @SubscribeEvent
