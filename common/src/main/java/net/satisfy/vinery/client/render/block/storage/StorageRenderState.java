@@ -31,8 +31,9 @@ public class StorageRenderState extends BlockEntityRenderState {
 
     /**
      * Block models of the stored items, one slot per inventory slot, filled in by the storage type renderers that
-     * draw their contents as blocks. The instances are reused between frames the way vanilla reuses its
-     * {@link BlockModelRenderState} fields.
+     * draw their contents as blocks. Resolving a block model needs the model manager and may therefore only happen
+     * while extracting, which is why the models live on the render state instead of being looked up in
+     * {@code submit}.
      */
     public BlockModelRenderState[] blockModels = NO_BLOCK_MODELS;
 
