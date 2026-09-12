@@ -34,6 +34,7 @@ import net.satisfy.vinery.core.registry.DataComponentRegistry;
 import net.satisfy.vinery.core.registry.ObjectRegistry;
 import net.satisfy.vinery.core.util.GeneralUtil;
 import net.satisfy.vinery.core.util.WineYears;
+import net.satisfy.vinery.platform.PlatformHelper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -99,7 +100,16 @@ public class DrinkBlockItem extends BlockItem {
             String effectName = effect.getDisplayName().getString();
             int amplifier = Math.max(0, WineYears.getEffectLevel(stack, world));
             String amplifierRoman = amplifier > 0 ? " " + toRoman(amplifier) : "";
-            int durationTicks = scaleDurationWithAge ? WineYears.getEffectDuration(stack, world) : baseDuration;
+            int durationTicks;
+            if (!scaleDurationWithAge) {
+                durationTicks = baseDuration;
+            } else if (WineYears.hasWineYear(stack)) {
+                durationTicks = WineYears.getEffectDuration(stack, world);
+            } else {
+                // Not yet stamped with a wine year (e.g. creative tab): finishUsingItem stamps it on drink,
+                // so preview the duration a freshly stamped bottle would get.
+                durationTicks = PlatformHelper.getWineStartDuration();
+            }
             durationTicks = Math.max(0, durationTicks);
             String formattedDuration = formatDuration(durationTicks);
             String tooltipText = effectName + amplifierRoman + " (" + formattedDuration + ")";
