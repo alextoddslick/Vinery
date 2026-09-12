@@ -32,7 +32,7 @@ side = "BOTH"
 [[dependencies.vinery]]
 modId = "architectury"
 type = "required"
-versionRange = "[20.0.7,)"
+versionRange = "[21.0.0,)"
 ordering = "AFTER"
 side = "BOTH"
 

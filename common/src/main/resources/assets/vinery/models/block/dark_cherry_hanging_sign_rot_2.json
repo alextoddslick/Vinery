@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_hanging_sign_rot_2",
+  "textures": {
+    "all": "vinery:block/dark_cherry_hanging_sign",
+    "particle": "vinery:block/dark_cherry_planks"
+  }
+}
