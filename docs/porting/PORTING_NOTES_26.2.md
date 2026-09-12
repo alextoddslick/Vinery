@@ -41,3 +41,20 @@ Base dir `S=/private/tmp/claude-501/-Users-alextodd-temp-Github-NOTSYNCED-Vinery
 ## Report format
 Files changed/added/deleted; remaining errors in your files; exact changes needed in files you do not own (AW lines with descriptors,
 resource files, registry names). Commit on your branch before reporting. Never run the game, never push, never edit gradle files.
+
+## Verified during the port (2026-09-11)
+- `EntityType.<CONSTANT>` -> `EntityTypes.<CONSTANT>` (same split as `BlockEntityTypes`); `BlockEntityType` ctor and
+  `BlockEntitySupplier` are public now (two AW lines are redundant but harmless).
+- `InstantenousMobEffect` -> `InstantaneousMobEffect` (+ `applyInstantaneousEffect`, `isInstantaneous`).
+- `net.minecraft.util.Tuple` deleted; `LightEngine.getLightBlockInto` -> `getLightDampeningInto`.
+- `EntityType.Builder.immuneTo(TagKey)`; `BlockBehaviour.emissiveRendering(Predicate<BlockState>)`; `Model.renderToBuffer(4-arg)` gone.
+- Signs: `Sheets.SIGN_SHEET/SIGN_SPRITES/getSignSprite/addWoodType` gone; `AbstractSignRenderer` draws text only; the sign body is a
+  block model (`template_sign_rot_0..3`, `template_wall_sign`, `template_hanging_sign_rot_0..3`,
+  `template_attached_hanging_sign_rot_0..3`, `template_wall_hanging_sign`; 32x32 `textures/block/<wood>_sign.png`).
+  `SignEditScreen`/`HangingSignEditScreen` load `minecraft:textures/gui/{signs,hanging_signs}/<WoodType.name()>.png`, so a
+  modded WoodType name must not contain `:` and the textures go in the `minecraft` namespace.
+- Codecs: `ItemStack.CODEC` count via `optionalAlwaysPresentFieldOf` (read-compatible); recipe `category`, cooking `experience`/
+  `cookingtime`, loot `bonus_rolls`/`add` are now written only when non-default. Advancement/villager-trade entity predicates
+  are dispatched: `location` -> `minecraft:location`, `predicates` -> `minecraft:predicates`.
+- `VillagerProfession`, `TradeSet`, `PoiHelper`, `ResourceLoader.registerBuiltinPack`, `MenuType`, creative tabs, REI/JEI plugin
+  APIs: unchanged from 26.1 for Vinery's usage. Mixins: all 11 targets unchanged (class files v69, `JAVA_25`).

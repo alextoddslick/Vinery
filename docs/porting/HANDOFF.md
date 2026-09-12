@@ -10,7 +10,7 @@ previous. **Fabric is the priority; NeoForge is best-effort** (Alex only cares a
 | `1.21.1`  | original upstream code (unchanged) |
 | `1.21.10` | **DONE.** `./gradlew build` produces `fabric/build/libs/letsdo-vinery-fabric-1.6.0.jar` and the NeoForge jar. Both dedicated servers boot to "Done" in the dev runtime (`:fabric:runServer`, `:neoforge:runServer`). Not tested in a client. |
 | `26.1`    | **DONE (Fabric verified, NeoForge best-effort).** `./gradlew build` produces `fabric/build/libs/letsdo-vinery-fabric-1.6.0.jar` and the NeoForge jar. Fabric dedicated server boots to `Done` with zero errors; NeoForge dedicated server boots to `Done` too (its log shows REI's own `LocalPlayer` dist-cleaner failure and Architectury-generated `@OnlyIn` warnings, neither caused by Vinery). Not tested in a client. See "26.1 result" below. |
-| `26.2`    | not started. Reference sources were downloaded (see below); class rename table `renames-26.1-to-26.2.txt` is in this folder. |
+| `26.2`    | **DONE (Fabric verified, NeoForge best-effort).** `./gradlew build` produces both jars; Fabric and NeoForge dedicated servers boot to `Done` with zero Vinery errors. Not tested in a client. See "26.2 result" below. |
 
 ## How to build
 
@@ -136,3 +136,26 @@ Things to know before a client test:
   `c:stripped_wood` -> `c:stripped_woods`); 4 orphaned `structure/*.nbt`. Fabric applies the XP-orb bonus twice (two mixins).
 - NeoForge: the winemaker POI goes through `DeferredRegister`, which never fills `PoiTypes.TYPE_BY_STATE`, so the job site may
   not work there; POI search range differs (Fabric 12, NeoForge 1).
+
+## 26.2 result (2026-09-11)
+Two Opus agents (all Java / all resources) on the `26.2` base, merged by the coordinator; only 24 compile errors existed.
+API facts are in `PORTING_NOTES_26.2.md`. Notable:
+- Signs are ordinary block models now (sign atlas and `Sheets` sign members deleted; sign renderers draw text only). Dark cherry
+  signs got vanilla-shaped blockstates (16/32/4/4 variants), 14 `template_*`-parented models, and 32x32 block textures derived
+  from the old 64x32 entity sheets by a face-rect mapping that reproduces all 12 vanilla woods pixel-for-pixel.
+- `VineryWoodType.DARK_CHERRY` is now named `dark_cherry` (was `vinery:dark_cherry`): `SignEditScreen`/`HangingSignEditScreen`
+  build `minecraft:textures/gui/{signs,hanging_signs}/<name>.png` and a `:` in the path threw. The GUI textures now live under
+  `assets/minecraft/textures/gui/...`. This was a pre-existing client crash for hanging signs since 26.1.
+- `EntityType` constants moved to `EntityTypes`; `InstantenousMobEffect` -> `InstantaneousMobEffect`; `net.minecraft.util.Tuple`
+  deleted (use `Vec2`); `LightEngine.getLightDampeningInto`; `Sheets.addWoodType` gone even on NeoForge.
+- Data: no schema changes for loot tables, recipes, tags, worldgen, trade sets, item definitions, equipment; one advancement needed
+  `location` -> `minecraft:location` (entity-predicate dispatch). `TreeConfiguration.below_trunk_provider` is required (already set).
+- Pre-existing issues still untouched: 64 dangling model/texture references in files nobody edited (`drawer*`, `red_vine*`,
+  `*grapejuice`, `apple_juice`, `wine_bottle`, ...), the `c:` v1 tag names, `sapling_provider` in tree features, and the
+  advancement predicate bugs listed under "26.1 result".
+
+## Next steps (not done)
+1. Client test on Fabric 26.2 (and 26.1): open every GUI (apple press, fermentation barrel), place/edit standing and hanging
+   dark cherry signs, look at every block-entity renderer (storage blocks, lattice, completionist banner), boats, armor, villager
+   trades, REI/JEI pages.
+2. Decide whether to fix the pre-existing data bugs above.
