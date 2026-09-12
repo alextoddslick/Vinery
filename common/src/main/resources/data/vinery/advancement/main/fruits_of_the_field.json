@@ -9,7 +9,7 @@
             "condition": "minecraft:entity_properties",
             "entity": "this",
             "predicate": {
-              "location": {
+              "minecraft:location": {
                 "biomes": "minecraft:plains"
               }
             }
