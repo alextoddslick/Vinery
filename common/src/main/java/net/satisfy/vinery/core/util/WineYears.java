@@ -9,8 +9,12 @@ import net.satisfy.vinery.platform.PlatformHelper;
 public class WineYears {
     public static final int YEARS_START = 0;
 
+    /**
+     * Current in-game day, matching vanilla's F3 "Day" counter. Uses day time rather than game time so
+     * that sleeping through nights and {@code /time set|add} advance wine age.
+     */
     public static int getDays(Level world) {
-        return world != null ? (int) (world.getGameTime() / 24000L) : 0;
+        return world != null ? (int) (world.getOverworldClockTime() / 24000L) : 0;
     }
 
     public static int getYear(Level world, int daysPerYear) {
@@ -18,7 +22,7 @@ public class WineYears {
             return YEARS_START;
         }
         int safeDaysPerYear = Math.max(1, daysPerYear);
-        return YEARS_START + (int) ((world.getGameTime() / 24000L) / safeDaysPerYear);
+        return YEARS_START + getDays(world) / safeDaysPerYear;
     }
 
     public static int getWineAgeYears(ItemStack wine, Level world) {
