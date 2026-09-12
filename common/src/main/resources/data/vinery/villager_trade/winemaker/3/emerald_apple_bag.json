@@ -1,0 +1,12 @@
+{
+  "gives": {
+    "id": "vinery:apple_bag"
+  },
+  "max_uses": 2.0,
+  "reputation_discount": 0.05,
+  "wants": {
+    "count": 7.0,
+    "id": "minecraft:emerald"
+  },
+  "xp": 10.0
+}

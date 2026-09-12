@@ -12,6 +12,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.registry.ObjectRegistry;
+import net.satisfy.vinery.core.util.VillagerUtil;
 
 public class VineryNeoForgeVillagers {
     public static final DeferredRegister<PoiType> POI_TYPES = DeferredRegister.create(Registries.POINT_OF_INTEREST_TYPE, Vinery.MOD_ID);
@@ -28,7 +29,8 @@ public class VineryNeoForgeVillagers {
                     holder -> holder.is(WINEMAKER_POI.getKey()),
                     ImmutableSet.of(),
                     ImmutableSet.of(),
-                    SoundEvents.VILLAGER_WORK_FARMER));
+                    SoundEvents.VILLAGER_WORK_FARMER,
+                    VillagerUtil.winemakerTradeSets()));
 
     public static ResourceKey<VillagerProfession> winemakerKey() {
         return WINEMAKER.getKey();

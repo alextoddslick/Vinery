@@ -1,0 +1,12 @@
+{
+  "gives": {
+    "id": "vinery:red_grapejuice"
+  },
+  "max_uses": 8.0,
+  "reputation_discount": 0.05,
+  "wants": {
+    "count": 4.0,
+    "id": "minecraft:emerald"
+  },
+  "xp": 1.0
+}

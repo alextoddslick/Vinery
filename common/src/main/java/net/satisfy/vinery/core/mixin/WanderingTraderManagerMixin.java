@@ -15,14 +15,11 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.CustomSpawner;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.storage.ServerLevelData;
 import net.satisfy.vinery.core.entity.TraderMuleEntity;
 import net.satisfy.vinery.core.registry.EntityTypeRegistry;
 import net.satisfy.vinery.platform.PlatformHelper;
 import org.jetbrains.annotations.Nullable;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -30,13 +27,21 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Optional;
 
+/**
+ * Gives the vanilla wandering trader spawn a chance to spawn Vinery's wandering winemaker
+ * (with mules) instead.
+ *
+ * <p>26.1 moved the spawner's bookkeeping off {@code ServerLevelData} onto a
+ * {@code WanderingTraderData} saved-data object and dropped the trader-UUID field entirely,
+ * so the old {@code @Shadow ServerLevelData serverLevelData} /
+ * {@code setWanderingTraderId} bookkeeping is gone.
+ */
 @Mixin(WanderingTraderSpawner.class)
 public abstract class WanderingTraderManagerMixin implements CustomSpawner {
-	@Shadow @Final private ServerLevelData serverLevelData;
 
 	@Inject(method = "spawn", at = @At(value = "INVOKE", shift = At.Shift.BEFORE, target = "Lnet/minecraft/world/entity/EntityType;spawn(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/entity/EntitySpawnReason;)Lnet/minecraft/world/entity/Entity;"), cancellable = true)
 	private void trySpawn(ServerLevel world, CallbackInfoReturnable<Boolean> cir) {
-		if (world.random.nextDouble() < PlatformHelper.getTraderSpawnChance()) {
+		if (world.getRandom().nextDouble() < PlatformHelper.getTraderSpawnChance()) {
 			ServerPlayer playerEntity = world.getRandomPlayer();
 			if (playerEntity != null) {
 				BlockPos blockPos = playerEntity.blockPosition();
@@ -71,13 +76,10 @@ public abstract class WanderingTraderManagerMixin implements CustomSpawner {
 										}
 									}
 								}
-								if (this.serverLevelData != null) {
-									this.serverLevelData.setWanderingTraderId(wanderingTraderEntity.getUUID());
-									wanderingTraderEntity.setDespawnDelay(PlatformHelper.getTraderSpawnDelay());
-									wanderingTraderEntity.setWanderTarget(blockPos2);
-									wanderingTraderEntity.setHomeTo(blockPos2, 16);
-									cir.setReturnValue(true);
-								}
+								wanderingTraderEntity.setDespawnDelay(PlatformHelper.getTraderSpawnDelay());
+								wanderingTraderEntity.setWanderTarget(blockPos2);
+								wanderingTraderEntity.setHomeTo(blockPos2, 16);
+								cir.setReturnValue(true);
 							}
 						}
 					}
@@ -93,8 +95,8 @@ public abstract class WanderingTraderManagerMixin implements CustomSpawner {
 		SpawnPlacementType spawnPlacementType = SpawnPlacements.getPlacementType(EntityType.WANDERING_TRADER);
 
 		for (int i = 0; i < 10; ++i) {
-			int x = pos.getX() + world.random.nextInt(range * 2) - range;
-			int z = pos.getZ() + world.random.nextInt(range * 2) - range;
+			int x = pos.getX() + world.getRandom().nextInt(range * 2) - range;
+			int z = pos.getZ() + world.getRandom().nextInt(range * 2) - range;
 			int y = world.getHeight(Heightmap.Types.WORLD_SURFACE, x, z);
 			BlockPos candidate = new BlockPos(x, y, z);
 			if (spawnPlacementType.isSpawnPositionOk(world, candidate, EntityType.WANDERING_TRADER)) {

@@ -1,0 +1,12 @@
+{
+  "gives": {
+    "count": 3,
+    "id": "vinery:grass_slab"
+  },
+  "max_uses": 8.0,
+  "reputation_discount": 0.05,
+  "wants": {
+    "id": "minecraft:emerald"
+  },
+  "xp": 1.0
+}

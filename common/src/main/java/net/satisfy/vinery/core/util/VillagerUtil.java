@@ -1,81 +1,49 @@
 package net.satisfy.vinery.core.util;
 
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.npc.villager.VillagerTrades;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.trading.ItemCost;
-import net.minecraft.world.item.trading.MerchantOffer;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Block;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.trading.TradeSet;
+import net.satisfy.vinery.core.Vinery;
 
-public class VillagerUtil {
-    public VillagerUtil() {
+/**
+ * Villager trades are data driven since 26.1: every trade set lives in
+ * {@code data/vinery/trade_set/**} and points at a tag of
+ * {@code data/vinery/villager_trade/**} entries
+ * ({@code data/vinery/tags/villager_trade/**}).
+ *
+ * <p>This class only holds the {@link ResourceKey}s of Vinery's trade sets; the actual
+ * offers are the json files. The winemaker profession is registered with
+ * {@link #winemakerTradeSets()} on both platforms, and
+ * {@code WanderingWinemakerEntity} pulls {@link #WANDERING_WINEMAKER_COMMON}.
+ */
+public final class VillagerUtil {
+    public static final ResourceKey<TradeSet> WINEMAKER_LEVEL_1 = tradeSet("winemaker/level_1");
+    public static final ResourceKey<TradeSet> WINEMAKER_LEVEL_2 = tradeSet("winemaker/level_2");
+    public static final ResourceKey<TradeSet> WINEMAKER_LEVEL_3 = tradeSet("winemaker/level_3");
+    public static final ResourceKey<TradeSet> WINEMAKER_LEVEL_4 = tradeSet("winemaker/level_4");
+    public static final ResourceKey<TradeSet> WINEMAKER_LEVEL_5 = tradeSet("winemaker/level_5");
+
+    public static final ResourceKey<TradeSet> WANDERING_WINEMAKER_COMMON = tradeSet("wandering_winemaker/common");
+
+    private VillagerUtil() {
     }
 
-    public static class SellItemFactory implements VillagerTrades.ItemListing {
-        private final ItemStack sell;
-        private final int price;
-        private final int count;
-        private final int maxUses;
-        private final int experience;
-        private final float multiplier;
-
-        public SellItemFactory(Block block, int price, int count, int maxUses, int experience) {
-            this(new ItemStack(block), price, count, maxUses, experience);
-        }
-
-        public SellItemFactory(Block item, int price, int count, int experience) {
-            this((ItemStack)(new ItemStack(item)), price, count, 12, experience);
-        }
-
-        public SellItemFactory(Item item, int price, int count, int experience) {
-            this((ItemStack)(new ItemStack(item)), price, count, 12, experience);
-        }
-
-        public SellItemFactory(Item item, int price, int count, int maxUses, int experience) {
-            this(new ItemStack(item), price, count, maxUses, experience);
-        }
-
-        public SellItemFactory(ItemStack stack, int price, int count, int maxUses, int experience) {
-            this(stack, price, count, maxUses, experience, 0.05F);
-        }
-
-        public SellItemFactory(ItemStack stack, int price, int count, int maxUses, int experience, float multiplier) {
-            this.sell = stack;
-            this.price = price;
-            this.count = count;
-            this.maxUses = maxUses;
-            this.experience = experience;
-            this.multiplier = multiplier;
-        }
-
-        public MerchantOffer getOffer(Entity entity, RandomSource random) {
-            return new MerchantOffer(new ItemCost(Items.EMERALD,this.price), new ItemStack(this.sell.getItem(), this.count), this.maxUses, this.experience, this.multiplier);
-        }
+    public static ResourceKey<TradeSet> tradeSet(String path) {
+        return ResourceKey.create(Registries.TRADE_SET, Vinery.identifier(path));
     }
 
-    public static class BuyForOneEmeraldFactory implements VillagerTrades.ItemListing {
-        private final Item buy;
-        private final int price;
-        private final int maxUses;
-        private final int experience;
-        private final float multiplier;
-
-        public BuyForOneEmeraldFactory(ItemLike item, int price, int maxUses, int experience) {
-            this.buy = item.asItem();
-            this.price = price;
-            this.maxUses = maxUses;
-            this.experience = experience;
-            this.multiplier = 0.05F;
-        }
-
-        public MerchantOffer getOffer(Entity entity, RandomSource random) {
-            ItemStack itemStack = new ItemStack(this.buy, this.price);
-            return new MerchantOffer(new ItemCost(itemStack.getItem(),this.price), new ItemStack(Items.EMERALD), this.maxUses, this.experience, this.multiplier);
-        }
+    /**
+     * The {@code tradeSetsByLevel} map for the winemaker {@code VillagerProfession} record.
+     */
+    @SuppressWarnings("unchecked")
+    public static Int2ObjectMap<ResourceKey<TradeSet>> winemakerTradeSets() {
+        return Int2ObjectMap.ofEntries(
+                Int2ObjectMap.entry(1, WINEMAKER_LEVEL_1),
+                Int2ObjectMap.entry(2, WINEMAKER_LEVEL_2),
+                Int2ObjectMap.entry(3, WINEMAKER_LEVEL_3),
+                Int2ObjectMap.entry(4, WINEMAKER_LEVEL_4),
+                Int2ObjectMap.entry(5, WINEMAKER_LEVEL_5)
+        );
     }
 }
-

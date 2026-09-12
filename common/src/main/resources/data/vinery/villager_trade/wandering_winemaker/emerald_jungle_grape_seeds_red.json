@@ -1,0 +1,11 @@
+{
+  "gives": {
+    "id": "vinery:jungle_grape_seeds_red"
+  },
+  "max_uses": 8.0,
+  "reputation_discount": 0.05,
+  "wants": {
+    "id": "minecraft:emerald"
+  },
+  "xp": 1.0
+}

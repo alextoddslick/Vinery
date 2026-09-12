@@ -1,0 +1,12 @@
+{
+  "gives": {
+    "id": "vinery:apple_tree_sapling"
+  },
+  "max_uses": 8.0,
+  "reputation_discount": 0.05,
+  "wants": {
+    "count": 5.0,
+    "id": "minecraft:emerald"
+  },
+  "xp": 1.0
+}
