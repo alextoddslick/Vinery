@@ -21,3 +21,4 @@ classes/
 *.launch.DS_Store
 .DS_Store
 .architectury-transformer/
+.claude/worktrees/

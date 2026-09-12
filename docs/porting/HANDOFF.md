@@ -9,7 +9,7 @@ previous. **Fabric is the priority; NeoForge is best-effort** (Alex only cares a
 |-----------|-------|
 | `1.21.1`  | original upstream code (unchanged) |
 | `1.21.10` | **DONE.** `./gradlew build` produces `fabric/build/libs/letsdo-vinery-fabric-1.6.0.jar` and the NeoForge jar. Both dedicated servers boot to "Done" in the dev runtime (`:fabric:runServer`, `:neoforge:runServer`). Not tested in a client. |
-| `26.1`    | **IN PROGRESS.** Toolchain converted and committed (`chore: 26.1 toolchain ...`); ~170 real compile errors remained in `common` (see `compile-errors-26.1-after-renames.log`). No code has been written for 26.1 beyond the toolchain commit; the agents that researched it were stopped before editing (their verified findings are in the last section of this file). |
+| `26.1`    | **DONE (Fabric verified, NeoForge best-effort).** `./gradlew build` produces `fabric/build/libs/letsdo-vinery-fabric-1.6.0.jar` and the NeoForge jar. Fabric dedicated server boots to `Done` with zero errors; NeoForge dedicated server boots to `Done` too (its log shows REI's own `LocalPlayer` dist-cleaner failure and Architectury-generated `@OnlyIn` warnings, neither caused by Vinery). Not tested in a client. See "26.1 result" below. |
 | `26.2`    | not started. Reference sources were downloaded (see below); class rename table `renames-26.1-to-26.2.txt` is in this folder. |
 
 ## How to build
@@ -115,3 +115,24 @@ factories -> `net.minecraft.client.renderer.rendertype.RenderTypes` (`entityCuto
 **Resources**: bump `bushy_leaves/pack.mcmeta` to 84; `force_translucent` on `window`/`window_block` models; vanilla diffs show
 heavy changes in recipes (709/1448 files), placed/configured features, biomes, advancements (all), some tags — diff vanilla
 1.21.10 vs 26.1.2 pairs to derive the schema deltas before scripting the rewrite.
+
+
+## 26.1 result (2026-09-11)
+Five parallel Opus agents (core / villagers+mixins / client / recipes+compat / resources) each fixed a disjoint file set on
+the `26.1` base; the coordinator merged, then fixed two runtime-only problems the smoke test found:
+Architectury 20.0.4–20.0.6 (undeclared access widener -> bumped to 20.1.14, metadata requires >=20.0.7) and recipe results
+having to be `ItemStackTemplate`. All facts are in `PORTING_NOTES_26.1.md` ("Verified during the port").
+
+Things to know before a client test:
+- Client-only code (screens, block-entity renderers, banner renderer, armor renderers, colour handlers) compiles but was never
+  rendered. Screens were rewritten to the extract model; the banner renderer follows vanilla `BannerRenderer`.
+- Villager trades are now data (`data/vinery/trade_set`, `villager_trade`, `tags/villager_trade`); `max_uses` follows the old
+  config's declared values, which were lower than what the buggy old runtime produced (8/12). Level-4 seed trades now use the
+  real item ids (`taiga_grape_seeds_red/_white`), which the old config had wrong.
+- The Fabric and NeoForge config classes lost their trade lists.
+- Pre-existing (not port) data bugs found by the resources agent, left untouched: advancement `items[].tag`/`.nbt` predicates are
+  ignored since 1.20.5 (`recipes/{campfire,grapevine_lattice,dark_cherry_planks}`, `main/vintage_perfection`); `main/root.json`
+  background path resolves to `textures/textures/...png.png`; `c:` tags use Fabric v1 names (`c:berries` -> `c:foods/berry`,
+  `c:stripped_wood` -> `c:stripped_woods`); 4 orphaned `structure/*.nbt`. Fabric applies the XP-orb bonus twice (two mixins).
+- NeoForge: the winemaker POI goes through `DeferredRegister`, which never fills `PoiTypes.TYPE_BY_STATE`, so the job site may
+  not work there; POI search range differs (Fabric 12, NeoForge 1).

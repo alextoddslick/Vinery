@@ -88,3 +88,38 @@ Base dir `S=/private/tmp/claude-501/-Users-alextodd-temp-Github-NOTSYNCED-Vinery
 ## Report format
 Files changed/added/deleted; remaining errors in your files; exact changes needed in files you do not own (AW lines with descriptors,
 resource files, registry names). Commit on your branch before reporting.
+
+## Verified during the port (2026-09-11) — facts the agents established
+- **Architectury 20.0.4–20.0.6 Fabric jars ship `architectury.accessWidener` but do not declare it in `fabric.mod.json`**, so
+  `AxeItemHooks.addStrippable` throws `IllegalAccessError` at startup. 20.0.7+ is fixed; the branch uses 20.1.14 and the
+  mod metadata requires `>=20.0.7`.
+- `ItemStack.CODEC` now validates `Item.areComponentsBound()` and fails while recipes are parsed ("Item X does not have
+  components yet"). Recipe results must be `ItemStackTemplate` (`ItemStackTemplate.CODEC`/`STREAM_CODEC`, `.create()` at use
+  time), exactly like vanilla `SmithingTransformRecipe`. JSON shape `{id,count,components}` is unchanged.
+- `RecipeSerializer<T>` is a record `(MapCodec, StreamCodec)`; `assemble(T)` has no registry argument; `group()` and
+  `showNotification()` are abstract. JEI 29: `getBackground()` removed, `getWidth()/getHeight()` abstract, `GuiGraphicsExtractor`;
+  categories work on `RecipeHolder<T>` via `IRecipeHolderType.create(Identifier)`. REI 26.1: `RecipeHolder.id().identifier()`.
+- Screens: no `render`/`renderBg`/`renderLabels`. Use `extractBackground(GuiGraphicsExtractor,int,int,float)`,
+  `AbstractContainerScreen.extractRenderState(...)`, `extractLabels(...)`; `drawString` -> `graphics.text(...)`; label colours are
+  ARGB (`-12566464`, not `4210752`); `imageWidth/imageHeight` are constructor arguments. Template: `AbstractFurnaceScreen`.
+- `SubmitNodeCollector.submitBlock` is gone: use `BlockModelRenderState` + `context.blockModelResolver()` (`BlockModelResolver.update`
+  during extraction, `renderState.submit(poseStack, collector, light, overlay, outline)` on render). Templates: `CarriedBlockLayer`.
+- `Entity.hasImpulse` -> `Entity.needsSync`. `ModelBakery.BANNER_BASE`/`MaterialSet` -> `Sheets.BANNER_BASE` (`SpriteId`) +
+  `context.sprites().get(...)`. `RenderTypes.entityCutout` == old `entityCutoutNoCull`; old `entityCutout` == `entityCutoutCull`.
+  `LightTexture.pack` -> `LightCoordsUtil.pack`. `ColorHandlerRegistry.registerBlockColors` takes `BlockTintSources.grass()/foliage()`.
+  Block-entity render states are created every frame (not pooled). `Sheets.addWoodType` exists only in NeoForge's patched jar.
+- `BlockBehaviour.getLightBlock` -> `getLightDampening`. `ItemContainerContents.nonEmptyItems()` yields `ItemStackTemplate`s.
+  `Commands.hasPermission(LEVEL_GAMEMASTERS)` needs an explicit type witness when chained with `.and(...)`.
+- Fabric API 0.155: `ResourceManagerHelper`/`ResourcePackActivationType` removed -> `ResourceLoader.registerBuiltinPack(Identifier,
+  ModContainer, PackActivationType)`; `TradeOfferHelper` removed. Villager trades live in `data/vinery/{trade_set,villager_trade,
+  tags/villager_trade}` (`vinery:winemaker/level_1..5`, `vinery:wandering_winemaker/common`); `VillagerProfession` takes
+  `Int2ObjectMap<ResourceKey<TradeSet>>`; `AbstractVillager.addOffersFromTradeSet` is protected (no AW needed).
+- Mixins: `SpreadingSnowyDirtBlock` -> `SpreadingSnowyBlock`, and `BlockState.is` resolves to `TypedInstance#is(Ljava/lang/Object;)Z`
+  in `@At` targets; `WanderingTraderManager` lost `serverLevelData`/`setWanderingTraderId`. Mixin configs need
+  `"compatibilityLevel": "JAVA_25"` (class-file v69).
+- Data: `minecraft:random_patch`/`minecraft:flower` features are gone (use `simple_block` + `count`/`random_offset` placement);
+  `TreeConfiguration` `dirt_provider`+`force_dirt` -> `below_trunk_provider`; equipment json needs a `humanoid_baby` layer (no
+  fallback); pack format 84 needs `min_format`/`max_format`. Recipes, advancements, loot tables, tags, blockstates, item
+  definitions had NO schema change between 1.21.10 and 26.1.2.
+- Dedicated-server smoke test: `fabric/run/eula.txt` + `:fabric:runServer`, kill after `Done (` (macOS has no `timeout`; a poll
+  loop with `pkill -f DevLaunchInjector` works).
