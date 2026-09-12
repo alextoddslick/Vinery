@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/template_glass_pane_noside_alt",
   "textures": {
-    "pane": "vinery:block/window_main"
+    "pane": { "force_translucent": true, "sprite": "vinery:block/window_main" }
   }
 }

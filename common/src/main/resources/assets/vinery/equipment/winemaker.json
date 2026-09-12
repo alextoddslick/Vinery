@@ -5,6 +5,11 @@
         "texture": "vinery:winemaker"
       }
     ],
+    "humanoid_baby": [
+      {
+        "texture": "vinery:winemaker"
+      }
+    ],
     "humanoid_leggings": [
       {
         "texture": "vinery:winemaker"

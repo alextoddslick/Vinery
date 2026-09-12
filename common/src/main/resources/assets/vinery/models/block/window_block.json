@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "vinery:block/window_main"
+    "all": { "force_translucent": true, "sprite": "vinery:block/window_main" }
   }
 }

@@ -18,21 +18,21 @@ logoFile = "pack.png"
 [[dependencies.vinery]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.10,)"
+versionRange = "[26.1,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.vinery]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.21.10,)"
+versionRange = "[26.1,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.vinery]]
 modId = "architectury"
 type = "required"
-versionRange = "[18.0.8,)"
+versionRange = "[20.0.4,)"
 ordering = "AFTER"
 side = "BOTH"
 
