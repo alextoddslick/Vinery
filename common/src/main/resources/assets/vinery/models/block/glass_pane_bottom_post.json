@@ -2,7 +2,7 @@
 	"credit": "Made by Satisfy",
 	"ambientocclusion": false,
 	"textures": {
-		"edge": "vinery:block/window_pane_top",
+		"edge": { "force_translucent": true, "sprite": "vinery:block/window_pane_top" },
 		"particle": "vinery:block/window_bottom"
 	},
 	"elements": [

@@ -2,8 +2,8 @@
 	"credit": "Made by Satisfy",
 	"render_type": "minecraft:cutout",
 	"textures": {
-		"2": "vinery:block/window_main",
-		"3": "vinery:block/window_pane_top",
+		"2": { "force_translucent": true, "sprite": "vinery:block/window_main" },
+		"3": { "force_translucent": true, "sprite": "vinery:block/window_pane_top" },
 		"particle": "vinery:block/window_pane_top"
 	},
 	"elements": [

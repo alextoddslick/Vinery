@@ -3,7 +3,7 @@
 	"ambientocclusion": false,
 	"textures": {
 		"particle": "vinery:block/window_mid",
-		"pane": "vinery:block/window_mid"
+		"pane": { "force_translucent": true, "sprite": "vinery:block/window_mid" }
 	},
 	"elements": [
 		{
