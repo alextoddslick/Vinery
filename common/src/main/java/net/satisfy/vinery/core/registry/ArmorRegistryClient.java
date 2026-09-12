@@ -6,11 +6,13 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.rendertype.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.satisfy.vinery.client.model.StrawHatModel;
 import net.satisfy.vinery.client.model.WinemakerBootsModel;
@@ -77,7 +79,15 @@ public class ArmorRegistryClient {
      * pick the texture itself. On NeoForge the texture comes from the {@code vinery:winemaker} equipment asset.
      */
     public static RenderType renderType(EquipmentSlot slot) {
-        return RenderType.armorCutoutNoCull(slot == EquipmentSlot.LEGS ? LEGGINGS_TEXTURE : ARMOR_TEXTURE);
+        return RenderTypes.armorCutoutNoCull(slot == EquipmentSlot.LEGS ? LEGGINGS_TEXTURE : ARMOR_TEXTURE);
+    }
+
+    /**
+     * {@code Item.getName()} without a stack is gone in 26.1; the item's own translation key is still the right
+     * name for the fixed set-piece list below.
+     */
+    private static String itemName(Item item) {
+        return Component.translatable(item.getDescriptionId()).getString();
     }
 
     public static void appendToolTip(@NotNull List<Component> tooltip) {
@@ -98,10 +108,10 @@ public class ArmorRegistryClient {
 
         tooltip.add(Component.nullToEmpty(""));
         tooltip.add(Component.nullToEmpty(ChatFormatting.DARK_GREEN + I18n.get("tooltip.vinery.armor.winemaker_armor0")));
-        tooltip.add(Component.nullToEmpty((helmet.getItem() instanceof WinemakerHelmetItem ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + ObjectRegistry.STRAW_HAT.get().getName().getString() + "]"));
-        tooltip.add(Component.nullToEmpty((chestplate.getItem() instanceof WinemakerChestItem ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + ObjectRegistry.WINEMAKER_APRON.get().getName().getString() + "]"));
-        tooltip.add(Component.nullToEmpty((leggings.getItem() instanceof WinemakerLegsItem ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + ObjectRegistry.WINEMAKER_LEGGINGS.get().getName().getString() + "]"));
-        tooltip.add(Component.nullToEmpty((boots.getItem() instanceof WinemakerBootsItem ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + ObjectRegistry.WINEMAKER_BOOTS.get().getName().getString() + "]"));
+        tooltip.add(Component.nullToEmpty((helmet.getItem() instanceof WinemakerHelmetItem ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + itemName(ObjectRegistry.STRAW_HAT.get().asItem()) + "]"));
+        tooltip.add(Component.nullToEmpty((chestplate.getItem() instanceof WinemakerChestItem ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + itemName(ObjectRegistry.WINEMAKER_APRON.get().asItem()) + "]"));
+        tooltip.add(Component.nullToEmpty((leggings.getItem() instanceof WinemakerLegsItem ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + itemName(ObjectRegistry.WINEMAKER_LEGGINGS.get().asItem()) + "]"));
+        tooltip.add(Component.nullToEmpty((boots.getItem() instanceof WinemakerBootsItem ? ChatFormatting.GREEN.toString() : ChatFormatting.GRAY.toString()) + "- [" + itemName(ObjectRegistry.WINEMAKER_BOOTS.get().asItem()) + "]"));
         tooltip.add(Component.nullToEmpty(""));
 
         ChatFormatting color = hasFullSet ? ChatFormatting.GREEN : ChatFormatting.GRAY;

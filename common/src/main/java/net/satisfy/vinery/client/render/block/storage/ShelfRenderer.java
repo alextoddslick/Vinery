@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import it.unimi.dsi.fastutil.HashCommon;
 import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.block.BlockModelResolver;
 import net.minecraft.client.renderer.item.ItemModelResolver;
 import net.minecraft.client.renderer.item.ItemStackRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -14,7 +15,8 @@ import net.satisfy.vinery.core.block.entity.StorageBlockEntity;
 
 public class ShelfRenderer implements StorageTypeRenderer {
     @Override
-    public void extract(StorageBlockEntity entity, StorageRenderState state, ItemModelResolver itemModelResolver, float partialTick) {
+    public void extract(StorageBlockEntity entity, StorageRenderState state, ItemModelResolver itemModelResolver,
+                        BlockModelResolver blockModelResolver, float partialTick) {
         NonNullList<ItemStack> items = state.items;
         ItemStackRenderState[] renderStates = new ItemStackRenderState[items.size()];
         int seed = HashCommon.long2int(entity.getBlockPos().asLong());
