@@ -1,8 +1,9 @@
 package net.satisfy.vinery.core.mixin;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.BlockTransformer;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SlabBlock;
@@ -13,10 +14,18 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(ShovelItem.class)
-public class ShovelItemMixin {
-    @Inject(method = "useOn", at = @At(value = "HEAD"), cancellable = true)
+/**
+ * 26.3 replacement for the old {@code ShovelItemMixin}: shovel flattening now runs through the
+ * {@link BlockTransformer} item component, so guard {@code transformBlock} instead of {@code ShovelItem#useOn}.
+ * Single (non-double) slabs must never be flattened into a full dirt path block.
+ */
+@Mixin(BlockTransformer.class)
+public class BlockTransformerMixin {
+    @Inject(method = "transformBlock", at = @At(value = "HEAD"), cancellable = true)
     public void canConvertSlab(UseOnContext useOnContext, CallbackInfoReturnable<InteractionResult> cir) {
+        if (!useOnContext.getItemInHand().is(ItemTags.SHOVELS)) {
+            return;
+        }
         Level level = useOnContext.getLevel();
         BlockPos blockPos = useOnContext.getClickedPos();
         BlockState blockState = level.getBlockState(blockPos);

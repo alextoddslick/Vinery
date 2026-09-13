@@ -3,9 +3,11 @@ package net.satisfy.vinery.core.registry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.Registrar;
 import dev.architectury.registry.registries.RegistrySupplier;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.flag.FeatureFlag;
 import net.minecraft.world.flag.FeatureFlags;
@@ -22,6 +24,7 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 import net.satisfy.vinery.core.Vinery;
 import net.satisfy.vinery.core.block.*;
 import net.satisfy.vinery.core.block.ShelfBlock;
@@ -31,7 +34,6 @@ import net.satisfy.vinery.core.util.GeneralUtil;
 import net.satisfy.vinery.core.util.WineSettings;
 import net.satisfy.vinery.core.world.feature.VineryConfiguredFeatures;
 
-import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -49,39 +51,39 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> DARK_CHERRY_WALL_SIGN = registerWithoutItem("dark_cherry_wall_sign", () -> new DarkCherryWallSignBlock(blockProps("dark_cherry_wall_sign", Blocks.OAK_WALL_SIGN), VineryWoodType.DARK_CHERRY));
     public static final RegistrySupplier<Block> DARK_CHERRY_HANGING_SIGN = registerWithoutItem("dark_cherry_hanging_sign", () -> new DarkCherryCeilingHangingSignBlock(blockProps("dark_cherry_hanging_sign", Blocks.OAK_HANGING_SIGN), VineryWoodType.DARK_CHERRY));
     public static final RegistrySupplier<Block> DARK_CHERRY_WALL_HANGING_SIGN = registerWithoutItem("dark_cherry_wall_hanging_sign", () -> new DarkCherryWallHangingSignBlock(blockProps("dark_cherry_wall_hanging_sign", Blocks.OAK_WALL_HANGING_SIGN), VineryWoodType.DARK_CHERRY));
-    public static final RegistrySupplier<Item> DARK_CHERRY_SIGN_ITEM = ITEMS.register("dark_cherry_sign", () -> new SignItem(ObjectRegistry.DARK_CHERRY_SIGN.get(), ObjectRegistry.DARK_CHERRY_WALL_SIGN.get(), itemProps("dark_cherry_sign").stacksTo(16).useBlockDescriptionPrefix()));
-    public static final RegistrySupplier<Item> DARK_CHERRY_HANGING_SIGN_ITEM = ITEMS.register("dark_cherry_hanging_sign", () -> new HangingSignItem(ObjectRegistry.DARK_CHERRY_HANGING_SIGN.get(), ObjectRegistry.DARK_CHERRY_WALL_HANGING_SIGN.get(), itemProps("dark_cherry_hanging_sign").stacksTo(16).useBlockDescriptionPrefix()));
+    public static final RegistrySupplier<Item> DARK_CHERRY_SIGN_ITEM = ITEMS.register("dark_cherry_sign", () -> new StandingAndWallBlockItem(ObjectRegistry.DARK_CHERRY_SIGN.get(), ObjectRegistry.DARK_CHERRY_WALL_SIGN.get(), Direction.DOWN, itemProps("dark_cherry_sign").stacksTo(16).useBlockDescriptionPrefix().signText()));
+    public static final RegistrySupplier<Item> DARK_CHERRY_HANGING_SIGN_ITEM = ITEMS.register("dark_cherry_hanging_sign", () -> new HangingSignItem(ObjectRegistry.DARK_CHERRY_HANGING_SIGN.get(), ObjectRegistry.DARK_CHERRY_WALL_HANGING_SIGN.get(), itemProps("dark_cherry_hanging_sign").stacksTo(16).useBlockDescriptionPrefix().signText()));
     public static final RegistrySupplier<Block> RED_GRAPE_BUSH = registerWithoutItem("red_grape_bush", () -> new GrapeBush(blockProps("red_grape_bush", Blocks.SWEET_BERRY_BUSH), GrapeTypeRegistry.RED));
-    public static final RegistrySupplier<Item> RED_GRAPE_SEEDS = registerItem("red_grape_seeds", () -> new GrapeBushSeedItem(RED_GRAPE_BUSH.get(), itemProps("red_grape_seeds"), GrapeTypeRegistry.RED));
-    public static final RegistrySupplier<Item> RED_GRAPE = registerItem("red_grape", () -> new GrapeItem(itemProps("red_grape").food(Foods.SWEET_BERRIES), GrapeTypeRegistry.RED, RED_GRAPE_SEEDS.get()));
+    public static final RegistrySupplier<Item> RED_GRAPE_SEEDS = registerItem("red_grape_seeds", () -> new GrapeBushSeedItem(RED_GRAPE_BUSH.get(), itemProps("red_grape_seeds").compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM), GrapeTypeRegistry.RED));
+    public static final RegistrySupplier<Item> RED_GRAPE = registerItem("red_grape", () -> new GrapeItem(itemProps("red_grape").food(Foods.SWEET_BERRIES).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM), GrapeTypeRegistry.RED, RED_GRAPE_SEEDS.get()));
     public static final RegistrySupplier<Block> WHITE_GRAPE_BUSH = registerWithoutItem("white_grape_bush", () -> new GrapeBush(blockProps("white_grape_bush", Blocks.SWEET_BERRY_BUSH), GrapeTypeRegistry.WHITE));
-    public static final RegistrySupplier<Item> WHITE_GRAPE_SEEDS = registerItem("white_grape_seeds", () -> new GrapeBushSeedItem(WHITE_GRAPE_BUSH.get(), itemProps("white_grape_seeds"), GrapeTypeRegistry.WHITE));
-    public static final RegistrySupplier<Item> WHITE_GRAPE = registerItem("white_grape", () -> new GrapeItem(itemProps("white_grape").food(Foods.SWEET_BERRIES), GrapeTypeRegistry.WHITE, WHITE_GRAPE_SEEDS.get()));
+    public static final RegistrySupplier<Item> WHITE_GRAPE_SEEDS = registerItem("white_grape_seeds", () -> new GrapeBushSeedItem(WHITE_GRAPE_BUSH.get(), itemProps("white_grape_seeds").compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM), GrapeTypeRegistry.WHITE));
+    public static final RegistrySupplier<Item> WHITE_GRAPE = registerItem("white_grape", () -> new GrapeItem(itemProps("white_grape").food(Foods.SWEET_BERRIES).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM), GrapeTypeRegistry.WHITE, WHITE_GRAPE_SEEDS.get()));
     public static final RegistrySupplier<Block> SAVANNA_RED_GRAPE_BUSH = registerWithoutItem("savanna_grape_bush_red", () -> new GrapeBush.SavannaGrapeBush(blockProps("savanna_grape_bush_red", Blocks.SWEET_BERRY_BUSH), GrapeTypeRegistry.SAVANNA_RED));
-    public static final RegistrySupplier<Item> SAVANNA_RED_GRAPE_SEEDS = registerItem("savanna_grape_seeds_red", () -> new GrapeBushSeedItem(SAVANNA_RED_GRAPE_BUSH.get(), itemProps("savanna_grape_seeds_red"), GrapeTypeRegistry.SAVANNA_RED));
-    public static final RegistrySupplier<Item> SAVANNA_RED_GRAPE = registerItem("savanna_grapes_red", () -> new GrapeItem(itemProps("savanna_grapes_red").food(Foods.SWEET_BERRIES), GrapeTypeRegistry.SAVANNA_RED, ObjectRegistry.SAVANNA_RED_GRAPE_SEEDS.get()));
+    public static final RegistrySupplier<Item> SAVANNA_RED_GRAPE_SEEDS = registerItem("savanna_grape_seeds_red", () -> new GrapeBushSeedItem(SAVANNA_RED_GRAPE_BUSH.get(), itemProps("savanna_grape_seeds_red").compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM), GrapeTypeRegistry.SAVANNA_RED));
+    public static final RegistrySupplier<Item> SAVANNA_RED_GRAPE = registerItem("savanna_grapes_red", () -> new GrapeItem(itemProps("savanna_grapes_red").food(Foods.SWEET_BERRIES).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM), GrapeTypeRegistry.SAVANNA_RED, ObjectRegistry.SAVANNA_RED_GRAPE_SEEDS.get()));
     public static final RegistrySupplier<Block> SAVANNA_WHITE_GRAPE_BUSH = registerWithoutItem("savanna_grape_bush_white", () -> new GrapeBush.SavannaGrapeBush(blockProps("savanna_grape_bush_white", Blocks.SWEET_BERRY_BUSH), GrapeTypeRegistry.SAVANNA_WHITE));
-    public static final RegistrySupplier<Item> SAVANNA_WHITE_GRAPE_SEEDS = registerItem("savanna_grape_seeds_white", () -> new GrapeBushSeedItem(SAVANNA_WHITE_GRAPE_BUSH.get(), itemProps("savanna_grape_seeds_white"), GrapeTypeRegistry.SAVANNA_WHITE));
-    public static final RegistrySupplier<Item> SAVANNA_WHITE_GRAPE = registerItem("savanna_grapes_white", () -> new GrapeItem(itemProps("savanna_grapes_white").food(Foods.SWEET_BERRIES), GrapeTypeRegistry.SAVANNA_WHITE, ObjectRegistry.SAVANNA_WHITE_GRAPE_SEEDS.get()));
+    public static final RegistrySupplier<Item> SAVANNA_WHITE_GRAPE_SEEDS = registerItem("savanna_grape_seeds_white", () -> new GrapeBushSeedItem(SAVANNA_WHITE_GRAPE_BUSH.get(), itemProps("savanna_grape_seeds_white").compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM), GrapeTypeRegistry.SAVANNA_WHITE));
+    public static final RegistrySupplier<Item> SAVANNA_WHITE_GRAPE = registerItem("savanna_grapes_white", () -> new GrapeItem(itemProps("savanna_grapes_white").food(Foods.SWEET_BERRIES).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM), GrapeTypeRegistry.SAVANNA_WHITE, ObjectRegistry.SAVANNA_WHITE_GRAPE_SEEDS.get()));
     public static final RegistrySupplier<Block> TAIGA_RED_GRAPE_BUSH = registerWithoutItem("taiga_grape_bush_red", () -> new GrapeBush.TaigaGrapeBush(blockProps("taiga_grape_bush_red", Blocks.SWEET_BERRY_BUSH), GrapeTypeRegistry.TAIGA_RED));
-    public static final RegistrySupplier<Item> TAIGA_RED_GRAPE_SEEDS = registerItem("taiga_grape_seeds_red", () -> new GrapeBushSeedItem(TAIGA_RED_GRAPE_BUSH.get(), itemProps("taiga_grape_seeds_red"), GrapeTypeRegistry.TAIGA_RED));
-    public static final RegistrySupplier<Item> TAIGA_RED_GRAPE = registerItem("taiga_grapes_red", () -> new GrapeItem(itemProps("taiga_grapes_red").food(Foods.SWEET_BERRIES), GrapeTypeRegistry.TAIGA_RED, ObjectRegistry.TAIGA_RED_GRAPE_SEEDS.get()));
+    public static final RegistrySupplier<Item> TAIGA_RED_GRAPE_SEEDS = registerItem("taiga_grape_seeds_red", () -> new GrapeBushSeedItem(TAIGA_RED_GRAPE_BUSH.get(), itemProps("taiga_grape_seeds_red").compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM), GrapeTypeRegistry.TAIGA_RED));
+    public static final RegistrySupplier<Item> TAIGA_RED_GRAPE = registerItem("taiga_grapes_red", () -> new GrapeItem(itemProps("taiga_grapes_red").food(Foods.SWEET_BERRIES).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM), GrapeTypeRegistry.TAIGA_RED, ObjectRegistry.TAIGA_RED_GRAPE_SEEDS.get()));
     public static final RegistrySupplier<Block> TAIGA_WHITE_GRAPE_BUSH = registerWithoutItem("taiga_grape_bush_white", () -> new GrapeBush.TaigaGrapeBush(blockProps("taiga_grape_bush_white", Blocks.SWEET_BERRY_BUSH), GrapeTypeRegistry.TAIGA_WHITE));
-    public static final RegistrySupplier<Item> TAIGA_WHITE_GRAPE_SEEDS = registerItem("taiga_grape_seeds_white", () -> new GrapeBushSeedItem(TAIGA_WHITE_GRAPE_BUSH.get(), itemProps("taiga_grape_seeds_white"), GrapeTypeRegistry.TAIGA_WHITE));
-    public static final RegistrySupplier<Item> TAIGA_WHITE_GRAPE = registerItem("taiga_grapes_white", () -> new GrapeItem(itemProps("taiga_grapes_white").food(Foods.SWEET_BERRIES), GrapeTypeRegistry.TAIGA_WHITE, ObjectRegistry.TAIGA_WHITE_GRAPE_SEEDS.get()));
+    public static final RegistrySupplier<Item> TAIGA_WHITE_GRAPE_SEEDS = registerItem("taiga_grape_seeds_white", () -> new GrapeBushSeedItem(TAIGA_WHITE_GRAPE_BUSH.get(), itemProps("taiga_grape_seeds_white").compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM), GrapeTypeRegistry.TAIGA_WHITE));
+    public static final RegistrySupplier<Item> TAIGA_WHITE_GRAPE = registerItem("taiga_grapes_white", () -> new GrapeItem(itemProps("taiga_grapes_white").food(Foods.SWEET_BERRIES).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM), GrapeTypeRegistry.TAIGA_WHITE, ObjectRegistry.TAIGA_WHITE_GRAPE_SEEDS.get()));
     public static final RegistrySupplier<Block> JUNGLE_RED_GRAPE_BUSH = registerWithoutItem("jungle_grape_bush_red", () -> new GrapeVineBlock(blockProps("jungle_grape_bush_red", Blocks.SWEET_BERRY_BUSH), GrapeTypeRegistry.JUNGLE_RED));
-    public static final RegistrySupplier<Item> JUNGLE_RED_GRAPE_SEEDS = registerItem("jungle_grape_seeds_red", () -> new GrapeBushSeedItem(JUNGLE_RED_GRAPE_BUSH.get(), itemProps("jungle_grape_seeds_red"), GrapeTypeRegistry.JUNGLE_RED));
-    public static final RegistrySupplier<Item> JUNGLE_RED_GRAPE = registerItem("jungle_grapes_red", () -> new GrapeItem(itemProps("jungle_grapes_red").food(Foods.BAKED_POTATO), GrapeTypeRegistry.JUNGLE_RED, ObjectRegistry.JUNGLE_RED_GRAPE_SEEDS.get()));
+    public static final RegistrySupplier<Item> JUNGLE_RED_GRAPE_SEEDS = registerItem("jungle_grape_seeds_red", () -> new GrapeBushSeedItem(JUNGLE_RED_GRAPE_BUSH.get(), itemProps("jungle_grape_seeds_red").compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM), GrapeTypeRegistry.JUNGLE_RED));
+    public static final RegistrySupplier<Item> JUNGLE_RED_GRAPE = registerItem("jungle_grapes_red", () -> new GrapeItem(itemProps("jungle_grapes_red").food(Foods.BAKED_POTATO).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM), GrapeTypeRegistry.JUNGLE_RED, ObjectRegistry.JUNGLE_RED_GRAPE_SEEDS.get()));
     public static final RegistrySupplier<Block> JUNGLE_WHITE_GRAPE_BUSH = registerWithoutItem("jungle_grape_bush_white", () -> new GrapeVineBlock(blockProps("jungle_grape_bush_white", Blocks.SWEET_BERRY_BUSH), GrapeTypeRegistry.JUNGLE_WHITE));
-    public static final RegistrySupplier<Item> JUNGLE_WHITE_GRAPE_SEEDS = registerItem("jungle_grape_seeds_white", () -> new GrapeBushSeedItem(JUNGLE_WHITE_GRAPE_BUSH.get(), itemProps("jungle_grape_seeds_white"), GrapeTypeRegistry.JUNGLE_WHITE));
-    public static final RegistrySupplier<Item> JUNGLE_WHITE_GRAPE = registerItem("jungle_grapes_white", () -> new GrapeItem(itemProps("jungle_grapes_white").food(Foods.BAKED_POTATO), GrapeTypeRegistry.JUNGLE_WHITE, ObjectRegistry.JUNGLE_WHITE_GRAPE_SEEDS.get()));
-    public static final RegistrySupplier<Block> DARK_CHERRY_SAPLING = registerWithItem("dark_cherry_sapling", () -> new SaplingBlock(new TreeGrower("dark_cherry_tree", Optional.of(VineryConfiguredFeatures.DARK_CHERRY_KEY), Optional.of(VineryConfiguredFeatures.DARK_CHERRY_KEY), Optional.empty()), blockProps("dark_cherry_sapling").noCollision().randomTicks().instabreak().sound(SoundType.GRASS)));
-    public static final RegistrySupplier<Block> APPLE_TREE_SAPLING = registerWithItem("apple_tree_sapling", () -> new SaplingBlock(new TreeGrower("apple_tree", Optional.of(VineryConfiguredFeatures.APPLE_KEY), Optional.of(VineryConfiguredFeatures.APPLE_VARIANT_KEY), Optional.empty()), blockProps("apple_tree_sapling").noCollision().randomTicks().instabreak().sound(SoundType.GRASS)));
-    public static final RegistrySupplier<Item> CHERRY = registerItem("cherry", () -> new Item(itemProps("cherry").food(Foods.COOKIE)));
-    public static final RegistrySupplier<Item> ROTTEN_CHERRY = registerItem("rotten_cherry", () -> new RottenCherryItem(itemProps("rotten_cherry").food(Foods.POISONOUS_POTATO, Consumables.POISONOUS_POTATO)));
-    public static final RegistrySupplier<Block> GRAPEVINE_LEAVES = registerWithItem("grapevine_leaves", () -> new TintedParticleLeavesBlock(0.01F, blockProps("grapevine_leaves", Blocks.OAK_LEAVES)));
-    public static final RegistrySupplier<Block> DARK_CHERRY_LEAVES = registerWithItem("dark_cherry_leaves", () -> new DarkCherryLeavesBlock(blockProps("dark_cherry_leaves", Blocks.OAK_LEAVES)));
-    public static final RegistrySupplier<Block> APPLE_LEAVES = registerWithItem("apple_leaves", () -> new AppleLeavesBlock(blockProps("apple_leaves", Blocks.OAK_LEAVES)));
+    public static final RegistrySupplier<Item> JUNGLE_WHITE_GRAPE_SEEDS = registerItem("jungle_grape_seeds_white", () -> new GrapeBushSeedItem(JUNGLE_WHITE_GRAPE_BUSH.get(), itemProps("jungle_grape_seeds_white").compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM), GrapeTypeRegistry.JUNGLE_WHITE));
+    public static final RegistrySupplier<Item> JUNGLE_WHITE_GRAPE = registerItem("jungle_grapes_white", () -> new GrapeItem(itemProps("jungle_grapes_white").food(Foods.BAKED_POTATO).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM), GrapeTypeRegistry.JUNGLE_WHITE, ObjectRegistry.JUNGLE_WHITE_GRAPE_SEEDS.get()));
+    public static final RegistrySupplier<Block> DARK_CHERRY_SAPLING = registerWithCompostableItem("dark_cherry_sapling", () -> new SaplingBlock(new TreeGrower("dark_cherry_tree", WeightedList.of(VineryConfiguredFeatures.DARK_CHERRY_KEY), WeightedList.of(VineryConfiguredFeatures.DARK_CHERRY_KEY), WeightedList.of(), VineryConfiguredFeatures.DARK_CHERRY_KEY), blockProps("dark_cherry_sapling").noCollision().randomTicks().instabreak().sound(SoundType.GRASS)));
+    public static final RegistrySupplier<Block> APPLE_TREE_SAPLING = registerWithCompostableItem("apple_tree_sapling", () -> new SaplingBlock(new TreeGrower("apple_tree", WeightedList.of(VineryConfiguredFeatures.APPLE_VARIANT_KEY), WeightedList.of(VineryConfiguredFeatures.APPLE_KEY), WeightedList.of(), VineryConfiguredFeatures.APPLE_VARIANT_KEY), blockProps("apple_tree_sapling").noCollision().randomTicks().instabreak().sound(SoundType.GRASS)));
+    public static final RegistrySupplier<Item> CHERRY = registerItem("cherry", () -> new Item(itemProps("cherry").food(Foods.COOKIE).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM)));
+    public static final RegistrySupplier<Item> ROTTEN_CHERRY = registerItem("rotten_cherry", () -> new RottenCherryItem(itemProps("rotten_cherry").food(Foods.POISONOUS_POTATO, Consumables.POISONOUS_POTATO).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM)));
+    public static final RegistrySupplier<Block> GRAPEVINE_LEAVES = registerWithCompostableItem("grapevine_leaves", () -> new TintedParticleLeavesBlock(0.01F, blockProps("grapevine_leaves", Blocks.OAK_LEAVES)));
+    public static final RegistrySupplier<Block> DARK_CHERRY_LEAVES = registerWithCompostableItem("dark_cherry_leaves", () -> new DarkCherryLeavesBlock(blockProps("dark_cherry_leaves", Blocks.OAK_LEAVES)));
+    public static final RegistrySupplier<Block> APPLE_LEAVES = registerWithCompostableItem("apple_leaves", () -> new AppleLeavesBlock(blockProps("apple_leaves", Blocks.OAK_LEAVES)));
     public static final RegistrySupplier<Block> WHITE_GRAPE_BAG = registerWithItem("white_grape_bag", () -> new FacingBlock(blockProps("white_grape_bag").strength(2.0F, 3.0F).sound(SoundType.WOOL)));
     public static final RegistrySupplier<Block> RED_GRAPE_BAG = registerWithItem("red_grape_bag", () -> new FacingBlock(blockProps("red_grape_bag").strength(2.0F, 3.0F).sound(SoundType.WOOL)));
     public static final RegistrySupplier<Block> CHERRY_BAG = registerWithItem("cherry_bag", () -> new FacingBlock(blockProps("cherry_bag").strength(2.0F, 3.0F).sound(SoundType.WOOL)));
@@ -164,14 +166,14 @@ public class ObjectRegistry {
     public static final RegistrySupplier<Block> LILITU_WINE = registerWithoutItem("lilitu_wine", () -> new WineBottleBlock(getWineSettings("lilitu_wine"), 1));
     public static final RegistrySupplier<Block> BOTTLE_MOJANG_NOIR = registerWithoutItem("bottle_mojang_noir", () -> new WineBottleBlock(getWineSettings("bottle_mojang_noir"), 3));
     public static final RegistrySupplier<Block> VILLAGERS_FRIGHT = registerWithoutItem("villagers_fright", () -> new WineBottleBlock(getWineSettings("villagers_fright"), 3));
-    public static final RegistrySupplier<Item> APPLE_MASH = registerItem("apple_mash", () -> new Item(itemProps("apple_mash").food(Foods.APPLE)));
+    public static final RegistrySupplier<Item> APPLE_MASH = registerItem("apple_mash", () -> new Item(itemProps("apple_mash").food(Foods.APPLE).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM)));
     public static final RegistrySupplier<Block> GRAPEVINE_STEM = registerWithItem("grapevine_stem", () -> new PaleStemBlock(getGrapevineSettings("grapevine_stem")));
     public static final RegistrySupplier<Block> STORAGE_POT = registerWithItem("storage_pot", () -> new StoragePotBlock(blockProps("storage_pot", Blocks.OAK_WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD), SoundEvents.BRUSH_GENERIC, SoundEvents.BRUSH_GENERIC));
     public static final RegistrySupplier<Block> WINE_BOX = registerWithItem("wine_box", () -> new WineBoxBlock(blockProps("wine_box").strength(2.0F, 3.0F).noOcclusion()));
-    public static final RegistrySupplier<Block> DARK_CHERRY_BIG_TABLE = registerWithItem("dark_cherry_big_table", () -> new BigTableBlock(blockProps("dark_cherry_big_table").strength(2.0F, 2.0F).pushReaction(PushReaction.IGNORE)));
+    public static final RegistrySupplier<Block> DARK_CHERRY_BIG_TABLE = registerWithItem("dark_cherry_big_table", () -> new BigTableBlock(blockProps("dark_cherry_big_table").strength(2.0F, 2.0F).pushReaction(PushReaction.IGNORE_ENTITY)));
     public static final RegistrySupplier<Block> DARK_CHERRY_SHELF = registerWithItem("dark_cherry_shelf", () -> new ShelfBlock(blockProps("dark_cherry_shelf").strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistrySupplier<Block> STACKABLE_LOG = registerWithItem("stackable_log", () -> new StackableLogBlock(getLogBlockSettings("stackable_log").noOcclusion().lightLevel(state -> state.getValue(StackableLogBlock.FIRED) ? 13 : 0)));
-    public static final RegistrySupplier<Item> STRAW_HAT = registerItem("straw_hat", () -> new WinemakerHelmetItem(ArmorMaterialRegistry.WINEMAKER_ARMOR, ArmorType.HELMET, itemProps("straw_hat").rarity(Rarity.EPIC), Vinery.identifier("textures/entity/equipment/humanoid/winemaker.png")));
+    public static final RegistrySupplier<Item> STRAW_HAT = registerItem("straw_hat", () -> new WinemakerHelmetItem(ArmorMaterialRegistry.WINEMAKER_ARMOR, ArmorType.HELMET, itemProps("straw_hat").rarity(Rarity.EPIC).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM), Vinery.identifier("textures/entity/equipment/humanoid/winemaker.png")));
     public static final RegistrySupplier<Item> WINEMAKER_APRON = registerItem("winemaker_apron", () -> new WinemakerChestItem(ArmorMaterialRegistry.WINEMAKER_ARMOR, ArmorType.CHESTPLATE, itemProps("winemaker_apron").rarity(Rarity.EPIC), Vinery.identifier("textures/entity/equipment/humanoid/winemaker.png")));
     public static final RegistrySupplier<Item> WINEMAKER_LEGGINGS = registerItem("winemaker_leggings", () -> new WinemakerLegsItem(ArmorMaterialRegistry.WINEMAKER_ARMOR, ArmorType.LEGGINGS, itemProps("winemaker_leggings").rarity(Rarity.RARE), Vinery.identifier("textures/entity/equipment/humanoid/winemaker.png")));
     public static final RegistrySupplier<Item> WINEMAKER_BOOTS = registerItem("winemaker_boots", () -> new WinemakerBootsItem(ArmorMaterialRegistry.WINEMAKER_ARMOR, ArmorType.BOOTS, itemProps("winemaker_boots").rarity(Rarity.RARE), Vinery.identifier("textures/entity/equipment/humanoid/winemaker.png")));
@@ -318,7 +320,7 @@ public class ObjectRegistry {
     }
 
     private static ButtonBlock woodenButton(String name, FeatureFlag... featureFlags) {
-        BlockBehaviour.Properties properties = blockProps(name).noCollision().strength(0.5F).pushReaction(PushReaction.DESTROY);
+        BlockBehaviour.Properties properties = blockProps(name).noCollision().strength(0.5F).pushReaction(PushReaction.POPPED);
         if (featureFlags.length > 0) {
             properties = properties.requiredFeatures(featureFlags);
         }
@@ -328,6 +330,16 @@ public class ObjectRegistry {
 
     public static <T extends Block> RegistrySupplier<T> registerWithItem(String name, Supplier<T> block) {
         return GeneralUtil.registerWithItem(BLOCKS, BLOCK_REGISTRAR, ITEMS, ITEM_REGISTRAR, Vinery.identifier(name), block);
+    }
+
+    /**
+     * Like {@link #registerWithItem} but the block item gets the 26.3 COMPOSTABLE component
+     * (replaces the old ComposterBlock.COMPOSTABLES registration for leaves/saplings).
+     */
+    private static <T extends Block> RegistrySupplier<T> registerWithCompostableItem(String name, Supplier<T> block) {
+        RegistrySupplier<T> toReturn = registerWithoutItem(name, block);
+        registerItem(name, () -> new VineryBlockItem(toReturn.get(), itemProps(name).useBlockDescriptionPrefix().compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM)));
+        return toReturn;
     }
 
     public static <T extends Block> RegistrySupplier<T> registerWithoutItem(String path, Supplier<T> block) {

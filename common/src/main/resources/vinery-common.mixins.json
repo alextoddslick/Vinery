@@ -7,13 +7,13 @@
   ],
   "mixins": [
     "BlockMixin",
+    "BlockTransformerMixin",
     "BoneMealItemMixin",
     "ConsumableMixin",
     "ExperienceOrbMixin",
     "FoxEntityEatSweetBerriesGoalMixin",
     "LivingEntityMixin",
     "PlantBlockMixin",
-    "ShovelItemMixin",
     "SpreadingSnowyBlockMixin",
     "WanderingTraderManagerMixin"
   ],

@@ -5,6 +5,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.Prediction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffects;
@@ -45,7 +46,7 @@ public class GrapejuiceBottleItem extends Item {
             itemStack.shrink(1);
             ItemStack itemStack2 = new ItemStack(ObjectRegistry.WINE_BOTTLE.get());
             if (!player.getInventory().add(itemStack2)) {
-                player.drop(itemStack2, false);
+                player.drop(itemStack2, false, Prediction.PREDICTED);
             }
         }
 

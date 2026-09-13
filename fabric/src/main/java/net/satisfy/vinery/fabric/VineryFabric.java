@@ -9,7 +9,6 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.resources.Identifier;
 import net.satisfy.vinery.core.Vinery;
-import net.satisfy.vinery.core.registry.CompostableRegistry;
 import net.satisfy.vinery.fabric.config.VineryFabricConfig;
 import net.satisfy.vinery.fabric.core.registry.VineryFabricVillagers;
 import net.satisfy.vinery.fabric.core.world.VineryBiomeModification;
@@ -25,7 +24,7 @@ public class VineryFabric implements ModInitializer {
         Vinery.init();
         // must run after Vinery.init(), the POI type is built from the (now registered) fermentation barrel block
         VineryFabricVillagers.registerPOIAndProfession();
-        CompostableRegistry.registerCompostable();
+        // compostable chances are now the COMPOSTABLE item component, set in ObjectRegistry item properties
         VineryBiomeModification.init();
         Vinery.commonSetup();
 

@@ -19,6 +19,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.Mth;
+import net.minecraft.util.Prediction;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.InteractionHand;
@@ -361,7 +362,7 @@ public class GeneralUtil {
                 if (!((Player)entity).getAbilities().instabuild) {
                     ItemStack itemStack2 = new ItemStack(returnItem);
                     if (!player.getInventory().add(itemStack2)) {
-                        player.drop(itemStack2, false);
+                        player.drop(itemStack2, false, Prediction.PREDICTED);
                     }
                 }
             }

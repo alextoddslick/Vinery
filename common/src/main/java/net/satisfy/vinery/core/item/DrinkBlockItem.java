@@ -78,12 +78,16 @@ public class DrinkBlockItem extends BlockItem {
         return blockState != null && this.canPlace(context, blockState) ? blockState : null;
     }
 
+    // 26.3: BlockItem.updateCustomBlockEntityTag is static now, so hook placeBlock instead (runs right before it in place()).
     @Override
-    protected boolean updateCustomBlockEntityTag(BlockPos blockPos, Level level, @Nullable Player player, ItemStack itemStack, BlockState blockState) {
-        if (level.getBlockEntity(blockPos) instanceof StorageBlockEntity wineEntity) {
-            wineEntity.setStack(0, itemStack.copyWithCount(1));
+    protected boolean placeBlock(BlockPlaceContext context, BlockState placementState) {
+        if (!super.placeBlock(context, placementState)) {
+            return false;
         }
-        return super.updateCustomBlockEntityTag(blockPos, level, player, itemStack, blockState);
+        if (context.getLevel().getBlockEntity(context.getClickedPos()) instanceof StorageBlockEntity wineEntity) {
+            wineEntity.setStack(0, context.getItemInHand().copyWithCount(1));
+        }
+        return true;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package net.satisfy.vinery.core.item;
 
+import net.minecraft.util.Prediction;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -30,7 +31,7 @@ public class GrapeItem extends Item {
                 if (world.getRandom().nextFloat() < CHANCE_OF_GETTING_SEEDS) {
                     ItemStack returnStack = new ItemStack(returnItem);
                     if (!player.getInventory().add(returnStack)) {
-                        player.drop(returnStack, false);
+                        player.drop(returnStack, false, Prediction.SERVER_ONLY);
                     }
                 }
             }

@@ -75,6 +75,33 @@ Not regenerated yet for 26.3. Follow "Regenerating the reference sources" in `HA
 - (blocks) `ItemTags.AXES / SHOVELS / HOES / PICKAXES` confirmed at `tags/ItemTags.java:176-179`; `stack.is(ItemTags.AXES)` replaces `instanceof AxeItem`.
 - (blocks) `DirtPathSlabBlock` never referenced `DirtPathBlock` (it extends `SlabBlock` with its own path logic), so only its codec had to go. `PathBlock`'s constructor is `protected PathBlock(Block baseBlock, Properties)`.
 - (blocks) Removing `codec()` overrides can leave `HorizontalDirectionalBlock` / `BaseEntityBlock` / `NotNull` imports unused (they were only referenced in the `MapCodec<? extends X>` return type).
+- (core) **Compostable**: `Item.Properties.compostable(ResourceKey<ContextIntProvider>)` sets `DataComponents.COMPOSTABLE`. Vanilla keys (`ContextIntProviders`, values from
+  `bootstrap`): `COMPOSTABLE_LOW` = 30 %, `COMPOSTABLE_LOW_MEDIUM` = 50 %, `COMPOSTABLE_MEDIUM` = 65 %, `COMPOSTABLE_MEDIUM_HIGH` = 85 %, `COMPOSTABLE_ALWAYS_ADD_ONE` = 100 %
+  (vanilla: seeds/leaves/saplings LOW, apple/flowers MEDIUM). Vinery's old flat 0.4 -> `COMPOSTABLE_LOW_MEDIUM` for every item that was in `CompostableRegistry`
+  (block items go through `ObjectRegistry.registerWithCompostableItem`). `CompostableRegistry` deleted; Fabric API 0.160 has no `CompostingChanceRegistry`.
+- (core) **Stripping / flattening / tilling are data now**: datapack registry `Registries.BLOCK_TRANSFORMER` (`data/minecraft/block_transformer/{axe,shovel,hoe}.json`,
+  `net.minecraft.core.component.BlockTransformer`), attached to tool items as `DataComponents.BLOCK_TRANSFORMER`; `Item.useOn` calls `BlockTransformer.transformBlock(UseOnContext)`.
+  Vanilla shovel data = tag `minecraft:turns_into_dirt_path` + air above -> `dirt_path`. Architectury 21.1.9 `AxeItemHooks`/`ShovelItemHooks` touch the deleted
+  `AxeItem.STRIPPABLES`/`ShovelItem.FLATTENABLES` (NoClassDefFoundError at runtime) -> replaced by `PlatformHelper.registerStrippable/registerFlattenable` (`@ExpectPlatform`);
+  Fabric impl uses `net.fabricmc.fabric.api.item.v1.BlockTransformerHelper.registerStripping(Block, Block)` / `registerFlattening(Block, BlockState)` (fabric-item-api-v1;
+  it appends transforms to the vanilla axe/shovel transformer when the registry loads; call during mod init). Stripping copies properties (`CopyPropertiesProvider`), flattening
+  requires air above like vanilla. `ShovelItemMixin` (single slabs never flatten) is now `BlockTransformerMixin` on `BlockTransformer.transformBlock` HEAD, gated on `ItemTags.SHOVELS`.
+  `BlockPredicate` has no state-property matcher, so the slab guard cannot be expressed in data.
+- (core) **Signs**: `new StandingAndWallBlockItem(sign, wallSign, Direction.DOWN, props.signText())` replaces `SignItem`; `HangingSignItem(sign, wallSign, props)` unchanged but vanilla
+  adds `.signText()` to its properties too.
+- (core) **`PushReaction`** renamed: `NORMAL -> PUSH_PULL`, `DESTROY -> POPPED`, `BLOCK -> IMMOVEABLE`, `IGNORE -> IGNORE_ENTITY`, `PUSH_ONLY -> PUSH`.
+- (core) **`TreeGrower`** has one constructor: `(String name, WeightedList<ResourceKey<Feature>> trees, WeightedList<ResourceKey<Feature>> megaTrees, WeightedList<ResourceKey<Feature>> flowerTrees,
+  @Nullable ResourceKey<Feature> shortestTreeType)` (`net.minecraft.util.random.WeightedList.of(...)`). The old 4-arg `(name, megaTree, tree, flowers)` order was mega FIRST, so
+  `apple_tree` = trees `apple_variant`, megaTrees `apple`. `shortestTreeType` only feeds `getMinimumHeight` (`TreeFeature.trunkPlacer().getBaseHeight()`).
+- (core) **Worldgen**: `Registries.FEATURE_TYPE` is `Registry<MapCodec<? extends Feature>>` -> Architectury `DeferredRegister.create(MOD_ID, Registries.FEATURE_TYPE).getRegistrar()`
+  typed `Registrar<MapCodec<? extends Feature>>` works; register the record's `CODEC`, not a Feature instance. Our feature: `record JungleGrapeFeature(BlockState state) implements Feature`,
+  JSON `{"type":"vinery:jungle_grape_feature","state":{"id":"vinery:jungle_grape_bush_red","properties":{...}}}` (`BlockState.CODEC`, bare id allowed). `TreeGrower`/`SaplingBlock` keys are `ResourceKey<Feature>` in `Registries.FEATURE`.
+  Fabric `BiomeModifications` / `BiomeSelectors.tag` / `GenerationSettingsContext.addFeature(Decoration, ResourceKey<PlacedFeature>)` unchanged in 0.160.4.
+- (core) **`BlockItem.updateCustomBlockEntityTag(Level, @Nullable Player, BlockPos, ItemStack)` is `public static`** -> cannot be overridden. `place()` order is
+  `placeBlock(context, state)` -> `updateBlockStateFromTag` -> `updateCustomBlockEntityTag` -> `updateBlockEntityComponents` -> `setPlacedBy`; override `protected boolean placeBlock(BlockPlaceContext, BlockState)`
+  and act after `super.placeBlock(...)` returns true (`DrinkBlockItem`).
+- (core) Unchanged in 26.3 / Fabric 0.160.4 (verified for the fabric glue): `PoiHelper.register(Identifier, int, int, Block...)`, `VillagerProfession` record (7 components incl.
+  `Int2ObjectMap<ResourceKey<TradeSet>>`), `ResourceLoader.registerBuiltinPack(Identifier, ModContainer, PackActivationType)`, `ExperienceOrb.playerTouch` still calls `Player.giveExperiencePoints(I)V`.
 
 - (resources) **Loot tables** (verified against `LootTable`/`LootPool`/`LootPoolEntryContainer`/`LootItemConditionalFunction` codecs + vanilla 26.3 files):
   `"conditions": [..]` -> `"condition": <one>` and `"functions": [..]` -> `"modifier": <one or list>` on tables, pools, entries and functions

@@ -1,6 +1,9 @@
 package net.satisfy.vinery.platform.fabric;
 
 import me.shedaniel.autoconfig.AutoConfig;
+import net.fabricmc.fabric.api.item.v1.BlockTransformerHelper;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.satisfy.vinery.fabric.config.VineryFabricConfig;
 import net.satisfy.vinery.platform.PlatformHelper;
 
@@ -104,5 +107,13 @@ public class PlatformHelperImpl extends PlatformHelper {
     public static int getTraderSpawnDelay() {
         VineryFabricConfig config = AutoConfig.getConfigHolder(VineryFabricConfig.class).getConfig();
         return config.trader.spawnDelay;
+    }
+
+    public static void registerStrippable(Block input, Block result) {
+        BlockTransformerHelper.registerStripping(input, result);
+    }
+
+    public static void registerFlattenable(Block input, BlockState result) {
+        BlockTransformerHelper.registerFlattening(input, result);
     }
 }
