@@ -117,10 +117,10 @@ public class CompletionistBannerRenderer implements BlockEntityRenderer<Completi
         poseStack.pushPose();
         if (state.standing) {
             poseStack.translate(0.5, 0.5, 0.5);
-            poseStack.mulPose(Axis.YP.rotationDegrees(state.angle));
+            poseStack.rotate(Axis.YP.rotationDegrees(state.angle));
         } else {
             poseStack.translate(0.5, -0.1666666716337204, 0.5);
-            poseStack.mulPose(Axis.YP.rotationDegrees(state.angle));
+            poseStack.rotate(Axis.YP.rotationDegrees(state.angle));
             poseStack.translate(0.0, -0.3125, -0.4375);
         }
 
@@ -133,8 +133,13 @@ public class CompletionistBannerRenderer implements BlockEntityRenderer<Completi
         }
         collector.submitModelPart(this.bar, poseStack, baseType, state.lightCoords, OverlayTexture.NO_OVERLAY, this.sprites.get(BASE_SPRITE));
 
-        collector.submitModel(this.flagModel, state.phase, poseStack, RenderTypes.entitySolid(state.texture),
-                state.lightCoords, OverlayTexture.NO_OVERLAY, 0, state.breakProgress);
+        RenderType flagType = RenderTypes.entitySolid(state.texture);
+        collector.submitModel(this.flagModel, state.phase, poseStack, flagType, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
+        if (state.breakProgress != null) {
+            // 26.3: the crumbling overlay is no longer a submitModel argument but its own submission (see vanilla BannerRenderer).
+            collector.submitCrumblingOverlay(this.flagModel, state.phase, poseStack, flagType,
+                    state.lightCoords, OverlayTexture.NO_OVERLAY, -1, state.breakProgress);
+        }
 
         poseStack.popPose();
         poseStack.popPose();

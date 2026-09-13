@@ -22,8 +22,8 @@ public class WineBoxRenderer implements StorageTypeRenderer {
         poseStack.translate(0.35, 0.6, -0.35);
         poseStack.scale(0.7f, 0.7f, 0.7f);
 
-        poseStack.mulPose(Axis.ZP.rotationDegrees(90f));
-        poseStack.mulPose(Axis.YN.rotationDegrees(90f));
+        poseStack.rotate(Axis.ZP.rotationDegrees(90f));
+        poseStack.rotate(Axis.YN.rotationDegrees(90f));
 
         StorageTypeRenderer.submitBlock(state, 0, poseStack, collector);
     }

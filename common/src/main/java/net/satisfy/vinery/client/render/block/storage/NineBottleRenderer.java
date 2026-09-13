@@ -44,7 +44,7 @@ public class NineBottleRenderer implements StorageTypeRenderer {
             }
 
             poseStack.translate(x, y, 0f);
-            poseStack.mulPose(Axis.XN.rotationDegrees(90f));
+            poseStack.rotate(Axis.XN.rotationDegrees(90f));
 
             StorageTypeRenderer.submitBlock(state, i, poseStack, collector);
             poseStack.popPose();

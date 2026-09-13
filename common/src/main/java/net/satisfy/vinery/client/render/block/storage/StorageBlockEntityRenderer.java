@@ -93,6 +93,6 @@ public class StorageBlockEntityRenderer implements BlockEntityRenderer<StorageBl
     public static void applyBlockAngle(PoseStack matrices, BlockState state, float angleOffset) {
         float angle = state.getValue(StorageBlock.FACING).toYRot();
         matrices.translate(0.5, 0, 0.5);
-        matrices.mulPose(Axis.YP.rotationDegrees(angleOffset - angle));
+        matrices.rotate(Axis.YP.rotationDegrees(angleOffset - angle));
     }
 }

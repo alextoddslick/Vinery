@@ -184,7 +184,7 @@ public class LatticeRenderer implements BlockEntityRenderer<LatticeBlockEntity, 
         GrapeType grapeType = blockState.getValue(LatticeBlock.GRAPE);
 
         poseStack.translate(0.5, 0, 0.5);
-        poseStack.mulPose(Axis.YP.rotationDegrees(-direction.toYRot()));
+        poseStack.rotate(Axis.YP.rotationDegrees(-direction.toYRot()));
         poseStack.scale(1.0f, -1.0f, -1.0f);
 
         Block block = blockState.getBlock();
@@ -194,7 +194,7 @@ public class LatticeRenderer implements BlockEntityRenderer<LatticeBlockEntity, 
         int overlay = OverlayTexture.NO_OVERLAY;
 
         if (bottom) {
-            poseStack.mulPose(Axis.ZP.rotationDegrees(180f));
+            poseStack.rotate(Axis.ZP.rotationDegrees(180f));
             poseStack.scale(1.0f, -1.0f, -1.0f);
             collector.submitModelPart(lattice_parts, poseStack, renderType, light, overlay, null);
 
@@ -253,9 +253,9 @@ public class LatticeRenderer implements BlockEntityRenderer<LatticeBlockEntity, 
         if (bottom && state.showHanging) {
             poseStack.pushPose();
             poseStack.translate(0.0, 0, 0.0);
-            poseStack.mulPose(Axis.YP.rotationDegrees(-direction.toYRot()));
+            poseStack.rotate(Axis.YP.rotationDegrees(-direction.toYRot()));
             poseStack.scale(1.0f, -1.0f, -1.0f);
-            poseStack.mulPose(Axis.ZP.rotationDegrees(180f));
+            poseStack.rotate(Axis.ZP.rotationDegrees(180f));
 
             RandomSource random = RandomSource.create(state.blockPos.asLong());
             float offsetX = Mth.lerp(random.nextFloat(), -0.02f, 0.0f);

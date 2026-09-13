@@ -13,7 +13,7 @@ public class ChairRenderer extends EntityRenderer<ChairEntity, EntityRenderState
     }
 
     @Override
-    public boolean shouldRender(ChairEntity entity, Frustum frustum, double x, double y, double z) {
+    public boolean shouldRender(ChairEntity entity, Frustum frustum, double x, double y, double z, float partialTicks) {
         return false;
     }
 

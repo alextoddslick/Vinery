@@ -70,7 +70,7 @@ public class WineBottleRenderer implements StorageTypeRenderer {
         poseStack.translate(-0.15f, 0f, -0.25f);
         StorageTypeRenderer.submitBlock(state, 0, poseStack, collector);
         poseStack.translate(.1f, 0f, .8f);
-        poseStack.mulPose(Axis.YP.rotationDegrees(30));
+        poseStack.rotate(Axis.YP.rotationDegrees(30));
         StorageTypeRenderer.submitBlock(state, 1, poseStack, collector);
     }
 
@@ -83,12 +83,12 @@ public class WineBottleRenderer implements StorageTypeRenderer {
         if (item3 == null) return;
         if (item3.asItem().equals(ObjectRegistry.KELP_CIDER.get().asItem())) {
             poseStack.translate(.35f, .7f, -.13f);
-            poseStack.mulPose(Axis.XP.rotationDegrees(90));
+            poseStack.rotate(Axis.XP.rotationDegrees(90));
             StorageTypeRenderer.submitBlock(state, 2, poseStack, collector);
             return;
         }
         poseStack.translate(.1f, 0f, 0f);
-        poseStack.mulPose(Axis.YP.rotationDegrees(30));
+        poseStack.rotate(Axis.YP.rotationDegrees(30));
         StorageTypeRenderer.submitBlock(state, 2, poseStack, collector);
     }
 }

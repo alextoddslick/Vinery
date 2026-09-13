@@ -34,7 +34,7 @@ public class FourBottleRenderer implements StorageTypeRenderer {
             } else {
                 poseStack.translate(-0.35f, -0.66f, 0f);
             }
-            poseStack.mulPose(Axis.XN.rotationDegrees(90));
+            poseStack.rotate(Axis.XN.rotationDegrees(90));
 
             StorageTypeRenderer.submitBlock(state, i, poseStack, collector);
             poseStack.popPose();

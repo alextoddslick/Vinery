@@ -36,7 +36,7 @@ public class ShelfRenderer implements StorageTypeRenderer {
     @Override
     public void submit(StorageRenderState state, PoseStack poseStack, SubmitNodeCollector collector) {
         poseStack.translate(-0.4, 0.5, 0.25);
-        poseStack.mulPose(Axis.YP.rotationDegrees(90));
+        poseStack.rotate(Axis.YP.rotationDegrees(90));
         poseStack.scale(0.5f, 0.5f, 0.5f);
 
         for (int i = 0; i < state.itemRenderStates.length; i++) {
@@ -44,7 +44,7 @@ public class ShelfRenderer implements StorageTypeRenderer {
             if (itemStackRenderState != null && !itemStackRenderState.isEmpty()) {
                 poseStack.pushPose();
                 poseStack.translate(0f, 0f, 0.2f * i);
-                poseStack.mulPose(Axis.YN.rotationDegrees(22.5f));
+                poseStack.rotate(Axis.YN.rotationDegrees(22.5f));
                 itemStackRenderState.submit(poseStack, collector, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
                 poseStack.popPose();
             }
