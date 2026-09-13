@@ -24,10 +24,14 @@
       "conditions": {
         "items": [
           {
-            "items": ["vinery:jungle_grapes_red"]
+            "items": [
+              "vinery:jungle_grapes_red"
+            ]
           },
           {
-            "items": ["vinery:jungle_grapes_white"]
+            "items": [
+              "vinery:jungle_grapes_white"
+            ]
           }
         ]
       }

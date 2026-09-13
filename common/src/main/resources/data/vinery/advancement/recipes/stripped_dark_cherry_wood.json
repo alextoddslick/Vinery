@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "vinery:stripped_dark_cherry_wood"
+        "recipes": "vinery:stripped_dark_cherry_wood"
       }
     }
   },

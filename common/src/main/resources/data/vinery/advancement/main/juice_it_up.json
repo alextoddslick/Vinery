@@ -3,12 +3,10 @@
   "criteria": {
     "grapevine_pot": {
       "conditions": {
-        "location": [
-          {
-            "block": "vinery:grapevine_pot",
-            "condition": "minecraft:block_state_property"
-          }
-        ]
+        "location": {
+          "type": "minecraft:match_block",
+          "blocks": "vinery:grapevine_pot"
+        }
       },
       "trigger": "minecraft:placed_block"
     }

@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "vinery:big_table"
+        "recipes": "vinery:big_table"
       }
     }
   },

@@ -24,28 +24,44 @@
       "conditions": {
         "items": [
           {
-            "items": ["vinery:red_grapejuice"]
+            "items": [
+              "vinery:red_grapejuice"
+            ]
           },
           {
-            "items": ["vinery:white_grapejuice"]
+            "items": [
+              "vinery:white_grapejuice"
+            ]
           },
           {
-            "items": ["vinery:white_jungle_grapejuice"]
+            "items": [
+              "vinery:white_jungle_grapejuice"
+            ]
           },
           {
-            "items": ["vinery:red_jungle_grapejuice"]
+            "items": [
+              "vinery:red_jungle_grapejuice"
+            ]
           },
           {
-            "items": ["vinery:white_savanna_grapejuice"]
+            "items": [
+              "vinery:white_savanna_grapejuice"
+            ]
           },
           {
-            "items": ["vinery:red_savanna_grapejuice"]
+            "items": [
+              "vinery:red_savanna_grapejuice"
+            ]
           },
           {
-            "items": ["vinery:white_taiga_grapejuice"]
+            "items": [
+              "vinery:white_taiga_grapejuice"
+            ]
           },
           {
-            "items": ["vinery:red_taiga_grapejuice"]
+            "items": [
+              "vinery:red_taiga_grapejuice"
+            ]
           }
         ]
       }

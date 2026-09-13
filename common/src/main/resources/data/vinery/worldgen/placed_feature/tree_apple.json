@@ -36,8 +36,8 @@
       "predicate": {
         "type": "minecraft:would_survive",
         "state": {
-          "Name": "vinery:apple_tree_sapling",
-          "Properties": {
+          "id": "vinery:apple_tree_sapling",
+          "properties": {
             "stage": "0"
           }
         }

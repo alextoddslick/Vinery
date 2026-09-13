@@ -2,11 +2,11 @@
   "gives": {
     "id": "vinery:dark_cherry_sapling"
   },
-  "max_uses": 8.0,
+  "max_uses": 8,
   "reputation_discount": 0.05,
   "wants": {
-    "count": 3.0,
+    "count": 3,
     "id": "minecraft:emerald"
   },
-  "xp": 1.0
+  "xp": 1
 }

@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "vinery:oak_wine_rack_small"
+        "recipes": "vinery:oak_wine_rack_small"
       }
     }
   },

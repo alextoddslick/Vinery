@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "vinery:grapevine_stem"
+        "recipes": "vinery:grapevine_stem"
       }
     }
   },

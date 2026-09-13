@@ -25,7 +25,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "vinery:grapevine_lattice"
+        "recipes": "vinery:grapevine_lattice"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -3,12 +3,10 @@
   "criteria": {
     "apple_press": {
       "conditions": {
-        "location": [
-          {
-            "block": "vinery:apple_press",
-            "condition": "minecraft:block_state_property"
-          }
-        ]
+        "location": {
+          "type": "minecraft:match_block",
+          "blocks": "vinery:apple_press"
+        }
       },
       "trigger": "minecraft:placed_block"
     }

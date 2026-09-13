@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "vinery:red_grape_bag"
+        "recipes": "vinery:red_grape_bag"
       }
     }
   },

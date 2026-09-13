@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "vinery:grass_slab"
+        "recipes": "vinery:grass_slab"
       }
     }
   },

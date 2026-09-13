@@ -8,12 +8,10 @@
           "type": "minecraft:item",
           "weight": 1,
           "name": "vinery:vinery_standard",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 2
-            }
-          ]
+          "modifier": {
+            "type": "minecraft:set_count",
+            "count": 2
+          }
         }
       ]
     }

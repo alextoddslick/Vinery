@@ -2,35 +2,31 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "rolls": 1.0,
-      "bonus_rolls": 0.0,
+      "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
           "name": "vinery:white_grape_seeds"
         }
       ],
-      "conditions": [
-        {
-          "condition": "minecraft:block_state_property",
-          "block": "vinery:white_grape_bush",
-          "properties": {
-            "age": "3"
-          }
+      "condition": {
+        "type": "minecraft:match_block",
+        "blocks": "vinery:white_grape_bush",
+        "state": {
+          "age": "3"
         }
-      ],
-      "functions": [
+      },
+      "modifier": [
         {
-          "function": "minecraft:set_count",
+          "type": "minecraft:set_count",
           "count": {
             "type": "minecraft:uniform",
-            "min": 2.0,
-            "max": 3.0
-          },
-          "add": false
+            "min": 2,
+            "max": 3
+          }
         },
         {
-          "function": "minecraft:apply_bonus",
+          "type": "minecraft:apply_bonus",
           "enchantment": "minecraft:fortune",
           "formula": "minecraft:uniform_bonus_count",
           "parameters": {
@@ -40,35 +36,31 @@
       ]
     },
     {
-      "rolls": 1.0,
-      "bonus_rolls": 0.0,
+      "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
           "name": "vinery:white_grape_seeds"
         }
       ],
-      "conditions": [
-        {
-          "condition": "minecraft:block_state_property",
-          "block": "vinery:white_grape_bush",
-          "properties": {
-            "age": "2"
-          }
+      "condition": {
+        "type": "minecraft:match_block",
+        "blocks": "vinery:white_grape_bush",
+        "state": {
+          "age": "2"
         }
-      ],
-      "functions": [
+      },
+      "modifier": [
         {
-          "function": "minecraft:set_count",
+          "type": "minecraft:set_count",
           "count": {
             "type": "minecraft:uniform",
-            "min": 1.0,
-            "max": 2.0
-          },
-          "add": false
+            "min": 1,
+            "max": 2
+          }
         },
         {
-          "function": "minecraft:apply_bonus",
+          "type": "minecraft:apply_bonus",
           "enchantment": "minecraft:fortune",
           "formula": "minecraft:uniform_bonus_count",
           "parameters": {
@@ -78,10 +70,8 @@
       ]
     }
   ],
-  "functions": [
-    {
-      "function": "minecraft:explosion_decay"
-    }
-  ],
+  "modifier": {
+    "type": "minecraft:explosion_decay"
+  },
   "random_sequence": "vinery:blocks/white_grape_bush"
 }

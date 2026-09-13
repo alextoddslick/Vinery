@@ -3,12 +3,10 @@
   "criteria": {
     "fermentation_barrel": {
       "conditions": {
-        "location": [
-          {
-            "block": "vinery:fermentation_barrel",
-            "condition": "minecraft:block_state_property"
-          }
-        ]
+        "location": {
+          "type": "minecraft:match_block",
+          "blocks": "vinery:fermentation_barrel"
+        }
       },
       "trigger": "minecraft:placed_block"
     }

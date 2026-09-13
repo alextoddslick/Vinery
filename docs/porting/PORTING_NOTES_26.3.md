@@ -76,6 +76,34 @@ Not regenerated yet for 26.3. Follow "Regenerating the reference sources" in `HA
 - (blocks) `DirtPathSlabBlock` never referenced `DirtPathBlock` (it extends `SlabBlock` with its own path logic), so only its codec had to go. `PathBlock`'s constructor is `protected PathBlock(Block baseBlock, Properties)`.
 - (blocks) Removing `codec()` overrides can leave `HorizontalDirectionalBlock` / `BaseEntityBlock` / `NotNull` imports unused (they were only referenced in the `MapCodec<? extends X>` return type).
 
+- (resources) **Loot tables** (verified against `LootTable`/`LootPool`/`LootPoolEntryContainer`/`LootItemConditionalFunction` codecs + vanilla 26.3 files):
+  `"conditions": [..]` -> `"condition": <one>` and `"functions": [..]` -> `"modifier": <one or list>` on tables, pools, entries and functions
+  (a list under `modifier` is the inline `SequenceFunction`; a list under `condition` is NOT accepted -> wrap several in `{"type":"minecraft:all_of","terms":[..]}`).
+  Conditions/functions are keyed by `"type"` (was `"condition"` / `"function"`). Conditions and functions are `Holder`s, so a bare string is a reference into
+  `data/<ns>/predicate/` / `item_modifier/`: vanilla now uses `"minecraft:tool/can_shear"` and `"minecraft:tool/can_silk_touch"` instead of inline `match_tool`.
+  `block_state_property {block, properties}` -> `match_block {blocks, state}` (`BlockPredicate.MAP_CODEC`; `blocks` accepts an id, `#tag` or list).
+  `rolls`/`count` are `ContextIntProviders` (bare int, or `{"type":"minecraft:uniform","min","max"}` with int bounds); a typeless `{"min","max"}` no longer parses.
+  `bonus_rolls: 0.0` and `add: false` are defaults (dropped). `copy_name {source: "block_entity"}`, `apply_bonus`, `table_bonus`, `explosion_decay`, `survives_explosion`,
+  `alternatives`, `inverted {term}`, `any_of/all_of {terms}` keep their fields.
+- (resources) **Advancements**: `recipe_unlocked` field `recipe` -> `recipes` (`Recipe.LIST_CODEC`; a single id string is fine). Every `LootItemCondition` field on a
+  trigger (`player`, `location` on `placed_block`/`item_used_on_block`/`location`) is now ONE condition (`"type"`-keyed object or reference string), not a list ->
+  wrap in `all_of`. `inventory_changed` (`items`), `location_check`, `entity_properties`, `match_tool` shapes unchanged.
+- (resources) **Worldgen data**: `data/<ns>/worldgen/configured_feature/` -> `worldgen/feature/`, JSON flat (no `config`). `BlockState` JSON is `{"id","properties"}`
+  (`BlockState.CODEC` also accepts a bare block id for the default state). `BlockStateProvider` type names lost their suffix: `simple_state_provider` -> `simple`
+  (or just write the bare state), `weighted_state_provider` -> `weighted`, `rule_based_state_provider` -> `rule_based` (`BlockStateProviderTypes`); providers are
+  `Holder`s (`worldgen/block_state_provider/` registry, e.g. `"minecraft:soil_beneath_tree"`) but inline objects still work. `minecraft:tree` fields:
+  `trunk_provider, trunk_placer, foliage_provider, foliage_placer, root_placer?, minimum_size, decorators, ignore_vines, below_trunk_provider` (`TreeFeature`);
+  `sapling_provider`/`dirt_provider` no longer exist (unknown keys are ignored). `simple_block {to_place}` unchanged. Placement: `random_offset {xz_spread,y_spread}` ->
+  `offset {x,y,z}` (`OffsetPlacement`, each an IntProvider in [-16,16]); `rarity_filter, in_square, heightmap, biome, count, block_predicate_filter,
+  surface_water_depth_filter` and block predicates `matching_blocks, matching_block_tag, not, all_of, would_survive` are unchanged.
+- (resources) **Unchanged 26.2 -> 26.3 schemas** (file-level diff of vanilla + codec check): recipes (`crafting_shaped/shapeless`, `smithing_transform`; only `group`
+  names and smelting `cookingtime` defaults changed), tags, `villager_trade`/`trade_set` (vanilla just writes `max_uses`/`xp`/`count`/`amount` as ints now; codec
+  fields `wants, additional_wants?, gives, max_uses, xp, reputation_discount, merchant_predicate?, given_item_modifier?, double_trade_price_enchantments?`),
+  `items/*.json` (`minecraft:model`, `minecraft:grass`), `equipment/*.json` (new optional `trim_overrides` only), blockstates, sounds, lang.
+- (resources) **Block models**: the element boolean `"shade"` is gone from `CuboidModelElement`; vanilla replaced `"shade": false` with `"shade_direction_override": "up"`
+  (`template_fire_side.json`) and simply dropped `"shade": true`.
+- (resources) `fabric.mod.json` `"minecraft": ">=26.3-"` (trailing `-` = empty prerelease, so `26.3-rc-2` satisfies it); `neoforge.mods.toml` ranges `[26.3,)`.
+
 ## Reference sources (regenerated 2026-09-13)
 Base dir `S=/private/tmp/claude-501/-Users-alextodd-temp-Github-NOTSYNCED-Vinery/0be9815f-f3f4-4135-a2e2-0a80aae3a5d1/scratchpad`
 - Minecraft 26.3-rc-2 decompiled: `$S/mc26.3/net/minecraft` (+ `$S/mc26.3/com/mojang` for blaze3d); 26.2 for diffing: `$S/mc26.2/net/minecraft`

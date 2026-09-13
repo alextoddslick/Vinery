@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "vinery:stackable_log"
+        "recipes": "vinery:stackable_log"
       }
     }
   },

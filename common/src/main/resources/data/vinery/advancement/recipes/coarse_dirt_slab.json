@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "vinery:coarse_dirt_slab"
+        "recipes": "vinery:coarse_dirt_slab"
       }
     }
   },

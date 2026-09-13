@@ -1,0 +1,15 @@
+{
+  "type": "vinery:jungle_grape_feature",
+  "state": {
+    "id": "vinery:jungle_grape_bush_red",
+    "properties": {
+      "age": "0",
+      "east": "false",
+      "north": "false",
+      "south": "false",
+      "sterilized": "false",
+      "up": "false",
+      "west": "false"
+    }
+  }
+}
