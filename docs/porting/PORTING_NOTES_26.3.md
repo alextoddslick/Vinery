@@ -4,11 +4,12 @@ Same process and rules as `PORTING_NOTES_26.2.md` / `PORTING_NOTES_26.1.md` (rea
 "Verified during the port" sections). **Fabric is the priority.** NeoForge is DISABLED on this branch until NeoForge
 publishes a 26.3 build (see "Toolchain").
 
-## Status (2026-09-13)
-- Branch `26.3` created from `26.2` head (`a3aa71a9`). Worktree: `.claude/worktrees/26.3` of the main repo.
-- Toolchain bumped to 26.3-rc-2 (release candidate; bump `minecraft_version` and `fabric_api_version` again when 26.3 final ships).
-- Gradle configures and resolves everything. `:common:compileJava` = **157 unique errors** (baseline log:
-  `compile-errors-26.3-baseline.log`). Nothing ported yet.
+## Status (2026-09-13, evening) — DONE for Fabric
+- Branch `26.3` (from `26.2` head `a3aa71a9`), worktree `.claude/worktrees/26.3`. Toolchain 26.3-rc-2 (bump `minecraft_version`
+  and `fabric_api_version` again when 26.3 final ships).
+- Baseline was 157 compile errors (`compile-errors-26.3-baseline.log`); now `./gradlew build` passes and `:fabric:runServer` boots to
+  `Done` with zero errors. Not client-tested. Temporary toolchain workarounds are listed under "Runtime / toolchain findings":
+  local Architectury 22.0.9999, REI compile-only, LWJGL excluded from the transformer classpath, NeoForge module disabled.
 
 ## Base check (worktrees are sometimes created from the wrong commit)
 ```
@@ -58,7 +59,6 @@ Not regenerated yet for 26.3. Follow "Regenerating the reference sources" in `HA
 `genSources` in this worktree, plus the vanilla data/assets jar) before porting; diff against the 26.2 sources.
 
 ## Verified during the port
-(nothing yet — add API facts here as they are confirmed)
 - (client renderers, 26.3-client) `PoseStack.mulPose(Quaternionf)` -> `PoseStack.rotate(Quaternionfc)`; `Axis.YP.rotationDegrees(f)` still returns a `Quaternionf`, so `poseStack.rotate(Axis.YP.rotationDegrees(f))` is the drop-in replacement (applied in all storage renderers, `LatticeRenderer`, `CompletionistBannerRenderer`).
 - (client renderers) `OrderedSubmitNodeCollector.submitModel` lost its trailing `@Nullable CrumblingOverlay` parameter in every overload; the 8-arg `(model, state, pose, renderType, light, overlay, outlineColor, crumblingOverlay)` form is now the 7-arg `(model, state, pose, renderType, light, overlay, outlineColor)`. The full overload is `(model, state, pose, renderType, light, overlay, tintedColor, @Nullable UvMapping, outlineColor)` (`TextureAtlasSprite` implements `UvMapping`). Break progress is submitted separately via `submitCrumblingOverlay(model, state, pose, renderType, light, overlay, tintedColor, crumblingOverlay)` (vanilla `BannerRenderer.submitBanner` does `if (breakProgress != null) collector.order(n).submitCrumblingOverlay(...)`). Fabric `ArmorRenderer.render` signature is unchanged in 0.160.4, but our armor renderers passed the old trailing `null` and had to drop it.
 - (client renderers) `EntityRenderer.shouldRender(T, Frustum, double camX, double camY, double camZ, float partialTicks)` gained the `partialTicks` parameter (`ChairRenderer`).
@@ -182,3 +182,22 @@ Base dir `S=/private/tmp/claude-501/-Users-alextodd-temp-Github-NOTSYNCED-Vinery
 - Pack formats 26.3-rc-2: resource `97.1`, data `121.0` (26.2 was 88 / 107.1). `bushy_leaves/pack.mcmeta` already bumped to 97.
 - Fabric loader 0.19.5; Fabric API 0.160.4+26.3 module list: attachment biome block blockgetter client command creativetab datagen debug dimension entity event gamerule gametest item lookup loot menu message networking object particle permission recipe registry resource serialization tag transfer util.
 - Architectury 21.1.9 is a 26.2 build. `AxeItemHooks` / `ShovelItemHooks` (used in `Vinery.commonSetup`) may reference deleted classes at runtime; the dedicated-server smoke test will tell.
+
+## Runtime / toolchain findings (coordinator, 2026-09-13, after the four ports were merged)
+- `./gradlew build` passes; `fabric/build/libs/letsdo-vinery-fabric-1.6.0.jar` is produced.
+- **Architectury runtime transformer crash** on every dev run: `Unsupported class file major version 71`. Cause: LWJGL 3.4.3
+  (new in 26.3) ships `META-INF/versions/27/**.class` (Java 27), and the transformer (5.2.91, latest) bundles an ASM too old to read
+  them while analysing the classpath. Fix in `fabric/build.gradle`: a `architecturyTransformerClasspath` configuration (the plugin
+  prefers it over `compileClasspath` when present) with `exclude group: "org.lwjgl"`, plus LWJGL filtered from `runServer`'s classpath.
+  `runClient` needs LWJGL and is therefore still expected to hit this until architectury-transformer updates ASM.
+- **REI 26.2.821** declares `minecraft >=26.2 <26.3-` and refuses to load on 26.3-rc-2. `fabric/build.gradle` uses `compileOnly` for
+  `RoughlyEnoughItems-fabric` until a 26.3 REI exists (REI plugin classes still compile; entrypoints are only touched when REI is present).
+- **Architectury API 21.1.9** (26.2 build) fails at mixin apply on 26.3: `MixinServerPlayer.dropItem` targets `drop(ItemStack,ZZ)`,
+  which is now `drop(ItemStack, boolean, Prediction)`. Architectury has an unreleased `26.3` branch on GitHub (version `22.0`, Fabric only,
+  "bump to rc-2" 2026-09-11). It was cloned to `build/architectury-api` and published to `~/.m2` as `dev.architectury:architectury{,-fabric}:22.0.9999`
+  (`GITHUB_RUN_NUMBER` unset -> `9999`); `mavenLocal()` was added to the root repositories and `architectury_version=22.0.9999`.
+  Replace with the real release when it appears on maven.architectury.dev.
+- **Recipes are a datapack registry now**: a recipe-unlock advancement whose `rewards.recipes` / `recipe_unlocked.recipes` names a recipe
+  file that does not exist fails registry loading (`Unbound values in registry minecraft:recipe`). Six advancements were repointed to the
+  real recipe ids (`wine_press`, `dark_cherry_shelf`, `dark_cherry_big_table`, `winemaker_*`) and four stale ones deleted
+  (`basket`, `flower_box`, `flower_pot`, `grapevine_lattice` — no such recipes). `build/advcheck.py` cross-checks this.

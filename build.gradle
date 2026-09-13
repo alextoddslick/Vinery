@@ -32,6 +32,7 @@ allprojects {
     group = rootProject.maven_group
 
     repositories {
+        mavenLocal() // 26.3: locally built Architectury API 22.0.9999 (see docs/porting/PORTING_NOTES_26.3.md)
         maven { url "https://maven.neoforged.net/releases" }
         maven { url "https://maven.saps.dev/releases" }
         exclusiveContent {

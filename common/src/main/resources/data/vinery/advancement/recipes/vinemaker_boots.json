@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "vinery:vinemaker_boots"
+      "vinery:winemaker_boots"
     ]
   },
   "criteria": {
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipes": "vinery:vinemaker_boots"
+        "recipes": "vinery:winemaker_boots"
       }
     }
   },

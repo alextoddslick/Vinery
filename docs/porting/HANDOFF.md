@@ -3,8 +3,9 @@
 ## Start here (for an AI or a human picking this up)
 1. All three port branches are DONE and build: `1.21.10`, `26.1`, `26.2` (each based on the previous; nothing pushed).
    What has NOT happened: any client test. See "Next steps".
-   A `26.3` branch (worktree `.claude/worktrees/26.3`) is SET UP but NOT PORTED: toolchain on 26.3-rc-2, Fabric only,
-   157 compile errors. Start from `PORTING_NOTES_26.3.md`.
+   `26.3` (worktree `.claude/worktrees/26.3`) is DONE for Fabric on 26.3-rc-2: full build + dedicated server boots to Done with
+   zero errors. It depends on a LOCALLY BUILT Architectury 22.0.9999 (`~/.m2`) and REI is compile-only — see `PORTING_NOTES_26.3.md`
+   "Runtime / toolchain findings" for what to swap back once upstream ships 26.3 builds.
 2. Read this file's "Status", "How to build", "Process that worked", then `PORTING_NOTES_26.1.md` and `PORTING_NOTES_26.2.md`
    ("Verified during the port" sections = the API facts learned the hard way).
 3. Reference sources (decompiled MC, vanilla data, dependency sources) live in a temp scratchpad that may be gone —
@@ -22,7 +23,7 @@ previous. **Fabric is the priority; NeoForge is best-effort** (Alex only cares a
 | `1.21.10` | **DONE.** `./gradlew build` produces `fabric/build/libs/letsdo-vinery-fabric-1.6.0.jar` and the NeoForge jar. Both dedicated servers boot to "Done" in the dev runtime (`:fabric:runServer`, `:neoforge:runServer`). Not tested in a client. |
 | `26.1`    | **DONE (Fabric verified, NeoForge best-effort).** `./gradlew build` produces `fabric/build/libs/letsdo-vinery-fabric-1.6.0.jar` and the NeoForge jar. Fabric dedicated server boots to `Done` with zero errors; NeoForge dedicated server boots to `Done` too (its log shows REI's own `LocalPlayer` dist-cleaner failure and Architectury-generated `@OnlyIn` warnings, neither caused by Vinery). Not tested in a client. See "26.1 result" below. |
 | `26.2`    | **DONE (Fabric verified, NeoForge best-effort).** `./gradlew build` produces both jars; Fabric and NeoForge dedicated servers boot to `Done` with zero Vinery errors. Not tested in a client. See "26.2 result" below. |
-| `26.3`    | **SET UP, NOT PORTED** (2026-09-13). Based on `26.2`; toolchain on 26.3-rc-2 with Fabric API 0.160.4; NeoForge module disabled (no 26.3 NeoForge yet); Architectury/REI/JEI/cloth still on 26.2 builds. `:common:compileJava` = 157 unique errors, categorized in `PORTING_NOTES_26.3.md`. |
+| `26.3`    | **DONE (Fabric only, 26.3-rc-2).** `./gradlew build` produces the Fabric jar; Fabric dedicated server boots to `Done` with zero errors (2026-09-13). Uses locally built Architectury API 22.0.9999 from the unreleased GitHub `26.3` branch (published to `~/.m2`, `mavenLocal()` in root build.gradle); REI 26.2.821 is `compileOnly`; NeoForge module disabled (no NeoForge 26.3). LWJGL 3.4.3 workaround in `fabric/build.gradle` for the Architectury runtime transformer. Not tested in a client. See `PORTING_NOTES_26.3.md`. |
 
 ## How to build
 
@@ -32,6 +33,7 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home CURS
 ./gradlew build
 
 # 26.1 / 26.2 / 26.3 branches (Minecraft ships unobfuscated; Loom "no-remap"; Gradle 9.5.1; Java 25)
+# 26.3 additionally needs dev.architectury:architectury{,-fabric}:22.0.9999 in ~/.m2 (build/architectury-api, see PORTING_NOTES_26.3.md)
 export JAVA_HOME=/opt/homebrew/opt/openjdk@25/libexec/openjdk.jdk/Contents/Home CURSEFORGE_API_KEY=x
 ./gradlew :common:compileJava --continue -q 2>&1 | grep -E "error:|symbol:|location:"
 ```
@@ -111,6 +113,15 @@ API facts are in `PORTING_NOTES_26.2.md`. Notable:
 - Pre-existing issues still untouched: 64 dangling model/texture references in files nobody edited (`drawer*`, `red_vine*`,
   `*grapejuice`, `apple_juice`, `wine_bottle`, ...), the `c:` v1 tag names, `sapling_provider` in tree features, and the
   advancement predicate bugs listed under "26.1 result".
+
+## 26.3 result (2026-09-13)
+Four agents (blocks / core+items+worldgen+fabric glue / client / data+assets) on the `26.3` base, 157 compile errors -> 0, then the
+coordinator fixed the runtime: LWJGL-27 classes vs. the Architectury transformer, REI's `<26.3-` range, Architectury 21.1.9's stale
+`ServerPlayer.drop` mixin (solved by building Architectury's `26.3` branch locally), and 10 recipe-unlock advancements that referenced
+recipes that do not exist (recipes are a real datapack registry now, so dangling references are fatal). API facts and data-format
+changes are in `PORTING_NOTES_26.3.md`. Notable: block codecs are gone; worldgen features are records registered in `FEATURE_TYPE`
+with flat JSON under `worldgen/feature/`; compostables are an item component; tool item classes are gone (tags instead); loot tables and
+advancements use `condition`/`modifier` singletons; block-state JSON is `id`/`properties`.
 
 ## Next steps (not done)
 1. Client test on Fabric 26.2 (and 26.1): open every GUI (apple press, fermentation barrel), place/edit standing and hanging

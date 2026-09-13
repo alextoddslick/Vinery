@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "vinery:big_table"
+      "vinery:dark_cherry_big_table"
     ]
   },
   "criteria": {
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipes": "vinery:big_table"
+        "recipes": "vinery:dark_cherry_big_table"
       }
     }
   },

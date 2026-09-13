@@ -45,7 +45,8 @@ repositories {
 
 dependencies {
     implementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
-    implementation("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
+    // 26.3: REI 26.2.821 declares minecraft <26.3-, so it cannot load in the 26.3 dev runtime; compileOnly until REI ships a 26.3 build, then restore `implementation`.
+    compileOnly("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
     implementation "com.terraformersmc:modmenu:${rootProject.mod_menu_version}"
 
     api( "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
@@ -224,3 +225,21 @@ tasks.named("modrinth").configure {
 
 
 
+
+// 26.3: LWJGL 3.4.3 ships META-INF/versions/27 classes (class file major 71) that the Architectury runtime
+// transformer's bundled ASM cannot read, which crashes every dev run at startup ("Unsupported class file major
+// version 71"). The transformer analyses `architecturyTransformerClasspath` when that configuration exists
+// (falling back to compileClasspath), so give it one without LWJGL. The dedicated server never loads LWJGL, so it
+// is also dropped from the runServer classpath. runClient still needs LWJGL at runtime and may not work in dev
+// until architectury-transformer updates its ASM; test the client with the built jar instead.
+configurations {
+    architecturyTransformerClasspath {
+        extendsFrom compileClasspath
+        canBeResolved = true
+        canBeConsumed = false
+        exclude group: "org.lwjgl"
+    }
+}
+tasks.named("runServer", JavaExec) {
+    classpath = classpath.filter { !it.name.startsWith("lwjgl") }
+}
