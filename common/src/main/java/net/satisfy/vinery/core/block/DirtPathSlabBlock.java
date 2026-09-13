@@ -1,6 +1,5 @@
 package net.satisfy.vinery.core.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -26,16 +25,9 @@ public class DirtPathSlabBlock extends SlabBlock {
     protected static final VoxelShape TOP_SHAPE = Block.box(0.0D, 8.0D, 0.0D, 16.0D, 15.0D, 16.0D);
     protected static final VoxelShape DOUBLE_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
 
-    public static final MapCodec<DirtPathSlabBlock> CODEC = simpleCodec(DirtPathSlabBlock::new);
-
     public DirtPathSlabBlock(BlockBehaviour.Properties properties) {
         super(properties);
         this.registerDefaultState(this.defaultBlockState().setValue(TYPE, SlabType.BOTTOM).setValue(WATERLOGGED, false));
-    }
-
-    @Override
-    public @NotNull MapCodec<? extends SlabBlock> codec() {
-        return CODEC;
     }
 
     @Override

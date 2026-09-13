@@ -2,7 +2,6 @@ package net.satisfy.vinery.core.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -93,16 +92,9 @@ public class ChairBlock extends Block {
         return pos.getY() < world.getMaxY() - 1 && world.getBlockState(pos.above()).canBeReplaced(context) ? this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite()).setValue(HALF, DoubleBlockHalf.LOWER) : null;
     }
 
-    public static final MapCodec<ChairBlock> CODEC = simpleCodec(ChairBlock::new);
-
     public ChairBlock(Properties settings) {
         super(settings);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(HALF, DoubleBlockHalf.LOWER));
-    }
-
-    @Override
-    protected @NotNull MapCodec<? extends Block> codec() {
-        return CODEC;
     }
 
     @Override

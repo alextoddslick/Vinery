@@ -1,6 +1,5 @@
 package net.satisfy.vinery.core.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.LivingEntity;
@@ -23,13 +22,6 @@ import org.jetbrains.annotations.Nullable;
 
 public class WindowBlock extends IronBarsBlock {
     public static final IntegerProperty PART = IntegerProperty.create("part", 0, 3);
-
-    public static final MapCodec<WindowBlock> CODEC = simpleCodec(WindowBlock::new);
-
-    @Override
-    public @NotNull MapCodec<? extends IronBarsBlock> codec() {
-        return CODEC;
-    }
 
     public WindowBlock(BlockBehaviour.Properties settings) {
         super(settings);

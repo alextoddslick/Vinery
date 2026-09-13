@@ -59,6 +59,18 @@ Not regenerated yet for 26.3. Follow "Regenerating the reference sources" in `HA
 
 ## Verified during the port
 (nothing yet — add API facts here as they are confirmed)
+- (blocks) `BonemealSource` lives in `net.minecraft.world.level.block` (same package as `BonemealableBlock`); import it explicitly.
+  When delegating to a vanilla bonemealable (e.g. `GrassBlock.performBonemeal`), pass the `source` you received through.
+- (blocks) `TintedParticleLeavesBlock(float, Properties)` is unchanged. `UntintedParticleLeavesBlock(float, ParticleOptions, AmbientLeavesBlockSoundPlayer, Properties)`:
+  pass `AmbientLeavesBlockSoundPlayer.noAmbientSound()` (package `net.minecraft.world.level.block.sounds`) to keep 26.2 behaviour; vanilla cherry/pale-oak leaves do the same.
+- (blocks) `SoundEvents.SHOVEL_FLATTEN` and `SoundEvents.AXE_STRIP` are `Holder.Reference<SoundEvent>` -> `.value()` for `Level.playSound(Entity, BlockPos, SoundEvent, ...)`.
+  `SWEET_BERRY_BUSH_*`, `ITEM_FRAME_REMOVE_ITEM`, `FLINTANDSTEEL_USE`, `GENERIC_EXTINGUISH_FIRE` are plain `SoundEvent`s (no change).
+- (blocks) `LivingEntity.drop(ItemStack, boolean thrownFromHand, Prediction)`: the old 3-arg `Player.drop(ItemStack, boolean dropAround, boolean thrownFromHand)` is gone too.
+  Vanilla precedent: `ChiseledBookShelfBlock` uses `Prediction.SERVER_ONLY` inside a `!isClientSide()` branch; `FlowerPotBlock`/`BeehiveBlock` use `Prediction.PREDICTED`
+  in unguarded use handlers that run on both sides. `Prediction` only affects the swing animation (`swing(hand, DEFAULT, prediction != PREDICTED)`); the item entity is only spawned server-side.
+- (blocks) `ItemTags.AXES / SHOVELS / HOES / PICKAXES` confirmed at `tags/ItemTags.java:176-179`; `stack.is(ItemTags.AXES)` replaces `instanceof AxeItem`.
+- (blocks) `DirtPathSlabBlock` never referenced `DirtPathBlock` (it extends `SlabBlock` with its own path logic), so only its codec had to go. `PathBlock`'s constructor is `protected PathBlock(Block baseBlock, Properties)`.
+- (blocks) Removing `codec()` overrides can leave `HorizontalDirectionalBlock` / `BaseEntityBlock` / `NotNull` imports unused (they were only referenced in the `MapCodec<? extends X>` return type).
 
 ## Reference sources (regenerated 2026-09-13)
 Base dir `S=/private/tmp/claude-501/-Users-alextodd-temp-Github-NOTSYNCED-Vinery/0be9815f-f3f4-4135-a2e2-0a80aae3a5d1/scratchpad`

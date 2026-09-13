@@ -1,8 +1,6 @@
 package net.satisfy.vinery.core.block;
 
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
@@ -38,12 +36,6 @@ public class CabinetBlock extends BaseEntityBlock {
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
     private final SoundEvent openSound;
     private final SoundEvent closeSound;
-    public static final MapCodec<CabinetBlock> CODEC = RecordCodecBuilder.mapCodec(inst->inst.group(
-            Properties.CODEC.fieldOf("settings").forGetter(BlockBehaviour::properties),
-            SoundEvent.DIRECT_CODEC.fieldOf("openSound").forGetter(CabinetBlock::getOpenSound),
-            SoundEvent.DIRECT_CODEC.fieldOf("closeSound").forGetter(CabinetBlock::getCloseSound)
-    ).apply(inst,CabinetBlock::new));
-
     public CabinetBlock(BlockBehaviour.Properties settings, SoundEvent openSound, SoundEvent closeSound) {
         super(settings);
         this.openSound = openSound;
@@ -85,11 +77,6 @@ public class CabinetBlock extends BaseEntityBlock {
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
         return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getOpposite());
-    }
-
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
     }
 
     @Override

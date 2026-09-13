@@ -1,18 +1,17 @@
 package net.satisfy.vinery.core.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -54,13 +53,6 @@ public class LatticeBlock extends StemBlock implements EntityBlock {
 
     private static final SoundEvent BREAK_SOUND_EVENT = SoundEvents.SWEET_BERRY_BUSH_BREAK;
     private static final SoundEvent PLACE_SOUND_EVENT = SoundEvents.SWEET_BERRY_BUSH_PLACE;
-
-    public static final MapCodec<LatticeBlock> CODEC = simpleCodec(LatticeBlock::new);
-
-    @Override
-    protected @NotNull MapCodec<? extends Block> codec() {
-        return CODEC;
-    }
 
     public LatticeBlock(Properties properties) {
         super(properties);
@@ -106,7 +98,7 @@ public class LatticeBlock extends StemBlock implements EntityBlock {
         if (hand != InteractionHand.MAIN_HAND) return InteractionResult.TRY_WITH_EMPTY_HAND;
         int age = state.getValue(AGE);
 
-        if (stack.getItem() instanceof AxeItem) {
+        if (stack.is(ItemTags.AXES)) {
             BlockState newState = state.setValue(SUPPORT, !state.getValue(SUPPORT));
             BlockState updateState = getConnection(newState, world, pos);
             world.setBlock(pos, updateState, 3);
@@ -204,7 +196,7 @@ public class LatticeBlock extends StemBlock implements EntityBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos pos, BlockState state, BonemealSource source) {
         return !isMature(state) && state.getValue(AGE) > 0;
     }
 

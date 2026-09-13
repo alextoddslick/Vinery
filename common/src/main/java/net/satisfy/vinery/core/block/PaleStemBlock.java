@@ -1,6 +1,5 @@
 package net.satisfy.vinery.core.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -42,13 +41,6 @@ public class PaleStemBlock extends StemBlock {
     private static final VoxelShape PALE_SHAPE = Block.box(6.0, 0, 6.0, 10.0, 16.0, 10.0);
     public static final BooleanProperty LEAVES_PENDING = BooleanProperty.create("leaves_pending");
     public static final BooleanProperty LEAVES_DONE = BooleanProperty.create("leaves_done");
-
-    public static final MapCodec<PaleStemBlock> CODEC = simpleCodec(PaleStemBlock::new);
-
-    @Override
-    protected @NotNull MapCodec<? extends Block> codec() {
-        return CODEC;
-    }
 
     public PaleStemBlock(Properties settings) {
         super(settings);

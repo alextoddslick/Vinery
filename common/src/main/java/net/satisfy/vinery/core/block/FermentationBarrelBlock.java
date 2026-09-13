@@ -1,6 +1,5 @@
 package net.satisfy.vinery.core.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -55,11 +54,6 @@ public class FermentationBarrelBlock extends HorizontalDirectionalBlock implemen
 
     public FermentationBarrelBlock(Properties settings) {
         super(settings);
-    }
-
-    @Override
-    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
-        return simpleCodec(FermentationBarrelBlock::new);
     }
 
     @Override

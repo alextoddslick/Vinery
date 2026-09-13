@@ -11,6 +11,7 @@ import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.util.Prediction;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -84,7 +85,7 @@ public abstract class StorageBlock extends FacingBlock implements EntityBlock {
             SoundEvent soundEvent = getRemoveSound(level, blockPos, player, i);
             level.playSound(null, blockPos, soundEvent, SoundSource.BLOCKS, 1.0F, 1.0F);
             if (!player.getInventory().add(itemStack)) {
-                player.drop(itemStack, false);
+                player.drop(itemStack, false, Prediction.SERVER_ONLY);
             }
             level.gameEvent(player, GameEvent.BLOCK_CHANGE, blockPos);
         }

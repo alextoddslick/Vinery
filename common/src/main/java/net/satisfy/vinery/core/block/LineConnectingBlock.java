@@ -1,6 +1,5 @@
 package net.satisfy.vinery.core.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -22,13 +21,6 @@ import org.jetbrains.annotations.Nullable;
 public class LineConnectingBlock extends Block {
     public static final EnumProperty<Direction> FACING;
     public static final EnumProperty<GeneralUtil.LineConnectingType> TYPE;
-
-    public static final MapCodec<LineConnectingBlock> CODEC = simpleCodec(LineConnectingBlock::new);
-
-    @Override
-    protected @NotNull MapCodec<? extends Block> codec() {
-        return CODEC;
-    }
 
     public LineConnectingBlock(BlockBehaviour.Properties settings) {
         super(settings);

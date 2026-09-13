@@ -1,7 +1,6 @@
 package net.satisfy.vinery.core.block;
 
 import net.minecraft.ChatFormatting;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -12,19 +11,10 @@ import net.minecraft.world.item.TooltipFlag;
 import net.satisfy.vinery.core.registry.StorageTypeRegistry;
 import net.satisfy.vinery.core.registry.TagRegistry;
 
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
 public class NineBottleStorageBlock extends StorageBlock implements BlockTooltip {
-    public static final MapCodec<NineBottleStorageBlock> CODEC = simpleCodec(NineBottleStorageBlock::new);
-
-    @Override
-    protected @NotNull MapCodec<? extends HorizontalDirectionalBlock> codec() {
-        return CODEC;
-    }
-
 
 
     public NineBottleStorageBlock(Properties settings) {

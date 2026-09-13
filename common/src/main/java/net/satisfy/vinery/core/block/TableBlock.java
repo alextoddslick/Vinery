@@ -1,6 +1,5 @@
 package net.satisfy.vinery.core.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -28,16 +27,9 @@ public class TableBlock extends LineConnectingBlock implements SimpleWaterlogged
     public static final VoxelShape TOP_SHAPE;
     public static final VoxelShape[] LEG_SHAPES;
 
-    public static final MapCodec<TableBlock> CODEC = simpleCodec(TableBlock::new);
-
     public TableBlock(BlockBehaviour.Properties settings) {
         super(settings);
         this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false));
-    }
-
-    @Override
-    protected @NotNull MapCodec<? extends Block> codec() {
-        return CODEC;
     }
 
     @Override

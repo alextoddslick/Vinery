@@ -1,6 +1,5 @@
 package net.satisfy.vinery.core.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.util.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -12,7 +11,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -72,13 +70,6 @@ public class WineBoxBlock extends StorageBlock {
             map.put(direction, GeneralUtil.rotateShape(Direction.NORTH, direction, shapeClosed.get()));
         }
     });
-
-    public static final MapCodec<WineBoxBlock> CODEC = simpleCodec(WineBoxBlock::new);
-
-    @Override
-    protected @NotNull MapCodec<? extends HorizontalDirectionalBlock> codec() {
-        return CODEC;
-    }
 
     public WineBoxBlock(Properties settings) {
         super(settings);

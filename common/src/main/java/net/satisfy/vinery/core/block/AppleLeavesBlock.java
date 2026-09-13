@@ -1,6 +1,5 @@
 package net.satisfy.vinery.core.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -17,6 +16,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.TintedParticleLeavesBlock;
@@ -31,8 +31,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class AppleLeavesBlock extends TintedParticleLeavesBlock implements BonemealableBlock {
-    public static final MapCodec<AppleLeavesBlock> CODEC = simpleCodec(AppleLeavesBlock::new);
-
     public static final BooleanProperty CAN_GROW_APPLES = BooleanProperty.create("can_grow_apples");
     public static final BooleanProperty HAS_APPLES = BooleanProperty.create("has_apples");
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 3);
@@ -48,11 +46,6 @@ public class AppleLeavesBlock extends TintedParticleLeavesBlock implements Bonem
                 .setValue(HAS_APPLES, false)
                 .setValue(AGE, 0)
                 .setValue(WATERLOGGED, false));
-    }
-
-    @Override
-    public @NotNull MapCodec<AppleLeavesBlock> codec() {
-        return CODEC;
     }
 
     @Override
@@ -121,19 +114,19 @@ public class AppleLeavesBlock extends TintedParticleLeavesBlock implements Bonem
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState state) {
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState state, BonemealSource source) {
         int age = state.getValue(AGE);
         boolean has = state.getValue(HAS_APPLES);
         return (age < 2 && !has) || (age == 2 && has);
     }
 
     @Override
-    public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         return true;
     }
 
     @Override
-    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         BlockState s = state;
         if (!s.getValue(CAN_GROW_APPLES)) {
             s = s.setValue(CAN_GROW_APPLES, true);

@@ -1,6 +1,5 @@
 package net.satisfy.vinery.core.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
@@ -9,6 +8,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -18,7 +18,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -52,13 +51,6 @@ public class StackableLogBlock extends SlabBlock {
     public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
 
 
-    public static final MapCodec<StackableLogBlock> CODEC = simpleCodec(StackableLogBlock::new);
-
-    @Override
-    public @NotNull MapCodec<? extends SlabBlock> codec() {
-        return CODEC;
-    }
-
     public StackableLogBlock(Properties settings) {
         super(settings);
         this.registerDefaultState(this.defaultBlockState().setValue(TYPE, SlabType.BOTTOM).setValue(FIRED, false).setValue(WATERLOGGED, false).setValue(FACING, Direction.NORTH));
@@ -71,7 +63,7 @@ public class StackableLogBlock extends SlabBlock {
             world.setBlock(pos, state.setValue(FIRED, true), Block.UPDATE_ALL);
             world.playSound(player, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.NEUTRAL, 1.0F, 1.0F);
             return InteractionResult.SUCCESS;
-        } else if (stack.getItem() instanceof ShovelItem && stackSize == SlabType.DOUBLE && state.getValue(FIRED)) {
+        } else if (stack.is(ItemTags.SHOVELS) && stackSize == SlabType.DOUBLE && state.getValue(FIRED)) {
             world.setBlockAndUpdate(pos, state.setValue(FIRED, false));
             world.playSound(player, pos, SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundSource.BLOCKS, 1.0F, 1.0F);
             final boolean clientSide = world.isClientSide();

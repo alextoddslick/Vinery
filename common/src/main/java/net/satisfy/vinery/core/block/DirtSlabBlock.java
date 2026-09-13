@@ -1,6 +1,5 @@
 package net.satisfy.vinery.core.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -19,15 +18,8 @@ import net.satisfy.vinery.core.registry.ObjectRegistry;
 import org.jetbrains.annotations.NotNull;
 
 public class DirtSlabBlock extends SlabBlock {
-    public static final MapCodec<DirtSlabBlock> CODEC = simpleCodec(DirtSlabBlock::new);
-
     public DirtSlabBlock(Properties properties) {
         super(properties);
-    }
-
-    @Override
-    public @NotNull MapCodec<? extends SlabBlock> codec() {
-        return CODEC;
     }
 
     @Override
@@ -42,7 +34,7 @@ public class DirtSlabBlock extends SlabBlock {
                         .setValue(WATERLOGGED, state.getValue(WATERLOGGED));
 
                 world.setBlock(pos, pathState, Block.UPDATE_ALL);
-                world.playSound(null, pos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 1.0F);
+                world.playSound(null, pos, SoundEvents.SHOVEL_FLATTEN.value(), SoundSource.BLOCKS, 1.0F, 1.0F);
 
                 if (!player.isCreative()) {
                     heldItem.hurtAndBreak(1,player, EquipmentSlot.OFFHAND);

@@ -1,9 +1,6 @@
 package net.satisfy.vinery.core.block;
 
 import com.mojang.datafixers.util.Pair;
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -12,6 +9,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.util.Prediction;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -21,8 +19,6 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -44,20 +40,10 @@ public class WineBottleBlock extends StorageBlock {
 
     private final int maxCount;
 
-    public static final MapCodec<WineBottleBlock> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
-            Properties.CODEC.fieldOf("settings").forGetter(BlockBehaviour::properties),
-            Codec.INT.fieldOf("max_count").forGetter(WineBottleBlock::maxCount)
-    ).apply(inst, WineBottleBlock::new));
-
     public WineBottleBlock(Properties settings, int maxCount) {
         super(settings);
         this.maxCount = maxCount;
         this.registerDefaultState(this.defaultBlockState().setValue(FAKE_MODEL, true));
-    }
-
-    @Override
-    protected @NotNull MapCodec<? extends HorizontalDirectionalBlock> codec() {
-        return CODEC;
     }
 
     public int maxCount() {
@@ -88,7 +74,7 @@ public class WineBottleBlock extends StorageBlock {
                 if(!world.isClientSide()){
                     ItemStack wine = wineEntity.removeStack(posInE);
                     if (!player.getInventory().add(wine)) {
-                        player.drop(wine, false);
+                        player.drop(wine, false, Prediction.SERVER_ONLY);
                     }
                     if (isEmpty(inventory)) {
                         world.destroyBlock(pos, false);

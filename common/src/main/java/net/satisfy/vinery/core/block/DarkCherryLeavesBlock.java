@@ -16,9 +16,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.UntintedParticleLeavesBlock;
+import net.minecraft.world.level.block.sounds.AmbientLeavesBlockSoundPlayer;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -38,7 +40,7 @@ public class DarkCherryLeavesBlock extends UntintedParticleLeavesBlock implement
     private static final float LEAF_PARTICLE_CHANCE = 0.01F;
 
     public DarkCherryLeavesBlock(Properties settings) {
-        super(LEAF_PARTICLE_CHANCE, ParticleTypes.CHERRY_LEAVES, settings);
+        super(LEAF_PARTICLE_CHANCE, ParticleTypes.CHERRY_LEAVES, AmbientLeavesBlockSoundPlayer.noAmbientSound(), settings);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(PERSISTENT, false)
                 .setValue(DISTANCE, 7)
@@ -114,19 +116,19 @@ public class DarkCherryLeavesBlock extends UntintedParticleLeavesBlock implement
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, BonemealSource source) {
         int age = state.getValue(AGE);
         boolean has = state.getValue(HAS_CHERRIES);
         return (age < 2 && !has) || (age == 2 && has);
     }
 
     @Override
-    public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         return true;
     }
 
     @Override
-    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         BlockState s = state;
         if (!s.getValue(CAN_GROW_CHERRIES)) {
             s = s.setValue(CAN_GROW_CHERRIES, true);

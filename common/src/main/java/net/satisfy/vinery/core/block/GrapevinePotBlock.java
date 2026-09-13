@@ -1,6 +1,5 @@
 package net.satisfy.vinery.core.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -8,6 +7,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.util.Prediction;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -52,16 +52,9 @@ public class GrapevinePotBlock extends Block {
     private static final int DECREMENT_PER_WINE_BOTTLE = 3;
     private static final GrapeProperty GRAPEVINE_TYPE = GrapeProperty.create("type");
 
-    public static final MapCodec<GrapevinePotBlock> CODEC = simpleCodec(GrapevinePotBlock::new);
-
     public GrapevinePotBlock(Properties settings) {
         super(settings);
         this.registerDefaultState(this.defaultBlockState().setValue(STAGE, 0).setValue(STORAGE, 0).setValue(GRAPEVINE_TYPE, GrapeTypeRegistry.NONE));
-    }
-
-    @Override
-    protected @NotNull MapCodec<? extends Block> codec() {
-        return CODEC;
     }
 
     @Override
@@ -148,7 +141,7 @@ public class GrapevinePotBlock extends Block {
                 }
                 if (!player.isCreative()) stack.shrink(1);
                 if (!player.getInventory().add(output)) {
-                    player.drop(output, false, false);
+                    player.drop(output, false, Prediction.PREDICTED);
                 }
                 return InteractionResult.SUCCESS;
             }

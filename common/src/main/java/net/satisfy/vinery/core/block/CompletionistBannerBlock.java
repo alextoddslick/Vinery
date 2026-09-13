@@ -1,6 +1,5 @@
 package net.satisfy.vinery.core.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -44,11 +43,6 @@ public class CompletionistBannerBlock extends BaseEntityBlock implements BlockTo
     public CompletionistBannerBlock(Properties properties) {
         super(properties);
         makeDefaultState();
-    }
-
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return simpleCodec(CompletionistBannerBlock::new);
     }
 
     @Nullable

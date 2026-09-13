@@ -1,7 +1,5 @@
 package net.satisfy.vinery.core.block;
 
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -17,9 +15,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.VegetationBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -40,11 +38,6 @@ public class GrapeBush extends VegetationBlock implements BonemealableBlock {
     private static final VoxelShape SHAPE;
 
     public final GrapeType type;
-    public static final MapCodec<GrapeBush> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
-            BlockBehaviour.Properties.CODEC.fieldOf("settings").forGetter(BlockBehaviour::properties),
-            GrapeType.CODEC.fieldOf("type").forGetter(GrapeBush::grapeType)
-    ).apply(inst, GrapeBush::new));
-
     public GrapeBush(Properties settings, GrapeType type) {
         super(settings);
         this.type = type;
@@ -53,11 +46,6 @@ public class GrapeBush extends VegetationBlock implements BonemealableBlock {
     @Override
     protected @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE;
-    }
-
-    @Override
-    protected @NotNull MapCodec<? extends VegetationBlock> codec() {
-        return CODEC;
     }
 
     @Override
@@ -99,12 +87,12 @@ public class GrapeBush extends VegetationBlock implements BonemealableBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, BonemealSource source) {
         return blockState.getValue(AGE) < 3;
     }
 
     @Override
-    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         return true;
     }
 
@@ -132,7 +120,7 @@ public class GrapeBush extends VegetationBlock implements BonemealableBlock {
 
 
     @Override
-    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         int i = Math.min(3, state.getValue(AGE) + 1);
         world.setBlock(pos, state.setValue(AGE, i), 2);
     }
@@ -148,18 +136,8 @@ public class GrapeBush extends VegetationBlock implements BonemealableBlock {
     }
 
     public static class SavannaGrapeBush extends GrapeBush {
-        public static final MapCodec<SavannaGrapeBush> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
-                BlockBehaviour.Properties.CODEC.fieldOf("settings").forGetter(BlockBehaviour::properties),
-                GrapeType.CODEC.fieldOf("type").forGetter(GrapeBush::grapeType)
-        ).apply(inst, SavannaGrapeBush::new));
-
         public SavannaGrapeBush(Properties settings, GrapeType type) {
             super(settings, type);
-        }
-
-        @Override
-        protected @NotNull MapCodec<? extends VegetationBlock> codec() {
-            return CODEC;
         }
 
         @Override
@@ -169,18 +147,8 @@ public class GrapeBush extends VegetationBlock implements BonemealableBlock {
     }
 
     public static class TaigaGrapeBush extends GrapeBush {
-        public static final MapCodec<TaigaGrapeBush> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
-                BlockBehaviour.Properties.CODEC.fieldOf("settings").forGetter(BlockBehaviour::properties),
-                GrapeType.CODEC.fieldOf("type").forGetter(GrapeBush::grapeType)
-        ).apply(inst, TaigaGrapeBush::new));
-
         public TaigaGrapeBush(Properties settings, GrapeType type) {
             super(settings, type);
-        }
-
-        @Override
-        protected @NotNull MapCodec<? extends VegetationBlock> codec() {
-            return CODEC;
         }
 
         @Override

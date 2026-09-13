@@ -1,6 +1,5 @@
 package net.satisfy.vinery.core.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -43,16 +42,9 @@ public class SpreadableGrassSlabBlock extends SlabBlock implements BonemealableB
         return ObjectRegistry.GRASS_SLAB.get();
     }
 
-    public static final MapCodec<SpreadableGrassSlabBlock> CODEC = simpleCodec(SpreadableGrassSlabBlock::new);
-
     public SpreadableGrassSlabBlock(Properties settings) {
         super(settings);
         this.registerDefaultState(this.defaultBlockState().setValue(TYPE, SlabType.BOTTOM).setValue(WATERLOGGED, false).setValue(SNOWY, false));
-    }
-
-    @Override
-    public @NotNull MapCodec<? extends SlabBlock> codec() {
-        return CODEC;
     }
 
     public static boolean canSurviveNew(BlockState state, LevelReader world, BlockPos pos) {
@@ -88,21 +80,21 @@ public class SpreadableGrassSlabBlock extends SlabBlock implements BonemealableB
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState) {
+    public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos blockPos, BlockState blockState, BonemealSource source) {
         if(blockState.getValue(SlabBlock.TYPE) == SlabType.BOTTOM) return false;
 
         return levelReader.getBlockState(blockPos.above()).isAir();
     }
 
     @Override
-    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         return true;
     }
 
     @Override
-    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         GrassBlock block = (GrassBlock) GRASS_BLOCK;
-        block.performBonemeal(world, random, pos, state);
+        block.performBonemeal(world, random, pos, state, source);
     }
 
     @Override
@@ -151,7 +143,7 @@ public class SpreadableGrassSlabBlock extends SlabBlock implements BonemealableB
                         .setValue(WATERLOGGED, state.getValue(WATERLOGGED));
 
                 world.setBlock(pos, pathState, Block.UPDATE_ALL);
-                world.playSound(null, pos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 1.0F);
+                world.playSound(null, pos, SoundEvents.SHOVEL_FLATTEN.value(), SoundSource.BLOCKS, 1.0F, 1.0F);
 
                 if (!player.isCreative()) {
                     heldItem.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
