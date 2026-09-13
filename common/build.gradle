@@ -14,7 +14,7 @@ dependencies {
     api ("dev.architectury:architectury:${rootProject.architectury_version}") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
 
 
-    compileOnlyApi("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
+    compileOnlyApi("mezz.jei:jei-${jei_minecraft_version}-common-api:${jei_version}")
     compileOnly ("me.shedaniel:RoughlyEnoughItems-api:$rei_version") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
     compileOnly ("me.shedaniel:RoughlyEnoughItems-default-plugin:$rei_version") { exclude group: 'net.fabricmc', module: 'fabric-loader' }
 

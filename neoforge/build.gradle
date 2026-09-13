@@ -48,9 +48,9 @@ dependencies {
     api "dev.architectury:architectury-neoforge:${architectury_version}"
 
     implementation "me.shedaniel:RoughlyEnoughItems-neoforge:$rei_version"
-    compileOnlyApi("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
-    compileOnlyApi("mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}")
-    runtimeOnly("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}")
+    compileOnlyApi("mezz.jei:jei-${jei_minecraft_version}-common-api:${jei_version}")
+    compileOnlyApi("mezz.jei:jei-${jei_minecraft_version}-neoforge-api:${jei_version}")
+    runtimeOnly("mezz.jei:jei-${jei_minecraft_version}-neoforge:${jei_version}")
 
     common(project(path: ":common")) { transitive false }
     shadowBundle project(path: ":common", configuration: "transformProductionNeoForge")

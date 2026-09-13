@@ -1,0 +1,1545 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/Users/alextodd/.gradle/wrapper/dists/gradle-9.5.1-bin/iq79hdu3mqx29lgffhp8bfmx/gradle-9.5.1/lib/native-platform-0.22-milestone-29.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/mixin/ShovelItemMixin.java:5: error: cannot find symbol
+import net.minecraft.world.item.ShovelItem;
+                               ^
+  symbol:   class ShovelItem
+  location: package net.minecraft.world.item
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryConfiguredFeatures.java:5: error: cannot find symbol
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+                                                 ^
+  symbol:   class ConfiguredFeature
+  location: package net.minecraft.world.level.levelgen.feature
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryConfiguredFeatures.java:10: error: cannot find symbol
+    public static final ResourceKey<ConfiguredFeature<?,?>> DARK_CHERRY_KEY = registerKey("dark_cherry");
+                                    ^
+  symbol:   class ConfiguredFeature
+  location: class VineryConfiguredFeatures
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryConfiguredFeatures.java:11: error: cannot find symbol
+    public static final ResourceKey<ConfiguredFeature<?,?>> DARK_CHERRY_VARIANT_KEY = registerKey("dark_cherry_variant");
+                                    ^
+  symbol:   class ConfiguredFeature
+  location: class VineryConfiguredFeatures
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryConfiguredFeatures.java:12: error: cannot find symbol
+    public static final ResourceKey<ConfiguredFeature<?,?>> APPLE_KEY = registerKey("apple");
+                                    ^
+  symbol:   class ConfiguredFeature
+  location: class VineryConfiguredFeatures
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryConfiguredFeatures.java:13: error: cannot find symbol
+    public static final ResourceKey<ConfiguredFeature<?,?>> APPLE_VARIANT_KEY = registerKey("apple_variant");
+                                    ^
+  symbol:   class ConfiguredFeature
+  location: class VineryConfiguredFeatures
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryConfiguredFeatures.java:15: error: cannot find symbol
+    public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
+                              ^
+  symbol:   class ConfiguredFeature
+  location: class VineryConfiguredFeatures
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:11: error: cannot find symbol
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+                                                 ^
+  symbol:   class FeaturePlaceContext
+  location: package net.minecraft.world.level.levelgen.feature
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:12: error: package net.minecraft.world.level.levelgen.feature.configurations does not exist
+import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
+                                                                ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:15: error: no interface expected here
+public class JungleGrapeFeature extends Feature<BlockStateConfiguration> {
+                                        ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:15: error: cannot find symbol
+public class JungleGrapeFeature extends Feature<BlockStateConfiguration> {
+                                                ^
+  symbol: class BlockStateConfiguration
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:15: error: type Feature does not take parameters
+public class JungleGrapeFeature extends Feature<BlockStateConfiguration> {
+                                               ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:19: error: cannot find symbol
+    public JungleGrapeFeature(Codec<BlockStateConfiguration> codec) {
+                                    ^
+  symbol:   class BlockStateConfiguration
+  location: class JungleGrapeFeature
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:24: error: cannot find symbol
+    public boolean place(FeaturePlaceContext<BlockStateConfiguration> context) {
+                         ^
+  symbol:   class FeaturePlaceContext
+  location: class JungleGrapeFeature
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:24: error: cannot find symbol
+    public boolean place(FeaturePlaceContext<BlockStateConfiguration> context) {
+                                             ^
+  symbol:   class BlockStateConfiguration
+  location: class JungleGrapeFeature
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryFeatures.java:8: error: package net.minecraft.world.level.levelgen.feature.configurations does not exist
+import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
+                                                                ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryFeatures.java:9: error: package net.minecraft.world.level.levelgen.feature.configurations does not exist
+import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+                                                                ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryFeatures.java:16: error: type Feature does not take parameters
+    private static final Registrar<Feature<?>> FEATURES = DeferredRegister.create(Vinery.MOD_ID, Registries.FEATURE).getRegistrar();
+                                          ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryFeatures.java:17: error: cannot find symbol
+    public static final RegistrySupplier<Feature<BlockStateConfiguration>> JUNGLE_GRAPE_FEATURE = register("jungle_grape_feature", () -> new JungleGrapeFeature(BlockStateConfiguration.CODEC));
+                                                 ^
+  symbol:   class BlockStateConfiguration
+  location: class VineryFeatures
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryFeatures.java:17: error: type Feature does not take parameters
+    public static final RegistrySupplier<Feature<BlockStateConfiguration>> JUNGLE_GRAPE_FEATURE = register("jungle_grape_feature", () -> new JungleGrapeFeature(BlockStateConfiguration.CODEC));
+                                                ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryFeatures.java:22: error: cannot find symbol
+    private static <C extends FeatureConfiguration, F extends Feature<C>> RegistrySupplier<F> register(String name, Supplier<F> feature) {
+                              ^
+  symbol:   class FeatureConfiguration
+  location: class VineryFeatures
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryFeatures.java:22: error: type Feature does not take parameters
+    private static <C extends FeatureConfiguration, F extends Feature<C>> RegistrySupplier<F> register(String name, Supplier<F> feature) {
+                                                                     ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/LatticeBlock.java:15: error: cannot find symbol
+import net.minecraft.world.item.AxeItem;
+                               ^
+  symbol:   class AxeItem
+  location: package net.minecraft.world.item
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/StackableLogBlock.java:21: error: cannot find symbol
+import net.minecraft.world.item.ShovelItem;
+                               ^
+  symbol:   class ShovelItem
+  location: package net.minecraft.world.item
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/mixin/ShovelItemMixin.java:16: error: cannot find symbol
+@Mixin(ShovelItem.class)
+       ^
+  symbol: class ShovelItem
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/util/GeneralUtil.java:364: error: method drop in class LivingEntity cannot be applied to given types;
+                        player.drop(itemStack2, false);
+                              ^
+  required: ItemStack,boolean,Prediction
+  found:    ItemStack,boolean
+  reason: actual and formal argument lists differ in length
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryConfiguredFeatures.java:16: error: cannot find symbol
+        return ResourceKey.create(Registries.CONFIGURED_FEATURE, Vinery.identifier(name));
+                                            ^
+  symbol:   variable CONFIGURED_FEATURE
+  location: class Registries
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:23: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryFeatures.java:17: error: cannot find symbol
+    public static final RegistrySupplier<Feature<BlockStateConfiguration>> JUNGLE_GRAPE_FEATURE = register("jungle_grape_feature", () -> new JungleGrapeFeature(BlockStateConfiguration.CODEC));
+                                                                                                                                                                ^
+  symbol:   variable BlockStateConfiguration
+  location: class VineryFeatures
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/item/GrapeItem.java:33: error: method drop in class LivingEntity cannot be applied to given types;
+                        player.drop(returnStack, false);
+                              ^
+  required: ItemStack,boolean,Prediction
+  found:    ItemStack,boolean
+  reason: actual and formal argument lists differ in length
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/item/DrinkBlockItem.java:81: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/item/DrinkBlockItem.java:86: error: method updateCustomBlockEntityTag in class BlockItem cannot be applied to given types;
+        return super.updateCustomBlockEntityTag(blockPos, level, player, itemStack, blockState);
+                    ^
+  required: Level,Player,BlockPos,ItemStack
+  found:    BlockPos,Level,Player,ItemStack,BlockState
+  reason: actual and formal argument lists differ in length
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/item/GrapejuiceBottleItem.java:48: error: method drop in class LivingEntity cannot be applied to given types;
+                player.drop(itemStack2, false);
+                      ^
+  required: ItemStack,boolean,Prediction
+  found:    ItemStack,boolean
+  reason: actual and formal argument lists differ in length
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/ObjectRegistry.java:52: error: cannot find symbol
+    public static final RegistrySupplier<Item> DARK_CHERRY_SIGN_ITEM = ITEMS.register("dark_cherry_sign", () -> new SignItem(ObjectRegistry.DARK_CHERRY_SIGN.get(), ObjectRegistry.DARK_CHERRY_WALL_SIGN.get(), itemProps("dark_cherry_sign").stacksTo(16).useBlockDescriptionPrefix()));
+                                                                                                                    ^
+  symbol:   class SignItem
+  location: class ObjectRegistry
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/ObjectRegistry.java:171: error: cannot find symbol
+    public static final RegistrySupplier<Block> DARK_CHERRY_BIG_TABLE = registerWithItem("dark_cherry_big_table", () -> new BigTableBlock(blockProps("dark_cherry_big_table").strength(2.0F, 2.0F).pushReaction(PushReaction.IGNORE)));
+                                                                                                                                                                                                                            ^
+  symbol:   variable IGNORE
+  location: class PushReaction
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/ObjectRegistry.java:321: error: cannot find symbol
+        BlockBehaviour.Properties properties = blockProps(name).noCollision().strength(0.5F).pushReaction(PushReaction.DESTROY);
+                                                                                                                      ^
+  symbol:   variable DESTROY
+  location: class PushReaction
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:7: error: cannot find symbol
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.WHITE_GRAPE.get(), 0.4F);
+                      ^
+  symbol:   variable COMPOSTABLES
+  location: class ComposterBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:8: error: cannot find symbol
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.WHITE_GRAPE_SEEDS.get().asItem(), 0.4F);
+                      ^
+  symbol:   variable COMPOSTABLES
+  location: class ComposterBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:9: error: cannot find symbol
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.RED_GRAPE.get(), 0.4F);
+                      ^
+  symbol:   variable COMPOSTABLES
+  location: class ComposterBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:10: error: cannot find symbol
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.RED_GRAPE_SEEDS.get().asItem(), 0.4F);
+                      ^
+  symbol:   variable COMPOSTABLES
+  location: class ComposterBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:11: error: cannot find symbol
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.DARK_CHERRY_LEAVES.get().asItem(), 0.4F);
+                      ^
+  symbol:   variable COMPOSTABLES
+  location: class ComposterBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:12: error: cannot find symbol
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.GRAPEVINE_LEAVES.get().asItem(), 0.4F);
+                      ^
+  symbol:   variable COMPOSTABLES
+  location: class ComposterBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:13: error: cannot find symbol
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.CHERRY.get(), 0.4F);
+                      ^
+  symbol:   variable COMPOSTABLES
+  location: class ComposterBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:14: error: cannot find symbol
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.ROTTEN_CHERRY.get(), 0.4F);
+                      ^
+  symbol:   variable COMPOSTABLES
+  location: class ComposterBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:15: error: cannot find symbol
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.APPLE_TREE_SAPLING.get().asItem(), 0.4F);
+                      ^
+  symbol:   variable COMPOSTABLES
+  location: class ComposterBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:16: error: cannot find symbol
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.APPLE_LEAVES.get().asItem(), 0.4F);
+                      ^
+  symbol:   variable COMPOSTABLES
+  location: class ComposterBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:17: error: cannot find symbol
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.DARK_CHERRY_SAPLING.get().asItem(), 0.4F);
+                      ^
+  symbol:   variable COMPOSTABLES
+  location: class ComposterBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:18: error: cannot find symbol
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.APPLE_MASH.get(), 0.4F);
+                      ^
+  symbol:   variable COMPOSTABLES
+  location: class ComposterBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:19: error: cannot find symbol
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.STRAW_HAT.get(), 0.4F);
+                      ^
+  symbol:   variable COMPOSTABLES
+  location: class ComposterBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:20: error: cannot find symbol
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.JUNGLE_RED_GRAPE_SEEDS.get().asItem(), 0.4F);
+                      ^
+  symbol:   variable COMPOSTABLES
+  location: class ComposterBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:21: error: cannot find symbol
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.JUNGLE_RED_GRAPE.get(), 0.4F);
+                      ^
+  symbol:   variable COMPOSTABLES
+  location: class ComposterBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:22: error: cannot find symbol
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.JUNGLE_WHITE_GRAPE_SEEDS.get().asItem(), 0.4F);
+                      ^
+  symbol:   variable COMPOSTABLES
+  location: class ComposterBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:23: error: cannot find symbol
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.JUNGLE_WHITE_GRAPE.get(), 0.4F);
+                      ^
+  symbol:   variable COMPOSTABLES
+  location: class ComposterBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:24: error: cannot find symbol
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.TAIGA_RED_GRAPE_SEEDS.get().asItem(), 0.4F);
+                      ^
+  symbol:   variable COMPOSTABLES
+  location: class ComposterBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:25: error: cannot find symbol
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.TAIGA_RED_GRAPE.get(), 0.4F);
+                      ^
+  symbol:   variable COMPOSTABLES
+  location: class ComposterBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:26: error: cannot find symbol
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.TAIGA_WHITE_GRAPE_SEEDS.get().asItem(), 0.4F);
+                      ^
+  symbol:   variable COMPOSTABLES
+  location: class ComposterBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:27: error: cannot find symbol
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.TAIGA_WHITE_GRAPE.get(), 0.4F);
+                      ^
+  symbol:   variable COMPOSTABLES
+  location: class ComposterBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:28: error: cannot find symbol
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.SAVANNA_RED_GRAPE_SEEDS.get().asItem(), 0.4F);
+                      ^
+  symbol:   variable COMPOSTABLES
+  location: class ComposterBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:29: error: cannot find symbol
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.SAVANNA_RED_GRAPE.get(), 0.4F);
+                      ^
+  symbol:   variable COMPOSTABLES
+  location: class ComposterBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:30: error: cannot find symbol
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.SAVANNA_WHITE_GRAPE_SEEDS.get().asItem(), 0.4F);
+                      ^
+  symbol:   variable COMPOSTABLES
+  location: class ComposterBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:31: error: cannot find symbol
+        ComposterBlock.COMPOSTABLES.put(ObjectRegistry.SAVANNA_WHITE_GRAPE.get(), 0.4F);
+                      ^
+  symbol:   variable COMPOSTABLES
+  location: class ComposterBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/StemBlock.java:32: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/StemBlock.java:110: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/StemBlock.java:114: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/StemBlock.java:119: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/LatticeBlock.java:43: error: LatticeBlock is not abstract and does not override abstract method performBonemeal(ServerLevel,RandomSource,BlockPos,BlockState,BonemealSource) in BonemealableBlock
+public class LatticeBlock extends StemBlock implements EntityBlock {
+       ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/LatticeBlock.java:58: error: cannot find symbol
+    public static final MapCodec<LatticeBlock> CODEC = simpleCodec(LatticeBlock::new);
+                                                       ^
+  symbol:   method simpleCodec(LatticeBlock::new)
+  location: class LatticeBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/LatticeBlock.java:109: error: cannot find symbol
+        if (stack.getItem() instanceof AxeItem) {
+                                       ^
+  symbol:   class AxeItem
+  location: class LatticeBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/CabinetBlock.java:42: error: cannot find symbol
+            Properties.CODEC.fieldOf("settings").forGetter(BlockBehaviour::properties),
+                      ^
+  symbol:   variable CODEC
+  location: class Properties
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/CabinetBlock.java:90: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/StoragePotBlock.java:28: error: cannot find symbol
+            Properties.CODEC.fieldOf("settings").forGetter(BlockBehaviour::properties),
+                      ^
+  symbol:   variable CODEC
+  location: class Properties
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/FacingBlock.java:19: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/FacingBlock.java:21: error: cannot find symbol
+        return simpleCodec(FacingBlock::new);
+               ^
+  symbol:   method simpleCodec(FacingBlock::new)
+  location: class FacingBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/StorageBlock.java:87: error: method drop in class LivingEntity cannot be applied to given types;
+                player.drop(itemStack, false);
+                      ^
+  required: ItemStack,boolean,Prediction
+  found:    ItemStack,boolean
+  reason: actual and formal argument lists differ in length
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/BigBottleStorageBlock.java:33: error: cannot find symbol
+    public static final MapCodec<BigBottleStorageBlock> CODEC = simpleCodec(BigBottleStorageBlock::new);
+                                                                ^
+  symbol:   method simpleCodec(BigBottleS[...]::new)
+  location: class BigBottleStorageBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/LineConnectingBlock.java:26: error: cannot find symbol
+    public static final MapCodec<LineConnectingBlock> CODEC = simpleCodec(LineConnectingBlock::new);
+                                                              ^
+  symbol:   method simpleCodec(LineConnec[...]::new)
+  location: class LineConnectingBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/LineConnectingBlock.java:28: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/StackableLogBlock.java:55: error: cannot find symbol
+    public static final MapCodec<StackableLogBlock> CODEC = simpleCodec(StackableLogBlock::new);
+                                                            ^
+  symbol:   method simpleCodec(StackableL[...]::new)
+  location: class StackableLogBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/StackableLogBlock.java:57: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/StackableLogBlock.java:74: error: cannot find symbol
+        } else if (stack.getItem() instanceof ShovelItem && stackSize == SlabType.DOUBLE && state.getValue(FIRED)) {
+                                              ^
+  symbol:   class ShovelItem
+  location: class StackableLogBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapeVineBlock.java:31: error: GrapeVineBlock is not abstract and does not override abstract method performBonemeal(ServerLevel,RandomSource,BlockPos,BlockState,BonemealSource) in BonemealableBlock
+public class GrapeVineBlock extends VineBlock implements BonemealableBlock {
+       ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapeVineBlock.java:49: error: no suitable method found for playSound(Player,BlockPos,Reference<SoundEvent>,SoundSource,float,float)
+            world.playSound(player, pos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
+                 ^
+    method Level.playSound(@org.jspecify.annotations.Nullable Entity,BlockPos,SoundEvent,SoundSource,float,float) is not applicable
+      (argument mismatch; Reference<SoundEvent> cannot be converted to SoundEvent)
+    method Level.playSound(@org.jspecify.annotations.Nullable Entity,double,double,double,SoundEvent,SoundSource) is not applicable
+      (argument mismatch; BlockPos cannot be converted to double)
+    method Level.playSound(@org.jspecify.annotations.Nullable Entity,Entity,SoundEvent,SoundSource,float,float) is not applicable
+      (argument mismatch; BlockPos cannot be converted to Entity)
+    method Level.playSound(@org.jspecify.annotations.Nullable Entity,Entity,Holder<SoundEvent>,SoundSource,float,float) is not applicable
+      (argument mismatch; BlockPos cannot be converted to Entity)
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapeVineBlock.java:84: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapeVineBlock.java:89: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapeVineBlock.java:94: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/FourBottleStorageBlock.java:21: error: cannot find symbol
+    public static final MapCodec<FourBottleStorageBlock> CODEC = simpleCodec(FourBottleStorageBlock::new);
+                                                                 ^
+  symbol:   method simpleCodec(FourBottle[...]::new)
+  location: class FourBottleStorageBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/BigTableBlock.java:64: error: method does not override or implement a method from a supertype
+	@Override
+	^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/BigTableBlock.java:66: error: cannot find symbol
+		return simpleCodec(BigTableBlock::new);
+		       ^
+  symbol:   method simpleCodec(BigTableBlock::new)
+  location: class BigTableBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/TableBlock.java:31: error: cannot find symbol
+    public static final MapCodec<TableBlock> CODEC = simpleCodec(TableBlock::new);
+                                                     ^
+  symbol:   method simpleCodec(TableBlock::new)
+  location: class TableBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/WindowBlock.java:27: error: cannot find symbol
+    public static final MapCodec<WindowBlock> CODEC = simpleCodec(WindowBlock::new);
+                                                      ^
+  symbol:   method simpleCodec(WindowBlock::new)
+  location: class WindowBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/WindowBlock.java:29: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/FermentationBarrelBlock.java:60: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/FermentationBarrelBlock.java:62: error: cannot find symbol
+        return simpleCodec(FermentationBarrelBlock::new);
+               ^
+  symbol:   method simpleCodec(Fermentati[...]::new)
+  location: class FermentationBarrelBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/NineBottleStorageBlock.java:21: error: cannot find symbol
+    public static final MapCodec<NineBottleStorageBlock> CODEC = simpleCodec(NineBottleStorageBlock::new);
+                                                                 ^
+  symbol:   method simpleCodec(NineBottle[...]::new)
+  location: class NineBottleStorageBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/ApplePressBlock.java:52: error: method does not override or implement a method from a supertype
+	@Override
+	^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/ApplePressBlock.java:54: error: cannot find symbol
+		return simpleCodec(ApplePressBlock::new);
+		       ^
+  symbol:   method simpleCodec(ApplePress[...]::new)
+  location: class ApplePressBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/DarkCherryLeavesBlock.java:33: error: DarkCherryLeavesBlock is not abstract and does not override abstract method performBonemeal(ServerLevel,RandomSource,BlockPos,BlockState,BonemealSource) in BonemealableBlock
+public class DarkCherryLeavesBlock extends UntintedParticleLeavesBlock implements BonemealableBlock {
+       ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/DarkCherryLeavesBlock.java:41: error: constructor UntintedParticleLeavesBlock in class UntintedParticleLeavesBlock cannot be applied to given types;
+        super(LEAF_PARTICLE_CHANCE, ParticleTypes.CHERRY_LEAVES, settings);
+        ^
+  required: float,ParticleOptions,AmbientLeavesBlockSoundPlayer,Properties
+  found:    float,SimpleParticleType,Properties
+  reason: actual and formal argument lists differ in length
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/DarkCherryLeavesBlock.java:116: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/DarkCherryLeavesBlock.java:123: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/DarkCherryLeavesBlock.java:128: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/DirtPathSlabBlock.java:29: error: cannot find symbol
+    public static final MapCodec<DirtPathSlabBlock> CODEC = simpleCodec(DirtPathSlabBlock::new);
+                                                            ^
+  symbol:   method simpleCodec(DirtPathSl[...]::new)
+  location: class DirtPathSlabBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/DirtPathSlabBlock.java:36: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/PaleStemBlock.java:41: error: PaleStemBlock is not abstract and does not override abstract method performBonemeal(ServerLevel,RandomSource,BlockPos,BlockState,BonemealSource) in BonemealableBlock
+public class PaleStemBlock extends StemBlock {
+       ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/PaleStemBlock.java:46: error: cannot find symbol
+    public static final MapCodec<PaleStemBlock> CODEC = simpleCodec(PaleStemBlock::new);
+                                                        ^
+  symbol:   method simpleCodec(PaleStemBlock::new)
+  location: class PaleStemBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/ShelfBlock.java:47: error: cannot find symbol
+    public static final MapCodec<ShelfBlock> CODEC = simpleCodec(ShelfBlock::new);
+                                                     ^
+  symbol:   method simpleCodec(ShelfBlock::new)
+  location: class ShelfBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapeBush.java:38: error: GrapeBush is not abstract and does not override abstract method performBonemeal(ServerLevel,RandomSource,BlockPos,BlockState,BonemealSource) in BonemealableBlock
+public class GrapeBush extends VegetationBlock implements BonemealableBlock {
+       ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapeBush.java:44: error: cannot find symbol
+            BlockBehaviour.Properties.CODEC.fieldOf("settings").forGetter(BlockBehaviour::properties),
+                                     ^
+  symbol:   variable CODEC
+  location: class Properties
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapeBush.java:58: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapeBush.java:101: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapeBush.java:106: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapeBush.java:134: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapeBush.java:152: error: cannot find symbol
+                BlockBehaviour.Properties.CODEC.fieldOf("settings").forGetter(BlockBehaviour::properties),
+                                         ^
+  symbol:   variable CODEC
+  location: class Properties
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapeBush.java:173: error: cannot find symbol
+                BlockBehaviour.Properties.CODEC.fieldOf("settings").forGetter(BlockBehaviour::properties),
+                                         ^
+  symbol:   variable CODEC
+  location: class Properties
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/ChairBlock.java:96: error: cannot find symbol
+    public static final MapCodec<ChairBlock> CODEC = simpleCodec(ChairBlock::new);
+                                                     ^
+  symbol:   method simpleCodec(ChairBlock::new)
+  location: class ChairBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/ChairBlock.java:103: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/SpreadableGrassSlabBlock.java:34: error: SpreadableGrassSlabBlock is not abstract and does not override abstract method performBonemeal(ServerLevel,RandomSource,BlockPos,BlockState,BonemealSource) in BonemealableBlock
+public class SpreadableGrassSlabBlock extends SlabBlock implements BonemealableBlock {
+       ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/SpreadableGrassSlabBlock.java:46: error: cannot find symbol
+    public static final MapCodec<SpreadableGrassSlabBlock> CODEC = simpleCodec(SpreadableGrassSlabBlock::new);
+                                                                   ^
+  symbol:   method simpleCodec(Spreadable[...]::new)
+  location: class SpreadableGrassSlabBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/SpreadableGrassSlabBlock.java:53: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/SpreadableGrassSlabBlock.java:90: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/SpreadableGrassSlabBlock.java:97: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/SpreadableGrassSlabBlock.java:102: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/SpreadableGrassSlabBlock.java:105: error: method performBonemeal in class GrassBlock cannot be applied to given types;
+        block.performBonemeal(world, random, pos, state);
+             ^
+  required: ServerLevel,RandomSource,BlockPos,BlockState,BonemealSource
+  found:    ServerLevel,RandomSource,BlockPos,BlockState
+  reason: actual and formal argument lists differ in length
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/SpreadableGrassSlabBlock.java:154: error: no suitable method found for playSound(<null>,BlockPos,Reference<SoundEvent>,SoundSource,float,float)
+                world.playSound(null, pos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 1.0F);
+                     ^
+    method Level.playSound(@org.jspecify.annotations.Nullable Entity,BlockPos,SoundEvent,SoundSource,float,float) is not applicable
+      (argument mismatch; Reference<SoundEvent> cannot be converted to SoundEvent)
+    method Level.playSound(@org.jspecify.annotations.Nullable Entity,double,double,double,SoundEvent,SoundSource) is not applicable
+      (argument mismatch; BlockPos cannot be converted to double)
+    method Level.playSound(@org.jspecify.annotations.Nullable Entity,Entity,SoundEvent,SoundSource,float,float) is not applicable
+      (argument mismatch; BlockPos cannot be converted to Entity)
+    method Level.playSound(@org.jspecify.annotations.Nullable Entity,Entity,Holder<SoundEvent>,SoundSource,float,float) is not applicable
+      (argument mismatch; BlockPos cannot be converted to Entity)
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/CompletionistBannerBlock.java:49: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/CompletionistBannerBlock.java:51: error: cannot find symbol
+        return simpleCodec(CompletionistBannerBlock::new);
+               ^
+  symbol:   method simpleCodec(Completion[...]::new)
+  location: class CompletionistBannerBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/WineBoxBlock.java:76: error: cannot find symbol
+    public static final MapCodec<WineBoxBlock> CODEC = simpleCodec(WineBoxBlock::new);
+                                                       ^
+  symbol:   method simpleCodec(WineBoxBlock::new)
+  location: class WineBoxBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/WineBottleBlock.java:48: error: cannot find symbol
+            Properties.CODEC.fieldOf("settings").forGetter(BlockBehaviour::properties),
+                      ^
+  symbol:   variable CODEC
+  location: class Properties
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/WineBottleBlock.java:91: error: method drop in class LivingEntity cannot be applied to given types;
+                        player.drop(wine, false);
+                              ^
+  required: ItemStack,boolean,Prediction
+  found:    ItemStack,boolean
+  reason: actual and formal argument lists differ in length
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/DirtSlabBlock.java:22: error: cannot find symbol
+    public static final MapCodec<DirtSlabBlock> CODEC = simpleCodec(DirtSlabBlock::new);
+                                                        ^
+  symbol:   method simpleCodec(DirtSlabBlock::new)
+  location: class DirtSlabBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/DirtSlabBlock.java:28: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/DirtSlabBlock.java:45: error: no suitable method found for playSound(<null>,BlockPos,Reference<SoundEvent>,SoundSource,float,float)
+                world.playSound(null, pos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 1.0F);
+                     ^
+    method Level.playSound(@org.jspecify.annotations.Nullable Entity,BlockPos,SoundEvent,SoundSource,float,float) is not applicable
+      (argument mismatch; Reference<SoundEvent> cannot be converted to SoundEvent)
+    method Level.playSound(@org.jspecify.annotations.Nullable Entity,double,double,double,SoundEvent,SoundSource) is not applicable
+      (argument mismatch; BlockPos cannot be converted to double)
+    method Level.playSound(@org.jspecify.annotations.Nullable Entity,Entity,SoundEvent,SoundSource,float,float) is not applicable
+      (argument mismatch; BlockPos cannot be converted to Entity)
+    method Level.playSound(@org.jspecify.annotations.Nullable Entity,Entity,Holder<SoundEvent>,SoundSource,float,float) is not applicable
+      (argument mismatch; BlockPos cannot be converted to Entity)
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/AppleLeavesBlock.java:33: error: AppleLeavesBlock is not abstract and does not override abstract method performBonemeal(ServerLevel,RandomSource,BlockPos,BlockState,BonemealSource) in BonemealableBlock
+public class AppleLeavesBlock extends TintedParticleLeavesBlock implements BonemealableBlock {
+       ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/AppleLeavesBlock.java:34: error: cannot find symbol
+    public static final MapCodec<AppleLeavesBlock> CODEC = simpleCodec(AppleLeavesBlock::new);
+                                                           ^
+  symbol:   method simpleCodec(AppleLeave[...]::new)
+  location: class AppleLeavesBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/AppleLeavesBlock.java:53: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/AppleLeavesBlock.java:123: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/AppleLeavesBlock.java:130: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/AppleLeavesBlock.java:135: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapevinePotBlock.java:55: error: cannot find symbol
+    public static final MapCodec<GrapevinePotBlock> CODEC = simpleCodec(GrapevinePotBlock::new);
+                                                            ^
+  symbol:   method simpleCodec(GrapevineP[...]::new)
+  location: class GrapevinePotBlock
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapevinePotBlock.java:62: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapevinePotBlock.java:151: error: incompatible types: boolean cannot be converted to Prediction
+                    player.drop(output, false, false);
+                                               ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/entity/ChairRenderer.java:15: error: method does not override or implement a method from a supertype
+    @Override
+    ^
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/LatticeRenderer.java:187: error: no suitable method found for mulPose(Quaternionf)
+        poseStack.mulPose(Axis.YP.rotationDegrees(-direction.toYRot()));
+                 ^
+    method PoseStack.mulPose(Matrix4fc) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+    method PoseStack.mulPose(Transformation) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Transformation)
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/LatticeRenderer.java:197: error: no suitable method found for mulPose(Quaternionf)
+            poseStack.mulPose(Axis.ZP.rotationDegrees(180f));
+                     ^
+    method PoseStack.mulPose(Matrix4fc) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+    method PoseStack.mulPose(Transformation) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Transformation)
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/LatticeRenderer.java:256: error: no suitable method found for mulPose(Quaternionf)
+            poseStack.mulPose(Axis.YP.rotationDegrees(-direction.toYRot()));
+                     ^
+    method PoseStack.mulPose(Matrix4fc) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+    method PoseStack.mulPose(Transformation) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Transformation)
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/LatticeRenderer.java:258: error: no suitable method found for mulPose(Quaternionf)
+            poseStack.mulPose(Axis.ZP.rotationDegrees(180f));
+                     ^
+    method PoseStack.mulPose(Matrix4fc) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+    method PoseStack.mulPose(Transformation) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Transformation)
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/storage/ShelfRenderer.java:39: error: no suitable method found for mulPose(Quaternionf)
+        poseStack.mulPose(Axis.YP.rotationDegrees(90));
+                 ^
+    method PoseStack.mulPose(Matrix4fc) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+    method PoseStack.mulPose(Transformation) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Transformation)
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/storage/ShelfRenderer.java:47: error: no suitable method found for mulPose(Quaternionf)
+                poseStack.mulPose(Axis.YN.rotationDegrees(22.5f));
+                         ^
+    method PoseStack.mulPose(Matrix4fc) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+    method PoseStack.mulPose(Transformation) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Transformation)
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/storage/FourBottleRenderer.java:37: error: no suitable method found for mulPose(Quaternionf)
+            poseStack.mulPose(Axis.XN.rotationDegrees(90));
+                     ^
+    method PoseStack.mulPose(Matrix4fc) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+    method PoseStack.mulPose(Transformation) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Transformation)
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/storage/WineBottleRenderer.java:73: error: no suitable method found for mulPose(Quaternionf)
+        poseStack.mulPose(Axis.YP.rotationDegrees(30));
+                 ^
+    method PoseStack.mulPose(Matrix4fc) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+    method PoseStack.mulPose(Transformation) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Transformation)
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/storage/WineBottleRenderer.java:86: error: no suitable method found for mulPose(Quaternionf)
+            poseStack.mulPose(Axis.XP.rotationDegrees(90));
+                     ^
+    method PoseStack.mulPose(Matrix4fc) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+    method PoseStack.mulPose(Transformation) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Transformation)
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/storage/WineBottleRenderer.java:91: error: no suitable method found for mulPose(Quaternionf)
+        poseStack.mulPose(Axis.YP.rotationDegrees(30));
+                 ^
+    method PoseStack.mulPose(Matrix4fc) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+    method PoseStack.mulPose(Transformation) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Transformation)
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/storage/NineBottleRenderer.java:47: error: no suitable method found for mulPose(Quaternionf)
+            poseStack.mulPose(Axis.XN.rotationDegrees(90f));
+                     ^
+    method PoseStack.mulPose(Matrix4fc) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+    method PoseStack.mulPose(Transformation) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Transformation)
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/storage/StorageBlockEntityRenderer.java:96: error: no suitable method found for mulPose(Quaternionf)
+        matrices.mulPose(Axis.YP.rotationDegrees(angleOffset - angle));
+                ^
+    method PoseStack.mulPose(Matrix4fc) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+    method PoseStack.mulPose(Transformation) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Transformation)
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/storage/WineBoxRenderer.java:25: error: no suitable method found for mulPose(Quaternionf)
+        poseStack.mulPose(Axis.ZP.rotationDegrees(90f));
+                 ^
+    method PoseStack.mulPose(Matrix4fc) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+    method PoseStack.mulPose(Transformation) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Transformation)
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/storage/WineBoxRenderer.java:26: error: no suitable method found for mulPose(Quaternionf)
+        poseStack.mulPose(Axis.YN.rotationDegrees(90f));
+                 ^
+    method PoseStack.mulPose(Matrix4fc) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+    method PoseStack.mulPose(Transformation) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Transformation)
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/CompletionistBannerRenderer.java:120: error: no suitable method found for mulPose(Quaternionf)
+            poseStack.mulPose(Axis.YP.rotationDegrees(state.angle));
+                     ^
+    method PoseStack.mulPose(Matrix4fc) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+    method PoseStack.mulPose(Transformation) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Transformation)
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/CompletionistBannerRenderer.java:123: error: no suitable method found for mulPose(Quaternionf)
+            poseStack.mulPose(Axis.YP.rotationDegrees(state.angle));
+                     ^
+    method PoseStack.mulPose(Matrix4fc) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+    method PoseStack.mulPose(Transformation) is not applicable
+      (argument mismatch; Quaternionf cannot be converted to Transformation)
+/Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/CompletionistBannerRenderer.java:136: error: no suitable method found for submitModel(CompletionistBannerFlagModel,float,PoseStack,RenderType,int,int,int,CrumblingOverlay)
+        collector.submitModel(this.flagModel, state.phase, poseStack, RenderTypes.entitySolid(state.texture),
+                 ^
+    method OrderedSubmitNodeCollector.<S#1>submitModel(Model<? super S#1>,S#1,PoseStack,RenderType,int,int,int,@org.jspecify.annotations.Nullable UvMapping,int) is not applicable
+      (cannot infer type-variable(s) S#1
+        (actual and formal argument lists differ in length))
+    method OrderedSubmitNodeCollector.<S#2>submitModel(Model<? super S#2>,S#2,PoseStack,RenderType,int,int,int) is not applicable
+      (cannot infer type-variable(s) S#2
+        (actual and formal argument lists differ in length))
+    method OrderedSubmitNodeCollector.<S#3>submitModel(Model<? super S#3>,S#3,PoseStack,Identifier,int,int,int) is not applicable
+      (cannot infer type-variable(s) S#3
+        (actual and formal argument lists differ in length))
+    method OrderedSubmitNodeCollector.<S#4>submitModel(Model<S#4>,S#4,PoseStack,int,int,int,SpriteId,SpriteGetter,int) is not applicable
+      (cannot infer type-variable(s) S#4
+        (actual and formal argument lists differ in length))
+  where S#1,S#2,S#3,S#4 are type-variables:
+    S#1 extends Object declared in method <S#1>submitModel(Model<? super S#1>,S#1,PoseStack,RenderType,int,int,int,@org.jspecify.annotations.Nullable UvMapping,int)
+    S#2 extends Object declared in method <S#2>submitModel(Model<? super S#2>,S#2,PoseStack,RenderType,int,int,int)
+    S#3 extends Object declared in method <S#3>submitModel(Model<? super S#3>,S#3,PoseStack,Identifier,int,int,int)
+    S#4 extends Object declared in method <S#4>submitModel(Model<S#4>,S#4,PoseStack,int,int,int,SpriteId,SpriteGetter,int)
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/util/GeneralUtil.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+159 errors
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':common:compileJava' (registered by plugin class 'org.gradle.api.plugins.JavaBasePlugin').
+> Compilation failed; see the compiler output below.
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:15: error: type Feature does not take parameters
+  public class JungleGrapeFeature extends Feature<BlockStateConfiguration> {
+                                                 ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryFeatures.java:16: error: type Feature does not take parameters
+      private static final Registrar<Feature<?>> FEATURES = DeferredRegister.create(Vinery.MOD_ID, Registries.FEATURE).getRegistrar();
+                                            ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryFeatures.java:17: error: type Feature does not take parameters
+      public static final RegistrySupplier<Feature<BlockStateConfiguration>> JUNGLE_GRAPE_FEATURE = register("jungle_grape_feature", () -> new JungleGrapeFeature(BlockStateConfiguration.CODEC));
+                                                  ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryFeatures.java:22: error: type Feature does not take parameters
+      private static <C extends FeatureConfiguration, F extends Feature<C>> RegistrySupplier<F> register(String name, Supplier<F> feature) {
+                                                                       ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/util/GeneralUtil.java:364: error: method drop in class LivingEntity cannot be applied to given types;
+                          player.drop(itemStack2, false);
+                                ^
+    required: ItemStack,boolean,Prediction
+    found:    ItemStack,boolean
+    reason: actual and formal argument lists differ in length
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/item/GrapeItem.java:33: error: method drop in class LivingEntity cannot be applied to given types;
+                          player.drop(returnStack, false);
+                                ^
+    required: ItemStack,boolean,Prediction
+    found:    ItemStack,boolean
+    reason: actual and formal argument lists differ in length
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/item/DrinkBlockItem.java:86: error: method updateCustomBlockEntityTag in class BlockItem cannot be applied to given types;
+          return super.updateCustomBlockEntityTag(blockPos, level, player, itemStack, blockState);
+                      ^
+    required: Level,Player,BlockPos,ItemStack
+    found:    BlockPos,Level,Player,ItemStack,BlockState
+    reason: actual and formal argument lists differ in length
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/item/GrapejuiceBottleItem.java:48: error: method drop in class LivingEntity cannot be applied to given types;
+                  player.drop(itemStack2, false);
+                        ^
+    required: ItemStack,boolean,Prediction
+    found:    ItemStack,boolean
+    reason: actual and formal argument lists differ in length
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/StorageBlock.java:87: error: method drop in class LivingEntity cannot be applied to given types;
+                  player.drop(itemStack, false);
+                        ^
+    required: ItemStack,boolean,Prediction
+    found:    ItemStack,boolean
+    reason: actual and formal argument lists differ in length
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/DarkCherryLeavesBlock.java:41: error: constructor UntintedParticleLeavesBlock in class UntintedParticleLeavesBlock cannot be applied to given types;
+          super(LEAF_PARTICLE_CHANCE, ParticleTypes.CHERRY_LEAVES, settings);
+          ^
+    required: float,ParticleOptions,AmbientLeavesBlockSoundPlayer,Properties
+    found:    float,SimpleParticleType,Properties
+    reason: actual and formal argument lists differ in length
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/SpreadableGrassSlabBlock.java:105: error: method performBonemeal in class GrassBlock cannot be applied to given types;
+          block.performBonemeal(world, random, pos, state);
+               ^
+    required: ServerLevel,RandomSource,BlockPos,BlockState,BonemealSource
+    found:    ServerLevel,RandomSource,BlockPos,BlockState
+    reason: actual and formal argument lists differ in length
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/WineBottleBlock.java:91: error: method drop in class LivingEntity cannot be applied to given types;
+                          player.drop(wine, false);
+                                ^
+    required: ItemStack,boolean,Prediction
+    found:    ItemStack,boolean
+    reason: actual and formal argument lists differ in length
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapeVineBlock.java:49: error: no suitable method found for playSound(Player,BlockPos,Reference<SoundEvent>,SoundSource,float,float)
+              world.playSound(player, pos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
+                   ^
+      method Level.playSound(@org.jspecify.annotations.Nullable Entity,BlockPos,SoundEvent,SoundSource,float,float) is not applicable
+        (argument mismatch; Reference<SoundEvent> cannot be converted to SoundEvent)
+      method Level.playSound(@org.jspecify.annotations.Nullable Entity,double,double,double,SoundEvent,SoundSource) is not applicable
+        (argument mismatch; BlockPos cannot be converted to double)
+      method Level.playSound(@org.jspecify.annotations.Nullable Entity,Entity,SoundEvent,SoundSource,float,float) is not applicable
+        (argument mismatch; BlockPos cannot be converted to Entity)
+      method Level.playSound(@org.jspecify.annotations.Nullable Entity,Entity,Holder<SoundEvent>,SoundSource,float,float) is not applicable
+        (argument mismatch; BlockPos cannot be converted to Entity)
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/SpreadableGrassSlabBlock.java:154: error: no suitable method found for playSound(<null>,BlockPos,Reference<SoundEvent>,SoundSource,float,float)
+                  world.playSound(null, pos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 1.0F);
+                       ^
+      method Level.playSound(@org.jspecify.annotations.Nullable Entity,BlockPos,SoundEvent,SoundSource,float,float) is not applicable
+        (argument mismatch; Reference<SoundEvent> cannot be converted to SoundEvent)
+      method Level.playSound(@org.jspecify.annotations.Nullable Entity,double,double,double,SoundEvent,SoundSource) is not applicable
+        (argument mismatch; BlockPos cannot be converted to double)
+      method Level.playSound(@org.jspecify.annotations.Nullable Entity,Entity,SoundEvent,SoundSource,float,float) is not applicable
+        (argument mismatch; BlockPos cannot be converted to Entity)
+      method Level.playSound(@org.jspecify.annotations.Nullable Entity,Entity,Holder<SoundEvent>,SoundSource,float,float) is not applicable
+        (argument mismatch; BlockPos cannot be converted to Entity)
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/DirtSlabBlock.java:45: error: no suitable method found for playSound(<null>,BlockPos,Reference<SoundEvent>,SoundSource,float,float)
+                  world.playSound(null, pos, SoundEvents.SHOVEL_FLATTEN, SoundSource.BLOCKS, 1.0F, 1.0F);
+                       ^
+      method Level.playSound(@org.jspecify.annotations.Nullable Entity,BlockPos,SoundEvent,SoundSource,float,float) is not applicable
+        (argument mismatch; Reference<SoundEvent> cannot be converted to SoundEvent)
+      method Level.playSound(@org.jspecify.annotations.Nullable Entity,double,double,double,SoundEvent,SoundSource) is not applicable
+        (argument mismatch; BlockPos cannot be converted to double)
+      method Level.playSound(@org.jspecify.annotations.Nullable Entity,Entity,SoundEvent,SoundSource,float,float) is not applicable
+        (argument mismatch; BlockPos cannot be converted to Entity)
+      method Level.playSound(@org.jspecify.annotations.Nullable Entity,Entity,Holder<SoundEvent>,SoundSource,float,float) is not applicable
+        (argument mismatch; BlockPos cannot be converted to Entity)
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/LatticeRenderer.java:187: error: no suitable method found for mulPose(Quaternionf)
+          poseStack.mulPose(Axis.YP.rotationDegrees(-direction.toYRot()));
+                   ^
+      method PoseStack.mulPose(Matrix4fc) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+      method PoseStack.mulPose(Transformation) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Transformation)
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/LatticeRenderer.java:197: error: no suitable method found for mulPose(Quaternionf)
+              poseStack.mulPose(Axis.ZP.rotationDegrees(180f));
+                       ^
+      method PoseStack.mulPose(Matrix4fc) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+      method PoseStack.mulPose(Transformation) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Transformation)
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/LatticeRenderer.java:256: error: no suitable method found for mulPose(Quaternionf)
+              poseStack.mulPose(Axis.YP.rotationDegrees(-direction.toYRot()));
+                       ^
+      method PoseStack.mulPose(Matrix4fc) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+      method PoseStack.mulPose(Transformation) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Transformation)
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/LatticeRenderer.java:258: error: no suitable method found for mulPose(Quaternionf)
+              poseStack.mulPose(Axis.ZP.rotationDegrees(180f));
+                       ^
+      method PoseStack.mulPose(Matrix4fc) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+      method PoseStack.mulPose(Transformation) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Transformation)
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/storage/ShelfRenderer.java:39: error: no suitable method found for mulPose(Quaternionf)
+          poseStack.mulPose(Axis.YP.rotationDegrees(90));
+                   ^
+      method PoseStack.mulPose(Matrix4fc) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+      method PoseStack.mulPose(Transformation) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Transformation)
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/storage/ShelfRenderer.java:47: error: no suitable method found for mulPose(Quaternionf)
+                  poseStack.mulPose(Axis.YN.rotationDegrees(22.5f));
+                           ^
+      method PoseStack.mulPose(Matrix4fc) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+      method PoseStack.mulPose(Transformation) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Transformation)
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/storage/FourBottleRenderer.java:37: error: no suitable method found for mulPose(Quaternionf)
+              poseStack.mulPose(Axis.XN.rotationDegrees(90));
+                       ^
+      method PoseStack.mulPose(Matrix4fc) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+      method PoseStack.mulPose(Transformation) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Transformation)
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/storage/WineBottleRenderer.java:73: error: no suitable method found for mulPose(Quaternionf)
+          poseStack.mulPose(Axis.YP.rotationDegrees(30));
+                   ^
+      method PoseStack.mulPose(Matrix4fc) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+      method PoseStack.mulPose(Transformation) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Transformation)
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/storage/WineBottleRenderer.java:86: error: no suitable method found for mulPose(Quaternionf)
+              poseStack.mulPose(Axis.XP.rotationDegrees(90));
+                       ^
+      method PoseStack.mulPose(Matrix4fc) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+      method PoseStack.mulPose(Transformation) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Transformation)
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/storage/WineBottleRenderer.java:91: error: no suitable method found for mulPose(Quaternionf)
+          poseStack.mulPose(Axis.YP.rotationDegrees(30));
+                   ^
+      method PoseStack.mulPose(Matrix4fc) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+      method PoseStack.mulPose(Transformation) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Transformation)
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/storage/NineBottleRenderer.java:47: error: no suitable method found for mulPose(Quaternionf)
+              poseStack.mulPose(Axis.XN.rotationDegrees(90f));
+                       ^
+      method PoseStack.mulPose(Matrix4fc) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+      method PoseStack.mulPose(Transformation) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Transformation)
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/storage/StorageBlockEntityRenderer.java:96: error: no suitable method found for mulPose(Quaternionf)
+          matrices.mulPose(Axis.YP.rotationDegrees(angleOffset - angle));
+                  ^
+      method PoseStack.mulPose(Matrix4fc) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+      method PoseStack.mulPose(Transformation) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Transformation)
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/storage/WineBoxRenderer.java:25: error: no suitable method found for mulPose(Quaternionf)
+          poseStack.mulPose(Axis.ZP.rotationDegrees(90f));
+                   ^
+      method PoseStack.mulPose(Matrix4fc) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+      method PoseStack.mulPose(Transformation) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Transformation)
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/storage/WineBoxRenderer.java:26: error: no suitable method found for mulPose(Quaternionf)
+          poseStack.mulPose(Axis.YN.rotationDegrees(90f));
+                   ^
+      method PoseStack.mulPose(Matrix4fc) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+      method PoseStack.mulPose(Transformation) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Transformation)
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/CompletionistBannerRenderer.java:120: error: no suitable method found for mulPose(Quaternionf)
+              poseStack.mulPose(Axis.YP.rotationDegrees(state.angle));
+                       ^
+      method PoseStack.mulPose(Matrix4fc) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+      method PoseStack.mulPose(Transformation) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Transformation)
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/CompletionistBannerRenderer.java:123: error: no suitable method found for mulPose(Quaternionf)
+              poseStack.mulPose(Axis.YP.rotationDegrees(state.angle));
+                       ^
+      method PoseStack.mulPose(Matrix4fc) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Matrix4fc)
+      method PoseStack.mulPose(Transformation) is not applicable
+        (argument mismatch; Quaternionf cannot be converted to Transformation)
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/block/CompletionistBannerRenderer.java:136: error: no suitable method found for submitModel(CompletionistBannerFlagModel,float,PoseStack,RenderType,int,int,int,CrumblingOverlay)
+          collector.submitModel(this.flagModel, state.phase, poseStack, RenderTypes.entitySolid(state.texture),
+                   ^
+      method OrderedSubmitNodeCollector.<S#1>submitModel(Model<? super S#1>,S#1,PoseStack,RenderType,int,int,int,@org.jspecify.annotations.Nullable UvMapping,int) is not applicable
+        (cannot infer type-variable(s) S#1
+          (actual and formal argument lists differ in length))
+      method OrderedSubmitNodeCollector.<S#2>submitModel(Model<? super S#2>,S#2,PoseStack,RenderType,int,int,int) is not applicable
+        (cannot infer type-variable(s) S#2
+          (actual and formal argument lists differ in length))
+      method OrderedSubmitNodeCollector.<S#3>submitModel(Model<? super S#3>,S#3,PoseStack,Identifier,int,int,int) is not applicable
+        (cannot infer type-variable(s) S#3
+          (actual and formal argument lists differ in length))
+      method OrderedSubmitNodeCollector.<S#4>submitModel(Model<S#4>,S#4,PoseStack,int,int,int,SpriteId,SpriteGetter,int) is not applicable
+        (cannot infer type-variable(s) S#4
+          (actual and formal argument lists differ in length))
+    where S#1,S#2,S#3,S#4 are type-variables:
+      S#1 extends Object declared in method <S#1>submitModel(Model<? super S#1>,S#1,PoseStack,RenderType,int,int,int,@org.jspecify.annotations.Nullable UvMapping,int)
+      S#2 extends Object declared in method <S#2>submitModel(Model<? super S#2>,S#2,PoseStack,RenderType,int,int,int)
+      S#3 extends Object declared in method <S#3>submitModel(Model<? super S#3>,S#3,PoseStack,Identifier,int,int,int)
+      S#4 extends Object declared in method <S#4>submitModel(Model<S#4>,S#4,PoseStack,int,int,int,SpriteId,SpriteGetter,int)
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:15: error: no interface expected here
+  public class JungleGrapeFeature extends Feature<BlockStateConfiguration> {
+                                          ^
+  Note: Recompile with -Xlint:deprecation for details.
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/mixin/ShovelItemMixin.java:5: error: cannot find symbol
+  import net.minecraft.world.item.ShovelItem;
+                                 ^
+    symbol:   class ShovelItem
+    location: package net.minecraft.world.item
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryConfiguredFeatures.java:5: error: cannot find symbol
+  import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+                                                   ^
+    symbol:   class ConfiguredFeature
+    location: package net.minecraft.world.level.levelgen.feature
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryConfiguredFeatures.java:10: error: cannot find symbol
+      public static final ResourceKey<ConfiguredFeature<?,?>> DARK_CHERRY_KEY = registerKey("dark_cherry");
+                                      ^
+    symbol:   class ConfiguredFeature
+    location: class VineryConfiguredFeatures
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryConfiguredFeatures.java:11: error: cannot find symbol
+      public static final ResourceKey<ConfiguredFeature<?,?>> DARK_CHERRY_VARIANT_KEY = registerKey("dark_cherry_variant");
+                                      ^
+    symbol:   class ConfiguredFeature
+    location: class VineryConfiguredFeatures
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryConfiguredFeatures.java:12: error: cannot find symbol
+      public static final ResourceKey<ConfiguredFeature<?,?>> APPLE_KEY = registerKey("apple");
+                                      ^
+    symbol:   class ConfiguredFeature
+    location: class VineryConfiguredFeatures
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryConfiguredFeatures.java:13: error: cannot find symbol
+      public static final ResourceKey<ConfiguredFeature<?,?>> APPLE_VARIANT_KEY = registerKey("apple_variant");
+                                      ^
+    symbol:   class ConfiguredFeature
+    location: class VineryConfiguredFeatures
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryConfiguredFeatures.java:15: error: cannot find symbol
+      public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
+                                ^
+    symbol:   class ConfiguredFeature
+    location: class VineryConfiguredFeatures
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:11: error: cannot find symbol
+  import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+                                                   ^
+    symbol:   class FeaturePlaceContext
+    location: package net.minecraft.world.level.levelgen.feature
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:19: error: cannot find symbol
+      public JungleGrapeFeature(Codec<BlockStateConfiguration> codec) {
+                                      ^
+    symbol:   class BlockStateConfiguration
+    location: class JungleGrapeFeature
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:24: error: cannot find symbol
+      public boolean place(FeaturePlaceContext<BlockStateConfiguration> context) {
+                           ^
+    symbol:   class FeaturePlaceContext
+    location: class JungleGrapeFeature
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:24: error: cannot find symbol
+      public boolean place(FeaturePlaceContext<BlockStateConfiguration> context) {
+                                               ^
+    symbol:   class BlockStateConfiguration
+    location: class JungleGrapeFeature
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryFeatures.java:17: error: cannot find symbol
+      public static final RegistrySupplier<Feature<BlockStateConfiguration>> JUNGLE_GRAPE_FEATURE = register("jungle_grape_feature", () -> new JungleGrapeFeature(BlockStateConfiguration.CODEC));
+                                                   ^
+    symbol:   class BlockStateConfiguration
+    location: class VineryFeatures
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryFeatures.java:22: error: cannot find symbol
+      private static <C extends FeatureConfiguration, F extends Feature<C>> RegistrySupplier<F> register(String name, Supplier<F> feature) {
+                                ^
+    symbol:   class FeatureConfiguration
+    location: class VineryFeatures
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/LatticeBlock.java:15: error: cannot find symbol
+  import net.minecraft.world.item.AxeItem;
+                                 ^
+    symbol:   class AxeItem
+    location: package net.minecraft.world.item
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/StackableLogBlock.java:21: error: cannot find symbol
+  import net.minecraft.world.item.ShovelItem;
+                                 ^
+    symbol:   class ShovelItem
+    location: package net.minecraft.world.item
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryConfiguredFeatures.java:16: error: cannot find symbol
+          return ResourceKey.create(Registries.CONFIGURED_FEATURE, Vinery.identifier(name));
+                                              ^
+    symbol:   variable CONFIGURED_FEATURE
+    location: class Registries
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryFeatures.java:17: error: cannot find symbol
+      public static final RegistrySupplier<Feature<BlockStateConfiguration>> JUNGLE_GRAPE_FEATURE = register("jungle_grape_feature", () -> new JungleGrapeFeature(BlockStateConfiguration.CODEC));
+                                                                                                                                                                  ^
+    symbol:   variable BlockStateConfiguration
+    location: class VineryFeatures
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/ObjectRegistry.java:52: error: cannot find symbol
+      public static final RegistrySupplier<Item> DARK_CHERRY_SIGN_ITEM = ITEMS.register("dark_cherry_sign", () -> new SignItem(ObjectRegistry.DARK_CHERRY_SIGN.get(), ObjectRegistry.DARK_CHERRY_WALL_SIGN.get(), itemProps("dark_cherry_sign").stacksTo(16).useBlockDescriptionPrefix()));
+                                                                                                                      ^
+    symbol:   class SignItem
+    location: class ObjectRegistry
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/ObjectRegistry.java:171: error: cannot find symbol
+      public static final RegistrySupplier<Block> DARK_CHERRY_BIG_TABLE = registerWithItem("dark_cherry_big_table", () -> new BigTableBlock(blockProps("dark_cherry_big_table").strength(2.0F, 2.0F).pushReaction(PushReaction.IGNORE)));
+                                                                                                                                                                                                                              ^
+    symbol:   variable IGNORE
+    location: class PushReaction
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/ObjectRegistry.java:321: error: cannot find symbol
+          BlockBehaviour.Properties properties = blockProps(name).noCollision().strength(0.5F).pushReaction(PushReaction.DESTROY);
+                                                                                                                        ^
+    symbol:   variable DESTROY
+    location: class PushReaction
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:7: error: cannot find symbol
+          ComposterBlock.COMPOSTABLES.put(ObjectRegistry.WHITE_GRAPE.get(), 0.4F);
+                        ^
+    symbol:   variable COMPOSTABLES
+    location: class ComposterBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:8: error: cannot find symbol
+          ComposterBlock.COMPOSTABLES.put(ObjectRegistry.WHITE_GRAPE_SEEDS.get().asItem(), 0.4F);
+                        ^
+    symbol:   variable COMPOSTABLES
+    location: class ComposterBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:9: error: cannot find symbol
+          ComposterBlock.COMPOSTABLES.put(ObjectRegistry.RED_GRAPE.get(), 0.4F);
+                        ^
+    symbol:   variable COMPOSTABLES
+    location: class ComposterBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:10: error: cannot find symbol
+          ComposterBlock.COMPOSTABLES.put(ObjectRegistry.RED_GRAPE_SEEDS.get().asItem(), 0.4F);
+                        ^
+    symbol:   variable COMPOSTABLES
+    location: class ComposterBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:11: error: cannot find symbol
+          ComposterBlock.COMPOSTABLES.put(ObjectRegistry.DARK_CHERRY_LEAVES.get().asItem(), 0.4F);
+                        ^
+    symbol:   variable COMPOSTABLES
+    location: class ComposterBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:12: error: cannot find symbol
+          ComposterBlock.COMPOSTABLES.put(ObjectRegistry.GRAPEVINE_LEAVES.get().asItem(), 0.4F);
+                        ^
+    symbol:   variable COMPOSTABLES
+    location: class ComposterBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:13: error: cannot find symbol
+          ComposterBlock.COMPOSTABLES.put(ObjectRegistry.CHERRY.get(), 0.4F);
+                        ^
+    symbol:   variable COMPOSTABLES
+    location: class ComposterBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:14: error: cannot find symbol
+          ComposterBlock.COMPOSTABLES.put(ObjectRegistry.ROTTEN_CHERRY.get(), 0.4F);
+                        ^
+    symbol:   variable COMPOSTABLES
+    location: class ComposterBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:15: error: cannot find symbol
+          ComposterBlock.COMPOSTABLES.put(ObjectRegistry.APPLE_TREE_SAPLING.get().asItem(), 0.4F);
+                        ^
+    symbol:   variable COMPOSTABLES
+    location: class ComposterBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:16: error: cannot find symbol
+          ComposterBlock.COMPOSTABLES.put(ObjectRegistry.APPLE_LEAVES.get().asItem(), 0.4F);
+                        ^
+    symbol:   variable COMPOSTABLES
+    location: class ComposterBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:17: error: cannot find symbol
+          ComposterBlock.COMPOSTABLES.put(ObjectRegistry.DARK_CHERRY_SAPLING.get().asItem(), 0.4F);
+                        ^
+    symbol:   variable COMPOSTABLES
+    location: class ComposterBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:18: error: cannot find symbol
+          ComposterBlock.COMPOSTABLES.put(ObjectRegistry.APPLE_MASH.get(), 0.4F);
+                        ^
+    symbol:   variable COMPOSTABLES
+    location: class ComposterBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:19: error: cannot find symbol
+          ComposterBlock.COMPOSTABLES.put(ObjectRegistry.STRAW_HAT.get(), 0.4F);
+                        ^
+    symbol:   variable COMPOSTABLES
+    location: class ComposterBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:20: error: cannot find symbol
+          ComposterBlock.COMPOSTABLES.put(ObjectRegistry.JUNGLE_RED_GRAPE_SEEDS.get().asItem(), 0.4F);
+                        ^
+    symbol:   variable COMPOSTABLES
+    location: class ComposterBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:21: error: cannot find symbol
+          ComposterBlock.COMPOSTABLES.put(ObjectRegistry.JUNGLE_RED_GRAPE.get(), 0.4F);
+                        ^
+    symbol:   variable COMPOSTABLES
+    location: class ComposterBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:22: error: cannot find symbol
+          ComposterBlock.COMPOSTABLES.put(ObjectRegistry.JUNGLE_WHITE_GRAPE_SEEDS.get().asItem(), 0.4F);
+                        ^
+    symbol:   variable COMPOSTABLES
+    location: class ComposterBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:23: error: cannot find symbol
+          ComposterBlock.COMPOSTABLES.put(ObjectRegistry.JUNGLE_WHITE_GRAPE.get(), 0.4F);
+                        ^
+    symbol:   variable COMPOSTABLES
+    location: class ComposterBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:24: error: cannot find symbol
+          ComposterBlock.COMPOSTABLES.put(ObjectRegistry.TAIGA_RED_GRAPE_SEEDS.get().asItem(), 0.4F);
+                        ^
+    symbol:   variable COMPOSTABLES
+    location: class ComposterBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:25: error: cannot find symbol
+          ComposterBlock.COMPOSTABLES.put(ObjectRegistry.TAIGA_RED_GRAPE.get(), 0.4F);
+                        ^
+    symbol:   variable COMPOSTABLES
+    location: class ComposterBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:26: error: cannot find symbol
+          ComposterBlock.COMPOSTABLES.put(ObjectRegistry.TAIGA_WHITE_GRAPE_SEEDS.get().asItem(), 0.4F);
+                        ^
+    symbol:   variable COMPOSTABLES
+    location: class ComposterBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:27: error: cannot find symbol
+          ComposterBlock.COMPOSTABLES.put(ObjectRegistry.TAIGA_WHITE_GRAPE.get(), 0.4F);
+                        ^
+    symbol:   variable COMPOSTABLES
+    location: class ComposterBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:28: error: cannot find symbol
+          ComposterBlock.COMPOSTABLES.put(ObjectRegistry.SAVANNA_RED_GRAPE_SEEDS.get().asItem(), 0.4F);
+                        ^
+    symbol:   variable COMPOSTABLES
+    location: class ComposterBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:29: error: cannot find symbol
+          ComposterBlock.COMPOSTABLES.put(ObjectRegistry.SAVANNA_RED_GRAPE.get(), 0.4F);
+                        ^
+    symbol:   variable COMPOSTABLES
+    location: class ComposterBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:30: error: cannot find symbol
+          ComposterBlock.COMPOSTABLES.put(ObjectRegistry.SAVANNA_WHITE_GRAPE_SEEDS.get().asItem(), 0.4F);
+                        ^
+    symbol:   variable COMPOSTABLES
+    location: class ComposterBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/registry/CompostableRegistry.java:31: error: cannot find symbol
+          ComposterBlock.COMPOSTABLES.put(ObjectRegistry.SAVANNA_WHITE_GRAPE.get(), 0.4F);
+                        ^
+    symbol:   variable COMPOSTABLES
+    location: class ComposterBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/LatticeBlock.java:109: error: cannot find symbol
+          if (stack.getItem() instanceof AxeItem) {
+                                         ^
+    symbol:   class AxeItem
+    location: class LatticeBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/CabinetBlock.java:42: error: cannot find symbol
+              Properties.CODEC.fieldOf("settings").forGetter(BlockBehaviour::properties),
+                        ^
+    symbol:   variable CODEC
+    location: class Properties
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/StoragePotBlock.java:28: error: cannot find symbol
+              Properties.CODEC.fieldOf("settings").forGetter(BlockBehaviour::properties),
+                        ^
+    symbol:   variable CODEC
+    location: class Properties
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/StackableLogBlock.java:74: error: cannot find symbol
+          } else if (stack.getItem() instanceof ShovelItem && stackSize == SlabType.DOUBLE && state.getValue(FIRED)) {
+                                                ^
+    symbol:   class ShovelItem
+    location: class StackableLogBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapeBush.java:44: error: cannot find symbol
+              BlockBehaviour.Properties.CODEC.fieldOf("settings").forGetter(BlockBehaviour::properties),
+                                       ^
+    symbol:   variable CODEC
+    location: class Properties
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapeBush.java:152: error: cannot find symbol
+                  BlockBehaviour.Properties.CODEC.fieldOf("settings").forGetter(BlockBehaviour::properties),
+                                           ^
+    symbol:   variable CODEC
+    location: class Properties
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapeBush.java:173: error: cannot find symbol
+                  BlockBehaviour.Properties.CODEC.fieldOf("settings").forGetter(BlockBehaviour::properties),
+                                           ^
+    symbol:   variable CODEC
+    location: class Properties
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/WineBottleBlock.java:48: error: cannot find symbol
+              Properties.CODEC.fieldOf("settings").forGetter(BlockBehaviour::properties),
+                        ^
+    symbol:   variable CODEC
+    location: class Properties
+  Note: Recompile with -Xlint:unchecked for details.
+  Note: Some input files use or override a deprecated API.
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:23: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/item/DrinkBlockItem.java:81: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/StemBlock.java:32: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/StemBlock.java:110: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/StemBlock.java:114: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/StemBlock.java:119: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/CabinetBlock.java:90: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/FacingBlock.java:19: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/LineConnectingBlock.java:28: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/StackableLogBlock.java:57: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapeVineBlock.java:84: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapeVineBlock.java:89: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapeVineBlock.java:94: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/BigTableBlock.java:64: error: method does not override or implement a method from a supertype
+  	@Override
+  	^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/WindowBlock.java:29: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/FermentationBarrelBlock.java:60: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/ApplePressBlock.java:52: error: method does not override or implement a method from a supertype
+  	@Override
+  	^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/DarkCherryLeavesBlock.java:116: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/DarkCherryLeavesBlock.java:123: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/DarkCherryLeavesBlock.java:128: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/DirtPathSlabBlock.java:36: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapeBush.java:58: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapeBush.java:101: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapeBush.java:106: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapeBush.java:134: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/ChairBlock.java:103: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/SpreadableGrassSlabBlock.java:53: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/SpreadableGrassSlabBlock.java:90: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/SpreadableGrassSlabBlock.java:97: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/SpreadableGrassSlabBlock.java:102: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/CompletionistBannerBlock.java:49: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/DirtSlabBlock.java:28: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/AppleLeavesBlock.java:53: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/AppleLeavesBlock.java:123: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/AppleLeavesBlock.java:130: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/AppleLeavesBlock.java:135: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapevinePotBlock.java:62: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/client/render/entity/ChairRenderer.java:15: error: method does not override or implement a method from a supertype
+      @Override
+      ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/LatticeBlock.java:58: error: cannot find symbol
+      public static final MapCodec<LatticeBlock> CODEC = simpleCodec(LatticeBlock::new);
+                                                         ^
+    symbol:   method simpleCodec(LatticeBlock::new)
+    location: class LatticeBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/FacingBlock.java:21: error: cannot find symbol
+          return simpleCodec(FacingBlock::new);
+                 ^
+    symbol:   method simpleCodec(FacingBlock::new)
+    location: class FacingBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/BigBottleStorageBlock.java:33: error: cannot find symbol
+      public static final MapCodec<BigBottleStorageBlock> CODEC = simpleCodec(BigBottleStorageBlock::new);
+                                                                  ^
+    symbol:   method simpleCodec(BigBottleS[...]::new)
+    location: class BigBottleStorageBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/LineConnectingBlock.java:26: error: cannot find symbol
+      public static final MapCodec<LineConnectingBlock> CODEC = simpleCodec(LineConnectingBlock::new);
+                                                                ^
+    symbol:   method simpleCodec(LineConnec[...]::new)
+    location: class LineConnectingBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/StackableLogBlock.java:55: error: cannot find symbol
+      public static final MapCodec<StackableLogBlock> CODEC = simpleCodec(StackableLogBlock::new);
+                                                              ^
+    symbol:   method simpleCodec(StackableL[...]::new)
+    location: class StackableLogBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/FourBottleStorageBlock.java:21: error: cannot find symbol
+      public static final MapCodec<FourBottleStorageBlock> CODEC = simpleCodec(FourBottleStorageBlock::new);
+                                                                   ^
+    symbol:   method simpleCodec(FourBottle[...]::new)
+    location: class FourBottleStorageBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/BigTableBlock.java:66: error: cannot find symbol
+  		return simpleCodec(BigTableBlock::new);
+  		       ^
+    symbol:   method simpleCodec(BigTableBlock::new)
+    location: class BigTableBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/TableBlock.java:31: error: cannot find symbol
+      public static final MapCodec<TableBlock> CODEC = simpleCodec(TableBlock::new);
+                                                       ^
+    symbol:   method simpleCodec(TableBlock::new)
+    location: class TableBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/WindowBlock.java:27: error: cannot find symbol
+      public static final MapCodec<WindowBlock> CODEC = simpleCodec(WindowBlock::new);
+                                                        ^
+    symbol:   method simpleCodec(WindowBlock::new)
+    location: class WindowBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/FermentationBarrelBlock.java:62: error: cannot find symbol
+          return simpleCodec(FermentationBarrelBlock::new);
+                 ^
+    symbol:   method simpleCodec(Fermentati[...]::new)
+    location: class FermentationBarrelBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/NineBottleStorageBlock.java:21: error: cannot find symbol
+      public static final MapCodec<NineBottleStorageBlock> CODEC = simpleCodec(NineBottleStorageBlock::new);
+                                                                   ^
+    symbol:   method simpleCodec(NineBottle[...]::new)
+    location: class NineBottleStorageBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/ApplePressBlock.java:54: error: cannot find symbol
+  		return simpleCodec(ApplePressBlock::new);
+  		       ^
+    symbol:   method simpleCodec(ApplePress[...]::new)
+    location: class ApplePressBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/DirtPathSlabBlock.java:29: error: cannot find symbol
+      public static final MapCodec<DirtPathSlabBlock> CODEC = simpleCodec(DirtPathSlabBlock::new);
+                                                              ^
+    symbol:   method simpleCodec(DirtPathSl[...]::new)
+    location: class DirtPathSlabBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/PaleStemBlock.java:46: error: cannot find symbol
+      public static final MapCodec<PaleStemBlock> CODEC = simpleCodec(PaleStemBlock::new);
+                                                          ^
+    symbol:   method simpleCodec(PaleStemBlock::new)
+    location: class PaleStemBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/ShelfBlock.java:47: error: cannot find symbol
+      public static final MapCodec<ShelfBlock> CODEC = simpleCodec(ShelfBlock::new);
+                                                       ^
+    symbol:   method simpleCodec(ShelfBlock::new)
+    location: class ShelfBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/ChairBlock.java:96: error: cannot find symbol
+      public static final MapCodec<ChairBlock> CODEC = simpleCodec(ChairBlock::new);
+                                                       ^
+    symbol:   method simpleCodec(ChairBlock::new)
+    location: class ChairBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/SpreadableGrassSlabBlock.java:46: error: cannot find symbol
+      public static final MapCodec<SpreadableGrassSlabBlock> CODEC = simpleCodec(SpreadableGrassSlabBlock::new);
+                                                                     ^
+    symbol:   method simpleCodec(Spreadable[...]::new)
+    location: class SpreadableGrassSlabBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/CompletionistBannerBlock.java:51: error: cannot find symbol
+          return simpleCodec(CompletionistBannerBlock::new);
+                 ^
+    symbol:   method simpleCodec(Completion[...]::new)
+    location: class CompletionistBannerBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/WineBoxBlock.java:76: error: cannot find symbol
+      public static final MapCodec<WineBoxBlock> CODEC = simpleCodec(WineBoxBlock::new);
+                                                         ^
+    symbol:   method simpleCodec(WineBoxBlock::new)
+    location: class WineBoxBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/DirtSlabBlock.java:22: error: cannot find symbol
+      public static final MapCodec<DirtSlabBlock> CODEC = simpleCodec(DirtSlabBlock::new);
+                                                          ^
+    symbol:   method simpleCodec(DirtSlabBlock::new)
+    location: class DirtSlabBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/AppleLeavesBlock.java:34: error: cannot find symbol
+      public static final MapCodec<AppleLeavesBlock> CODEC = simpleCodec(AppleLeavesBlock::new);
+                                                             ^
+    symbol:   method simpleCodec(AppleLeave[...]::new)
+    location: class AppleLeavesBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapevinePotBlock.java:55: error: cannot find symbol
+      public static final MapCodec<GrapevinePotBlock> CODEC = simpleCodec(GrapevinePotBlock::new);
+                                                              ^
+    symbol:   method simpleCodec(GrapevineP[...]::new)
+    location: class GrapevinePotBlock
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapevinePotBlock.java:151: error: incompatible types: boolean cannot be converted to Prediction
+                      player.drop(output, false, false);
+                                                 ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/LatticeBlock.java:43: error: LatticeBlock is not abstract and does not override abstract method performBonemeal(ServerLevel,RandomSource,BlockPos,BlockState,BonemealSource) in BonemealableBlock
+  public class LatticeBlock extends StemBlock implements EntityBlock {
+         ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapeVineBlock.java:31: error: GrapeVineBlock is not abstract and does not override abstract method performBonemeal(ServerLevel,RandomSource,BlockPos,BlockState,BonemealSource) in BonemealableBlock
+  public class GrapeVineBlock extends VineBlock implements BonemealableBlock {
+         ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/DarkCherryLeavesBlock.java:33: error: DarkCherryLeavesBlock is not abstract and does not override abstract method performBonemeal(ServerLevel,RandomSource,BlockPos,BlockState,BonemealSource) in BonemealableBlock
+  public class DarkCherryLeavesBlock extends UntintedParticleLeavesBlock implements BonemealableBlock {
+         ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/PaleStemBlock.java:41: error: PaleStemBlock is not abstract and does not override abstract method performBonemeal(ServerLevel,RandomSource,BlockPos,BlockState,BonemealSource) in BonemealableBlock
+  public class PaleStemBlock extends StemBlock {
+         ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/GrapeBush.java:38: error: GrapeBush is not abstract and does not override abstract method performBonemeal(ServerLevel,RandomSource,BlockPos,BlockState,BonemealSource) in BonemealableBlock
+  public class GrapeBush extends VegetationBlock implements BonemealableBlock {
+         ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/SpreadableGrassSlabBlock.java:34: error: SpreadableGrassSlabBlock is not abstract and does not override abstract method performBonemeal(ServerLevel,RandomSource,BlockPos,BlockState,BonemealSource) in BonemealableBlock
+  public class SpreadableGrassSlabBlock extends SlabBlock implements BonemealableBlock {
+         ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/block/AppleLeavesBlock.java:33: error: AppleLeavesBlock is not abstract and does not override abstract method performBonemeal(ServerLevel,RandomSource,BlockPos,BlockState,BonemealSource) in BonemealableBlock
+  public class AppleLeavesBlock extends TintedParticleLeavesBlock implements BonemealableBlock {
+         ^
+  Note: /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/util/GeneralUtil.java uses unchecked or unsafe operations.
+  Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:15: error: cannot find symbol
+  public class JungleGrapeFeature extends Feature<BlockStateConfiguration> {
+                                                  ^
+    symbol: class BlockStateConfiguration
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/mixin/ShovelItemMixin.java:16: error: cannot find symbol
+  @Mixin(ShovelItem.class)
+         ^
+    symbol: class ShovelItem
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/JungleGrapeFeature.java:12: error: package net.minecraft.world.level.levelgen.feature.configurations does not exist
+  import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
+                                                                  ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryFeatures.java:8: error: package net.minecraft.world.level.levelgen.feature.configurations does not exist
+  import net.minecraft.world.level.levelgen.feature.configurations.BlockStateConfiguration;
+                                                                  ^
+  /Users/alextodd/temp/Github-NOTSYNCED/Vinery/.claude/worktrees/26.3/common/src/main/java/net/satisfy/vinery/core/world/feature/VineryFeatures.java:9: error: package net.minecraft.world.level.levelgen.feature.configurations does not exist
+  import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+                                                                  ^
+  159 errors
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+
+BUILD FAILED in 20s
