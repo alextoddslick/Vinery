@@ -13,6 +13,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealSource;
@@ -96,8 +97,18 @@ public class GrapeBush extends VegetationBlock implements BonemealableBlock {
         return true;
     }
 
+    /**
+     * Sky light is not computed for a chunk until after the feature decoration step, so during world
+     * generation {@code getRawBrightness} reports 0 for almost every position and a plain light gate
+     * would reject nearly every generated bush. Skip the gate while generating; growth and survival
+     * checks on a live level still apply it.
+     */
+    protected static boolean hasLightToLive(LevelReader world, BlockPos blockPos, int minLight) {
+        return world instanceof WorldGenLevel || world.getRawBrightness(blockPos, 0) >= minLight;
+    }
+
     public boolean canGrowPlace(LevelReader world, BlockPos blockPos, BlockState blockState) {
-        return world.getRawBrightness(blockPos, 0) > 9;
+        return hasLightToLive(world, blockPos, 10);
     }
 
     @Override
@@ -142,7 +153,7 @@ public class GrapeBush extends VegetationBlock implements BonemealableBlock {
 
         @Override
         public boolean canGrowPlace(LevelReader world, BlockPos blockPos, BlockState blockState) {
-            return world.getRawBrightness(blockPos, 0) >= 14;
+            return hasLightToLive(world, blockPos, 14);
         }
     }
 
@@ -153,7 +164,7 @@ public class GrapeBush extends VegetationBlock implements BonemealableBlock {
 
         @Override
         public boolean canGrowPlace(LevelReader world, BlockPos blockPos, BlockState blockState) {
-            if (world.getRawBrightness(blockPos, 0) <= 4) {
+            if (!hasLightToLive(world, blockPos, 5)) {
                 return false;
             }
             int size = 4;
